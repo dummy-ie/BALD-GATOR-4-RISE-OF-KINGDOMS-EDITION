@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GUI/USS/MainMenu.uss?fileID=7433441132597879392&amp;guid=3dc23726709fd00459ee1447e2ef6523&amp;type=3#MainMenu" />
+    <ui:Image name="BGLogo" class="unity-image">
+        <ui:Image name="IVText" class="unity-image">
+            <ui:Image name="BGText" class="unity-image" />
+        </ui:Image>
+        <ui:Image name="EnhancedEditionText" class="unity-image">
+            <ui:Image name="ROFLogo" class="unity-image" />
+        </ui:Image>
+    </ui:Image>
+    <ui:Button text="Play" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayButton" />
+    <ui:VisualElement name="GameLogoContainer" />
+</ui:UXML>
