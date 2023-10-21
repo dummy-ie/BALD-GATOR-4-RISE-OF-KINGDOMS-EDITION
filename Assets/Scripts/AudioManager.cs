@@ -23,10 +23,8 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name) { 
         for (int i = 0; i < _files.Length; i++) {
-            Debug.Log(this._files[i].name);
             if (_files[i].name == name) {
                 this._source.clip = _files[i];
-                Debug.Log(this._source.clip.name);
                 this._source.Play();
                 return;
             }
