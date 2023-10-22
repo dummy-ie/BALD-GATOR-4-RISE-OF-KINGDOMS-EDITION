@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class MainMenuView : View {
     private Button _playButton;
@@ -15,7 +16,9 @@ public class MainMenuView : View {
 
     public void PlayButtonClicked() {
         Debug.Log("Clicked Play Button");
-        ViewManager.Instance.Show<SettingsView>();
+        //ViewManager.Instance.Show<SettingsView>();
+        this.Hide();
         AudioManager.Instance.Play("Majestic_Sound");
+        SceneManager.LoadScene("Dice Roller");
     }
 }
