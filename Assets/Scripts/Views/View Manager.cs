@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ViewManager : MonoBehaviour
-{
+public class ViewManager : MonoBehaviour {
     public static ViewManager Instance;
 
     [SerializeField]
@@ -27,7 +26,6 @@ public class ViewManager : MonoBehaviour
     }
     
     public void Show<T>() where T : View {
-        Debug.Log("a");
         for (int i = 0; i < this._views.Length; i++) {
             if (this._views[i] is T view) {
                 Debug.Log("Showing View.");
@@ -36,6 +34,7 @@ public class ViewManager : MonoBehaviour
             }
         }
     }
+
     public void Show(View view) {
         if (this._currentView != null) {
             this._currentView.Hide();
@@ -51,7 +50,6 @@ public class ViewManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    // Start is called before the first frame update
     void Start() {
         for (int i = 0; i < this._views.Length;i++) {
             _views[i].Initialize();

@@ -10,10 +10,12 @@ public class SettingsView : View
         this._root = this._document.rootVisualElement;
         this._backButton = (Button)this._root.Q("BackButton");
         this._backButton.clicked += BackButtonClicked;
+        //Debug.Log("Initialized Settings View");
     }
 
     public void BackButtonClicked() {
         Debug.Log("Clicked");
         ViewManager.Instance.Show<MainMenuView>();
+        AudioManager.Instance.Stop();
     }
 }
