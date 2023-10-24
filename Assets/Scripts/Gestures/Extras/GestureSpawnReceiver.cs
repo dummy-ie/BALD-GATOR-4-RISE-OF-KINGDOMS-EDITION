@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnReceiver : MonoBehaviour, ITappable, ISwipeable, IDraggable, ISpreadable, IRotatable
+public class GestureSpawnReceiver : MonoBehaviour, ITappable, ISwipeable, IDraggable, ISpreadable, IRotatable
 {
     private Vector3 _targetPosition = Vector3.zero;
     [SerializeField] private float _swipeSpeed = 1f;

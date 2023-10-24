@@ -5,11 +5,22 @@ using UnityEngine;
 
 public class TapReceiver : MonoBehaviour
 {
-    [Tooltip("The GameObject to spawn.")]
-    [SerializeField] private GameObject spawn;
+    [Tooltip("The 1st GameObject to spawn.")]
+    [SerializeField] private GameObject spawn0;
+    
+    [Tooltip("The 2nd GameObject to spawn.")]
+    [SerializeField] private GameObject spawn1;
+
+    private bool _willSpawn2nd = false;
+
     private void Spawn(Vector3 spawnPosition)
     {
-        Instantiate(spawn, spawnPosition, Quaternion.identity);
+        if (!_willSpawn2nd)
+            Instantiate(spawn0, spawnPosition, Quaternion.identity);
+        else
+            Instantiate(spawn1, spawnPosition, Quaternion.identity);
+
+        _willSpawn2nd = !_willSpawn2nd;
     }
 
     // Start is called before the first frame update
