@@ -55,6 +55,7 @@ public class DialogueView : View
         Option1.visible = false;
         Option2.visible = false;
 
+        this.BG.visible = false;
         this.BG.SetEnabled(false);
     }
 

@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/GUI/USS/Dialogue.uss?fileID=7433441132597879392&amp;guid=9a569d2ecc757c94db27220cb794581a&amp;type=3#Dialogue" />
-    <ui:VisualElement name="BG" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.55); opacity: 1; width: auto; height: auto; border-left-color: rgba(2, 1, 1, 0.99); border-right-color: rgba(2, 1, 1, 0.99); border-top-color: rgba(2, 1, 1, 0.99); border-bottom-color: rgba(2, 1, 1, 0.99); border-top-width: 12px; border-right-width: 12px; border-bottom-width: 12px; border-left-width: 12px; border-top-left-radius: 50px; border-top-right-radius: 50px; border-bottom-right-radius: 50px; border-bottom-left-radius: 50px; max-height: 40%; margin-top: 2%; margin-right: 2%; margin-bottom: 2%; margin-left: 2%; top: 67%;">
-        <ui:Label tabindex="-1" text="HELLO MF" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Text" style="left: 2%; top: 5%; background-color: rgba(0, 0, 0, 0); font-size: 17px; color: rgb(255, 255, 255); -unity-text-align: upper-left;" />
-        <ui:VisualElement name="Buttons" style="flex-grow: 1; flex-direction: row; flex-wrap: wrap; left: 74%; width: 176px; height: 0; max-height: 69px; top: -26%;">
+    <ui:VisualElement name="BG" style="flex-direction: row;">
+        <ui:Label tabindex="-1" text="HELLO MF" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Text" />
+        <ui:VisualElement name="Buttons">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Option1" />
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Option2" />
             <ui:Button text="Fight" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Option3" />

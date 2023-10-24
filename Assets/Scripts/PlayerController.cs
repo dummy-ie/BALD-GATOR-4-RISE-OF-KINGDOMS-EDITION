@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour, IPannable
 
     [SerializeField]
     [Range(0.1f, 100f)]
-    private float _panSpeed = 5f;
+   // private float _panSpeed = 5f;
 
     private Rigidbody _rigidbody;
     private Vector3 _panTarget = Vector3.zero;

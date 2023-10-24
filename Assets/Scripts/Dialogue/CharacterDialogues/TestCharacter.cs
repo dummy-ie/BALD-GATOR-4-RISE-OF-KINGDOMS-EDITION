@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class TestCharacter : ChoiceClass
 {
-    DialogueArgs dialogue1 = new DialogueArgs();
-    DialogueArgs dialogue2 = new DialogueArgs();
-    DialogueArgs dialogue3 = new DialogueArgs();
+    DialogueArgs dialogue1 = new();
+    DialogueArgs dialogue2 = new();
+    DialogueArgs dialogue3 = new();
 
     void Start()
     {
-        dialogue1.Text = "Hey wassup";
+        dialogue1.Text = "wassup";
         dialogue1.Choice1 = InstantiateChoice(dialogue2, "Powta", true, false);
         dialogue1.Choice2 = InstantiateChoice(dialogue3, "Sunna", true, false);
 
@@ -18,7 +18,7 @@ public class TestCharacter : ChoiceClass
         dialogue2.Text = "oh shit";
         dialogue2.Choice1 = InstantiateChoice(dialogue1, "Back", true, false);
 
-        dialogue3.Text = "Gabeh";
+        dialogue3.Text = "fak u";
         dialogue3.Choice1 = InstantiateChoice(dialogue1, "Back", true, true);
 
         DialogueManager.Instance.StartDialogue(dialogue1);

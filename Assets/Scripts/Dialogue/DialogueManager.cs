@@ -15,14 +15,15 @@ public class DialogueManager : MonoBehaviour
         view.Choice1.visible = false;
         view.Choice2.visible = false;
 
-        view.Choice1.clickable = null;
-        view.Choice2.clickable = null;
-        view.Choice3.clickable = null;
-        view.Choice4.clickable = null;
+        view.Choice1.clicked -= Option1;
+        view.Choice2.clicked -= Option2;
+        //view.Choice3.clickable = null;
+        //view.Choice4.clickable = null;
     }
 
     public void StartDialogue(DialogueArgs args)
     {
+        view.BackGround.visible = true;
         view.BackGround.SetEnabled(true);
 
         ResetButtons();
@@ -65,6 +66,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        view.BackGround.visible = false;
         view.BackGround.SetEnabled(false);
     }
 
@@ -111,6 +113,11 @@ public class DialogueManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+    }
+    private void Start()
+    {
+        view.Choice3.clicked += StartCombat;
+        view.Choice4.clicked += LeaveDialogue;
     }
 
 
