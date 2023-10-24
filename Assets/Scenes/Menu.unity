@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: 1161be66bf3f146c7a629b4584166512, type: 2}
+  m_PanelSettings: {fileID: 11400000, guid: de2cda360818e614390a71ab62fcf284, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 555f8cb9cbc1c1c42bece50e1fe923b8,
     type: 3}
@@ -366,25 +366,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 890280032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0758cbb4e01a7949bf34570a57459dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 46e686cfa6318644db887f847d08ab83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tapProperty:
-    _time: 0.7
-    _maxDistance: 0.1
-  _swipeProperty:
-    _time: 2
-    _moveType: 0
-    _minDistance: 0.7
-  _swipeType: 0
-  _dragProperty:
-    _time: 1
-  _panProperty:
-    _maxDistance: 0.7
-  _spreadProperty:
-    _minDistanceChange: 0.5
-  _rotateProperty:
-    _minDistanceChange: 0.75
 --- !u!1 &1235619835
 GameObject:
   m_ObjectHideFlags: 0
