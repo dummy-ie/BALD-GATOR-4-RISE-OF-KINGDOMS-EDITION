@@ -11,9 +11,15 @@ public class PanEventArgs : EventArgs
         get { return _trackedFingers; }
     }
 
-    public PanEventArgs(Touch[] trackedFingers)
+    private Vector2 _startPoint;
+    public Vector2 StartPoint
+    {
+        get { return _startPoint; }
+    }
+
+    public PanEventArgs(Touch[] trackedFingers, Vector2 startPoint)
     {
         _trackedFingers = trackedFingers;
-
+        _startPoint = startPoint;
     }
 }

@@ -11,10 +11,16 @@ public class DragEventArgs : EventArgs
     private GameObject _hitObject;
     public GameObject HitObject { get { return _hitObject; } }
 
+    private Vector2 _startPoint;
+    public Vector2 StartPoint
+    {
+        get { return _startPoint; }
+    }
 
-    public DragEventArgs(Touch trackedFinger, GameObject hitObject = null)
+    public DragEventArgs(Touch trackedFinger, Vector2 startPoint, GameObject hitObject = null)
     {
         _trackedFinger = trackedFinger;
+        _startPoint = startPoint;
         _hitObject = hitObject;
     }
 }
