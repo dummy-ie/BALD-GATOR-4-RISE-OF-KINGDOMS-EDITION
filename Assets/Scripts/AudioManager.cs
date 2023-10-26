@@ -21,19 +21,30 @@ public class AudioManager : MonoBehaviour
         return null;
     }
 
-    public void Play(string name) { 
+    public void Play(string name, bool loop = false) { 
         for (int i = 0; i < _files.Length; i++) {
             if (_files[i].name == name) {
                 this._source.clip = _files[i];
                 this._source.Play();
+                this._source.loop = loop;
                 return;
             }
+        }
+    }
+
+    public void Play(int index, bool loop = false) { 
+        for (int i = 0; i < _files.Length; i++) {
+            this._source.clip = _files[index];
+            this._source.Play();
+            this._source.loop = loop;
+            return;
         }
     }
 
     public void Stop() { 
         this._source.Stop();
         this._source.clip = null;
+        this._source.loop = false;
     }
 
 
