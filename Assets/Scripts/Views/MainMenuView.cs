@@ -19,6 +19,6 @@ public class MainMenuView : View {
         //ViewManager.Instance.Show<SettingsView>();
         this.Hide();
         AudioManager.Instance.Play("Majestic_Sound");
-        SceneManager.LoadScene("Dice Roller");
+        SceneManager.LoadScene("SampleScene");
     }
 }

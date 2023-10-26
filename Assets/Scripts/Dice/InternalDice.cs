@@ -23,17 +23,17 @@ public class InternalDice : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void ToggleSuccess()
+    public void ToggleSuccess(bool success)
     {
-        if (_rollType == RollType.DEFAULT)
+        if (success)
             _rollType = RollType.CRITICAL_SUCCESS;
         else
             _rollType = RollType.DEFAULT;
     }
 
-    public void ToggleFail()
+    public void ToggleFail(bool fail)
     {
-        if (_rollType == RollType.DEFAULT)
+        if (fail)
             _rollType = RollType.CRITICAL_FAIL;
         else
             _rollType = RollType.DEFAULT;
