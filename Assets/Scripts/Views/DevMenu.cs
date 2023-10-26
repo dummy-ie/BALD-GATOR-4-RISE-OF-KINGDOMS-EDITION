@@ -32,6 +32,11 @@ public class DevMenu : MonoBehaviour {
         }
     }
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start() {
         this._root = GetComponent<UIDocument>().rootVisualElement;
         this._succeed = this._root.Q<Toggle>("SucceedToggle");
