@@ -1,8 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/GUI/USS/DevMenu.uss?fileID=7433441132597879392&amp;guid=befd7018758c95542839fe6ebb7a3761&amp;type=3#DevMenu" />
     <ui:Foldout text="Developer Menu" name="DevMenuFoldout">
-        <ui:Toggle label="Always SUCCEED" name="SucceedToggle" style="color: rgb(0, 255, 19);" />
-        <ui:Toggle label="Always FAIL" name="FailToggle" style="color: rgb(255, 0, 0);" />
-        <ui:MinMaxSlider picking-mode="Ignore" label="Value Limit [10, 12]" min-value="10" max-value="12" low-limit="1" high-limit="20" name="ValueLimitSlider" />
+        <ui:VisualElement name="ToggleContainer">
+            <ui:Toggle label="Always SUCCEED" name="SucceedToggle" value="false" />
+            <ui:Toggle label="Always FAIL" name="FailToggle" />
+        </ui:VisualElement>
+        <ui:Slider picking-mode="Ignore" label="Ending Meter [NUM]" value="50" high-value="100" name="EndingMeterValue" show-input-field="false" direction="Horizontal" />
     </ui:Foldout>
 </ui:UXML>
