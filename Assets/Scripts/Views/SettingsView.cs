@@ -5,17 +5,17 @@ using UnityEngine.UIElements;
 
 public class SettingsView : View
 {
-    private Button _backButton;
+    private Button _closeButton;
     public override void Initialize() {
         this._root = this._document.rootVisualElement;
-        this._backButton = (Button)this._root.Q("BackButton");
-        this._backButton.clicked += BackButtonClicked;
+        this._closeButton = this._root.Q<Button>("CloseButton");
+        this._closeButton.clicked += CloseButtonClicked;
         //Debug.Log("Initialized Settings View");
     }
 
-    public void BackButtonClicked() {
+    public void CloseButtonClicked() {
         Debug.Log("Clicked");
-        ViewManager.Instance.Show<MainMenuView>();
+        ViewManager.Instance.HidePopUp(this);
         AudioManager.Instance.Stop();
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,6 +14,7 @@ public class ViewManager : MonoBehaviour {
     private View[] _views;
 
     private View _currentView;
+    private List<View> _currentPopUps;
 
     public T GetView<T>() where T : View { 
         for (int i = 0; i < this._views.Length; i++) { 
@@ -30,6 +32,10 @@ public class ViewManager : MonoBehaviour {
             if (this._views[i] is T view) {
                 Debug.Log("Showing View.");
                 this._currentView.Hide();
+                foreach (View popUp in this._currentPopUps) { 
+                    popUp.Hide();
+                }
+                this._currentPopUps.Clear();
                 this.Show(this._views[i]);
             }
         }
@@ -39,8 +45,32 @@ public class ViewManager : MonoBehaviour {
         if (this._currentView != null) {
             this._currentView.Hide();
         }
+        //foreach (View popUp in this._currentPopUps) { 
+        //    popUp.Hide();
+        //}
+        //this._currentPopUps.Clear();
         view.Show();
         this._currentView = view;
+    }
+
+    public void PopUp<T>() where T : View {
+        for (int i = 0; i < this._views.Length; i++) {
+            if (this._views[i] is T view) {
+                Debug.Log("Popping Up View.");
+                this._views[i].Show();
+                this._currentPopUps.Add(view);
+            }
+        }
+    }
+
+    public void PopUp(View view) {
+        view.Show();
+        this._currentPopUps.Add(view);
+    }
+
+    public void HidePopUp(View view) {
+        view.Hide();
+        this._currentPopUps.Remove(view);
     }
 
     void Awake() {

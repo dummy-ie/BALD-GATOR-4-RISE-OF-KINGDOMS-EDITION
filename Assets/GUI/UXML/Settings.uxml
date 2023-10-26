@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" />
-    <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" />
+    <Style src="project://database/Assets/GUI/USS/Settings.uss?fileID=7433441132597879392&amp;guid=a84fb7b1838d71749b7daf5ea92efe9f&amp;type=3#Settings" />
+    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CloseButton" />
 </ui:UXML>

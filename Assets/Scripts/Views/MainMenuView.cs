@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuView : View {
     private Button _playButton;
+    private Button _settingsButton;
 
     public override void Initialize() {
         this._root = this._document.rootVisualElement;
-        this._playButton = (Button)this._root.Q("PlayButton");
-        //Debug.Log("Initialized Main Menu");
+        this._playButton = this._root.Q<Button>("PlayButton");
+        this._settingsButton = this._root.Q<Button>("SettingsButton");
         this._playButton.clicked += PlayButtonClicked;
+        this._settingsButton.clicked += SettingsButtonClicked;
     }
 
     public void PlayButtonClicked() {
@@ -20,5 +22,10 @@ public class MainMenuView : View {
         this.Hide();
         AudioManager.Instance.Play("Majestic_Sound");
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void SettingsButtonClicked() {
+        Debug.Log("Clicked Settings Button");
+        ViewManager.Instance.PopUp<SettingsView>();
     }
 }
