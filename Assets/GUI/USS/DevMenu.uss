@@ -3,14 +3,16 @@ VisualElement {
 
 #DevMenuFoldout {
     align-self: flex-end;
-    width: 40%;
+    width: 50%;
     background-color: rgba(0, 0, 0, 0.45);
     color: rgb(255, 255, 255);
+    height: auto;
+    font-size: 60px;
 }
 
 #ToggleContainer {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 
 #SucceedToggle {

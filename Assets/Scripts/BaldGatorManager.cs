@@ -18,7 +18,7 @@ public class BaldGatorManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioManager.Instance.Play(1, true);
     }
 
     // Update is called once per frame
