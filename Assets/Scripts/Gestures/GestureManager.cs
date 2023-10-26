@@ -124,7 +124,7 @@ public class GestureManager : MonoBehaviour
     {
         GameObject hitObject = GetHitObject(_trackedFingers[0].position);
 
-        DragEventArgs args = new(_trackedFingers[0], hitObject);
+        DragEventArgs args = new(_trackedFingers[0], _startPoint, hitObject);
         OnDrag?.Invoke(this, args);
 
         if (hitObject != null)
@@ -164,7 +164,7 @@ public class GestureManager : MonoBehaviour
 
     private void FirePanEvent()
     {
-        PanEventArgs args = new(_trackedFingers);
+        PanEventArgs args = new(_trackedFingers, GetMidPoint(GetPreviousPoint(_trackedFingers[0]), GetPreviousPoint(_trackedFingers[1])));
         OnPan?.Invoke(this, args);
     }
 

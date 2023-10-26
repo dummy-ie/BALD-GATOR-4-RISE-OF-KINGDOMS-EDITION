@@ -47,11 +47,14 @@ public class OrientationLock : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+        
+        Screen.orientation = ScreenOrientation.LandscapeRight;
+        Lock();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        _previousOrientation = Input.deviceOrientation;
+        // _previousOrientation = Input.deviceOrientation;
     }
 }

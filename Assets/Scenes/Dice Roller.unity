@@ -1260,7 +1260,7 @@ GameObject:
   - component: {fileID: 1677308807}
   - component: {fileID: 1677308808}
   m_Layer: 0
-  m_Name: GestureManager
+  m_Name: Gesture Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1293,6 +1293,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e686cfa6318644db887f847d08ab83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tapProperty:
+    _time: 0.7
+    _maxDistance: 0.1
+  _swipeProperty:
+    _time: 2
+    _moveType: 0
+    _minDistance: 0.7
+  _swipeType: 0
+  _dragProperty:
+    _time: 1
+  _panProperty:
+    _maxDistance: 0.7
+  _spreadProperty:
+    _minDistanceChange: 0.5
+  _rotateProperty:
+    _minDistanceChange: 0.75
 --- !u!1 &1885147043
 GameObject:
   m_ObjectHideFlags: 0
