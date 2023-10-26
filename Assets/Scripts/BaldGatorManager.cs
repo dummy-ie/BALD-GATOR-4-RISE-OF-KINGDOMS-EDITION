@@ -6,6 +6,8 @@ using SceneManager = UnityEngine.SceneManagement.SceneManager;
 public class BaldGatorManager : MonoBehaviour {
     public static BaldGatorManager Instance;
 
+    [SerializeField] private bool _developerMode = false;
+
     void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -16,9 +18,8 @@ public class BaldGatorManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        AudioManager.Instance.Play(1, true);
+    void Start() {
+        GameObject.Find("DevMenu").SetActive(_developerMode);
     }
 
     // Update is called once per frame

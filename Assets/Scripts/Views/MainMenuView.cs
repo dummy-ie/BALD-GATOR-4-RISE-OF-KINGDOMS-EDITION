@@ -14,18 +14,21 @@ public class MainMenuView : View {
         this._settingsButton = this._root.Q<Button>("SettingsButton");
         this._playButton.clicked += PlayButtonClicked;
         this._settingsButton.clicked += SettingsButtonClicked;
+        AudioManager.Instance.Play(1, true);
     }
 
     public void PlayButtonClicked() {
         Debug.Log("Clicked Play Button");
-        //ViewManager.Instance.Show<SettingsView>();
-        this.Hide();
         AudioManager.Instance.Play("Majestic_Sound");
-        SceneManager.LoadScene("SampleScene");
+        ViewManager.Instance.SceneFader.Fade("Port", ViewManager.Instance.GetView<GameView>());
     }
 
     public void SettingsButtonClicked() {
         Debug.Log("Clicked Settings Button");
         ViewManager.Instance.PopUp<SettingsView>();
+    }
+
+    private void OnDisable() {
+        AudioManager.Instance.Stop();
     }
 }
