@@ -9,4 +9,5 @@
             <ui:Button text="Leave" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Option4" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Degub" style="height: 12%; width: 13%; background-color: rgb(7, 7, 7);" />
 </ui:UXML>

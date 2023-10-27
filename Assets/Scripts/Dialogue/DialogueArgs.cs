@@ -6,7 +6,6 @@ using UnityEngine;
 public class DialogueArgs
 {
 
-
     private string text;
     public string Text
     {

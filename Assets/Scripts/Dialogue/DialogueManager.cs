@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] DialogueView view;
 
     DialogueArgs args;
+    DialogueClass target;
 
     void ResetButtons()
     {
@@ -17,18 +18,22 @@ public class DialogueManager : MonoBehaviour
 
         view.Choice1.clicked -= Option1;
         view.Choice2.clicked -= Option2;
-        //view.Choice3.clickable = null;
-        //view.Choice4.clickable = null;
     }
 
-    public void StartDialogue(DialogueArgs args)
+    public void StartDialogue(DialogueClass target, DialogueArgs args)
     {
+        if (this.target == null)
+            loadTarget(target);
+
+        this.target.CurrentDialogue = args;
+
         view.BackGround.visible = true;
         view.BackGround.SetEnabled(true);
 
         ResetButtons();
 
         loadArgs(args);
+        loadTarget(target);
 
         SetAllText();
 
@@ -38,6 +43,11 @@ public class DialogueManager : MonoBehaviour
     void loadArgs(DialogueArgs args)
     {
         this.args = args;
+    }
+
+    void loadTarget(DialogueClass target)
+    {
+        this.target = target;
     }
 
 
@@ -66,27 +76,60 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        view.Choice1.visible = false;
+        view.Choice2.visible = false;
+
         view.BackGround.visible = false;
         view.BackGround.SetEnabled(false);
     }
 
     void Option1()
     {
-        if (args.Choice1.diceRoll)
+        if (args.Choice1.diceRoll && args.Choice1.otherResultDialogue != null)
         {
-            args.Choice1 = disableButton(args.Choice1);
+            args.Choice1 = DisableButton(args.Choice1);
+            if (CheckDiceOutcome())
+                StartDialogue(target, args.Choice1.resultDialogue);
+            else
+                StartDialogue(target, args.Choice1.otherResultDialogue);
         }
-        StartDialogue(args.Choice1.resultDialogue);
+        else
+        {
+            StartDialogue(target, args.Choice1.resultDialogue);
+        }
+        
         
     }
 
     void Option2()
     {
-        if (args.Choice2.diceRoll)
+        if (args.Choice2.diceRoll && args.Choice2.otherResultDialogue != null)
         {
-            args.Choice2 = disableButton(args.Choice2);
+            args.Choice2 = DisableButton(args.Choice2);
+            if (CheckDiceOutcome())
+                StartDialogue(target, args.Choice2.resultDialogue);
+            else
+                StartDialogue(target, args.Choice2.otherResultDialogue);
         }
-        StartDialogue(args.Choice2.resultDialogue);
+        else
+        {
+            StartDialogue(target, args.Choice2.resultDialogue);
+        }
+        
+    }
+
+    bool CheckDiceOutcome()
+    {
+        if (InternalDice.Instance.RollInternal(10)) //SUCCESS
+        {
+            Debug.Log("SUCCESS");
+            return true; 
+        }
+        else
+        {
+            Debug.Log("FAILED");
+            return false;
+        }
     }
 
     public void StartCombat()
@@ -99,11 +142,19 @@ public class DialogueManager : MonoBehaviour
         EndDialogue();
     }
 
-    Choice disableButton(Choice choice)
+    Choice DisableButton(Choice choice)
     {
         Choice newChoice;
         newChoice = choice;
         newChoice.enabled = false;
+        return newChoice;
+    }
+
+    Choice EnableButton(Choice choice)
+    {
+        Choice newChoice;
+        newChoice = choice;
+        newChoice.enabled = true;
         return newChoice;
     }
 

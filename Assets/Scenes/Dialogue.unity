@@ -167,22 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0758cbb4e01a7949bf34570a57459dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tapProperty:
-    _time: 0.7
-    _maxDistance: 0.1
-  _swipeProperty:
-    _time: 2
-    _moveType: 0
-    _minDistance: 0.7
-  _swipeType: 0
-  _dragProperty:
-    _time: 1
-  _panProperty:
-    _maxDistance: 0.7
-  _spreadProperty:
-    _minDistanceChange: 0.5
-  _rotateProperty:
-    _minDistanceChange: 0.75
 --- !u!1 &192367294
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,6 +592,50 @@ MonoBehaviour:
   sourceAsset: {fileID: 9197481963319205126, guid: 555f8cb9cbc1c1c42bece50e1fe923b8,
     type: 3}
   m_SortingOrder: 0
+--- !u!1 &1631457953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1631457955}
+  - component: {fileID: 1631457954}
+  m_Layer: 0
+  m_Name: DiceInternal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1631457954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631457953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ac0ffc6d320e14c844d53aad521e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1631457955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631457953}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.1262856, y: 3.407258, z: -4.76917}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1708904457
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a40e39a320e4744adad74f7d0ff843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 383301807}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -898,3 +927,4 @@ SceneRoots:
   - {fileID: 1708904459}
   - {fileID: 192367296}
   - {fileID: 1803322793}
+  - {fileID: 1631457955}

@@ -42,6 +42,11 @@ public class DialogueView : View
         get { return Option4; }
     }
 
+
+
+    public Button Degub;
+
+
     public override void Initialize()
     {
         this._root = this._document.rootVisualElement;
@@ -57,6 +62,9 @@ public class DialogueView : View
 
         this.BG.visible = false;
         this.BG.SetEnabled(false);
+
+
+        Degub = (Button)_root.Q("Degub");
     }
 
     // Update is called once per frame
