@@ -2,37 +2,49 @@ using UnityEngine;
 using UnityEngine.UI; // Import the UI namespace
 using System.Collections;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
-    [SerializeField] DialogueView view;
+    [SerializeField] DialogueView _view;
 
-    public DialogueView View { get { return view; } }
+    public DialogueView View { get { return _view; } }
 
-    DialogueArgs args;
-    DialogueClass target;
+    private DialogueArgs _args;
+
+    private DialogueArgs _nextArgsOther;
+    public DialogueArgs NextArgsOther { get { return _nextArgsOther; } }
+    private DialogueArgs _nextArgs;
+    public DialogueArgs NextArgs { get { return _nextArgs; } }
+
+    private DialogueClass _target;
+    public DialogueClass Target { get { return _target; } }
+
+    private ExternalDice _externalDice;
 
     void ResetButtons()
     {
-        view.Choice1.visible = false;
-        view.Choice2.visible = false;
+        _view.Choice1.visible = false;
+        _view.Choice2.visible = false;
 
-        view.Choice1.clicked -= Option1;
-        view.Choice2.clicked -= Option2;
+        _view.Choice1.clicked -= Option1;
+        _view.Choice2.clicked -= Option2;
+        // _view.Choice1.clickable = new Clickable(() => { });
+        // _view.Choice2.clickable = new Clickable(() => { });
     }
 
     public void StartDialogue(DialogueClass target, DialogueArgs args)
     {
         // view.Initialize(); // refresh
 
-        if (this.target == null)
+        if (this._target == null)
             loadTarget(target);
 
-        this.target.CurrentDialogue = args;
+        this._target.CurrentDialogue = args;
 
-        view.BackGround.visible = true;
-        view.BackGround.SetEnabled(true);
+        _view.BackGround.visible = true;
+        _view.BackGround.SetEnabled(true);
 
         ResetButtons();
 
@@ -42,103 +54,111 @@ public class DialogueManager : MonoBehaviour
         SetAllText();
 
         SetButtons();
-    
-        ViewManager.Instance.Show(view);
+
+        ViewManager.Instance.Show(_view);
     }
 
     void loadArgs(DialogueArgs args)
     {
-        this.args = args;
+        this._args = args;
     }
 
     void loadTarget(DialogueClass target)
     {
-        this.target = target;
+        this._target = target;
     }
 
 
     void SetAllText()
     {
-        view.Text.text = args.Text;
+        _view.Text.text = _args.Text;
 
-        view.Choice1.text = args.Choice1.buttonText;
-        view.Choice2.text = args.Choice2.buttonText;
+        _view.Choice1.text = _args.Choice1.buttonText;
+        _view.Choice2.text = _args.Choice2.buttonText;
     }
 
     void SetButtons()
     {
-        if (args.Choice1.enabled)
+        if (_args.Choice1.enabled)
         {
-            view.Choice1.visible = true;
-            view.Choice1.clicked += Option1;
+            _view.Choice1.visible = true;
+            _view.Choice1.clicked += Option1;
         }
 
-        if (args.Choice2.enabled)
+        if (_args.Choice2.enabled)
         {
-            view.Choice2.visible = true;
-            view.Choice2.clicked += Option2;
+            _view.Choice2.visible = true;
+            _view.Choice2.clicked += Option2;
         }
     }
 
     void EndDialogue()
     {
-        view.Choice1.visible = false;
-        view.Choice2.visible = false;
+        _view.Choice1.visible = false;
+        _view.Choice2.visible = false;
 
-        view.BackGround.visible = false;
-        view.BackGround.SetEnabled(false);
+        _view.BackGround.visible = false;
+        _view.BackGround.SetEnabled(false);
 
         ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<GameView>());
     }
 
     void Option1()
     {
-        if (args.Choice1.diceRoll && args.Choice1.otherResultDialogue != null)
+        if (_args.Choice1.diceRoll && _args.Choice1.otherResultDialogue != null)
         {
-            args.Choice1 = DisableButton(args.Choice1);
-            if (CheckDiceOutcome())
-                StartDialogue(target, args.Choice1.resultDialogue);
-            else
-                StartDialogue(target, args.Choice1.otherResultDialogue);
+            if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS)
+                StartDialogue(_target, _args.Choice1.resultDialogue);
+            else if (InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
+                StartDialogue(_target, _args.Choice1.otherResultDialogue);
+
+            SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
+
+            _args.Choice1 = DisableButton(_args.Choice1);
+            _nextArgs = _args.Choice1.resultDialogue;
+            _nextArgsOther = _args.Choice1.otherResultDialogue;
         }
         else
         {
-            StartDialogue(target, args.Choice1.resultDialogue);
+            StartDialogue(_target, _args.Choice1.resultDialogue);
         }
-        
-        
     }
 
     void Option2()
     {
-        if (args.Choice2.diceRoll && args.Choice2.otherResultDialogue != null)
+        if (_args.Choice2.diceRoll && _args.Choice2.otherResultDialogue != null)
         {
-            args.Choice2 = DisableButton(args.Choice2);
-            if (CheckDiceOutcome())
-                StartDialogue(target, args.Choice2.resultDialogue);
-            else
-                StartDialogue(target, args.Choice2.otherResultDialogue);
+            if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS)
+                StartDialogue(_target, _args.Choice2.resultDialogue);
+            else if (InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
+                StartDialogue(_target, _args.Choice2.otherResultDialogue);
+
+            SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
+
+            _args.Choice2 = DisableButton(_args.Choice2);
+            _nextArgs = _args.Choice2.resultDialogue;
+            _nextArgsOther = _args.Choice2.otherResultDialogue;
         }
         else
         {
-            StartDialogue(target, args.Choice2.resultDialogue);
+            StartDialogue(_target, _args.Choice2.resultDialogue);
         }
-        
     }
 
-    bool CheckDiceOutcome()
-    {
-        if (InternalDice.Instance.RollInternal(10)) //SUCCESS
-        {
-            Debug.Log("SUCCESS");
-            return true; 
-        }
-        else
-        {
-            Debug.Log("FAILED");
-            return false;
-        }
-    }
+    // public bool CheckDiceOutcome()
+    // {
+    //     Debug.Log("Check dice outcome");
+    //     if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS)
+    //         return true;
+    //     else if (InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
+    //         return false;
+
+    //     // Debug.Log("Result: " + ExternalDice.ResultExternal(10));
+    //     if (ExternalDice.ResultExternal(10))
+    //         return true;
+    //     else
+    //         return false;
+    // }
 
     public void StartCombat()
     {
@@ -175,10 +195,37 @@ public class DialogueManager : MonoBehaviour
     }
     private void Start()
     {
-        view.Choice3.clicked += StartCombat;
-        view.Choice4.clicked += LeaveDialogue;
+        _view.Choice3.clicked += StartCombat;
+        _view.Choice4.clicked += LeaveDialogue;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+        if (scene.name == "Dice Roller")
+        {
+            Debug.Log("Loaded Dice Roller");
 
+            ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<DiceRollView>());
+
+            _externalDice = scene.GetRootGameObjects()[0].GetComponentInChildren<ExternalDice>();
+            if (_externalDice == null)
+                Debug.LogError("External dice null!");
+        }
+    }
+
+    void OnSceneUnloaded(Scene scene)
+    {
+        ViewManager.Instance.Show(_view);
+    }
 }

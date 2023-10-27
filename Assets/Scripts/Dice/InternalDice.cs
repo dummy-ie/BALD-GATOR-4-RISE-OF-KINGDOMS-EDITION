@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class InternalDice : MonoBehaviour
 {
-    private enum RollType
-    {
-        CRITICAL_FAIL, // 1
-        CRITICAL_SUCCESS, // 20
-        DEFAULT
-    }
-
     public static InternalDice Instance;
 
-    private RollType _rollType = RollType.DEFAULT;
+    private ERollType _rollType = ERollType.DEFAULT;
+    public ERollType RollType { get { return _rollType; } }
 
     private void Awake()
     {
@@ -26,25 +20,25 @@ public class InternalDice : MonoBehaviour
     public void ToggleSuccess(bool success)
     {
         if (success)
-            _rollType = RollType.CRITICAL_SUCCESS;
+            _rollType = ERollType.CRITICAL_SUCCESS;
         else
-            _rollType = RollType.DEFAULT;
+            _rollType = ERollType.DEFAULT;
     }
 
     public void ToggleFail(bool fail)
     {
         if (fail)
-            _rollType = RollType.CRITICAL_FAIL;
+            _rollType = ERollType.CRITICAL_FAIL;
         else
-            _rollType = RollType.DEFAULT;
+            _rollType = ERollType.DEFAULT;
     }
 
     public bool RollInternal(int difficultyClass, int modifier = 0)
     {
-        if (_rollType == RollType.CRITICAL_SUCCESS)
+        if (_rollType == ERollType.CRITICAL_SUCCESS)
             return true;
 
-        if (_rollType == RollType.CRITICAL_FAIL)
+        if (_rollType == ERollType.CRITICAL_FAIL)
             return false;
 
         int roll = Random.Range(1, 21);

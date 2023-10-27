@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class ExternalDice : MonoBehaviour
 {
@@ -28,14 +31,27 @@ public class ExternalDice : MonoBehaviour
     private List<GameObject> _dieFaces = new(20);
     private bool _rolling = false;
 
-    private int _result = 0;
-    public int Result { get { return _result; } }
-    
+    private static int _result = 0;
+    // public static int Result { get { return _result; } }
+
+    private bool _finishedRolling = false;
+    public bool FinishedRolling { get { return _finishedRolling; } }
+
+    // public DialogueArgs nextArgs;
+    // public DialogueArgs nextArgsOther;
+    // public DialogueClass target;
+
     // private int _difficultyClass;
     // public int DifficultyClass { get { return _difficultyClass; } }
 
-    private void CheckAccelerometer()
+    public void CheckAccelerometer()
     {
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(0)) && !_rolling)
+        {
+            Debug.Log("Rolling dice with spacebar");
+            YeetDice(new Vector2(UnityEngine.Random.Range(1, 101), UnityEngine.Random.Range(1, 101)));
+        }
+
         if (Math.Abs(Input.acceleration.x) >= _accelerometerProperty.MinChangeX
         && !_rolling)
         {
@@ -48,7 +64,6 @@ public class ExternalDice : MonoBehaviour
         Vector3 deltaTransform = Vector3.zero;
         deltaTransform.x = Input.acceleration.x * (_accelerometerProperty.SpeedX * Time.deltaTime);
         YeetDice(Input.acceleration * (_accelerometerProperty.SpeedX * Time.deltaTime));
-        // transform.Translate(deltaTransform);
     }
 
     private void YeetDice(Vector2 direction)
@@ -75,9 +90,15 @@ public class ExternalDice : MonoBehaviour
 
         int dieValue = GetDieValue();
         _result = dieValue;
-        Debug.Log("Player rolled: " + dieValue);
+        _finishedRolling = true;
 
-        // OnDieRolled?.Invoke(dieValue); // Event for later
+        if (ResultExternal(10))
+            DialogueManager.Instance.StartDialogue(DialogueManager.Instance.Target, DialogueManager.Instance.NextArgs);
+        else
+            DialogueManager.Instance.StartDialogue(DialogueManager.Instance.Target, DialogueManager.Instance.NextArgsOther);
+
+        yield return new WaitForSeconds(1f); // wait a bit
+        SceneManager.UnloadSceneAsync("Dice Roller");
     }
 
     private int GetDieValue()
@@ -95,8 +116,9 @@ public class ExternalDice : MonoBehaviour
         return number;
     }
 
-    public bool ResultExternal(int difficultyClass, int modifier = 0)
+    public static bool ResultExternal(int difficultyClass, int modifier = 0)
     {
+        Debug.Log("Result External _result: " + _result);
         if (_result + modifier >= difficultyClass)
             return true;
 
