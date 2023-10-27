@@ -27,8 +27,10 @@ public class DevMenu : MonoBehaviour {
 
     void ToggleDice() {
         if (InternalDice.Instance != null) { 
-            InternalDice.Instance.ToggleFail(this._fail.value);
-            InternalDice.Instance.ToggleSuccess(this._succeed.value);
+            if (!this._succeed.value)
+                InternalDice.Instance.ToggleFail(this._fail.value);
+            if (!this._fail.value)
+                InternalDice.Instance.ToggleSuccess(this._succeed.value);
         }
     }
 

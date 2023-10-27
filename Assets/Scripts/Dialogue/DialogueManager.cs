@@ -105,6 +105,7 @@ public class DialogueManager : MonoBehaviour
 
     void Option1()
     {
+        Debug.Log("Roll Type: " + InternalDice.Instance.RollType);
         if (_args.Choice1.diceRoll && _args.Choice1.otherResultDialogue != null)
         {
             Debug.Log("Roll type: " + InternalDice.Instance.RollType);
@@ -133,6 +134,7 @@ public class DialogueManager : MonoBehaviour
 
     void Option2()
     {
+        Debug.Log("Roll Type: " + InternalDice.Instance.RollType);
         if (_args.Choice2.diceRoll && _args.Choice2.otherResultDialogue != null)
         {
             Debug.Log("Roll type: " + InternalDice.Instance.RollType);
