@@ -108,10 +108,17 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Roll Type: " + InternalDice.Instance.RollType);
         if (_args.Choice1.diceRoll && _args.Choice1.otherResultDialogue != null)
         {
+            Debug.Log("Roll type: " + InternalDice.Instance.RollType);
             if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS)
+            {
                 StartDialogue(_target, _args.Choice1.resultDialogue);
+                return;
+            }
             else if (InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
+            {
                 StartDialogue(_target, _args.Choice1.otherResultDialogue);
+                return;
+            }
 
             SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
 
@@ -130,10 +137,17 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Roll Type: " + InternalDice.Instance.RollType);
         if (_args.Choice2.diceRoll && _args.Choice2.otherResultDialogue != null)
         {
+            Debug.Log("Roll type: " + InternalDice.Instance.RollType);
             if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS)
+            {
                 StartDialogue(_target, _args.Choice2.resultDialogue);
+                return;                
+            }
             else if (InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
+            {
                 StartDialogue(_target, _args.Choice2.otherResultDialogue);
+                return;
+            }
 
             SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
 
