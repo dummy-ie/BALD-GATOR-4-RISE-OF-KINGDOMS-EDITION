@@ -7,7 +7,7 @@ public class PlayerInteract : MonoBehaviour
 {
     private GameView _gameView;
     private List<Button> _buttons = new(3);
-    private List<DialogueClass> _nearbyDialogues = new();
+    // private List<DialogueClass> _nearbyDialogues = new();
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +20,6 @@ public class PlayerInteract : MonoBehaviour
 
         if (_gameView == null)
             Debug.LogError("No GameView in ViewManager! " + name);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,10 +37,10 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (Button button in _buttons)
         {
-            Debug.Log("Evaluating " + button.name + ", Text: " + button.text);
-            if (button.text == "Button")
+            // Debug.Log("Evaluating " + button.name + ", Text: " + button.text + ", Display: " + button.style.display);
+            if (button.text == "Button") // for some reason UNITY CANT FUCKING COMPARE DISPLAY STYLES
             {
-                Debug.Log("Displaying " + button.name);
+                // Debug.Log("Displaying " + button.name);
                 button.style.display = DisplayStyle.Flex;
                 button.text = collided.name;
                 button.clicked += () => DialogueManager.Instance.StartDialogue(dialogue, dialogue.CurrentDialogue); 
@@ -54,9 +48,9 @@ public class PlayerInteract : MonoBehaviour
             }
         }
 
-        _nearbyDialogues.Add(dialogue);
-        Debug.Log("Added Dialogue " + collided.name);
-        Debug.Log("Count: " + _nearbyDialogues.Count);
+        // _nearbyDialogues.Add(dialogue);
+        // Debug.Log("Added Dialogue " + collided.name);
+        // Debug.Log("Count: " + _nearbyDialogues.Count);
     }
 
     private void OnTriggerExit(Collider other)
@@ -84,8 +78,8 @@ public class PlayerInteract : MonoBehaviour
             }
         }
 
-        _nearbyDialogues.Remove(dialogue);
-        Debug.Log("Removed Dialogue " + collided.name);
-        Debug.Log("Count: " + _nearbyDialogues.Count);
+        // _nearbyDialogues.Remove(dialogue);
+        // Debug.Log("Removed Dialogue " + collided.name);
+        // Debug.Log("Count: " + _nearbyDialogues.Count);
     }
 }
