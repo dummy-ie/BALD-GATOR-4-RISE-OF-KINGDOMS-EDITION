@@ -8,6 +8,8 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
     [SerializeField] DialogueView view;
 
+    public DialogueView View { get { return view; } }
+
     DialogueArgs args;
     DialogueClass target;
 

@@ -39,14 +39,15 @@ public class TestCharacter : DialogueClass
 
     private void Awake()
     {
-        InitializeDialogue();
-
-        view.Degub.clicked += StartDialogue;
     }
 
     void Start()
     {
-        
+        this.view = DialogueManager.Instance.View;
+        InitializeDialogue();
+
+        view.Degub.clicked += StartDialogue;
+        Debug.Log(view);
     }
 
     void StartDialogue()

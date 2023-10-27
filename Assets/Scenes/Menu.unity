@@ -245,15 +245,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 93944109171667021, guid: 58c91705d35705542b27628212b72837,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 918733335759238811, guid: 58c91705d35705542b27628212b72837,
         type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2244181144155845907, guid: 58c91705d35705542b27628212b72837,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2600644796846020250, guid: 58c91705d35705542b27628212b72837,
         type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185489253037625461, guid: 58c91705d35705542b27628212b72837,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3376000065917308655, guid: 58c91705d35705542b27628212b72837,
         type: 3}
@@ -370,6 +385,11 @@ PrefabInstance:
       propertyPath: _screenFader
       value: 
       objectReference: {fileID: 942038193}
+    - target: {fileID: 7141578364738430421, guid: 58c91705d35705542b27628212b72837,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7355562871097840835, guid: 58c91705d35705542b27628212b72837,
         type: 3}
       propertyPath: m_Layer
