@@ -7,49 +7,56 @@
     justify-content: flex-start;
 }
 
-#BGText {
-    --unity-image: url('project://database/Assets/Sprites/BaldGatorText.png?fileID=21300000&guid=a91cfefba8015634c8a9ccc024330beb&type=3#BaldGatorText');
-    position: relative;
-    top: 10%;
-    align-items: center;
-    align-self: center;
-}
-
-#IVText {
-    --unity-image: url('project://database/Assets/Sprites/IV.png?fileID=21300000&guid=9b31712314c126a4da403e42586ac2ed&type=3#IV');
-    position: relative;
-    height: 40%;
-    top: -10%;
+#BaldGatorLogo {
+    --unity-image: url('project://database/Assets/Sprites/Menu%20Icons/BaldGatorLogo.png?fileID=21300000&guid=f6f302bec290fe9489560124d36e8fe4&type=3#BaldGatorLogo');
     align-items: auto;
-    align-self: auto;
-}
-
-#BGLogo {
-    --unity-image: url('project://database/Assets/Sprites/BGLogo.png?fileID=21300000&guid=75ed3c9cf7d8e374ead1769168f42fcc&type=3#BGLogo');
-    position: relative;
-    top: auto;
-    align-items: center;
     align-self: center;
-    height: 40%;
-    justify-content: space-around;
-    margin-top: 2%;
-}
-
-#ROFLogo {
-    --unity-image: url('project://database/Assets/Sprites/ROFLogo.png?fileID=21300000&guid=55d95927156757449ace0a704e0274be&type=3#ROFLogo');
-    height: auto;
-    align-items: center;
-    align-self: center;
-    top: -15%;
-}
-
-#EnhancedEditionText {
-    --unity-image: url('project://database/Assets/Sprites/EnhancedEdition.png?fileID=21300000&guid=e92f4de46426c4f49a4e4a0bcd6da5a3&type=3#EnhancedEdition');
-    top: 30%;
-    width: auto;
-    margin-top: 0;
+    justify-content: flex-start;
+    width: 50%;
+    height: 50%;
 }
 
 #PlayButton {
-    top: 10%;
+    align-self: center;
+    background-color: rgba(0, 0, 0, 0);
+    -unity-text-outline-color: rgb(51, 21, 21);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    top: 15%;
+    -unity-font: url('project://database/Assets/Fonts/SHERWOOD.TTF?fileID=12800000&guid=bcf5374f1954c4c4aa403195ac7da4af&type=3#SHERWOOD');
+    font-size: 130%;
+    color: rgb(197, 142, 59);
+    -unity-text-outline-width: 5px;
+    text-shadow: 0 0 100px rgb(87, 13, 13);
+    -unity-font-definition: initial;
+}
+
+#SettingsButton {
+    justify-content: flex-start;
+    align-items: auto;
+    align-self: flex-start;
+    position: absolute;
+    bottom: 4%;
+    left: 3%;
+    width: 150px;
+    height: 150px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    background-color: rgb(197, 142, 59);
+}
+
+#SettingsIcon {
+    --unity-image: url('project://database/Assets/Sprites/Menu%20Icons/SettingsIcon.png?fileID=2800000&guid=40e9b9698b549ea449c795fa9e36ed09&type=3#SettingsIcon');
 }
