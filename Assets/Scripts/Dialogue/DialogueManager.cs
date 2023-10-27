@@ -22,6 +22,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueClass target, DialogueArgs args)
     {
+        // view.Initialize(); // refresh
+
         if (this.target == null)
             loadTarget(target);
 
@@ -38,6 +40,8 @@ public class DialogueManager : MonoBehaviour
         SetAllText();
 
         SetButtons();
+    
+        ViewManager.Instance.Show(view);
     }
 
     void loadArgs(DialogueArgs args)
@@ -81,6 +85,8 @@ public class DialogueManager : MonoBehaviour
 
         view.BackGround.visible = false;
         view.BackGround.SetEnabled(false);
+
+        ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<GameView>());
     }
 
     void Option1()

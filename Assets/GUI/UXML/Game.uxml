@@ -5,4 +5,9 @@
             <ui:VisualElement name="JoystickKnob" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement name="InteractButtons" style="flex-grow: 1; display: flex;">
+        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact1" />
+        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact2" />
+        <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact3" />
+    </ui:VisualElement>
 </ui:UXML>

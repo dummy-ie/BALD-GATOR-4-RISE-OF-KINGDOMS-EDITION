@@ -25,3 +25,36 @@
     background-color: black;
     border-radius: 100%;
 }
+
+#InteractButtons {
+    left: 50%;
+    width: 40%;
+    height: 40%;
+    top: 50%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+}
+
+.unity-button {
+    align-self: flex-start;
+    width: 30%;
+    height: 10%;
+    font-size: 24px;
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -unity-font-style: normal;
+}
+
+#Interact1 {
+    display: none;
+}
+
+#Interact2 {
+    display: none;
+}
+
+#Interact3 {
+    display: none;
+}
