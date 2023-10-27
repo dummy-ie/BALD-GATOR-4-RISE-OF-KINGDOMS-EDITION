@@ -27,4 +27,11 @@ public class DialogueArgs
         get { return choice2; }
         set { choice2 = value; }
     }
+
+    private Choice choice3;
+    public Choice Choice3
+    {
+        get { return choice3; }
+        set { choice3 = value; }
+    }
 }
