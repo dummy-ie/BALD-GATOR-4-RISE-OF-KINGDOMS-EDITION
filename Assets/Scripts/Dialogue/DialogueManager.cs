@@ -226,6 +226,7 @@ public class DialogueManager : MonoBehaviour
 
     void OnSceneUnloaded(Scene scene)
     {
-        ViewManager.Instance.Show(_view);
+        if (scene.name == "Dice Roller")
+            ViewManager.Instance.Show(_view);
     }
 }
