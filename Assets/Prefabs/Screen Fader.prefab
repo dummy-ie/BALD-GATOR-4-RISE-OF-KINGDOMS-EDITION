@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2346034316745644685}
   - component: {fileID: 7176999192501933726}
   m_Layer: 0
-  m_Name: Scene Fader
+  m_Name: Screen Fader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

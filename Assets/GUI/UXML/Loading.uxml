@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GUI/USS/Loading.uss?fileID=7433441132597879392&amp;guid=412f553eed313054c8574aee36c47250&amp;type=3#Loading" />
+    <ui:VisualElement name="LoadingContainer" style="flex-grow: 1;">
+        <ui:ProgressBar value="50" name="LoadingBar" />
+        <ui:Label tabindex="-1" text="Loading..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoadingLabel" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -20,7 +20,7 @@ public class MainMenuView : View {
     public void PlayButtonClicked() {
         Debug.Log("Clicked Play Button");
         AudioManager.Instance.Play("Majestic_Sound");
-        ViewManager.Instance.SceneFader.Fade("Port", ViewManager.Instance.GetView<GameView>());
+        ViewManager.Instance.ScreenFader.FadeAndLoadScene("Port", ViewManager.Instance.GetView<GameView>());
     }
 
     public void SettingsButtonClicked() {

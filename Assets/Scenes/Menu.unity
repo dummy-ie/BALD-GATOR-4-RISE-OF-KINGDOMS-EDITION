@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41212052, g: 0.21874014, b: 0.03341809, a: 1}
+  m_IndirectSpecularColor: {r: 0.41027632, g: 0.21812117, b: 0.033802584, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -352,12 +352,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698209835352787819, guid: 58c91705d35705542b27628212b72837,
         type: 3}
+      propertyPath: m_Name
+      value: Screen Fader
+      objectReference: {fileID: 0}
+    - target: {fileID: 5698209835352787819, guid: 58c91705d35705542b27628212b72837,
+        type: 3}
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5820497438482272761, guid: 58c91705d35705542b27628212b72837,
         type: 3}
       propertyPath: _sceneFader
+      value: 
+      objectReference: {fileID: 942038193}
+    - target: {fileID: 5820497438482272761, guid: 58c91705d35705542b27628212b72837,
+        type: 3}
+      propertyPath: _screenFader
       value: 
       objectReference: {fileID: 942038193}
     - target: {fileID: 7355562871097840835, guid: 58c91705d35705542b27628212b72837,

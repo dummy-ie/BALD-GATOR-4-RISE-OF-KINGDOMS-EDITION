@@ -8,14 +8,16 @@ public class ViewManager : MonoBehaviour {
     public static ViewManager Instance;
 
     [SerializeField]
-    private SceneFader _sceneFader;
+    private ScreenFader _screenFader;
 
-    public SceneFader SceneFader {
-        get { return _sceneFader; }
+    public ScreenFader ScreenFader {
+        get { return _screenFader; }
     }
 
     [SerializeField]
     private View _startingView;
+    [SerializeField]
+    private View _loadingScreen;
 
     [SerializeField]
     private View[] _views;
