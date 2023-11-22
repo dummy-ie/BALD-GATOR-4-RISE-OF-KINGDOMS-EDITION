@@ -13,7 +13,7 @@ public class PlayerInteract : MonoBehaviour
     void Start()
     {
         _gameView = ViewManager.Instance.GetComponentInChildren<GameView>();
-        _buttons = _gameView.Root.Q("InteractButtons").Query<Button>().ToList();
+        _buttons = _gameView.GetComponent<UIDocument>().rootVisualElement.Q("InteractButtons").Query<Button>().ToList();
 
         if (_buttons.Count == 0)
             Debug.LogError("No Buttons Found! " + name);
