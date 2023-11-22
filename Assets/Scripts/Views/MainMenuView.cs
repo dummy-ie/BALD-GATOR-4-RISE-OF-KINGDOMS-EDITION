@@ -20,7 +20,7 @@ public class MainMenuView : View {
     public void PlayButtonClicked() {
         Debug.Log("Clicked Play Button");
         AudioManager.Instance.Play("Majestic_Sound");
-        ViewManager.Instance.ScreenFader.FadeAndLoadScene("Port", ViewManager.Instance.GetView<GameView>());
+        SceneLoader.Instance.LoadScene("Port", ViewManager.Instance.GetView<GameView>());
         ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<GameView>());
     }
 

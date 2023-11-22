@@ -7,12 +7,12 @@ using UnityEngine.UIElements;
 public class ViewManager : MonoBehaviour {
     public static ViewManager Instance;
 
-    [SerializeField]
-    private ScreenFader _screenFader;
+    // [SerializeField]
+    // private ScreenFader _screenFader;
 
-    public ScreenFader ScreenFader {
-        get { return _screenFader; }
-    }
+    // public ScreenFader ScreenFader {
+    //     get { return _screenFader; }
+    // }
 
     [SerializeField]
     private View _startingView;
