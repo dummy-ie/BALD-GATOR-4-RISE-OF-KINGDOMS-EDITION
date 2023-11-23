@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class DevMenu : MonoBehaviour {
+    private UIDocument _document;
     private VisualElement _root;
     private Toggle _succeed;
     private Toggle _fail;
@@ -35,7 +36,8 @@ public class DevMenu : MonoBehaviour {
     }
 
     void Start() {
-        this._root = GetComponent<UIDocument>().rootVisualElement;
+        this._document = GetComponent<UIDocument>();
+        this._root = _document.rootVisualElement;
         this._succeed = this._root.Q<Toggle>("SucceedToggle");
         this._fail = this._root.Q<Toggle>("FailToggle");
         this._endingMeter = this._root.Q<Slider>("EndingMeterValue");

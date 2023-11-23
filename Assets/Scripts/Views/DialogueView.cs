@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class DialogueView : View
 {
+    private UIDocument _document;
+    private VisualElement _root;
     private VisualElement BG;
     public VisualElement BackGround
     {
@@ -31,6 +33,7 @@ public class DialogueView : View
 
     public override void Initialize()
     {
+        this._document = GetComponent<UIDocument>();
         this._root = this._document.rootVisualElement;
         this.BG = (VisualElement)this._root.Q("BG");
         this.text = (Label)this._root.Q("Text");

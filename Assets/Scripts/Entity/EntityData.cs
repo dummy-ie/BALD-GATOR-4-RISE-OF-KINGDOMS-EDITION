@@ -41,10 +41,14 @@ public class EntityData : ScriptableObject
     private EJobClass _jobClass;
     public EJobClass JobClass { get { return _jobClass; } }
 
+    [SerializeField]
+    [Tooltip("This movement 'speed' is actually the DnD kind, where this is the distance the entity can move on their turn.")]
+    private int _movementSpeed = 30;
+    public int MovementSpeed { get { return _movementSpeed; } }
+
+    [SerializeField]
     private int _maxHealth;
     public int MaxHealth { get { return _maxHealth; } }
-    private int _health;
-    public int Health { get { return _health; } set { _health = value; } }
 
     public int GetModifier(int statValue)
     {
@@ -82,7 +86,7 @@ public class EntityData : ScriptableObject
         // calculate max health based on con modifier (5 is arbitrary, can change later)
         _maxHealth = baseHealth + (GetModifier(_constitution) * 5);  
         
-        // fill health with calculated max
-        _health = _maxHealth;
+        // fill health with calculated max (moved to Entity class)
+        // _health = _maxHealth;
     }
 }

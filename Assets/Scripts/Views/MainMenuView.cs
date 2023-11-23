@@ -5,16 +5,24 @@ using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
 public class MainMenuView : View {
+    private UIDocument _document;
+    private VisualElement _root;
     private Button _playButton;
     private Button _settingsButton;
 
     public override void Initialize() {
-        this._root = this._document.rootVisualElement;
+        this._document = GetComponent<UIDocument>();
+        this._root = _document.rootVisualElement;
         this._playButton = this._root.Q<Button>("PlayButton");
         this._settingsButton = this._root.Q<Button>("SettingsButton");
         this._playButton.clicked += PlayButtonClicked;
         this._settingsButton.clicked += SettingsButtonClicked;
         AudioManager.Instance.Play(1, true);
+    }
+
+    public override void SetSortingOrder(int value) {
+        base.SetSortingOrder(value);
+        _document.sortingOrder = _sortingOrder;
     }
 
     public void PlayButtonClicked() {

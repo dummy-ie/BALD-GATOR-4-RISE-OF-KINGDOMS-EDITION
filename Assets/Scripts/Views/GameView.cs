@@ -8,6 +8,8 @@ public class GameView : View
 
     // [SerializeField] private VisualTreeAsset _joystickUXML; // Joystick.uxml file
     // [SerializeField] private StyleSheet _joystickUSS; // Joystick.uss file
+    private UIDocument _document;
+    private VisualElement _root;
     private Vector3 _startPos;
     private static Vector3 _input = Vector3.zero;
     public static Vector3 Input { get { return _input; } }
@@ -19,6 +21,7 @@ public class GameView : View
 
     public override void Initialize()
     {
+        _document = GetComponent<UIDocument>();
         _root = _document.rootVisualElement;
 
         VisualElement joystickTouchArea = _root.Q<VisualElement>("JoystickTouchArea");
