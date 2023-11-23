@@ -93,9 +93,17 @@ public class ExternalDice : MonoBehaviour
         _finishedRolling = true;
 
         if (ResultExternal(10))
-            DialogueManager.Instance.StartDialogue(DialogueManager.Instance.Target, DialogueManager.Instance.NextArgs);
+        {
+            DialogueManager.Instance.SetOutcome(0);
+            DialogueManager.Instance.ContinueDialogue();
+        }
+
         else
-            DialogueManager.Instance.StartDialogue(DialogueManager.Instance.Target, DialogueManager.Instance.NextArgsOther);
+        {
+            DialogueManager.Instance.SetOutcome(1);
+            DialogueManager.Instance.ContinueDialogue();
+        }
+               
 
         yield return new WaitForSeconds(1f); // wait a bit
         SceneManager.UnloadSceneAsync("Dice Roller");

@@ -18,30 +18,12 @@ public class DialogueView : View
         set { text = value; }
     }
 
-    private Button Option1;
-    public Button Choice1
+    private List<Button> _choices = new List<Button>();
+    public List<Button> Choices
     {
-        get { return Option1; }
+        get { return _choices;}
+        set { _choices = value; }
     }
-
-    private Button Option2;
-    public Button Choice2
-    {
-        get { return Option2; }
-    }
-
-    private Button Option3;
-    public Button Choice3
-    {
-        get { return Option3; }
-    }
-
-    private Button Option4;
-    public Button Choice4
-    {
-        get { return Option4; }
-    }
-
 
 
     public Button Degub;
@@ -52,16 +34,21 @@ public class DialogueView : View
         this._root = this._document.rootVisualElement;
         this.BG = (VisualElement)this._root.Q("BG");
         this.text = (Label)this._root.Q("Text");
-        this.Option1 = (Button)this._root.Q("Option1");
-        this.Option2 = (Button)this._root.Q("Option2");
-        this.Option3 = (Button)this._root.Q("Option3");
-        this.Option4 = (Button)this._root.Q("Option4");
+        for (int i = 0; i < 4;i++)
+        {
+            Button button = (Button)this._root.Q("Option" + (i + 1));
 
-        Option1.visible = false;
-        Option2.visible = false;
+            _choices.Add(button);
+        }
+
+        _choices[0].visible = false;
+        _choices[0].SetEnabled(false);
+        _choices[1].visible = false;
+        _choices[1].SetEnabled(false);
 
         this.BG.visible = false;
         this.BG.SetEnabled(false);
+
 
 
         Degub = (Button)_root.Q("Degub");

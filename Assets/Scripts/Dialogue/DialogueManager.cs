@@ -1,248 +1,162 @@
-using UnityEngine;
-using UnityEngine.UI; // Import the UI namespace
 using System.Collections;
-using UnityEngine.UIElements;
+using System.Collections.Generic;
+using UnityEngine;
+using Ink.Runtime;
 using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
     [SerializeField] DialogueView _view;
-
     public DialogueView View { get { return _view; } }
 
-    private DialogueArgs _args;
+    [SerializeField]
+    TextAsset _inkJSON;
 
-    private DialogueArgs _nextArgsOther;
-    public DialogueArgs NextArgsOther { get { return _nextArgsOther; } }
-    private DialogueArgs _nextArgs;
-    public DialogueArgs NextArgs { get { return _nextArgs; } }
+    private Story _currentStory;
 
-    private DialogueClass _target;
-    public DialogueClass Target { get { return _target; } }
-
-    private ExternalDice _externalDice;
-
-    void ResetButtons()
+    private bool _isDialoguePlaying;
+    public bool IsDialoguePlaying
     {
-        _view.Choice1.visible = false;
-        _view.Choice2.visible = false;
-
-        _view.Choice1.clicked -= Option1;
-        _view.Choice2.clicked -= Option2;
-        // _view.Choice1.clickable = new Clickable(() => { });
-        // _view.Choice2.clickable = new Clickable(() => { });
-    }
-
-    public void StartDialogue(DialogueClass target, DialogueArgs args)
-    {
-        // view.Initialize(); // refresh
-
-        if (this._target == null)
-            loadTarget(target);
-
-        this._target.CurrentDialogue = args;
-
-        _view.BackGround.visible = true;
-        _view.BackGround.SetEnabled(true);
-
-        ResetButtons();
-
-        loadArgs(args);
-        loadTarget(target);
-
-        SetAllText();
-
-        SetButtons();
-
-        ViewManager.Instance.Show(_view);
-    }
-
-    void loadArgs(DialogueArgs args)
-    {
-        this._args = args;
-    }
-
-    void loadTarget(DialogueClass target)
-    {
-        this._target = target;
+        get { return _isDialoguePlaying;}
+        set { _isDialoguePlaying = value;}
     }
 
 
-    void SetAllText()
+    public void EnterDialogue(TextAsset inkJSON)
     {
-        _view.Text.text = _args.Text;
+        Debug.Log("Entering Dialogue");
+        _currentStory = new Story(inkJSON.text);
+        _isDialoguePlaying = true;
 
-        _view.Choice1.text = _args.Choice1.buttonText;
-        _view.Choice2.text = _args.Choice2.buttonText;
-    }
-
-    void SetButtons()
-    {
-        if (_args.Choice1.enabled)
+        _currentStory.BindExternalFunction("test", (string text) =>
         {
-            _view.Choice1.visible = true;
-            _view.Choice1.clicked += Option1;
+            Debug.Log("Chose " + text);
+        });
+
+        _currentStory.BindExternalFunction("setroll", () =>
+        {
+            _currentStory.variablesState["roll"] = InternalDice.Instance.RollInternal(10);
+        });
+
+        ShowView();
+
+        ContinueDialogue();
+        
+    }
+
+
+
+    public IEnumerator ExitDialogue(){
+        yield return new WaitForSeconds(0.2f);
+        _isDialoguePlaying = false;
+
+        _currentStory.UnbindExternalFunction("test");
+
+        _view.Text.text = "";
+        HideView();
+    }
+
+    public void ContinueDialogue()
+    {
+        if (_currentStory.canContinue)
+        {
+            _view.Text.text = _currentStory.Continue();
+
+            SetButtons();
         }
-
-        if (_args.Choice2.enabled)
+        else
         {
-            _view.Choice2.visible = true;
-            _view.Choice2.clicked += Option2;
+            StartCoroutine(ExitDialogue());
         }
     }
 
-    void EndDialogue()
+    private void SetButtons()
     {
-        _view.Choice1.visible = false;
-        _view.Choice2.visible = false;
 
+        _view.Choices[0].visible = false;
+        _view.Choices[0].SetEnabled(false);
+        _view.Choices[1].visible = false;
+        _view.Choices[1].SetEnabled(false);
+
+        List<Choice> currentChoices = _currentStory.currentChoices;
+        int index = 0;
+        foreach (Choice choice in currentChoices)
+        {
+            
+            _view.Choices[index].SetEnabled(true);
+            _view.Choices[index].visible = true;
+            _view.Choices[index].text = choice.text;
+            index++;
+        }
+
+        
+    }
+    
+    public void SetOutcome(int index)
+    {
+        _currentStory.ChooseChoiceIndex(index);
+    }
+
+    private void Choice1()
+    {
+        SetOutcome(0);
+        ContinueDialogue();
+    }
+
+    private void Choice2()
+    {
+        SetOutcome(1);
+        ContinueDialogue();
+    }
+
+    private void Fight()
+    {
+        StartCoroutine(ExitDialogue());
+    }
+
+    private void Leave()
+    {
+        StartCoroutine(ExitDialogue());
+    }
+
+    
+
+    private void HideView()
+    {
         _view.BackGround.visible = false;
         _view.BackGround.SetEnabled(false);
 
-        ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<GameView>());
     }
 
-    void Option1()
+    private void ShowView()
     {
-        Debug.Log("Roll Type: " + InternalDice.Instance.RollType);
-        if (_args.Choice1.diceRoll && _args.Choice1.otherResultDialogue != null)
+        _view.BackGround.visible = true;
+        _view.BackGround.SetEnabled(true);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+
+        _view.Choices[0].clicked += Choice1;
+        _view.Choices[1].clicked += Choice2;
+        _view.Choices[2].clicked += Fight;
+        _view.Choices[3].clicked += Leave;
+
+        HideView();
+        _isDialoguePlaying = false;
+
+        EnterDialogue(_inkJSON);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!_isDialoguePlaying)
         {
-            Debug.Log("Roll type: " + InternalDice.Instance.RollType);
-            if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS)
-            {
-                StartDialogue(_target, _args.Choice1.resultDialogue);
-                return;
-            }
-            else if (InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
-            {
-                StartDialogue(_target, _args.Choice1.otherResultDialogue);
-                return;
-            }
-
-            SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
-
-            _args.Choice1 = DisableButton(_args.Choice1);
-            _nextArgs = _args.Choice1.resultDialogue;
-            _nextArgsOther = _args.Choice1.otherResultDialogue;
+            return;
         }
-        else
-        {
-            StartDialogue(_target, _args.Choice1.resultDialogue);
-        }
-    }
-
-    void Option2()
-    {
-        Debug.Log("Roll Type: " + InternalDice.Instance.RollType);
-        if (_args.Choice2.diceRoll && _args.Choice2.otherResultDialogue != null)
-        {
-            Debug.Log("Roll type: " + InternalDice.Instance.RollType);
-            if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS)
-            {
-                StartDialogue(_target, _args.Choice2.resultDialogue);
-                return;                
-            }
-            else if (InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
-            {
-                StartDialogue(_target, _args.Choice2.otherResultDialogue);
-                return;
-            }
-
-            SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
-
-            _args.Choice2 = DisableButton(_args.Choice2);
-            _nextArgs = _args.Choice2.resultDialogue;
-            _nextArgsOther = _args.Choice2.otherResultDialogue;
-        }
-        else
-        {
-            StartDialogue(_target, _args.Choice2.resultDialogue);
-        }
-    }
-
-    // public bool CheckDiceOutcome()
-    // {
-    //     Debug.Log("Check dice outcome");
-    //     if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS)
-    //         return true;
-    //     else if (InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
-    //         return false;
-
-    //     // Debug.Log("Result: " + ExternalDice.ResultExternal(10));
-    //     if (ExternalDice.ResultExternal(10))
-    //         return true;
-    //     else
-    //         return false;
-    // }
-
-    public void StartCombat()
-    {
-        EndDialogue();
-    }
-
-    public void LeaveDialogue()
-    {
-        EndDialogue();
-    }
-
-    Choice DisableButton(Choice choice)
-    {
-        Choice newChoice;
-        newChoice = choice;
-        newChoice.enabled = false;
-        return newChoice;
-    }
-
-    Choice EnableButton(Choice choice)
-    {
-        Choice newChoice;
-        newChoice = choice;
-        newChoice.enabled = true;
-        return newChoice;
-    }
-
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
-    private void Start()
-    {
-        _view.Choice3.clicked += StartCombat;
-        _view.Choice4.clicked += LeaveDialogue;
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
-        if (scene.name == "Dice Roller")
-        {
-            Debug.Log("Loaded Dice Roller");
-
-            ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<DiceRollView>());
-
-            _externalDice = scene.GetRootGameObjects()[0].GetComponentInChildren<ExternalDice>();
-            if (_externalDice == null)
-                Debug.LogError("External dice null!");
-        }
-    }
-
-    void OnSceneUnloaded(Scene scene)
-    {
-        if (scene.name == "Dice Roller")
-            ViewManager.Instance.Show(_view);
     }
 }
