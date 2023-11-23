@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InternalDice : MonoBehaviour
+public class InternalDice : Singleton<InternalDice>
 {
-    public static InternalDice Instance;
+    // public static InternalDice Instance;
 
     private ERollType _rollType = ERollType.DEFAULT;
     public ERollType RollType { get { return _rollType; } }
 
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
+    // private void Awake()
+    // {
+    //     if (Instance == null)
+    //         Instance = this;
+    //     else
+    //         Destroy(gameObject);
+    // }
 
     public void ToggleSuccess(bool success)
     {
