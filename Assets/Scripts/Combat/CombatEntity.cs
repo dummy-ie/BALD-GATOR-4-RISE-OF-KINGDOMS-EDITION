@@ -55,7 +55,10 @@ public class CombatEntity : MonoBehaviour
 
         ResetPaths();
 
-        NavMesh.CalculatePath(transform.position, _target.position, NavMesh.AllAreas, _desiredPath);
+        bool foundPath = NavMesh.CalculatePath(transform.position, _target.position, NavMesh.AllAreas, _desiredPath);
+
+        if (!foundPath)
+            Debug.LogWarning(name + " did not find a suitable path. Show this to the player in GUI.");
 
         if (_desiredPath.corners.Length < 2)
         {

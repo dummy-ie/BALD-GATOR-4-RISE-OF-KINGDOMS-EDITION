@@ -4,9 +4,9 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GestureManager : MonoBehaviour
+public class GestureManager : Singleton<GestureManager>
 {
-    public static GestureManager Instance;
+    // public static GestureManager Instance;
     private Touch[] _trackedFingers = new Touch[2];
     private float _gestureTime;
     private Vector2 _startPoint = Vector2.zero;
@@ -274,13 +274,13 @@ public class GestureManager : MonoBehaviour
         return new Vector2((a.x + b.x) / 2, (a.y + b.y) / 2);
     }
 
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
+    // private void Awake()
+    // {
+    //     if (Instance == null)
+    //         Instance = this;
+    //     else
+    //         Destroy(gameObject);
+    // }
 
     // Start is called before the first frame update
     private void Start()

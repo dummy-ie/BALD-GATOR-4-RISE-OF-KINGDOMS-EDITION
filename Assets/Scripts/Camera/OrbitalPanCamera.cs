@@ -56,6 +56,14 @@ public class OrbitalPanCamera : MonoBehaviour
             _transposer.m_RecenterToTargetHeading.m_enabled = true; // recenter cam while not panning
     }
 
+    private void OnEnable()
+    {
+        if (GestureManager.Instance != null)
+            GestureManager.Instance.OnPan += OnPan;
+        else
+            Debug.LogError("GestureManager null!", this);
+    }
+
     private void OnDisable()
     {
         GestureManager.Instance.OnPan -= OnPan;
