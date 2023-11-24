@@ -137,7 +137,9 @@ public class CombatEntity : MonoBehaviour, ITappable
 
     public void OnTap(TapEventArgs args)
     {
-        GameObject currentCam = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject;
+        Debug.Log("Tapped on " + args.HitObject.name + ".");
+
+        GameObject currentCam = ICameraManipulator.CurrentCameraObject();
         GameObject lastObject = currentCam.transform.parent.gameObject;
 
         // set self as the current selected gameobject in combat
@@ -174,7 +176,7 @@ public class CombatEntity : MonoBehaviour, ITappable
             Debug.LogError(name + " FocusCamera not initialized!");
 
         // if the current active vcam is this one
-        GameObject currentCam = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject;
+        GameObject currentCam = ICameraManipulator.CurrentCameraObject();
         if (currentCam == _cam.gameObject)
         {
             CombatManager.Instance.CurrentSelected = gameObject;

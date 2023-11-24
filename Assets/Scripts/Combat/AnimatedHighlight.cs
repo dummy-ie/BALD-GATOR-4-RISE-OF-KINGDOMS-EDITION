@@ -11,14 +11,14 @@ public class AnimatedHighlight : MonoBehaviour
 
     public void Pause()
     {
-        Debug.Log(transform.parent.name + " Highlight Pause() called");
+        // Debug.Log(transform.parent.name + " Highlight Pause() called");
         gameObject.SetActive(false);
         // GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void Play()
     {
-        Debug.Log(transform.parent.name + " Highlight Play() called");
+        // Debug.Log(transform.parent.name + " Highlight Play() called");
         gameObject.SetActive(true);
         // GetComponent<SpriteRenderer>().enabled = true;
     }
