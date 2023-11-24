@@ -30,10 +30,10 @@ public class PlayerInteract : MonoBehaviour
         // _buttons = _gameView.Root.Q("InteractButtons").Query<Button>().ToList(); // refresh the list
 
         GameObject collided = other.gameObject;
-        DialogueClass dialogue = collided.GetComponentInChildren<DialogueClass>();
+        //DialogueClass dialogue = collided.GetComponentInChildren<DialogueClass>();
 
-        if (dialogue == null)
-            Debug.LogError("Dialogue " + collided.name + " is null!");
+        //if (dialogue == null)
+           // Debug.LogError("Dialogue " + collided.name + " is null!");
 
         foreach (Button button in _buttons)
         {
@@ -43,7 +43,7 @@ public class PlayerInteract : MonoBehaviour
                 // Debug.Log("Displaying " + button.name);
                 button.style.display = DisplayStyle.Flex;
                 button.text = collided.name;
-                button.clicked += () => DialogueManager.Instance.StartDialogue(dialogue, dialogue.CurrentDialogue); 
+                //button.clicked += () => DialogueManager.Instance.StartDialogue(dialogue, dialogue.CurrentDialogue); 
                 break;
             }
         }
@@ -61,10 +61,10 @@ public class PlayerInteract : MonoBehaviour
         // _buttons = _gameView.Root.Q("InteractButtons").Query<Button>().ToList(); // refresh list
 
         GameObject collided = other.gameObject;
-        DialogueClass dialogue = collided.GetComponentInChildren<DialogueClass>();
+        //DialogueClass dialogue = collided.GetComponentInChildren<DialogueClass>();
 
-        if (dialogue == null)
-            Debug.LogError("Dialogue " + collided.name + " is null!");
+        //if (dialogue == null)
+            //Debug.LogError("Dialogue " + collided.name + " is null!");
 
         foreach (Button button in _buttons)
         {
