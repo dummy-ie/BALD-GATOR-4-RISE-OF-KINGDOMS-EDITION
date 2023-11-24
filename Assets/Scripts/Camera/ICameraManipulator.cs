@@ -16,8 +16,8 @@ public interface ICameraManipulator
 
     public static void SwitchCamera(CinemachineVirtualCamera newCamera)
     {
-        Debug.Log("Setting " + CurrentCameraObject().name + " inactive.");
-        Debug.Log("Setting " + newCamera.gameObject.name + " active.");
+        // Debug.Log("Setting " + CurrentCameraObject().name + " inactive.");
+        // Debug.Log("Setting " + newCamera.gameObject.name + " active.");
         CurrentCameraObject().SetActive(false);
         newCamera.gameObject.SetActive(true);
     }

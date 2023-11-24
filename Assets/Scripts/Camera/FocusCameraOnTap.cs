@@ -13,7 +13,7 @@ public class FocusCameraOnTap : MonoBehaviour, ICameraManipulator, ITappable
         if (args.HitObject != gameObject)
             Debug.LogWarning(name + " Receiving tap from different HitObject.");
 
-        Debug.Log("Tapped on " + args.HitObject.name + ".");
+        // Debug.Log("Tapped on " + args.HitObject.name + ".");
 
         // switch cameras
         SwitchCamera(Cam);
