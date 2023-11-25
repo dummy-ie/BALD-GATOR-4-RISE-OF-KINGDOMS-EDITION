@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class GestureManager : Singleton<GestureManager>
 {
@@ -56,8 +57,9 @@ public class GestureManager : Singleton<GestureManager>
 
         if (hitObject != null)
         {
-            ITappable handler = hitObject.GetComponent<ITappable>();
-            handler?.OnTap(args);
+            List<ITappable> handlers = hitObject.GetComponents<ITappable>().ToList();
+            foreach (ITappable handler in handlers)
+                handler?.OnTap(args);
         }
     }
     private void CheckSwipe()

@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using static ICameraManipulator;
 
-public class OrbitalPanCamera : MonoBehaviour
+public class OrbitalPanCamera : GestureReceiver, ICameraManipulator
 {
     [SerializeField]
     [Range(0.1f, 100f)]
     private float _panSpeed = 50f;
 
     [SerializeField]
-    private CinemachineVirtualCamera _camera;
+    private CinemachineVirtualCamera _cam;
+    public CinemachineVirtualCamera Cam { get { return _cam; } }
 
     private CinemachineOrbitalTransposer _transposer;
 
     private Vector3 _panDelta = Vector3.zero;
 
-
-    public void OnPan(object sender, PanEventArgs args)
+    public override void OnPan(object sender, PanEventArgs args)
     {
-        Debug.Log("Panning", this);
+        // Debug.Log("Panning", this);
         Vector2 position0 = args.TrackedFingers[0].position;
         Vector2 position1 = args.TrackedFingers[1].position;
 
@@ -33,11 +34,11 @@ public class OrbitalPanCamera : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         // _transposer = GetComponentInChildren<CinemachineOrbitalTransposer>();
-        _transposer = _camera.GetCinemachineComponent<CinemachineOrbitalTransposer>();
-        GestureManager.Instance.OnPan += OnPan;
+        SubscribeToGestures();
+        _transposer = Cam.GetCinemachineComponent<CinemachineOrbitalTransposer>();
     }
 
     // Update is called once per frame
@@ -54,18 +55,5 @@ public class OrbitalPanCamera : MonoBehaviour
 
         if (_panDelta == Vector3.zero)
             _transposer.m_RecenterToTargetHeading.m_enabled = true; // recenter cam while not panning
-    }
-
-    private void OnEnable()
-    {
-        if (GestureManager.Instance != null)
-            GestureManager.Instance.OnPan += OnPan;
-        else
-            Debug.LogError("GestureManager null!", this);
-    }
-
-    private void OnDisable()
-    {
-        GestureManager.Instance.OnPan -= OnPan;
     }
 }

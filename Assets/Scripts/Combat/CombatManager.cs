@@ -7,6 +7,8 @@ public class CombatManager : Singleton<CombatManager>
     [SerializeField]
     public Transform NavigationTarget;
 
+    public GameObject CurrentSelected;
+
     private void OnTap(object sender, TapEventArgs args)
     {
         if (args.HitObject != null && args.HitObject.CompareTag("Walkable"))
@@ -15,6 +17,8 @@ public class CombatManager : Singleton<CombatManager>
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
                 NavigationTarget.position = hit.point + Vector3.up * 0.1f;
+                if (CurrentSelected.TryGetComponent(out CombatEntity entity))
+                    entity.StartMove();
             }
         }
     }

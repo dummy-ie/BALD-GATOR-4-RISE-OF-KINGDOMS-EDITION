@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CombatEntity : MonoBehaviour
+public class CombatEntity : MonoBehaviour, ITappable
 {
     [SerializeField]
     private NavMeshAgent _nav;
@@ -20,25 +21,45 @@ public class CombatEntity : MonoBehaviour
     private LineRenderer _actualLineRenderer;
 
     private float _movementLeft = 10;
-
+    private CinemachineVirtualCamera _cam;
     private NavMeshPath _desiredPath;
     private NavMeshPath _actualPath;
 
-    public bool StartMove = false;
+    // public bool StartMove = false;
     public bool ResetMovement = false;
 
-    // private float PathLength(NavMeshPath path)
-    // {
-    //     if (path.corners.Length < 2)
-    //         return 0;
+    public static float PathLength(NavMeshPath path)
+    {
+        if (path.corners.Length < 2)
+            return 0;
 
-    //     float lengthSoFar = 0.0F;
-    //     for (int i = 1; i < path.corners.Length; i++)
-    //     {
-    //         lengthSoFar += Vector3.Distance(path.corners[i - 1], path.corners[i]);
-    //     }
-    //     return lengthSoFar;
-    // }
+        float lengthSoFar = 0.0F;
+        for (int i = 1; i < path.corners.Length; i++)
+        {
+            lengthSoFar += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+        }
+        return lengthSoFar;
+    }
+
+    //  Check if the model is moving on the NavMesh
+    public static bool DestinationReached(NavMeshAgent agent, Vector3 actualPosition)
+    {
+        //  because takes some time to update the remainingDistance and will return a wrong value
+        if (agent.pathPending)
+        {
+            return Vector3.Distance(actualPosition, agent.pathEndPosition) <= agent.stoppingDistance;
+        }
+        else
+        {
+            return agent.remainingDistance <= agent.stoppingDistance;
+        }
+    }
+
+    public void StartMove()
+    {
+        MoveToPath();
+        RenderPathLine();
+    }
 
     private void ResetPaths()
     {
@@ -102,20 +123,70 @@ public class CombatEntity : MonoBehaviour
             // get difference between paths and remove duplicates
             Vector3[] pathLeft = _desiredPath.corners.Union(_actualPath.corners).Except(duplicates).ToArray();
 
-            // move last element to first in array
-            Vector3 last = pathLeft.Last();
-            pathLeft = pathLeft.SkipLast(1).Prepend(last).ToArray();
+            // move last element to first in array if array isn't empty
+            if (pathLeft != null && pathLeft.Length > 0)
+            {
+                Vector3 last = pathLeft.Last();
+                pathLeft = pathLeft.SkipLast(1).Prepend(last).ToArray();
+            }
 
             _desiredLineRenderer.positionCount = pathLeft.Length;
             _desiredLineRenderer.SetPositions(pathLeft);
         }
     }
 
+    public void OnTap(TapEventArgs args)
+    {
+        Debug.Log("Tapped on " + args.HitObject.name + ".");
+
+        GameObject currentCam = ICameraManipulator.CurrentCameraObject();
+        GameObject lastObject = currentCam.transform.parent.gameObject;
+
+        // set self as the current selected gameobject in combat
+        CombatManager.Instance.CurrentSelected = gameObject;
+
+        // activate our highlight
+        AnimatedHighlight current = GetComponentInChildren<AnimatedHighlight>(true);
+        if (current != null)
+            current.Play();
+        else
+            Debug.LogWarning("OnTap(): " + name + "'s current AnimatedHighlight couldn't be found.", this);
+
+        // deactivate last highlight
+        AnimatedHighlight last;
+        if (lastObject != null && lastObject != gameObject)
+            last = lastObject.GetComponentInChildren<AnimatedHighlight>(true);
+        else
+            return;
+
+        if (last != null)
+            last.Pause();
+        else
+            Debug.LogWarning("OnTap(): " + lastObject.name + "'s current AnimatedHighlight couldn't be found.", this);
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
-        _actualLineRenderer.positionCount = 0;
-        _desiredLineRenderer.positionCount = 0;
+        ResetPaths();
+
+        _cam = GetComponentInChildren<CinemachineVirtualCamera>();
+
+        if (_cam == null)
+            Debug.LogError(name + " FocusCamera not initialized!");
+
+        // if the current active vcam is this one
+        GameObject currentCam = ICameraManipulator.CurrentCameraObject();
+        if (currentCam == _cam.gameObject)
+        {
+            CombatManager.Instance.CurrentSelected = gameObject;
+
+            AnimatedHighlight current = GetComponentInChildren<AnimatedHighlight>(true);
+            if (current != null)
+                current.Play();
+            else
+                Debug.LogWarning("Start(): " + name + "'s current AnimatedHighlight couldn't be found.", this);
+        }
     }
 
     // Update is called once per frame
@@ -128,11 +199,14 @@ public class CombatEntity : MonoBehaviour
             ResetPaths();
         }
 
-        if (StartMove)
-        {
-            StartMove = false;
-            MoveToPath();
-            RenderPathLine();
-        }
+        // if (StartMove)
+        // {
+        //     StartMove = false;
+        //     MoveToPath();
+        //     RenderPathLine();
+        // }
+
+        if (DestinationReached(_nav, transform.position))
+            ResetPaths();
     }
 }
