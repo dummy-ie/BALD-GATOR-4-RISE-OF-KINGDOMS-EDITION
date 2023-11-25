@@ -13,6 +13,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     TextAsset _inkJSON;
 
+    [SerializeField]
+    TextAsset _inkTEST;
+
     private Story _currentStory;
 
     private bool _isDialoguePlaying;
@@ -29,10 +32,6 @@ public class DialogueManager : MonoBehaviour
         _currentStory = new Story(inkJSON.text);
         _isDialoguePlaying = true;
 
-        _currentStory.BindExternalFunction("test", (string text) =>
-        {
-            Debug.Log("Chose " + text);
-        });
 
         _currentStory.BindExternalFunction("setroll", () =>
         {
@@ -51,7 +50,7 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         _isDialoguePlaying = false;
 
-        _currentStory.UnbindExternalFunction("test");
+        _currentStory.UnbindExternalFunction("setroll");
 
         _view.Text.text = "";
         HideView();
@@ -100,12 +99,14 @@ public class DialogueManager : MonoBehaviour
 
     private void Choice1()
     {
+        Debug.Log("Clicked Choice 1");
         SetOutcome(0);
         ContinueDialogue();
     }
 
     private void Choice2()
     {
+        Debug.Log("Clicked Choice 2");
         SetOutcome(1);
         ContinueDialogue();
     }
@@ -118,6 +119,7 @@ public class DialogueManager : MonoBehaviour
     private void Leave()
     {
         StartCoroutine(ExitDialogue());
+        EnterDialogue(_inkTEST);
     }
 
     

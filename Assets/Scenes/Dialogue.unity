@@ -196,6 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc41cf7da197b6c4b8e434e473db6ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
+  _developerMenu: {fileID: 0}
   _developerMode: 0
 --- !u!4 &192367296
 Transform:
@@ -264,8 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72005b75f44ce743b62244619984513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingView: {fileID: 0}
-  _loadingScreen: {fileID: 0}
+  _persistent: 1
   _views:
   - {fileID: 543235429}
   - {fileID: 1130714830}
@@ -331,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36106edcad8dd8f46ba88bc94319b9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _document: {fileID: 383301806}
+  _onStart: 0
 --- !u!1 &464590148
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9643d0985d417d24b87ab7e87366d6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _view: {fileID: 383301807}
 --- !u!1 &543235427
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0dd2ed21f7c83340a62b2fa07f8388a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _document: {fileID: 543235430}
+  _onStart: 0
 --- !u!114 &543235430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bb94a062380ea43a84ceaff8bbda80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _document: {fileID: 1130714831}
+  _onStart: 0
 --- !u!114 &1130714831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ac0ffc6d320e14c844d53aad521e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
 --- !u!4 &1631457955
 Transform:
   m_ObjectHideFlags: 0
@@ -923,6 +924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 383301807}
   _inkJSON: {fileID: 4900000, guid: 2be5921ba92ef8340a03347c0b17896e, type: 3}
+  _inkTEST: {fileID: 4900000, guid: fd507ea49a1b0ce4d8def371f6dea1d5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

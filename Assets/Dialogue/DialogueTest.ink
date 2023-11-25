@@ -39,7 +39,8 @@ Oya, this is dialogue 4!
 ->END
 
 
-
+===function setroll()===
+Error
 
 
 
