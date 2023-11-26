@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EntityData", menuName = "BALD-GATOR-4-RISE-OF-KINGDOMS-EDITION/EntityData", order = 0)]
+[CreateAssetMenu(fileName = "ClassData", menuName = "BALD-GATOR-4-RISE-OF-KINGDOMS-EDITION/EntityData", order = 0)]
 [Serializable]
-public class EntityData : ScriptableObject
+public class ClassData : ScriptableObject
 {
     [SerializeField]
     [Range(8, 20)]

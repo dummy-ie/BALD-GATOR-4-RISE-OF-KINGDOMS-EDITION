@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
 
         _currentStory.BindExternalFunction("setroll", () =>
         {
-            _currentStory.variablesState["roll"] = InternalDice.Instance.RollInternal(10);
+            _currentStory.variablesState["roll"] = InternalDice.Instance.Roll(out _, 20, 0, 10);
         });
 
         ShowView();

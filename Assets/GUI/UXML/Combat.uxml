@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GUI/USS/Combat.uss?fileID=7433441132597879392&amp;guid=b902c215792948c408deade8583792b1&amp;type=3#Combat" />
+    <ui:VisualElement name="EntitySelector" style="flex-grow: 1;" />
+    <ui:VisualElement name="TurnButtons" style="flex-grow: 1;">
+        <ui:Button text="Attack" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AttackButton" />
+        <ui:Button text="Heal" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealButton" />
+        <ui:Button text="End Turn" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndTurnButton" />
+    </ui:VisualElement>
+</ui:UXML>

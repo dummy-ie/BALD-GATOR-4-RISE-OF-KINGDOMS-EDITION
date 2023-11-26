@@ -5,9 +5,15 @@ using System.Linq;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
+using static StaticUtils;
+using static ICameraManipulator;
 
-public class CombatEntity : MonoBehaviour, ITappable
+public class Combatant : MonoBehaviour, ITappable
 {
+    [SerializeField]
+    private Entity _data;
+    public Entity Data { get { return _data; } }
+
     [SerializeField]
     private NavMeshAgent _nav;
 
@@ -19,13 +25,14 @@ public class CombatEntity : MonoBehaviour, ITappable
 
     [SerializeField]
     private LineRenderer _actualLineRenderer;
-
-    private float _movementLeft = 10;
     private CinemachineVirtualCamera _cam;
     private NavMeshPath _desiredPath;
     private NavMeshPath _actualPath;
 
+    // debug stuff vvv
+
     // public bool StartMove = false;
+    public bool EndTurn = false;
     public bool ResetMovement = false;
 
     public static float PathLength(NavMeshPath path)
@@ -55,6 +62,17 @@ public class CombatEntity : MonoBehaviour, ITappable
         }
     }
 
+    public virtual IEnumerator StartTurn()
+    {
+        while (!EndTurn)
+        {
+            yield return null;
+        }
+
+        EndTurn = false;
+        Debug.Log("Player has ended turn");
+    }
+
     public void StartMove()
     {
         MoveToPath();
@@ -71,7 +89,7 @@ public class CombatEntity : MonoBehaviour, ITappable
 
     private void MoveToPath()
     {
-        if (_movementLeft <= 0)
+        if (_data.MovementRemaining <= 0)
             return;
 
         ResetPaths();
@@ -93,8 +111,8 @@ public class CombatEntity : MonoBehaviour, ITappable
         {
             float distanceBetweenLatestCorners = Vector3.Distance(_desiredPath.corners[i - 1], _desiredPath.corners[i]);
 
-            _movementLeft = _movementLeft - distanceBetweenLatestCorners >= 0 ? _movementLeft - distanceBetweenLatestCorners : 0;
-            if (_movementLeft <= 0)
+            _data.MovementRemaining = _data.MovementRemaining - distanceBetweenLatestCorners >= 0 ? _data.MovementRemaining - distanceBetweenLatestCorners : 0;
+            if (_data.MovementRemaining <= 0)
             {
                 NavMesh.CalculatePath(transform.position, (_desiredPath.corners[i - 1] - _desiredPath.corners[i]) / 2 + _desiredPath.corners[i], NavMesh.AllAreas, _actualPath);
                 _nav.SetPath(_actualPath);
@@ -110,7 +128,7 @@ public class CombatEntity : MonoBehaviour, ITappable
         _actualLineRenderer.positionCount = _desiredPath.corners.Length;
         _actualLineRenderer.SetPositions(_desiredPath.corners);
 
-        if (_movementLeft <= 0) // if the agent runs out of movement
+        if (_data.MovementRemaining <= 0) // if the agent runs out of movement
         {
             if (_actualPath == null)
             {
@@ -129,40 +147,35 @@ public class CombatEntity : MonoBehaviour, ITappable
                 Vector3 last = pathLeft.Last();
                 pathLeft = pathLeft.SkipLast(1).Prepend(last).ToArray();
             }
-
             _desiredLineRenderer.positionCount = pathLeft.Length;
             _desiredLineRenderer.SetPositions(pathLeft);
         }
     }
 
+    // public void SetHighlight(bool value)
+    // {
+    //     AnimatedHighlight highlight = GetComponentInChildren<AnimatedHighlight>(true);
+    //     if (highlight != null)
+    //         highlight.gameObject.SetActive(value);
+    //     else
+    //         Debug.LogWarning("OnTap(): " + name + "'s AnimatedHighlight couldn't be found.", this);
+    // }
+
     public void OnTap(TapEventArgs args)
     {
         Debug.Log("Tapped on " + args.HitObject.name + ".");
 
-        GameObject currentCam = ICameraManipulator.CurrentCameraObject();
+        GameObject currentCam = CurrentCameraObject();
         GameObject lastObject = currentCam.transform.parent.gameObject;
 
         // set self as the current selected gameobject in combat
         CombatManager.Instance.CurrentSelected = gameObject;
 
-        // activate our highlight
-        AnimatedHighlight current = GetComponentInChildren<AnimatedHighlight>(true);
-        if (current != null)
-            current.Play();
-        else
-            Debug.LogWarning("OnTap(): " + name + "'s current AnimatedHighlight couldn't be found.", this);
-
         // deactivate last highlight
-        AnimatedHighlight last;
-        if (lastObject != null && lastObject != gameObject)
-            last = lastObject.GetComponentInChildren<AnimatedHighlight>(true);
-        else
-            return;
+        FindComponentAndSetActive<AnimatedHighlight>(lastObject, false);
 
-        if (last != null)
-            last.Pause();
-        else
-            Debug.LogWarning("OnTap(): " + lastObject.name + "'s current AnimatedHighlight couldn't be found.", this);
+        // activate our highlight
+        FindComponentAndSetActive<AnimatedHighlight>(gameObject, true);
     }
 
     // Start is called before the first frame update
@@ -170,22 +183,17 @@ public class CombatEntity : MonoBehaviour, ITappable
     {
         ResetPaths();
 
-        _cam = GetComponentInChildren<CinemachineVirtualCamera>();
+        _cam = GetComponentInChildren<CinemachineVirtualCamera>(true);
 
         if (_cam == null)
             Debug.LogError(name + " FocusCamera not initialized!");
 
         // if the current active vcam is this one
-        GameObject currentCam = ICameraManipulator.CurrentCameraObject();
+        GameObject currentCam = CurrentCameraObject();
         if (currentCam == _cam.gameObject)
         {
             CombatManager.Instance.CurrentSelected = gameObject;
-
-            AnimatedHighlight current = GetComponentInChildren<AnimatedHighlight>(true);
-            if (current != null)
-                current.Play();
-            else
-                Debug.LogWarning("Start(): " + name + "'s current AnimatedHighlight couldn't be found.", this);
+            FindComponentAndSetActive<AnimatedHighlight>(gameObject, true);
         }
     }
 
@@ -195,8 +203,15 @@ public class CombatEntity : MonoBehaviour, ITappable
         if (ResetMovement)
         {
             ResetMovement = false;
-            _movementLeft = 10;
+            _data.MovementRemaining = 10;
             ResetPaths();
+        }
+
+        if (EndTurn)
+        {
+            // EndTurn = false;
+            // MoveToPath();
+            // RenderPathLine();
         }
 
         // if (StartMove)
