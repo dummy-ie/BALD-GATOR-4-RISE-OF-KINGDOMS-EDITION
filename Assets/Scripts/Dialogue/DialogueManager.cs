@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
+using Ink.UnityIntegration;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using System.IO;
 
-public class DialogueManager : MonoBehaviour
+
+public class DialogueManager : Singleton<DialogueManager>
 {
-    public static DialogueManager Instance;
     [SerializeField] DialogueView _view;
     public DialogueView View { get { return _view; } }
 
-    [SerializeField]
-    TextAsset _inkJSON;
+    private Dictionary<string, Ink.Runtime.Object> _variables;
+    [SerializeField]InkFile _file;
 
     private Story _currentStory;
 
@@ -22,6 +25,25 @@ public class DialogueManager : MonoBehaviour
         set { _isDialoguePlaying = value;}
     }
 
+    void InitializeVariables()
+    {
+        
+        string inkFileContents = File.ReadAllText(_file.filePath);
+        Ink.Compiler compiler = new(inkFileContents);
+        Story tempStory = compiler.Compile();
+
+        _variables = new Dictionary<string, Ink.Runtime.Object>();
+        foreach (string name in tempStory.variablesState)
+        {
+
+            Ink.Runtime.Object value = tempStory.variablesState.GetVariableWithName(name);
+            _variables.Add(name, value);
+            Debug.Log("Initialized Variable " + name + " : " + value);
+        }
+
+
+    }
+
 
     public void EnterDialogue(TextAsset inkJSON)
     {
@@ -29,16 +51,18 @@ public class DialogueManager : MonoBehaviour
         _currentStory = new Story(inkJSON.text);
         _isDialoguePlaying = true;
 
-        _currentStory.BindExternalFunction("test", (string text) =>
-        {
-            Debug.Log("Chose " + text);
-        });
 
         _currentStory.BindExternalFunction("setroll", () =>
         {
-            _currentStory.variablesState["roll"] = InternalDice.Instance.RollInternal(10);
+            _currentStory.variablesState["diceRoll"] = InternalDice.Instance.RollInternal(10);
         });
 
+
+        foreach (KeyValuePair<string, Ink.Runtime.Object> variable in _variables)
+        {
+            _currentStory.variablesState.SetGlobal(variable.Key, variable.Value);
+        }
+        _currentStory.variablesState.variableChangedEvent += VariableChanged;
         ShowView();
 
         ContinueDialogue();
@@ -49,9 +73,12 @@ public class DialogueManager : MonoBehaviour
 
     public IEnumerator ExitDialogue(){
         yield return new WaitForSeconds(0.2f);
+
+        _currentStory.variablesState.variableChangedEvent -= VariableChanged;
+
         _isDialoguePlaying = false;
 
-        _currentStory.UnbindExternalFunction("test");
+        _currentStory.UnbindExternalFunction("setroll");
 
         _view.Text.text = "";
         HideView();
@@ -68,6 +95,14 @@ public class DialogueManager : MonoBehaviour
         else
         {
             StartCoroutine(ExitDialogue());
+        }
+    }
+
+    void VariableChanged(string name, Ink.Runtime.Object value)
+    {
+        if (_variables.ContainsKey(name))
+        {
+            _variables[name] = value;
         }
     }
 
@@ -100,12 +135,14 @@ public class DialogueManager : MonoBehaviour
 
     private void Choice1()
     {
+        Debug.Log("Clicked Choice 1");
         SetOutcome(0);
         ContinueDialogue();
     }
 
     private void Choice2()
     {
+        Debug.Log("Clicked Choice 2");
         SetOutcome(1);
         ContinueDialogue();
     }
@@ -122,8 +159,15 @@ public class DialogueManager : MonoBehaviour
 
     
 
+
     private void HideView()
     {
+        foreach (Button button in _view.Choices)
+        {
+            button.visible = false;
+            button.SetEnabled(false);
+        }
+
         _view.BackGround.visible = false;
         _view.BackGround.SetEnabled(false);
 
@@ -131,6 +175,12 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowView()
     {
+        foreach (Button button in _view.Choices)
+        {
+            button.visible = true;
+            button.SetEnabled(true);
+        }
+
         _view.BackGround.visible = true;
         _view.BackGround.SetEnabled(true);
     }
@@ -138,7 +188,7 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        InitializeVariables();
 
         _view.Choices[0].clicked += Choice1;
         _view.Choices[1].clicked += Choice2;
@@ -147,16 +197,5 @@ public class DialogueManager : MonoBehaviour
 
         HideView();
         _isDialoguePlaying = false;
-
-        EnterDialogue(_inkJSON);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!_isDialoguePlaying)
-        {
-            return;
-        }
     }
 }
