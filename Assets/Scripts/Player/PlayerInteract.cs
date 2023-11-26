@@ -12,7 +12,7 @@ public class PlayerInteract : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _gameView = ViewManager.Instance.GetComponentInChildren<GameView>();
+        _gameView = ViewManager.Instance.GetView<GameView>();
         _buttons = _gameView.GetComponent<UIDocument>().rootVisualElement.Q("InteractButtons").Query<Button>().ToList();
 
         if (_buttons.Count == 0)

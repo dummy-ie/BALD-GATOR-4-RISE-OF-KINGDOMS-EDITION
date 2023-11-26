@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _gameView = ViewManager.Instance.GetComponentInChildren<GameView>();
+        //_gameView = ViewManager.Instance.GetComponentInChildren<GameView>();
+        _gameView = ViewManager.Instance.GetView<GameView>();
         _transposer = _camera.GetCinemachineComponent<CinemachineOrbitalTransposer>();
 
         if (_gameView == null)
