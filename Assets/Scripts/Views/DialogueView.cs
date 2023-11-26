@@ -27,28 +27,25 @@ public class DialogueView : View
         set { _choices = value; }
     }
 
-    bool initialized = false;
-
     public Button Degub;
 
     public override void Initialize()
     {
-        if (!initialized)
-        {
             this._document = GetComponent<UIDocument>();
             this._root = this._document.rootVisualElement;
             this.BG = (VisualElement)this._root.Q("BG");
             this.text = (Label)this._root.Q("Text");
+            _choices.Clear();
             for (int i = 0; i < 4; i++)
             {
                 Button button = (Button)this._root.Q("Option" + (i + 1));
 
                 _choices.Add(button);
+                
             }
 
             _choices[0].visible = false;
             _choices[0].SetEnabled(false);
-            Debug.Log(_choices[3].text);
             _choices[1].visible = false;
             _choices[1].SetEnabled(false);
 
@@ -58,8 +55,6 @@ public class DialogueView : View
 
 
             Degub = (Button)_root.Q("Degub");
-            initialized = true;
-        }
     }
 
 }

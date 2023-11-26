@@ -1,6 +1,6 @@
-﻿EXTERNAL setroll()
+﻿INCLUDE Database.ink
 
-VAR roll = false
+EXTERNAL setroll()
 
 
 ->Character.Dialogue1
@@ -24,12 +24,13 @@ Heyo, this is dialogue 2!
 =Dialogue3
 Wassup, this is dialogue 3!
     + [Okay]
-    * [Roll]
+    * {!totoyHasRolled}[Roll]
         ~ setroll()
-        {-roll: Sucess!! You will now be moved to Dialogue 4|Fail :< You will now be moved back to Dialogue 1}
+        ~ totoyHasRolled = true
+        {-diceRoll: Sucess!! You will now be moved to Dialogue 4|Fail :< You will now be moved back to Dialogue 1}
         ++[Okay]
-        {-roll: ->Dialogue4|->Dialogue1}
--->DONE
+        {-diceRoll: ->Dialogue4|->Dialogue1}
+-->Dialogue1
 
 =Dialogue4
 Oya, this is dialogue 4!
@@ -41,6 +42,7 @@ Oya, this is dialogue 4!
 
 ===function setroll()===
 Error
+
 
 
 
