@@ -2,10 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class QuestManager : Singleton<QuestManager>
 {
+    private string _label = "Quests";
+    private AsyncOperationHandle<IList<QuestData>> _handle;
+    private int _index = 0;
+
     private Dictionary<string, Quest> _questMap;
     public UnityAction<string> OnStart;
     public UnityAction<string, int, bool> OnAdvance;
@@ -64,12 +70,26 @@ public class QuestManager : Singleton<QuestManager>
         ChangeQuestState(id, quest.State);
     }
 
+    private void OnLoadQuests(QuestData asset) {
+        _questMap.Add(asset.ID, new Quest(asset));
+        _index++;
+    }
+
+    private void OnComplete(AsyncOperationHandle<IList<QuestData>> handle)
+    {
+        /*if (handle.Status == AsyncOperationStatus.Succeeded)
+            GetComponent<QuestData>() = handle.Result;
+        else
+            Debug.LogError($"{_address}.");*/
+    }
     protected override void OnAwake() {
         _questMap = new Dictionary<string, Quest>();
-        QuestData[] quests = Resources.LoadAll<QuestData>("Quests");
-        foreach (QuestData questData in quests) {
-            _questMap.Add(questData.ID, new Quest(questData));
-        }
+    }
+
+    private void Start()
+    {
+        _handle = Addressables.LoadAssetsAsync<QuestData>(_label, OnLoadQuests);
+        _handle.Completed += OnComplete;
         Quest quest = GetQuest("TestQuest");
         Debug.Log(quest.Data.DisplayName);
         Debug.Log(quest.State);
@@ -101,5 +121,10 @@ public class QuestManager : Singleton<QuestManager>
                 ChangeQuestState(quest.Data.ID, EQuestState.CAN_START);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        Addressables.Release(this._handle);
     }
 }
