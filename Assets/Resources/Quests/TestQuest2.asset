@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7892225abda478240bf75068542e701c, type: 3}
-  m_Name: TestQuest
+  m_Name: TestQuest2
   m_EditorClassIdentifier: 
-  _id: TestQuest
-  _displayName: Test
-  _description: A Test Quest.
+  _id: TestQuest2
+  _displayName: Test 2
+  _description: Test Quest 2.
+  _prerequisites: []
+  _steps: []

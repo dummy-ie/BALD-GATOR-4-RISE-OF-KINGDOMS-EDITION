@@ -135,7 +135,7 @@ public class CombatManager : Singleton<CombatManager>
 
     private void OnTap(object sender, TapEventArgs args)
     {
-        Debug.Log("Object hit by CombatManager OnTap(): " + args.HitObject.name);
+        //Debug.Log("Object hit by CombatManager OnTap(): " + args.HitObject.name);
         if (args.HitObject != null && args.HitObject.CompareTag("Walkable"))
         {
             Ray ray = Camera.main.ScreenPointToRay(args.Position);

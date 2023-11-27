@@ -20,12 +20,12 @@ public class QuestData : ScriptableObject {
     public string Description {
         get { return _description; }
     }
-
+    [SerializeField]
     private QuestData[] _prerequisites;
     public QuestData[] Prerequisites {
         get { return _prerequisites; }
     }
-
+    [SerializeField]
     private GameObject[] _steps;
     public GameObject[] Steps {
         get { return _steps; }
