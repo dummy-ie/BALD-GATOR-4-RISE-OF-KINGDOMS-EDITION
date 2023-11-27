@@ -10,22 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: QuestAssets
+  m_Name: SFX
   m_EditorClassIdentifier: 
-  m_GroupName: QuestAssets
+  m_GroupName: Packed Assets
   m_Data:
     m_SerializedData: []
-  m_GUID: e146831d4e8701745868034655abdf3c
-  m_SerializeEntries:
-  - m_GUID: 271e3c0267628e5478eac8a33e5d7cbf
-    m_Address: Assets/Quests
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Quests
-    FlaggedDuringContentUpdateRestriction: 0
+  m_GUID: 485a825759040c94b94588ae82b6a0a3
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7dd82fb65e8ad51469baaed001df73ec, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 63edd3533158d9a46905611b9e529e0d, type: 2}
-    - {fileID: 11400000, guid: 0db60dbdd075de944a1a288aa83feef8, type: 2}
+    - {fileID: 11400000, guid: 993201c0f09d19345be38ecc9756755f, type: 2}
+    - {fileID: 11400000, guid: 044601d28dab53f49b2816a0f2ba91e5, type: 2}
