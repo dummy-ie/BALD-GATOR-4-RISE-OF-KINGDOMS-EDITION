@@ -11,6 +11,7 @@ public class QuestManager : Singleton<QuestManager>
     public UnityAction<string, int, bool> OnAdvance;
     public UnityAction<string> OnFinish;
     public UnityAction<Quest> OnQuestStateChange;
+    public UnityAction<string, int, QuestStepState> OnQuestStepStateChange;
 
     public Quest GetQuest(string id) {
         Quest quest = _questMap[id];
@@ -21,18 +22,18 @@ public class QuestManager : Singleton<QuestManager>
     private void ChangeQuestState(string id, EQuestState state) {
         Quest quest = _questMap[id];
         quest.State = state;
-        EventsManager.Instance.QuestEvents.OnQuestStateChange?.Invoke(quest);
+        OnQuestStateChange?.Invoke(quest);
     }
     public void StartQuest(string id) {
         Quest quest = GetQuest(id);
         if (quest == null)
             return;
         quest.InstantiateCurrentStep(this.transform);
-        quest.State = EQuestState.IN_PROGRESS;
-        Debug.Log(quest.Info.ID + " Started");
+        ChangeQuestState(id, EQuestState.IN_PROGRESS);
+        Debug.Log(id + " Started");
     }
 
-    public void AdvanceQuest(string id, int index, bool canFinish) {
+    public void AdvanceQuest(string id, int index, bool canFinish = false) {
         Quest quest = _questMap[id];
         if (quest == null)
             return;
@@ -40,15 +41,15 @@ public class QuestManager : Singleton<QuestManager>
         if (quest.CurrentStepExists())
             quest.InstantiateCurrentStep(transform);
         if (canFinish)
-            quest.State = EQuestState.CAN_FINISH;
+            ChangeQuestState(id, EQuestState.CAN_FINISH);
     }
 
     public void FinishQuest(string id) {
-        _questMap[id].State = EQuestState.FINISHED;
+        ChangeQuestState(id, EQuestState.FINISHED);
     }
     private bool CheckRequirementsMet(Quest quest) {
         bool meetsRequirements = true;
-        foreach (QuestData prerequisiteQuest in quest.Info.Prerequisites) {
+        foreach (QuestData prerequisiteQuest in quest.Data.Prerequisites) {
                 Debug.Log("yea");
             if (GetQuest(prerequisiteQuest.ID).State != EQuestState.FINISHED) {
                 meetsRequirements = false;
@@ -56,6 +57,11 @@ public class QuestManager : Singleton<QuestManager>
         }
 
         return meetsRequirements;
+    }
+    private void StepStateChange(string id, int stepIndex, QuestStepState questStepState) {
+        Quest quest = GetQuest(id);
+        quest.StoreStepState(questStepState, stepIndex);
+        ChangeQuestState(id, quest.State);
     }
 
     protected override void OnAwake() {
@@ -65,34 +71,34 @@ public class QuestManager : Singleton<QuestManager>
             _questMap.Add(questData.ID, new Quest(questData));
         }
         Quest quest = GetQuest("TestQuest");
-        Debug.Log(quest.Info.DisplayName);
-        Debug.Log(quest.Info.Description);
+        Debug.Log(quest.Data.DisplayName);
         Debug.Log(quest.State);
         Debug.Log(quest.CurrentStepIndex);
         Debug.Log(quest.CurrentStepExists());
     }
 
     private void OnEnable() {
-        EventsManager.Instance.QuestEvents.OnStart += StartQuest;
-        EventsManager.Instance.QuestEvents.OnAdvance += AdvanceQuest;
-        EventsManager.Instance.QuestEvents.OnFinish += FinishQuest;
-        //Debug.Log(OnStart);
+        OnStart += StartQuest;
+        OnAdvance += AdvanceQuest;
+        OnFinish += FinishQuest;
 
-        //GameEventsManager.instance.questEvents.onQuestStepStateChange += QuestStepStateChange;
+        OnQuestStepStateChange += StepStateChange;
     }
 
     private void OnDisable()
     {
-        EventsManager.Instance.QuestEvents.OnStart -= StartQuest;
-        EventsManager.Instance.QuestEvents.OnAdvance -= AdvanceQuest;
-        EventsManager.Instance.QuestEvents.OnFinish -= FinishQuest;
+        OnStart -= StartQuest;
+        OnAdvance -= AdvanceQuest;
+        OnFinish -= FinishQuest;
+
+        OnQuestStepStateChange -= StepStateChange;
     }
 
     private void Update() {
         foreach (Quest quest in _questMap.Values)
         {
             if (quest.State == EQuestState.REQUIREMENTS_NOT_MET && CheckRequirementsMet(quest)) {
-                ChangeQuestState(quest.Info.ID, EQuestState.CAN_START);
+                ChangeQuestState(quest.Data.ID, EQuestState.CAN_START);
             }
         }
     }

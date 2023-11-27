@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7d465e1fbbcc2479c26d1bd2a88ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stepName: Talk to Usopp 2
+  _stepDescription: Seems like he has something for you.
+  _nextStepIndex: 0
+  _canFinish: 0

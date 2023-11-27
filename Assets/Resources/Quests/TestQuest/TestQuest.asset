@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: TestQuest
   _displayName: Test
-  _description: A Test Quest.
   _prerequisites: []
   _steps:
   - {fileID: 7946739699251264130, guid: 3a83c1b67b9e8f449b599dface083600, type: 3}
