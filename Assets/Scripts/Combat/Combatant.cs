@@ -207,20 +207,6 @@ public class Combatant : MonoBehaviour, ITappable
             ResetPaths();
         }
 
-        if (EndTurn)
-        {
-            // EndTurn = false;
-            // MoveToPath();
-            // RenderPathLine();
-        }
-
-        // if (StartMove)
-        // {
-        //     StartMove = false;
-        //     MoveToPath();
-        //     RenderPathLine();
-        // }
-
         if (DestinationReached(_nav, transform.position))
             ResetPaths();
     }

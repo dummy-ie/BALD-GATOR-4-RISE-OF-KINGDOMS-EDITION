@@ -99,27 +99,8 @@ public class CombatManager : Singleton<CombatManager>
         else
             State = CombatState.PlayerTurn;
 
-        // {
-            // just make them do their turn
+        // just make them do their turn
         yield return StartCoroutine(_currentTurn.StartTurn());
-        Debug.Log("Combatant ended their turn");
-        // }
-        // else
-        // {
-            // int loopIndex = _currentTurnIndex;
-            // while (loopIndex + 1 < _combatants.Count)
-            // {
-            //     AffiliationState next = _combatants[loopIndex + 1].Data.Affiliation;
-            //     if (next == current)
-            //     {
-            //         _currentTurn.Add(_combatants[loopIndex + 1]);
-            //     }
-            //     else
-            //         break;
-
-            //     loopIndex++;
-            // }
-        // }
 
         // set index to next turn
         if (_currentTurnIndex + 1 < _combatants.Count)
@@ -128,9 +109,29 @@ public class CombatManager : Singleton<CombatManager>
             _currentTurnIndex = 0;
         
         // check if won or lost 
+        if (CheckWin())
+        {
 
-        // else repeat
-        StartCoroutine(StartNextTurn());
+        }
+        else if (CheckLoss())
+        {
+
+        }
+        else
+        {
+            // else repeat
+            StartCoroutine(StartNextTurn());
+        }
+    }
+
+    private bool CheckWin()
+    {
+        return false;
+    }
+
+    private bool CheckLoss()
+    {
+        return false;
     }
 
     private void OnTap(object sender, TapEventArgs args)
