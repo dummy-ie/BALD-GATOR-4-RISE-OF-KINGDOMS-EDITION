@@ -15,43 +15,38 @@ public class QuestPoint : MonoBehaviour
 
     //private QuestIcon questIcon;
 
-    private void Awake() {
-        _id = _questData.ID;
-        //questIcon = GetComponentInChildren<QuestIcon>();
-    }
 
-    private void OnEnable()
-    {
-        //GameEventsManager.instance.questEvents.onQuestStateChange += QuestStateChange;
-        //GameEventsManager.instance.inputEvents.onSubmitPressed += SubmitPressed;
-    }
-
-    private void OnDisable()
-    {
-        //GameEventsManager.instance.questEvents.onQuestStateChange -= QuestStateChange;
-        //GameEventsManager.instance.inputEvents.onSubmitPressed -= SubmitPressed;
-    }
-
-    private void SubmitPressed() {
-        if (!_nearPlayer) {
-            return;
-        }
-
+    public void SubmitPressed() {
         // start or finish a quest
+        Debug.Log(_currentState);
         if (_currentState.Equals(EQuestState.CAN_START) && _startPoint) {
-            QuestManager.Instance.StartQuest(_id);
+        Debug.Log("subtmitiiedd");
+            EventsManager.Instance.QuestEvents.OnStart(_id);
         }
         else if (_currentState.Equals(EQuestState.CAN_FINISH) && _finishPoint) {
-            QuestManager.Instance.FinishQuest(_id);
+            EventsManager.Instance.QuestEvents.OnFinish(_id);
         }
     }
 
     private void StateChange(Quest quest) {
         if (quest.Info.ID.Equals(_id))
         {
+            Debug.Log("yea");
             _currentState = quest.State;
             //questIcon.SetState(currentQuestState, startPoint, finishPoint);
         }
+    }
+    private void Awake() {
+        _id = _questData.ID;
+    }
+    private void OnEnable()
+    {
+        EventsManager.Instance.QuestEvents.OnQuestStateChange += StateChange;
+    }
+
+    private void OnDisable()
+    {
+        EventsManager.Instance.QuestEvents.OnQuestStateChange -= StateChange;
     }
 
     private void OnTriggerEnter(Collider other)

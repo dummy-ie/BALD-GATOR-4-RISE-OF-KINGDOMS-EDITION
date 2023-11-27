@@ -16,7 +16,11 @@ public class QuestProperty {
         get { return _stepIndex; }
         set { _stepIndex = value; }
     }
-    //public QuestStepState[] questStepStates;
+    private QuestStep[] _questSteps;
+    public QuestStep[] QuestSteps {
+        get { return _questSteps; }
+        set { _questSteps = value; }
+    }
 
     /*public QuestProperty(EQuestState state, int stepIndex/*, QuestStepState[] questStepStates*//*)
     {
