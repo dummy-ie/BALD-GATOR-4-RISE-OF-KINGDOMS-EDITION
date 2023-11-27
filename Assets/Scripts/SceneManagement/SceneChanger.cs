@@ -37,7 +37,7 @@ public class SceneChanger : MonoBehaviour
         {
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-            //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+            SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
             SceneLoader.Instance.LoadScene(_targetSceneName, true);
         }
     }
@@ -48,7 +48,7 @@ public class SceneChanger : MonoBehaviour
         {
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-            //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+            SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
             SceneLoader.Instance.LoadScene(_targetSceneName, true);
         }
     }

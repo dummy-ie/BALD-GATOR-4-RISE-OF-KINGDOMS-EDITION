@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
-  m_Name: Quests_ContentUpdateGroupSchema
+  m_Script: {fileID: 11500000, guid: eb3d8354c9ba08948a164dde6f88e80a, type: 3}
+  m_Name: MainMenu
   m_EditorClassIdentifier: 
-  m_Group: {fileID: 11400000, guid: b743eb6d8f5d4644789be9a88c366a92, type: 2}
-  m_StaticContent: 0
+  SceneReference:
+    m_AssetGUID: 6fba51dd42e43e84688bf07d5754b0c6
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1

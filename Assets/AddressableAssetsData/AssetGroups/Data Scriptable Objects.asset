@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: SFX
+  m_Name: Data Scriptable Objects
   m_EditorClassIdentifier: 
-  m_GroupName: SFX
+  m_GroupName: Data Scriptable Objects
   m_Data:
     m_SerializedData: []
-  m_GUID: d45b8b0a1ef96c842bea0225aec6afcb
+  m_GUID: b211629126b1aaa4d879aba5529f126a
   m_SerializeEntries:
-  - m_GUID: b02736ed8e669c94eacd5ad5ab4cdd5f
-    m_Address: Assets/Audio/SFX
+  - m_GUID: 271e3c0267628e5478eac8a33e5d7cbf
+    m_Address: Assets/Data/Quests
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Quests
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3cc3d152939a120459b6d8c4b9c05b60
+    m_Address: Assets/Data/Scene
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -26,5 +32,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 7dd82fb65e8ad51469baaed001df73ec, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 7d471c3e6d6f15749801f55ec4bd8db9, type: 2}
-    - {fileID: 11400000, guid: 82daedbaea8220c4fb4d5719fab8f9d8, type: 2}
+    - {fileID: 11400000, guid: c6c33cc00d623e144a015ba5c802840e, type: 2}
+    - {fileID: 11400000, guid: 966c0cb95f8c8364099936690982214f, type: 2}

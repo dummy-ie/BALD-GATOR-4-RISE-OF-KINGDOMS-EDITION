@@ -15,11 +15,16 @@ MonoBehaviour:
   m_GroupName: BGM
   m_Data:
     m_SerializedData: []
-  m_GUID: 9863de1fd385e5d4e8a663db4c545da0
-  m_SerializeEntries: []
+  m_GUID: 6593484aabdb81848aa60785c881ce6a
+  m_SerializeEntries:
+  - m_GUID: dc68c51d7daeeea44b3bee106a7bbc80
+    m_Address: Assets/Audio/BGM
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7dd82fb65e8ad51469baaed001df73ec, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: d962d53ee0d703d46a1dc988c98c0f50, type: 2}
-    - {fileID: 11400000, guid: 453483d2b2fe93e4290faf033f4c50bc, type: 2}
+    - {fileID: 11400000, guid: 2ac9078d4c5c2bd4bba14bcdd694cbae, type: 2}
+    - {fileID: 11400000, guid: 2cdb19900ed7e1547a5924252fb8c84d, type: 2}

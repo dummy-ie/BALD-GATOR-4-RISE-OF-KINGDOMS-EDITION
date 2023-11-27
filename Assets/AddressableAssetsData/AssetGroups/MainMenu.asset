@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: SFX
+  m_Name: MainMenu
   m_EditorClassIdentifier: 
-  m_GroupName: SFX
+  m_GroupName: MainMenu
   m_Data:
     m_SerializedData: []
-  m_GUID: d45b8b0a1ef96c842bea0225aec6afcb
+  m_GUID: cb96ada474a179d46a6aeab2b9fb11e8
   m_SerializeEntries:
-  - m_GUID: b02736ed8e669c94eacd5ad5ab4cdd5f
-    m_Address: Assets/Audio/SFX
+  - m_GUID: 6fba51dd42e43e84688bf07d5754b0c6
+    m_Address: Assets/Scenes/Menu.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -26,5 +26,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 7dd82fb65e8ad51469baaed001df73ec, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 7d471c3e6d6f15749801f55ec4bd8db9, type: 2}
-    - {fileID: 11400000, guid: 82daedbaea8220c4fb4d5719fab8f9d8, type: 2}
+    - {fileID: 11400000, guid: 62e554ca887207748a6bee18d4a90ea8, type: 2}
+    - {fileID: 11400000, guid: f6d90854a02f9e84d9f2af1f8eef5be0, type: 2}

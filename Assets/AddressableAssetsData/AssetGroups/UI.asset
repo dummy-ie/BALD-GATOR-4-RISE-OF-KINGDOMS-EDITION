@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Quests
+  m_Name: UI
   m_EditorClassIdentifier: 
-  m_GroupName: Quests
+  m_GroupName: UI
   m_Data:
     m_SerializedData: []
-  m_GUID: e146831d4e8701745868034655abdf3c
+  m_GUID: a03b675a8a36fe84391f728fff43d0f2
   m_SerializeEntries:
-  - m_GUID: 271e3c0267628e5478eac8a33e5d7cbf
-    m_Address: Assets/Quests
+  - m_GUID: 205c7c90e55ee9c4fad09dd989df93d9
+    m_Address: Assets/GUI
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - Quests
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7dd82fb65e8ad51469baaed001df73ec, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 63edd3533158d9a46905611b9e529e0d, type: 2}
-    - {fileID: 11400000, guid: 0db60dbdd075de944a1a288aa83feef8, type: 2}
+    - {fileID: 11400000, guid: 9a4ca4c028c884045ab74fe81572692e, type: 2}
+    - {fileID: 11400000, guid: af72f9a8253faac4ca5f9e19804b55a5, type: 2}
