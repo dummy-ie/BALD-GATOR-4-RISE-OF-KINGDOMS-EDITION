@@ -205,7 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textAssetTotoy: {fileID: 4900000, guid: 2be5921ba92ef8340a03347c0b17896e, type: 3}
   _textAssetSenren: {fileID: 4900000, guid: fd507ea49a1b0ce4d8def371f6dea1d5, type: 3}
-  totoy: 0
+  totoy: 1
   senren: 0
 --- !u!4 &224220372
 Transform:

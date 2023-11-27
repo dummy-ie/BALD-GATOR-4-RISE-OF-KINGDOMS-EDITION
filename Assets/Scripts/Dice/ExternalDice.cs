@@ -37,6 +37,13 @@ public class ExternalDice : MonoBehaviour
     private bool _finishedRolling = false;
     public bool FinishedRolling { get { return _finishedRolling; } }
 
+    private int _difficultyClass = 0;
+    public int DifficultyClass
+    {
+        get { return _difficultyClass; }
+        set { _difficultyClass = value; }
+    }
+
     // public DialogueArgs nextArgs;
     // public DialogueArgs nextArgsOther;
     // public DialogueClass target;
@@ -92,17 +99,15 @@ public class ExternalDice : MonoBehaviour
         _result = dieValue;
         _finishedRolling = true;
 
-        if (ResultExternal(10))
-        { 
-        }
 
-        else
-        {
-        }
-               
+        
 
         yield return new WaitForSeconds(1f); // wait a bit
+        Debug.Log("Should Unload by now");
+        DialogueManager.Instance.SetDiceRoll(ResultExternal(_difficultyClass));
         SceneManager.UnloadSceneAsync("Dice Roller");
+
+
     }
 
     private int GetDieValue()
@@ -123,10 +128,14 @@ public class ExternalDice : MonoBehaviour
     public static bool ResultExternal(int difficultyClass, int modifier = 0)
     {
         Debug.Log("Result External _result: " + _result);
-        if (_result + modifier >= difficultyClass)
+        if (_result + modifier >= difficultyClass) 
+        { 
+            Debug.Log("Success Roll");
             return true;
+        }
 
-        return false;
+        Debug.Log("Fail Roll");
+        return false; 
     }
 
     // public void OnSwipe(SwipeEventArgs args)
