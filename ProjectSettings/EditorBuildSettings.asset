@@ -5,8 +5,8 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Menu.unity
+  - enabled: 0
+    path: Assets/Scenes/MainMenu.unity
     guid: 6fba51dd42e43e84688bf07d5754b0c6
   - enabled: 1
     path: Assets/Scenes/Dice Roller.unity
@@ -20,3 +20,5 @@ EditorBuildSettings:
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 739cf9c21f0292246a72b6d479cc3ea0, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 8691bfb6fc646bb47ae7168d205d632b,
+      type: 2}

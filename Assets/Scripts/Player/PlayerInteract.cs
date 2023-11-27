@@ -44,6 +44,15 @@ public class PlayerInteract : MonoBehaviour
                 button.style.display = DisplayStyle.Flex;
                 button.text = collided.name;
                 //button.clicked += () => DialogueManager.Instance.StartDialogue(dialogue, dialogue.CurrentDialogue); 
+                /* QUEST TESTING */
+                QuestPoint questPoint = null;
+                questPoint = collided.GetComponent<QuestPoint>();
+                Debug.Log(questPoint);
+                if (questPoint != null)
+                {
+
+                    button.clicked += questPoint.SubmitPressed;
+                }
                 break;
             }
         }
@@ -74,6 +83,9 @@ public class PlayerInteract : MonoBehaviour
                 button.text = "Button";
                 // button.clicked -= () => DialogueManager.Instance.StartDialogue(dialogue, dialogue.CurrentDialogue); 
                 button.clickable = new Clickable(() => {}); // RESET ITS CLICKABLE FUNCTION
+
+                
+
                 break;
             }
         }

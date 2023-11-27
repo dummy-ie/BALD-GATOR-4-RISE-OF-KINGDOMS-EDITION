@@ -20,6 +20,7 @@ public class Player2DFlip : MonoBehaviour
         _z = transform.localScale.z;
 
         _gameView = ViewManager.Instance.GetView<GameView>();
+        //_gameView = ViewManager.Instance.GetComponentInChildren<GameView>(true);
         _playerController = transform.parent.gameObject.GetComponent<PlayerController>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
 

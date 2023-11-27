@@ -35,14 +35,7 @@ public class DialogueView : View
             this._root = this._document.rootVisualElement;
             this.BG = (VisualElement)this._root.Q("BG");
             this.text = (Label)this._root.Q("Text");
-            _choices.Clear();
-            for (int i = 0; i < 4; i++)
-            {
-                Button button = (Button)this._root.Q("Option" + (i + 1));
-
-                _choices.Add(button);
-                
-            }
+            AssignButtons();
 
             _choices[0].visible = false;
             _choices[0].SetEnabled(false);
@@ -56,5 +49,19 @@ public class DialogueView : View
 
             Degub = (Button)_root.Q("Degub");
     }
+
+    public void AssignButtons()
+    {
+        _choices.Clear();
+        for (int i = 0; i < 4; i++)
+        {
+            Button button = (Button)this._root.Q("Option" + (i + 1));
+
+            _choices.Add(button);
+
+        }
+    }
+
+
 
 }
