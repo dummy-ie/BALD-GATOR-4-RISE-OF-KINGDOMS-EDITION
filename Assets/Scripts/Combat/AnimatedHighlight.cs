@@ -9,24 +9,28 @@ public class AnimatedHighlight : MonoBehaviour
 
     public bool startPaused = false;
 
-    public void Pause()
-    {
-        // Debug.Log(transform.parent.name + " Highlight Pause() called");
-        gameObject.SetActive(false);
-        // GetComponent<SpriteRenderer>().enabled = false;
-    }
+    // use StaticUtils.FindComponentAndSetActive instead.
+    // public static void FindAndSetHighlight(GameObject objWithHighlight, bool value)
+    // {
+    //     if (objWithHighlight == null)
+    //     {
+    //         Debug.LogWarning("SetHighlight(): GameObject is null.");
+    //         return;
+    //     }
 
-    public void Play()
-    {
-        // Debug.Log(transform.parent.name + " Highlight Play() called");
-        gameObject.SetActive(true);
-        // GetComponent<SpriteRenderer>().enabled = true;
-    }
+    //     AnimatedHighlight highlight = objWithHighlight.GetComponentInChildren<AnimatedHighlight>(true); // get highlight in its children
+    //     if (highlight != null)
+    //         highlight.gameObject.SetActive(value);
+    //     else if (objWithHighlight.TryGetComponent(out highlight)) // try in its components
+    //         highlight.gameObject.SetActive(value);
+    //     else
+    //         Debug.LogWarning("SetHighlight(): " + objWithHighlight.name + "'s AnimatedHighlight couldn't be found.");
+    // }
 
     private void Start()
     {
         if (startPaused)
-            Pause();
+            gameObject.SetActive(false);
     }
 
     // Update is called once per frame

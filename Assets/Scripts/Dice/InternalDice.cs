@@ -33,16 +33,39 @@ public class InternalDice : Singleton<InternalDice>
             _rollType = ERollType.DEFAULT;
     }
 
-    public bool RollInternal(int difficultyClass, int modifier = 0)
+    // rolls numDice-d-diceFaces and returns the result. Ex: 2d6 would be RollMultiple(2, 6, modifier)
+    public int RollMultiple(int numDice, int diceFaces, int modifier = 0)
+    {
+        int result;
+        int total = 0;
+        for (int i = 0; i < numDice; i++)
+        {
+            Roll(out result, diceFaces, modifier);
+            total += result;
+        }
+
+        return total;
+    }
+
+    public bool Roll(out int result, int dieFaces = 20, int modifier = 0, int difficultyClass = 0)
     {
         if (_rollType == ERollType.CRITICAL_SUCCESS)
+        {
+            result = 20;
             return true;
+        }
 
         if (_rollType == ERollType.CRITICAL_FAIL)
+        {
+            result = 1;
             return false;
+        }
 
-        int roll = Random.Range(1, 21);
+        // Random.Range is inclusive min, EXCLUSIVE max for some reason 
+        int roll = Random.Range(1, dieFaces + 1);
         roll += modifier;
+
+        result = roll;
 
         if (roll >= difficultyClass)
             return true;

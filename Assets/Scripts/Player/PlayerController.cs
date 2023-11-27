@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _gameView = ViewManager.Instance.GetComponentInChildren<GameView>();
+        //_gameView = ViewManager.Instance.GetComponentInChildren<GameView>(true);
+        _gameView = ViewManager.Instance.GetView<GameView>();
         _transposer = _camera.GetCinemachineComponent<CinemachineOrbitalTransposer>();
 
         if (_gameView == null)
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // movement
-        if (GameView.Input != Vector3.zero)
+        if (GameView.Input != Vector3.zero && CombatManager.Instance.State == CombatManager.CombatState.None)
         {
             _transposer.m_RecenterToTargetHeading.m_enabled = false;
             _isMoving = true;

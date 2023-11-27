@@ -8,7 +8,7 @@
 }
 
 #BaldGatorLogo {
-    --unity-image: url('project://database/Assets/Sprites/Menu%20Icons/BaldGatorLogo.png?fileID=21300000&guid=f6f302bec290fe9489560124d36e8fe4&type=3#BaldGatorLogo');
+    --unity-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/BaldGatorLogo.png?fileID=21300000&guid=f6f302bec290fe9489560124d36e8fe4&type=3#BaldGatorLogo');
     align-items: auto;
     align-self: center;
     justify-content: flex-start;
@@ -25,12 +25,12 @@
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     top: 15%;
-    -unity-font: url('project://database/Assets/Fonts/SHERWOOD.TTF?fileID=12800000&guid=bcf5374f1954c4c4aa403195ac7da4af&type=3#SHERWOOD');
+    -unity-font: url('project://database/Assets/Graphics/Fonts/SHERWOOD.TTF?fileID=12800000&guid=bcf5374f1954c4c4aa403195ac7da4af&type=3#SHERWOOD');
     font-size: 130%;
     color: rgb(197, 142, 59);
     -unity-text-outline-width: 5px;
     text-shadow: 0 0 100px rgb(87, 13, 13);
-    -unity-font-definition: initial;
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/SHERWOOD%20SDF.asset?fileID=11400000&guid=58e8b063ebfc17348ac960bed4e251b2&type=2#SHERWOOD SDF');
 }
 
 #SettingsButton {
@@ -58,5 +58,5 @@
 }
 
 #SettingsIcon {
-    --unity-image: url('project://database/Assets/Sprites/Menu%20Icons/SettingsIcon.png?fileID=2800000&guid=40e9b9698b549ea449c795fa9e36ed09&type=3#SettingsIcon');
+    --unity-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/SettingsIcon.png?fileID=2800000&guid=40e9b9698b549ea449c795fa9e36ed09&type=3#SettingsIcon');
 }
