@@ -1,9 +1,24 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/GUI/USS/Combat.uss?fileID=7433441132597879392&amp;guid=b902c215792948c408deade8583792b1&amp;type=3#Combat" />
     <ui:VisualElement name="EntitySelector" style="flex-grow: 1;" />
-    <ui:VisualElement name="TurnButtons" style="flex-grow: 1;">
-        <ui:Button text="Attack" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AttackButton" />
-        <ui:Button text="Heal" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealButton" />
-        <ui:Button text="End Turn" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndTurnButton" />
+    <ui:VisualElement name="Hotbar" style="flex-grow: 1;">
+        <ui:VisualElement name="HotbarLeft" style="flex-grow: 1;">
+            <ui:VisualElement name="HealthBarBox" style="flex-grow: 1;">
+                <ui:ProgressBar name="CurrentTurnHealthBar" value="27" high-value="100" low-value="0" title="27 / 100" />
+            </ui:VisualElement>
+            <ui:Label tabindex="-1" text="Health" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatantHealth" />
+        </ui:VisualElement>
+        <ui:VisualElement name="HotbarRight" style="flex-grow: 1;">
+            <ui:VisualElement name="TurnButtons" style="flex-grow: 1;">
+                <ui:Button text="Attack" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AttackButton" />
+                <ui:Button text="Heal" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealButton" />
+                <ui:Button text="End Turn" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndTurnButton" />
+            </ui:VisualElement>
+            <ui:Label tabindex="-1" text="Ghaim&apos;r Colguy" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatantName" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="SelectedTarget" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TargetName" />
+        <ui:ProgressBar value="22" name="TargetHealthBar" />
     </ui:VisualElement>
 </ui:UXML>
