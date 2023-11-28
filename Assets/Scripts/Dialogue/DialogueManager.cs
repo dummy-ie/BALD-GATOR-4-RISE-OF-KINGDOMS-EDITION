@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using System.IO;
 
-
+//if a "Ink.Parsed" appears here just remove it
 public class DialogueManager : Singleton<DialogueManager>
 {
     [SerializeField] DialogueView _view;
@@ -18,12 +18,20 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private Story _currentStory;
 
+    private string _name;
+    public string Name
+    {
+        get { return _name; }
+    }
+
     private bool _isDialoguePlaying;
+    private bool _isDiceRolling;
     public bool IsDialoguePlaying
     {
         get { return _isDialoguePlaying;}
         set { _isDialoguePlaying = value;}
     }
+
 
     void InitializeVariables()
     {
@@ -40,8 +48,6 @@ public class DialogueManager : Singleton<DialogueManager>
             _variables.Add(name, value);
             Debug.Log("Initialized Variable " + name + " : " + value);
         }
-
-
     }
 
 
@@ -49,24 +55,38 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         Debug.Log("Entering Dialogue");
         _currentStory = new Story(inkJSON.text);
+
+        _name = (string)_currentStory.variablesState["name"];
+
         _isDialoguePlaying = true;
 
-
-        _currentStory.BindExternalFunction("setroll", () =>
+        _currentStory.BindExternalFunction("RollDice", (string stat) =>
         {
-            _currentStory.variablesState["diceRoll"] = InternalDice.Instance.Roll(out _, 20, 0, 10);
+            StartCoroutine(RollDice(stat));
         });
 
+        
 
         foreach (KeyValuePair<string, Ink.Runtime.Object> variable in _variables)
         {
             _currentStory.variablesState.SetGlobal(variable.Key, variable.Value);
         }
+
         _currentStory.variablesState.variableChangedEvent += VariableChanged;
         ShowView();
 
         ContinueDialogue();
         
+    }
+
+    IEnumerator RollDice(string stat)
+    {
+        SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
+
+        _isDiceRolling = true;
+        yield return new WaitForSeconds(.5f);
+
+        FindObjectOfType<ExternalDice>().DifficultyClass = (int)_currentStory.variablesState[_name + "Check" + stat];
     }
 
 
@@ -78,7 +98,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _isDialoguePlaying = false;
 
-        _currentStory.UnbindExternalFunction("setroll");
+        _currentStory.UnbindExternalFunction("RollDice");
 
         _view.Text.text = "";
         HideView();
@@ -86,7 +106,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void ContinueDialogue()
     {
-        if (_currentStory.canContinue)
+        if (_currentStory.canContinue && !_isDiceRolling)
         {
             _view.Text.text = _currentStory.Continue();
 
@@ -104,6 +124,17 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             _variables[name] = value;
         }
+    }
+
+    public void SetDiceRoll(bool diceRoll)
+    {
+        AddButtons();
+
+        _view.AssignButtons();
+        ShowView();
+        _isDiceRolling = false;
+        _currentStory.variablesState["diceRoll"] = diceRoll;
+        ContinueDialogue();
     }
 
     private void SetButtons()
@@ -190,12 +221,28 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         InitializeVariables();
 
+        //HideView();
+        _isDialoguePlaying = false;
+    }
+
+    void AddButtons()
+    {
         _view.Choices[0].clicked += Choice1;
         _view.Choices[1].clicked += Choice2;
         _view.Choices[2].clicked += Fight;
         _view.Choices[3].clicked += Leave;
+    }
 
-        HideView();
-        _isDialoguePlaying = false;
+    private void OnEnable()
+    {
+        AddButtons();
+    }
+
+    private void OnDisable()
+    {
+        _view.Choices[0].clicked -= Choice1;
+        _view.Choices[1].clicked -= Choice2;
+        _view.Choices[2].clicked -= Fight;
+        _view.Choices[3].clicked -= Leave;
     }
 }

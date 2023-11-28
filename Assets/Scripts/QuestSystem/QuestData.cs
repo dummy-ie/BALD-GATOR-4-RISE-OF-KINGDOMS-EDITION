@@ -16,11 +16,6 @@ public class QuestData : ScriptableObject {
         get { return _displayName; }
     }
     [SerializeField]
-    private string _description;
-    public string Description {
-        get { return _description; }
-    }
-    [SerializeField]
     private QuestData[] _prerequisites;
     public QuestData[] Prerequisites {
         get { return _prerequisites; }

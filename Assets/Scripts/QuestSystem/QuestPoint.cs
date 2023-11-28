@@ -20,16 +20,17 @@ public class QuestPoint : MonoBehaviour
         // start or finish a quest
         Debug.Log(_currentState);
         if (_currentState.Equals(EQuestState.CAN_START) && _startPoint) {
-        Debug.Log("subtmitiiedd");
-            EventsManager.Instance.QuestEvents.OnStart(_id);
+            Debug.Log($"Started Quest {_id}");
+            QuestManager.Instance.OnStart?.Invoke(_id);
         }
         else if (_currentState.Equals(EQuestState.CAN_FINISH) && _finishPoint) {
-            EventsManager.Instance.QuestEvents.OnFinish(_id);
+            Debug.Log($"Finished Quest {_id}");
+            QuestManager.Instance.OnFinish?.Invoke(_id);
         }
     }
 
     private void StateChange(Quest quest) {
-        if (quest.Info.ID.Equals(_id))
+        if (quest.Data.ID.Equals(_id))
         {
             Debug.Log("yea");
             _currentState = quest.State;
@@ -41,12 +42,12 @@ public class QuestPoint : MonoBehaviour
     }
     private void OnEnable()
     {
-        EventsManager.Instance.QuestEvents.OnQuestStateChange += StateChange;
+        QuestManager.Instance.OnQuestStateChange += StateChange;
     }
 
     private void OnDisable()
     {
-        EventsManager.Instance.QuestEvents.OnQuestStateChange -= StateChange;
+        QuestManager.Instance.OnQuestStateChange -= StateChange;
     }
 
     private void OnTriggerEnter(Collider other)

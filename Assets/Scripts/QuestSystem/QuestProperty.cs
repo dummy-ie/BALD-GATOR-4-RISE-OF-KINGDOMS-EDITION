@@ -16,16 +16,17 @@ public class QuestProperty {
         get { return _stepIndex; }
         set { _stepIndex = value; }
     }
-    private QuestStep[] _questSteps;
-    public QuestStep[] QuestSteps {
-        get { return _questSteps; }
-        set { _questSteps = value; }
+    [SerializeField]
+    private QuestStepState[] _stepStates;
+    public QuestStepState[] StepStates {
+        get { return _stepStates; }
+        set { _stepStates = value; }
     }
 
-    /*public QuestProperty(EQuestState state, int stepIndex/*, QuestStepState[] questStepStates*//*)
+    public QuestProperty(EQuestState state, int stepIndex, QuestStepState[] stepStates)
     {
         _state = state;
         _stepIndex = stepIndex;
-        //this.questStepStates = questStepStates;
-    }*/
+        _stepStates = stepStates;
+    }
 }

@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : Singleton<SceneLoader>
 {
     private string _sceneName;
+    private SceneData _activeScene;
+    public SceneData ActiveScene {
+        get { return _activeScene; }
+    }
+
     public void LoadSceneWithoutFade(string sceneName)
     {
         _sceneName = sceneName;
@@ -42,6 +51,25 @@ public class SceneLoader : Singleton<SceneLoader>
         else
         {
             StartCoroutine(FadeAndLoadScene());
+        }
+    }
+    public void LoadSceneWithoutFade(AssetReference sceneData)
+    {
+        AsyncOperationHandle handle = sceneData.LoadAssetAsync<SceneData>();
+        handle.Completed += (AsyncOperationHandle handle) =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+                StartCoroutine(SceneLoad((SceneData)sceneData.Asset));
+            else
+                Debug.LogError($"{sceneData.RuntimeKey}.");
+        };
+    }
+    private IEnumerator SceneLoad(SceneData sceneData) { 
+        _activeScene = sceneData;
+        AsyncOperationHandle<SceneInstance> handle = sceneData.SceneReference.LoadSceneAsync();
+        sceneData.Operation = handle;
+        while (!handle.IsDone) {
+            yield return null;
         }
     }
 }

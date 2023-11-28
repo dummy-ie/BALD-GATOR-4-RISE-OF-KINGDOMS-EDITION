@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 
 public class Quest {
-    private QuestData _info;
-    public QuestData Info { 
-        get { return _info; }
+    private QuestData _data;
+    public QuestData Data { 
+        get { return _data; }
     }
     private EQuestState _state;
     public EQuestState State { 
@@ -16,15 +17,18 @@ public class Quest {
     public int CurrentStepIndex { 
         get { return _currentStepIndex; }
     }
-    //private QuestStep[] _steps;
+    private QuestStepState[] _stepStates;
+    public QuestStepState[] StepStates  { 
+        get { return _stepStates; }
+    }
     public Quest(QuestData questData) {
-        this._info = questData;
+        this._data = questData;
         this._state = EQuestState.REQUIREMENTS_NOT_MET;
         this._currentStepIndex = 0;
-        //this.questStepStates = new QuestStepState[info.questStepPrefabs.Length];
-        //for (int i = 0; i < questStepStates.Length; i++)
+        this._stepStates = new QuestStepState[_data.Steps.Length];
+        for (int i = 0; i < _stepStates.Length; i++)
         {
-            //QuestStep[i] = new QuestStepState();
+            _stepStates[i] = new QuestStepState();
         }
     }
 
@@ -33,7 +37,7 @@ public class Quest {
     }
 
     public bool CurrentStepExists() { 
-        return (_currentStepIndex < _info.Steps.Length);
+        return (_currentStepIndex < _data.Steps.Length);
     }
 
     public void InstantiateCurrentStep(Transform transform) {
@@ -46,11 +50,23 @@ public class Quest {
     private GameObject GetCurrentStepPrefab() {
         GameObject stepPrefab = null;
         if (CurrentStepExists()) {
-            stepPrefab = _info.Steps[_currentStepIndex];
+            stepPrefab = _data.Steps[_currentStepIndex];
         }
         else {
-            Debug.LogWarning($"Index Out of Range : {_info.ID}, index = {_currentStepIndex}");
+            Debug.LogWarning($"Index Out of Range : {_data.ID}, index = {_currentStepIndex}");
         }
         return stepPrefab;
+    }
+
+    public void StoreStepState(QuestStepState stepState, int stepIndex) {
+        if (stepIndex < _stepStates.Length)
+        {
+            _stepStates[stepIndex].State = stepState.State;
+        }
+        else
+        {
+            Debug.LogWarning("Tried to access quest step data, but stepIndex was out of range: "
+                + "Quest Id = " + Data.ID + ", Step Index = " + stepIndex);
+        }
     }
 }
