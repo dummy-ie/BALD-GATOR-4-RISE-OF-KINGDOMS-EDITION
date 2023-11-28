@@ -8,12 +8,34 @@ public class CombatView : View
     private UIDocument _document;
     private VisualElement _root;
     // private Button _closeButton;
+    private Button _attackButton;
+    private Button _healButton;
+    private Button _endTurnButton;
     public override void Initialize() {
         this._document = GetComponent<UIDocument>();
         this._root = this._document.rootVisualElement;
-        // this._closeButton = this._root.Q<Button>("CloseButton");
-        // this._closeButton.clicked += CloseButtonClicked;
-        //Debug.Log("Initialized Settings View");
+        _attackButton = _root.Q<Button>("AttackButton");
+        _healButton = _root.Q<Button>("HealButton");
+        _endTurnButton = _root.Q<Button>("EndTurnButton");
+
+        _attackButton.clicked += AttackButtonClicked;
+        _healButton.clicked += HealButtonClicked;
+        _endTurnButton.clicked += EndTurnButtonClicked;
+    }
+
+    private void AttackButtonClicked()
+    {
+        CombatManager.Instance.AttackSelectedTarget();
+    }
+
+    private void HealButtonClicked()
+    {
+        CombatManager.Instance.HealSelectedTarget();
+    }
+    
+    private void EndTurnButtonClicked()
+    {
+        CombatManager.Instance.EndCurrentTurn();
     }
 
     // public void CloseButtonClicked() {

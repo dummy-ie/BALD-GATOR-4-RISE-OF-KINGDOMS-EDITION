@@ -8,11 +8,13 @@ using UnityEngine.AI;
 using static StaticUtils;
 using static ICameraManipulator;
 
-public class Combatant : MonoBehaviour, ITappable
+public abstract class Combatant : MonoBehaviour, ITappable
 {
     [SerializeField]
     private Entity _data;
     public Entity Data { get { return _data; } }
+
+    private uint _actionsLeft = 1;
 
     [SerializeField]
     private NavMeshAgent _nav;
@@ -62,6 +64,14 @@ public class Combatant : MonoBehaviour, ITappable
         }
     }
 
+    public void DecrementAction()
+    {
+        if (_actionsLeft > 0)
+            _actionsLeft--;
+        else
+            _actionsLeft = 0;
+    }
+
     public virtual IEnumerator StartTurn()
     {
         while (!EndTurn)
@@ -70,7 +80,6 @@ public class Combatant : MonoBehaviour, ITappable
         }
 
         EndTurn = false;
-        Debug.Log("Player has ended turn");
     }
 
     public void StartMove()
@@ -172,10 +181,10 @@ public class Combatant : MonoBehaviour, ITappable
         CombatManager.Instance.CurrentSelected = gameObject;
 
         // deactivate last highlight
-        FindComponentAndSetActive<AnimatedHighlight>(lastObject, false);
+        FindComponentAndSetActive<AnimatedHighlight>(lastObject, false, out _);
 
         // activate our highlight
-        FindComponentAndSetActive<AnimatedHighlight>(gameObject, true);
+        FindComponentAndSetActive<AnimatedHighlight>(gameObject, true, out _);
     }
 
     // Start is called before the first frame update
@@ -188,12 +197,34 @@ public class Combatant : MonoBehaviour, ITappable
         if (_cam == null)
             Debug.LogError(name + " FocusCamera not initialized!");
 
+        AnimatedHighlight highlight = GetComponentInChildren<AnimatedHighlight>(true);
+
         // if the current active vcam is this one
         GameObject currentCam = CurrentCameraObject();
         if (currentCam == _cam.gameObject)
         {
             CombatManager.Instance.CurrentSelected = gameObject;
-            FindComponentAndSetActive<AnimatedHighlight>(gameObject, true);
+            highlight.gameObject.SetActive(true);
+        }
+
+        Debug.Log(name + "'s Affiliation: " + _data.Affiliation);
+        // set the highlight's color
+        if (highlight != null)
+        {
+            Debug.Log(name + "'s Highlight: " + highlight.name);
+            bool hasSprite = highlight.TryGetComponent(out SpriteRenderer sprite);
+
+            if (!hasSprite)
+                return;
+
+            if (_data.Affiliation == Entity.AffiliationState.Ally)
+                sprite.color = Color.blue;
+            else if (_data.Affiliation == Entity.AffiliationState.Enemy)
+                sprite.color = Color.red;
+
+            Color tmp = sprite.color;
+            tmp.a = 60;
+            sprite.color = tmp;
         }
     }
 

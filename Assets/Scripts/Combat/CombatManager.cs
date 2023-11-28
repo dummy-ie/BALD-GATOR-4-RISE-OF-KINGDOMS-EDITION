@@ -37,6 +37,7 @@ public class CombatManager : Singleton<CombatManager>
 
     public IEnumerator StartCombat(List<Entity> entities)
     {
+        NavigationTarget.gameObject.SetActive(true);
         State = CombatState.Start;
         foreach (Entity entity in entities)
         {
@@ -74,9 +75,42 @@ public class CombatManager : Singleton<CombatManager>
 
     public void EndCombat()
     {
+        NavigationTarget.gameObject.SetActive(false);
         _currentTurn = null;
         _combatants.Clear();
         State = CombatState.None;
+    }
+
+    public void AttackSelectedTarget()
+    {
+        CurrentSelected.TryGetComponent(out Combatant combatant);
+        if (combatant == null)
+        {
+            Debug.LogError("Could not find a Combatant script from the selected target!");
+            return;
+        }
+
+        if (_currentTurn.Data.Affiliation == combatant.Data.Affiliation)
+        {
+            Debug.Log(_currentTurn.name + " trying to attack " + CurrentSelected.name + ", but they have the same affiliation.");
+            return;
+        }
+
+        // Scriptable Object Attack
+        // CurrentSelected.TakeDamage(_currentTurn.Attack);
+
+        _currentTurn.DecrementAction();
+
+    }
+
+    public void HealSelectedTarget()
+    {
+
+    }
+
+    public void EndCurrentTurn()
+    {
+
     }
 
     // private void InstantiateEnemy()
@@ -92,6 +126,10 @@ public class CombatManager : Singleton<CombatManager>
     private IEnumerator StartNextTurn()
     {
         _currentTurn = _combatants[_currentTurnIndex];
+
+        // Move Camera to current turn
+        _currentTurn.OnTap(new TapEventArgs(Vector2.zero));
+
         AffiliationState current = _combatants[_currentTurnIndex].Data.Affiliation;
 
         if (current == AffiliationState.Enemy)
@@ -99,7 +137,7 @@ public class CombatManager : Singleton<CombatManager>
         else
             State = CombatState.PlayerTurn;
 
-        // just make them do their turn
+        // just make them do their turn and wait until they choose to end it
         yield return StartCoroutine(_currentTurn.StartTurn());
 
         // set index to next turn
@@ -107,15 +145,15 @@ public class CombatManager : Singleton<CombatManager>
             _currentTurnIndex++;
         else
             _currentTurnIndex = 0;
-        
+
         // check if won or lost 
         if (CheckWin())
         {
-
+            EndCombat();
         }
         else if (CheckLoss())
         {
-
+            EndCombat();
         }
         else
         {
@@ -143,8 +181,12 @@ public class CombatManager : Singleton<CombatManager>
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
                 NavigationTarget.position = hit.point + Vector3.up * 0.1f;
-                if (CurrentSelected.TryGetComponent(out Combatant entity) && State != CombatState.None)
+                if (CurrentSelected.TryGetComponent(out Combatant entity) 
+                && State != CombatState.None
+                && _currentTurn == entity)
+                {
                     entity.StartMove();
+                }
             }
         }
     }
@@ -154,6 +196,7 @@ public class CombatManager : Singleton<CombatManager>
     {
         State = CombatState.None;
         GestureManager.Instance.OnTap += OnTap;
+        NavigationTarget.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
