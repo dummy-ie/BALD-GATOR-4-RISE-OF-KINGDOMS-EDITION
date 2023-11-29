@@ -14,8 +14,6 @@ public abstract class Combatant : MonoBehaviour, ITappable
     private Entity _data;
     public Entity Data { get { return _data; } }
 
-    private uint _actionsLeft = 1;
-
     [SerializeField]
     private NavMeshAgent _nav;
 
@@ -30,6 +28,10 @@ public abstract class Combatant : MonoBehaviour, ITappable
     private CinemachineVirtualCamera _cam;
     private NavMeshPath _desiredPath;
     private NavMeshPath _actualPath;
+
+    private Projector _attackRange;
+    private Projector _healRange;
+
 
     // debug stuff vvv
 
@@ -64,16 +66,49 @@ public abstract class Combatant : MonoBehaviour, ITappable
         }
     }
 
+    public void TryHit(AttackData attack)
+    {
+        if (!InternalDice.Instance.Roll(out int hitRoll, 20, attack.HitModifier, _data.Class.ArmorClass))
+        {
+            Debug.Log("Attack missed " + name);
+            return;
+        }
+
+        int damageDealt = InternalDice.Instance.RollMultiple(attack.NumDice, attack.DiceFaces, attack.DamageModifier);
+        if (_data.Health - damageDealt >= 0)
+            _data.Health -= damageDealt;
+        else
+            Die();
+    }
+
+    public void HealHealth(HealData heal)
+    {
+        int healthHealed = InternalDice.Instance.RollMultiple(heal.NumDice, heal.DiceFaces, heal.HealModifier);
+        if (_data.Health + healthHealed <= _data.Class.MaxHealth)
+            _data.Health += healthHealed;
+        else
+            _data.Health = _data.Class.MaxHealth;
+    }
+
     public void DecrementAction()
     {
-        if (_actionsLeft > 0)
-            _actionsLeft--;
+        if (_data.ActionsLeft > 0)
+            _data.ActionsLeft--;
         else
-            _actionsLeft = 0;
+            _data.ActionsLeft = 0;
     }
 
     public virtual IEnumerator StartTurn()
     {
+        if (_data.Health <= 0)
+        {
+            EndTurn = true;
+            Debug.Log("Dead, skipping");
+        }
+
+        _data.MovementRemaining = _data.Class.MovementSpeed;
+        _data.ActionsLeft = _data.MaxActions;
+
         while (!EndTurn)
         {
             yield return null;
@@ -86,6 +121,13 @@ public abstract class Combatant : MonoBehaviour, ITappable
     {
         MoveToPath();
         RenderPathLine();
+    }
+
+    private void Die()
+    {
+        _data.Health = 0;
+        SpriteRenderer sprite = GetComponentInChildren<SpriteRenderer>();
+        sprite.color = Color.gray;
     }
 
     private void ResetPaths()
@@ -172,7 +214,9 @@ public abstract class Combatant : MonoBehaviour, ITappable
 
     public void OnTap(TapEventArgs args)
     {
-        Debug.Log("Tapped on " + args.HitObject.name + ".");
+        // Debug.Log("Tapped on " + args.HitObject.name + ".");
+        if (CombatManager.Instance.CurrentTurn != this)
+            ViewManager.Instance.GetView<CombatView>().SetTargetData(this);
 
         GameObject currentCam = CurrentCameraObject();
         GameObject lastObject = currentCam.transform.parent.gameObject;
@@ -181,16 +225,47 @@ public abstract class Combatant : MonoBehaviour, ITappable
         CombatManager.Instance.CurrentSelected = gameObject;
 
         // deactivate last highlight
-        FindComponentAndSetActive<AnimatedHighlight>(lastObject, false, out _);
+        lastObject.FindComponentAndSetActive<AnimatedHighlight>(false, out _);
 
         // activate our highlight
-        FindComponentAndSetActive<AnimatedHighlight>(gameObject, true, out _);
+        gameObject.FindComponentAndSetActive<AnimatedHighlight>(true, out _);
     }
 
     // Start is called before the first frame update
     private void Start()
     {
         ResetPaths();
+        _data.ActionsLeft = _data.MaxActions;
+        // _attackRange = GetComponentInChildren<Projector>(true);
+        // _healRange = GetComponentInChildren<Projector>(true);
+
+        foreach (Projector projector in GetComponentsInChildren<Projector>(true))
+        {
+            if (projector.name == "AttackRangeIndicator")
+                _attackRange = projector;
+
+            if (projector.name == "HealRangeIndicator")
+                _healRange = projector;
+        }
+
+        if (Data.Class.Attack != null)
+        {
+            _attackRange.orthographicSize = Data.Class.Attack.Range;
+            // _attackRange.material.SetColor("_Color", Color.red);
+            _attackRange.ChangeColor(Color.red);
+        }
+        else
+            _attackRange.orthographicSize = 0;
+
+        if (Data.Class.Heal != null)
+        {
+            _healRange.orthographicSize = Data.Class.Heal.Range;
+            // _healRange.material.SetColor("_Color", Color.green);
+            _healRange.ChangeColor(Color.green);
+        }
+        else
+            _healRange.orthographicSize = 0;
+
 
         _cam = GetComponentInChildren<CinemachineVirtualCamera>(true);
 
@@ -207,11 +282,11 @@ public abstract class Combatant : MonoBehaviour, ITappable
             highlight.gameObject.SetActive(true);
         }
 
-        Debug.Log(name + "'s Affiliation: " + _data.Affiliation);
+        // Debug.Log(name + "'s Affiliation: " + _data.Affiliation);
         // set the highlight's color
         if (highlight != null)
         {
-            Debug.Log(name + "'s Highlight: " + highlight.name);
+            // Debug.Log(name + "'s Highlight: " + highlight.name);
             bool hasSprite = highlight.TryGetComponent(out SpriteRenderer sprite);
 
             if (!hasSprite)

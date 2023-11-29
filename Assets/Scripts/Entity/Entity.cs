@@ -18,8 +18,14 @@ public class Entity : MonoBehaviour
 
     public AffiliationState Affiliation;
 
+    private int _maxActions = 1;
+    public int MaxActions { get { return _maxActions; } }
+    private int _actionsLeft;
+    public int ActionsLeft { get { return _actionsLeft; } set { _actionsLeft = value; } }
+
     private int _health;
     public int Health { get { return _health; } set { _health = value; } }
+
     private float _movementRemaining = 10;
     public float MovementRemaining { get { return _movementRemaining; } set { _movementRemaining = value; } }
 
@@ -29,11 +35,5 @@ public class Entity : MonoBehaviour
         _health = _class.MaxHealth;
         _movementRemaining = _class.MovementSpeed;
         // InternalDice.Instance.Roll(out Initiative, 20, _data.GetModifier(_data.Dexterity));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

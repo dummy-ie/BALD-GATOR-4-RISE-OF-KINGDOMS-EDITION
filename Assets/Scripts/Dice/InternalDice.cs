@@ -36,11 +36,10 @@ public class InternalDice : Singleton<InternalDice>
     // rolls numDice-d-diceFaces and returns the result. Ex: 2d6 would be RollMultiple(2, 6, modifier)
     public int RollMultiple(int numDice, int diceFaces, int modifier = 0)
     {
-        int result;
         int total = 0;
         for (int i = 0; i < numDice; i++)
         {
-            Roll(out result, diceFaces, modifier);
+            Roll(out int result, diceFaces, modifier);
             total += result;
         }
 
@@ -51,7 +50,7 @@ public class InternalDice : Singleton<InternalDice>
     {
         if (_rollType == ERollType.CRITICAL_SUCCESS)
         {
-            result = 20;
+            result = dieFaces;
             return true;
         }
 

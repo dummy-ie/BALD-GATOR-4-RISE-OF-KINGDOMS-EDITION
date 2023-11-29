@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,10 @@ public class ViewManager : Singleton<ViewManager> {
     //private View _startingView;
 
     [SerializeField]
-    private View[] _views;
+    private View[] _views = Array.Empty<View>();
 
     [SerializeField]
-    public Stack<View> _currentViews;
+    public Stack<View> _currentViews = new();
 
     public T GetView<T>() where T : View { 
         for (int i = 0; i < this._views.Length; i++) { 
