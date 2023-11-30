@@ -9,10 +9,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : Singleton<SceneLoader>
 {
+    [SerializeField]
+    private AssetReference _mainMenuReference;
     private string _sceneName;
     private SceneData _activeScene;
     public SceneData ActiveScene {
         get { return _activeScene; }
+    }
+
+    public void LoadMainMenu()
+    {
+        LoadSceneWithoutFade(_mainMenuReference);
     }
 
     public void LoadSceneWithoutFade(string sceneName)

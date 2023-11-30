@@ -19,6 +19,13 @@ public class GameView : View
     private float _size = 250; // size(width and height) of joystick element, modify it if you want
     private float _sensitivity = 50; // the higher, the more sensitive. 0 means sudden switches between directions(no sensitivity)
 
+    private Button _menuButton;
+    private Button _questButton;
+    private VisualElement _menuContainer;
+    private Button _resumeButton;
+    private Button _quitButton;
+    private Label _questName;
+    private Label _stepName;
     public override void Initialize()
     {
         _document = GetComponent<UIDocument>();
@@ -53,6 +60,17 @@ public class GameView : View
             HideJoystick(ev);
         });
 
+        _menuButton = _root.Q<Button>("MenuButton");
+        _questButton = _root.Q<Button>("QuestButton");
+        _questName = _root.Q<Label>("QuestName");
+        _stepName = _root.Q<Label>("StepName");
+        _menuContainer = _root.Q<VisualElement>("MenuContainer");
+        _resumeButton = _root.Q<Button>("ResumeButton");
+        _quitButton = _root.Q<Button>("QuitButton");
+        _menuButton.clicked += OnMenuButtonClicked;
+        _questButton.clicked += OnQuestButtonClicked;
+        _resumeButton.clicked += OnResumeButtonClicked;
+        _quitButton.clicked += OnQuitButtonClicked;
     }
 
     private void ShowJoystick(PointerDownEvent _ev)
@@ -120,16 +138,22 @@ public class GameView : View
         // Debug.Log("Input: " + input);
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
+    void OnMenuButtonClicked() {
+        _menuContainer.style.display = StyleKeyword.Initial;
+        BaldGatorManager.Instance.PauseGame();
+    
+    }
+    void OnQuestButtonClicked() { 
+        //BaldGatorManager.Instance.PauseGame();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void OnResumeButtonClicked() {
+        _menuContainer.style.display = StyleKeyword.None;
+        BaldGatorManager.Instance.ResumeGame();
+    }
 
+    void OnQuitButtonClicked() {
+        BaldGatorManager.Instance.ResumeGame();
+        SceneLoader.Instance.LoadMainMenu();
     }
 }

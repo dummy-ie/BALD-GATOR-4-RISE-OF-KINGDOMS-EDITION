@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/GUI/USS/Game.uss?fileID=7433441132597879392&amp;guid=c1cd2f9cd81596a4a9d89a2f65f41d82&amp;type=3#Game" />
     <ui:VisualElement name="CurrentQuestContainer" style="flex-grow: 1;">
-        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuestName" style="font-size: 50px;" />
-        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StepName" style="font-size: 30px;" />
+        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuestName" style="font-size: 50px;" />
+        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StepName" style="font-size: 30px;" />
     </ui:VisualElement>
     <ui:VisualElement name="ButtonContainer" style="flex-grow: 1;">
         <ui:Button name="MenuButton" class="main-button">
@@ -22,5 +22,9 @@
         <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact2" class="interact-button" />
         <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact3" class="interact-button" />
         <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Interact4" />
+    </ui:VisualElement>
+    <ui:VisualElement name="MenuContainer" style="flex-grow: 1; position: absolute;">
+        <ui:Button text="Resume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ResumeButton" enable-rich-text="true" class="menu-button" />
+        <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-button" />
     </ui:VisualElement>
 </ui:UXML>
