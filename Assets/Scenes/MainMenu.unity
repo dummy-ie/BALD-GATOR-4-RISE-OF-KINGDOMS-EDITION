@@ -409,6 +409,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onStart: 1
+  _nextSceneReference:
+    m_AssetGUID: 256c698d434e0d9468b625b621e6af07
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &583008338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,7 +976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2072132824
 Transform:
   m_ObjectHideFlags: 0

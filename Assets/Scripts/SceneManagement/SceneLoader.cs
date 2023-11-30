@@ -64,12 +64,36 @@ public class SceneLoader : Singleton<SceneLoader>
                 Debug.LogError($"{sceneData.RuntimeKey}.");
         };
     }
-    private IEnumerator SceneLoad(SceneData sceneData) { 
+    public void LoadSceneWithFade(AssetReference sceneData)
+    {
+        AsyncOperationHandle handle = sceneData.LoadAssetAsync<SceneData>();
+        handle.Completed += (AsyncOperationHandle handle) =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+                StartCoroutine(SceneLoadWithFade((SceneData)sceneData.Asset));
+            else
+                Debug.LogError($"{sceneData.RuntimeKey}.");
+        };
+    }
+    private IEnumerator SceneLoad(SceneData sceneData) {
+        Debug.Log("Loading Scene...");
         _activeScene = sceneData;
         AsyncOperationHandle<SceneInstance> handle = sceneData.SceneReference.LoadSceneAsync();
         sceneData.Operation = handle;
         while (!handle.IsDone) {
             yield return null;
         }
+    }
+
+    private IEnumerator SceneLoadWithFade(SceneData sceneData) {
+        Debug.Log("Loading Scene...");
+        _activeScene = sceneData;
+        yield return ScreenFader.Instance.FadeOut();
+        AsyncOperationHandle<SceneInstance> handle = sceneData.SceneReference.LoadSceneAsync();
+        sceneData.Operation = handle;
+        while (!handle.IsDone) {
+            yield return null;
+        }
+        yield return ScreenFader.Instance.FadeIn();
     }
 }

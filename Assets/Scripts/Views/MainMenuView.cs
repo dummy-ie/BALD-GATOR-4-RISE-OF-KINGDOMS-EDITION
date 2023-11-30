@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using UnityEngine.AddressableAssets;
 
 public class MainMenuView : View {
+    [SerializeField] private AssetReference _nextSceneReference;
     private UIDocument _document;
     private VisualElement _root;
     private Button _playButton;
@@ -28,8 +30,8 @@ public class MainMenuView : View {
     public void PlayButtonClicked() {
         Debug.Log("Clicked Play Button");
         AudioManager.Instance.Play("Majestic_Sound");
-        SceneLoader.Instance.LoadScene("Port", ViewManager.Instance.GetView<GameView>());
-        ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<GameView>());
+        SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference);
+        //ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<GameView>());
     }
 
     public void SettingsButtonClicked() {
