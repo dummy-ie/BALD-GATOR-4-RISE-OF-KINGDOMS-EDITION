@@ -52,6 +52,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void EnterDialogue(TextAsset inkJSON)
     {
+        AddButtons();
         Debug.Log("Entering Dialogue");
         _currentStory = new Story(inkJSON.text);
 
@@ -69,6 +70,8 @@ public class DialogueManager : Singleton<DialogueManager>
             QuestManager.Instance.OnStart(questId);
         });
 
+        _currentStory.BindExternalFunction("Fight", Fight);
+        _currentStory.BindExternalFunction("Leave", Leave);
 
         foreach (KeyValuePair<string, Ink.Runtime.Object> variable in _variables)
         {
@@ -86,13 +89,18 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
 
+        RemoveButtons();
         _isDiceRolling = true;
         yield return new WaitForSeconds(.5f);
 
+        _currentStory.variablesState[_name + "HasRolled" + stat] = false;
         FindObjectOfType<ExternalDice>().DifficultyClass = (int)_currentStory.variablesState[_name + "Check" + stat];
     }
 
     public IEnumerator ExitDialogue(){
+
+        RemoveButtons();
+
         yield return new WaitForSeconds(0.2f);
 
         _currentStory.variablesState.variableChangedEvent -= VariableChanged;
@@ -101,6 +109,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _currentStory.UnbindExternalFunction("RollDice");
         _currentStory.UnbindExternalFunction("StartQuest");
+        _currentStory.UnbindExternalFunction("Fight");
+        _currentStory.UnbindExternalFunction("Leave");
 
         _view.Text.text = "";
         HideView();
@@ -142,10 +152,11 @@ public class DialogueManager : Singleton<DialogueManager>
     private void SetButtons()
     {
 
-        _view.Choices[0].visible = false;
-        _view.Choices[0].SetEnabled(false);
-        _view.Choices[1].visible = false;
-        _view.Choices[1].SetEnabled(false);
+        foreach (Button button in _view.Choices)
+        {
+            button.visible = false;
+            button.SetEnabled(false);
+        }
 
         List<Choice> currentChoices = _currentStory.currentChoices;
         int index = 0;
@@ -180,10 +191,24 @@ public class DialogueManager : Singleton<DialogueManager>
         ContinueDialogue();
     }
 
+    private void Choice3()
+    {
+        Debug.Log("Clicked Choice 3");
+        SetOutcome(2);
+        ContinueDialogue();
+    }
+
+    private void Choice4()
+    {
+        Debug.Log("Clicked Choice 4");
+        SetOutcome(3);
+        ContinueDialogue();
+    }
+
     private void Fight()
     {
         StartCoroutine(ExitDialogue());
-        //CombatManager.Instance.StartCombat(test.Entities);
+        StartCoroutine(CombatManager.Instance.StartCombat(CombatManager.Instance.Entities));
     }
 
     private void Leave()
@@ -229,20 +254,15 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         _view.Choices[0].clicked += Choice1;
         _view.Choices[1].clicked += Choice2;
-        _view.Choices[2].clicked += Fight;
-        _view.Choices[3].clicked += Leave;
+        _view.Choices[2].clicked += Choice3;
+        _view.Choices[3].clicked += Choice4;
     }
 
-    private void OnEnable()
-    {
-        AddButtons();
-    }
-
-    private void OnDisable()
+    void RemoveButtons()
     {
         _view.Choices[0].clicked -= Choice1;
         _view.Choices[1].clicked -= Choice2;
-        _view.Choices[2].clicked -= Fight;
-        _view.Choices[3].clicked -= Leave;
+        _view.Choices[2].clicked -= Choice3;
+        _view.Choices[3].clicked -= Choice4;
     }
 }

@@ -61,7 +61,7 @@
 #InteractButtons {
     width: 40%;
     height: 40%;
-    top: 50%;
+    top: 40%;
     margin-bottom: 5%;
     margin-left: 5%;
     align-items: center;

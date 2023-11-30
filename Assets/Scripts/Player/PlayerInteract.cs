@@ -24,7 +24,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("Interactable"))
+        if (!other.gameObject.CompareTag("Interactable") || this != CombatManager.Instance.CurrentSelected.GetComponentInChildren<PlayerInteract>())
             return;
 
         // _buttons = _gameView.Root.Q("InteractButtons").Query<Button>().ToList(); // refresh the list
@@ -43,7 +43,7 @@ public class PlayerInteract : MonoBehaviour
                 // Debug.Log("Displaying " + button.name);
                 button.style.display = DisplayStyle.Flex;
                 button.text = collided.name;
-                button.clicked += () => DialogueManager.Instance.EnterDialogue(dialogue.); 
+                button.clicked += () => DialogueManager.Instance.EnterDialogue(dialogue.InkDialogue); 
                 /* QUEST TESTING */
                 QuestPoint questPoint = null;
                 questPoint = collided.GetComponent<QuestPoint>();

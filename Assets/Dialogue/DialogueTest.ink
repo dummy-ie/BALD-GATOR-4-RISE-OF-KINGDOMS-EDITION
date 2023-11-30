@@ -2,6 +2,8 @@
 
 EXTERNAL RollDice(stat)
 EXTERNAL StartQuest(id)
+EXTERNAL Fight()
+EXTERNAL Leave()
 
 VAR name = "totoy"
 
@@ -14,12 +16,18 @@ Hello, this is dialogue 1!
         ->Dialogue2
     + [Move to dialogue 3]
         ->Dialogue3
+    + [Leave]
+        ~Leave()
+        ->DONE
 
 
 =Dialogue2
 Heyo, this is dialogue 2!
     + [Okay]
         ->Dialogue1
+    + [Fight]
+        ~ Fight()
+        ->DONE
 
 
 
