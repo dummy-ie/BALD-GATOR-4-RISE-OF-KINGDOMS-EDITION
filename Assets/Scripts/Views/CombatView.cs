@@ -88,12 +88,20 @@ public class CombatView : View
 
         _attackButton.style.display = DisplayStyle.Flex;
         _healButton.style.display = DisplayStyle.Flex;
+        _endTurnButton.style.display = DisplayStyle.Flex;            
 
         if (combatant.Data.Class.Attack == null)
             _attackButton.style.display = DisplayStyle.None;
 
         if (combatant.Data.Class.Heal == null)
             _healButton.style.display = DisplayStyle.None;
+        
+        if (combatant.Data.Affiliation == Entity.AffiliationState.Enemy)
+        {
+            _attackButton.style.display = DisplayStyle.None;
+            _healButton.style.display = DisplayStyle.None;            
+            _endTurnButton.style.display = DisplayStyle.None;            
+        }
     }
 
     private IEnumerator InterpolateProgressBar(ProgressBar bar, int newValue, float duration)

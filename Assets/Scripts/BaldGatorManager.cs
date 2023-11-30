@@ -8,13 +8,13 @@ public class BaldGatorManager : Singleton<BaldGatorManager> {
     GameObject _developerMenu;
     [SerializeField]
     private bool _developerMode = false;
-    void PauseGame()
+    public void PauseGame()
     {
-        
+        Time.timeScale = 0.0f;
     }
 
-    void ResumeGame() { 
-    
+    public void ResumeGame() {
+        Time.timeScale = 1.0f;
     }
     void Start() {
         _developerMenu.SetActive(_developerMode);

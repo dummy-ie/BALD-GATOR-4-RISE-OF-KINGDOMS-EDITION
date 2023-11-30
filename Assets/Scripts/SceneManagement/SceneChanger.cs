@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
-    private SceneConnection _sceneConnection;
-
+    private AssetReference _sceneConnectionReference;
     [SerializeField]
+    private AssetReference _targetSceneReference;
+    //[SerializeField]
     private string _targetSceneName;
-
     [SerializeField]
     private Transform _spawnPoint;
+
+    private SceneConnection _sceneConnection;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,13 @@ public class SceneChanger : MonoBehaviour
         }
 
         GetComponentInChildren<SpriteRenderer>().enabled = false;
+        AsyncOperationHandle handle = _sceneConnectionReference.LoadAssetAsync<SceneConnection>();
+        handle.Completed += (AsyncOperationHandle handle) => {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+                _sceneConnection = (SceneConnection)_sceneConnectionReference.Asset;
+            else
+                Debug.LogError($"{_sceneConnectionReference.RuntimeKey}.");
+        };
     }
 
     // Update is called once per frame
@@ -31,25 +42,28 @@ public class SceneChanger : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-            SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-            SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+            //SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log($"Switching Scene to : {_targetSceneName}");
             SceneConnection.ActiveConnection = _sceneConnection;
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-            SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-            SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+            //SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }
 }

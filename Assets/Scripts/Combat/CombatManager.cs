@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.AI;
 using static Entity;
 
 public class CombatManager : Singleton<CombatManager>
@@ -32,7 +33,7 @@ public class CombatManager : Singleton<CombatManager>
 
     [SerializeField]
     private List<Combatant> _combatants;
-
+    public List<Combatant> Combatants { get { return _combatants; } }
 
     // debug
     public List<Entity> Entities;
@@ -55,7 +56,10 @@ public class CombatManager : Singleton<CombatManager>
 
             if (entity.gameObject.TryGetComponent(out FocusCameraOnTap focus))
                 focus.enabled = true;
-                
+
+            if (entity.gameObject.TryGetComponent(out NavMeshAgent agent))
+                agent.enabled = true;
+
             // entity.gameObject.FindComponentAndSetActive<Combatant>(true, out _);
             // entity.gameObject.FindComponentAndSetActive<FocusCameraOnTap>(true, out _);
             entity.gameObject.FindComponentAndSetActive<AnimatedHighlight>(true, out _);
@@ -128,11 +132,14 @@ public class CombatManager : Singleton<CombatManager>
             // disable whatever we turned on
             // entity.gameObject.FindComponentAndSetActive<Combatant>(false, out _);
             // entity.gameObject.FindComponentAndSetActive<FocusCameraOnTap>(false, out _);
-            if (entity.gameObject.TryGetComponent(out FocusCameraOnTap focus))
-                focus.enabled = false;
-                
-            if (entity.gameObject.TryGetComponent(out Combatant combatant))
-                combatant.enabled = false;
+            // if (entity.gameObject.TryGetComponent(out FocusCameraOnTap focus) && entity.Affiliation != AffiliationState.Ally)
+            //     focus.enabled = false;
+
+            // if (entity.gameObject.TryGetComponent(out Combatant combatant))
+            //     combatant.enabled = false;
+
+            // if (entity.gameObject.TryGetComponent(out NavMeshAgent agent))
+            //     agent.enabled = false;
 
             entity.gameObject.FindComponentAndSetActive<AnimatedHighlight>(false, out _);
             entity.gameObject.FindComponentsAndSetActive<Projector>(false, out _);
@@ -326,7 +333,8 @@ public class CombatManager : Singleton<CombatManager>
             {
                 if (CurrentSelected.TryGetComponent(out Combatant entity)
                 && State != CombatState.None
-                && _currentTurn == entity)
+                && _currentTurn == entity
+                && _currentTurn.Data.Affiliation == AffiliationState.Ally)
                 {
                     NavigationTarget.gameObject.SetActive(true);
                     NavigationTarget.position = hit.point + Vector3.up * 0.1f;

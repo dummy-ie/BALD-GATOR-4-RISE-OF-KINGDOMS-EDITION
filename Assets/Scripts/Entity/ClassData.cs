@@ -58,6 +58,10 @@ public class ClassData : ScriptableObject
     private HealData _heal = null;
     public HealData Heal { get { return _heal; } }
 
+    [SerializeField]
+    private int _maxActions = 1;
+    public int MaxActions { get { return _maxActions; } }
+
     public int ArmorClass { get { return 10 + GetModifier(_dexterity); } }
 
     public static int GetHealthPercentage(int currentHealth, int maxHealth)

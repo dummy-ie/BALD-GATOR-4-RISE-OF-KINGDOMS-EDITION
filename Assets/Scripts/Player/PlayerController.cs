@@ -41,7 +41,12 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // movement
-        if (GameView.Input != Vector3.zero && CombatManager.Instance.State == CombatManager.CombatState.None)
+        // Debug.Log("Camera's object: " + ICameraManipulator.CurrentCameraObject().transform.parent.name);
+        // Debug.Log("this object: " + name);
+        // Debug.Log("Are they the same: " + (ICameraManipulator.CurrentCameraObject().transform.parent == gameObject));
+        if (GameView.Input != Vector3.zero 
+        && CombatManager.Instance.State == CombatManager.CombatState.None // shittiest if conditions known to man
+        && ICameraManipulator.CurrentCameraObject() == _camera.gameObject)
         {
             _transposer.m_RecenterToTargetHeading.m_enabled = false;
             _isMoving = true;

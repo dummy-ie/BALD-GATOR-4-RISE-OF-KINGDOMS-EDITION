@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Foosha/Port.unity
     guid: f10bdeb68ba46554ab3c59dfd99577cc
+  - enabled: 0
+    path: Assets/Scenes/Foosha/Fields.unity
+    guid: fcd550e596ffde249a1fd7f2a31d1532
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 739cf9c21f0292246a72b6d479cc3ea0, type: 2}

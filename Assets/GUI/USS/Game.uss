@@ -1,3 +1,35 @@
+.unity-image {
+    --unity-image: scale-to-fit;
+}
+
+#CurrentQuestContainer {
+    position: absolute;
+    margin-left: 5%;
+}
+
+#ButtonContainer {
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    margin-right: 6%;
+}
+
+.main-button {
+    align-items: flex-start;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#MenuIcon {
+    --unity-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/MenuIcon.png?fileID=21300000&guid=8f972122e9afd6244b6c8a95083a27ba&type=3#MenuIcon');
+}
+
+#QuestIcon {
+    --unity-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/UI_Quest.png?fileID=21300000&guid=72260fe9070e59548a08050d53b30c2a&type=3#UI_Quest');
+}
+
 #JoystickTouchArea {
     position: absolute;
     height: 50%;
@@ -35,17 +67,18 @@
     align-items: center;
     align-self: flex-end;
     justify-content: flex-start;
+    position: absolute;
 }
 
-.unity-button {
+.interact-button {
     width: 80%;
-    height: 7%;
+    height: 15%;
     font-size: 35px;
     -unity-text-align: middle-center;
     white-space: nowrap;
     text-overflow: ellipsis;
     -unity-font-style: normal;
-    -unity-font: url('project://database/Assets/Fonts/SHERWOOD.TTF?fileID=12800000&guid=bcf5374f1954c4c4aa403195ac7da4af&type=3#SHERWOOD');
+    -unity-font: url('project://database/Assets/Graphics/Fonts/SHERWOOD.TTF?fileID=12800000&guid=bcf5374f1954c4c4aa403195ac7da4af&type=3#SHERWOOD');
     -unity-font-definition: initial;
     border-top-left-radius: 22px;
     border-bottom-left-radius: 22px;
@@ -60,7 +93,7 @@
     color: rgb(255, 255, 255);
 }
 
-.unity-button:hover {
+.interact-button:hover {
     background-color: rgba(94, 94, 94, 0.64);
     border-left-color: rgb(94, 94, 94);
     border-right-color: rgb(94, 94, 94);
@@ -77,5 +110,9 @@
 }
 
 #Interact3 {
+    display: none;
+}
+
+#Interact4 {
     display: none;
 }
