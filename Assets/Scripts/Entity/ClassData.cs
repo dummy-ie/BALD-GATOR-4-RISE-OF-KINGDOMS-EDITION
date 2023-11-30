@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ClassData", menuName = "BALD-GATOR-4-RISE-OF-KINGDOMS-EDITION/EntityData", order = 0)]
+[CreateAssetMenu(fileName = "ClassData", menuName = "ScriptableObjects/ClassData", order = 0)]
 [Serializable]
 public class ClassData : ScriptableObject
 {
@@ -50,6 +50,21 @@ public class ClassData : ScriptableObject
     private int _maxHealth;
     public int MaxHealth { get { return _maxHealth; } }
 
+    [SerializeField]
+    private AttackData _attack = null;
+    public AttackData Attack { get { return _attack; } }
+
+    [SerializeField]
+    private HealData _heal = null;
+    public HealData Heal { get { return _heal; } }
+
+    public int ArmorClass { get { return 10 + GetModifier(_dexterity); } }
+
+    public static int GetHealthPercentage(int currentHealth, int maxHealth)
+    {
+        return (int)(100f / maxHealth * currentHealth);
+    }
+
     public int GetModifier(int statValue)
     {
         return (int)Math.Floor((statValue - 10f) / 2f);
@@ -84,8 +99,8 @@ public class ClassData : ScriptableObject
         }
 
         // calculate max health based on con modifier (5 is arbitrary, can change later)
-        _maxHealth = baseHealth + (GetModifier(_constitution) * 5);  
-        
+        _maxHealth = baseHealth + (GetModifier(_constitution) * 5);
+
         // fill health with calculated max (moved to Entity class)
         // _health = _maxHealth;
     }

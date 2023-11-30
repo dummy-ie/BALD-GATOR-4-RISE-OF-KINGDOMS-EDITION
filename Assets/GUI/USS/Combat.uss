@@ -65,6 +65,10 @@ Label {
     background-color: rgba(255, 54, 54, 0.78);
 }
 
+.animation-hide {
+    opacity: 0;
+}
+
 #Hotbar {
     flex-direction: row;
     position: absolute;
@@ -72,6 +76,8 @@ Label {
     height: 25%;
     bottom: 0;
     left: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
 }
 
 #HotbarLeft {
@@ -106,11 +112,6 @@ Label {
     align-items: flex-end;
     align-self: flex-end;
     justify-content: space-between;
-}
-
-#CombatantHealth {
-    font-size: 30px;
-    display: none;
 }
 
 #CurrentTurnHealthBar {
@@ -163,6 +164,8 @@ Label {
     justify-content: center;
     align-self: center;
     align-items: center;
+    transition-property: opacity;
+    transition-duration: 0.25s;
 }
 
 #TargetHealthBar {

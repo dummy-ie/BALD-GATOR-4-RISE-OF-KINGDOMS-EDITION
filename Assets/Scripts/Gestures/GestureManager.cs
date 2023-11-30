@@ -183,10 +183,10 @@ public class GestureManager : Singleton<GestureManager>
 
     private void FireSpreadEvent(float distanceDelta)
     {
-        if (distanceDelta > 0)
-            Debug.Log("Spread dat ass");
-        else
-            Debug.Log("Pinch dat ass");
+        // if (distanceDelta > 0)
+        //     Debug.Log("Spread dat ass");
+        // else
+        //     Debug.Log("Pinch dat ass");
 
         GameObject hitObject = GetHitObject(GetMidPoint(_trackedFingers[0].position, _trackedFingers[1].position));
 
@@ -212,7 +212,7 @@ public class GestureManager : Singleton<GestureManager>
 
     private void FireRotateEvent(float angle, Vector2 previousDifference, Vector2 currentDifference)
     {
-        Debug.Log("Rotating by " + angle);
+        // Debug.Log("Rotating by " + angle);
 
         GameObject hitObject = GetHitObject(GetMidPoint(_trackedFingers[0].position, _trackedFingers[1].position));
 
