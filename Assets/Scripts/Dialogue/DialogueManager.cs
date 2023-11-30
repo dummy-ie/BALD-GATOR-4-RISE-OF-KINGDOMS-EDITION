@@ -32,7 +32,6 @@ public class DialogueManager : Singleton<DialogueManager>
         set { _isDialoguePlaying = value;}
     }
 
-
     void InitializeVariables()
     {
         
@@ -184,16 +183,13 @@ public class DialogueManager : Singleton<DialogueManager>
     private void Fight()
     {
         StartCoroutine(ExitDialogue());
-        //CombatManager.Instance.StartCombat();
+        //CombatManager.Instance.StartCombat(test.Entities);
     }
 
     private void Leave()
     {
         StartCoroutine(ExitDialogue());
     }
-
-    
-
 
     private void HideView()
     {
