@@ -1,6 +1,7 @@
 ﻿INCLUDE Database.ink
 
 EXTERNAL RollDice(stat)
+EXTERNAL StartQuest(id)
 
 VAR name = "totoy"
 
@@ -45,12 +46,16 @@ Loading Dice Roll...
 =Dialogue4
 Oya, this is dialogue 4!
     + [Cool]
-        ->Dialogue1
+        ~ StartQuest("TestQuest")
+->Dialogue1
 
 ->END
 
 
 ===function RollDice(stat)===
+Error
+
+===function StartQuest(id)===
 Error
 
 

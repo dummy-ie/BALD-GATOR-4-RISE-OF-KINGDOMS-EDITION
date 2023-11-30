@@ -65,7 +65,11 @@ public class DialogueManager : Singleton<DialogueManager>
             StartCoroutine(RollDice(stat));
         });
 
-        
+        _currentStory.BindExternalFunction("StartQuest", (string questId) =>
+        {
+            QuestManager.Instance.OnStart(questId);
+        });
+
 
         foreach (KeyValuePair<string, Ink.Runtime.Object> variable in _variables)
         {
@@ -89,8 +93,6 @@ public class DialogueManager : Singleton<DialogueManager>
         FindObjectOfType<ExternalDice>().DifficultyClass = (int)_currentStory.variablesState[_name + "Check" + stat];
     }
 
-
-
     public IEnumerator ExitDialogue(){
         yield return new WaitForSeconds(0.2f);
 
@@ -99,6 +101,7 @@ public class DialogueManager : Singleton<DialogueManager>
         _isDialoguePlaying = false;
 
         _currentStory.UnbindExternalFunction("RollDice");
+        _currentStory.UnbindExternalFunction("StartQuest");
 
         _view.Text.text = "";
         HideView();
@@ -181,6 +184,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private void Fight()
     {
         StartCoroutine(ExitDialogue());
+        //CombatManager.Instance.StartCombat();
     }
 
     private void Leave()
