@@ -5765,6 +5765,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onStart: 1
+  _nextSceneReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &293413494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7180,12 +7185,12 @@ PrefabInstance:
     - target: {fileID: 8796032964407790019, guid: 53c8f0db5fd97634e972510cb0e7d78c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 28.44
       objectReference: {fileID: 0}
     - target: {fileID: 8796032964407790019, guid: 53c8f0db5fd97634e972510cb0e7d78c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5000005
+      value: 3.85
       objectReference: {fileID: 0}
     - target: {fileID: 8796032964407790019, guid: 53c8f0db5fd97634e972510cb0e7d78c,
         type: 3}
@@ -7593,8 +7598,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572906405}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000006365067, y: 0.9870875, z: -0.16018218, w: 0.000000039223334}
-  m_LocalPosition: {x: 1.9999998, y: 8.5, z: 3.5}
+  m_LocalRotation: {x: 0.0000000034217298, y: 0.9870875, z: -0.16018225, w: 0.000000021085649}
+  m_LocalPosition: {x: 28.44, y: 5.85, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9238,6 +9243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04170d6506961c14381be20fcac64055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteReference:
+    m_AssetGUID: 199a7e86ac07e564e9a99bb07a527cbc
+    m_SubObjectName: amogus
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 1
   billboardType: 1
   lockX: 1
   lockY: 0
@@ -9283,7 +9294,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 199a7e86ac07e564e9a99bb07a527cbc, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 0.89411765, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9291,7 +9302,7 @@ SpriteRenderer:
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &851915039
@@ -10997,12 +11008,12 @@ PrefabInstance:
     - target: {fileID: 8648885212222874340, guid: df47b87e9b1cb69409b6655f9dd623da,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 28.44
       objectReference: {fileID: 0}
     - target: {fileID: 8648885212222874340, guid: df47b87e9b1cb69409b6655f9dd623da,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.0200005
+      value: 4.37
       objectReference: {fileID: 0}
     - target: {fileID: 8648885212222874340, guid: df47b87e9b1cb69409b6655f9dd623da,
         type: 3}
@@ -11635,12 +11646,12 @@ PrefabInstance:
     - target: {fileID: 399532894503177939, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 28.44
       objectReference: {fileID: 0}
     - target: {fileID: 399532894503177939, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5000005
+      value: 3.85
       objectReference: {fileID: 0}
     - target: {fileID: 399532894503177939, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
@@ -11695,22 +11706,22 @@ PrefabInstance:
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00000023841858
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9999995
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000000039223334
+      value: 0.000000021085649
       objectReference: {fileID: 0}
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000006365067
+      value: 0.0000000034217298
       objectReference: {fileID: 0}
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
@@ -11720,7 +11731,7 @@ PrefabInstance:
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.16018218
+      value: -0.16018225
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14307,12 +14318,12 @@ PrefabInstance:
     - target: {fileID: 1030984425630013015, guid: a4917ba0e957b4447b6ed76e2d0e5595,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 28.44
       objectReference: {fileID: 0}
     - target: {fileID: 1030984425630013015, guid: a4917ba0e957b4447b6ed76e2d0e5595,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.5000005
+      value: 3.85
       objectReference: {fileID: 0}
     - target: {fileID: 1030984425630013015, guid: a4917ba0e957b4447b6ed76e2d0e5595,
         type: 3}
@@ -15363,8 +15374,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04170d6506961c14381be20fcac64055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteReference:
+    m_AssetGUID: 199a7e86ac07e564e9a99bb07a527cbc
+    m_SubObjectName: amogus
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 1
   billboardType: 1
-  lockX: 1
+  lockX: 0
   lockY: 0
   lockZ: 1
 --- !u!212 &1715041473
@@ -15408,7 +15425,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 199a7e86ac07e564e9a99bb07a527cbc, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 0.89411765, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15416,7 +15433,7 @@ SpriteRenderer:
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1715712828
@@ -20263,11 +20280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d59bae8e7ab24d87c189819e28957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneConnectionReference:
-    m_AssetGUID: d299ade33d0677b4ab1449533bc9340b
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 1
+  _sceneConnection: {fileID: 11400000, guid: d299ade33d0677b4ab1449533bc9340b, type: 2}
   _targetSceneReference:
     m_AssetGUID: 8978405abeba81644b6687e7446d9b1d
     m_SubObjectName: 

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField]
-    private AssetReference _sceneConnectionReference;
+    private SceneConnection _sceneConnection;
     [SerializeField]
     private AssetReference _targetSceneReference;
     //[SerializeField]
@@ -16,7 +16,7 @@ public class SceneChanger : MonoBehaviour
     [SerializeField]
     private Transform _spawnPoint;
 
-    private SceneConnection _sceneConnection;
+    //private SceneConnection _sceneConnection;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +27,13 @@ public class SceneChanger : MonoBehaviour
         }
 
         GetComponentInChildren<SpriteRenderer>().enabled = false;
-        AsyncOperationHandle handle = _sceneConnectionReference.LoadAssetAsync<SceneConnection>();
+        /*AsyncOperationHandle handle = _sceneConnectionReference.LoadAssetAsync<SceneConnection>();
         handle.Completed += (AsyncOperationHandle handle) => {
             if (handle.Status == AsyncOperationStatus.Succeeded)
                 _sceneConnection = (SceneConnection)_sceneConnectionReference.Asset;
             else
                 Debug.LogError($"{_sceneConnectionReference.RuntimeKey}.");
-        };
+        };*/
     }
 
     // Update is called once per frame

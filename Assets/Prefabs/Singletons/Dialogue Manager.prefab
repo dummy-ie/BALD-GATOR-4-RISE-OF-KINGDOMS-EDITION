@@ -47,7 +47,7 @@ MonoBehaviour:
   _persistent: 1
   _view: {fileID: 0}
   _file:
-    inkAsset: {fileID: 102900000, guid: 5a94c112e21100b40a5956f1092ea458, type: 3}
+    inkAsset: {fileID: 0}
     jsonAssetDirectory: {fileID: 0}
     jsonAsset: {fileID: 0}
     unhandledCompileErrors: []

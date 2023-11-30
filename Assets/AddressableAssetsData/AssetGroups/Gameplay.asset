@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 5695e6ec2712a124c985b083109212f3
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 199a7e86ac07e564e9a99bb07a527cbc
+    m_Address: Assets/Graphics/Sprites/amogus.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7dd82fb65e8ad51469baaed001df73ec, type: 2}
   m_SchemaSet:
