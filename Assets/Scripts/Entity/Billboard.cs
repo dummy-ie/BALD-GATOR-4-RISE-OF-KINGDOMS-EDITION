@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Billboard : MonoBehaviour
 {
+    [SerializeField] private AssetReference _spriteReference;
     [SerializeField] private BillboardType billboardType;
 
     [Header("Lock Rotation")]
@@ -18,6 +22,19 @@ public class Billboard : MonoBehaviour
     private void Awake()
     {
         originalRotation = transform.rotation.eulerAngles;
+    }
+
+    private void Start()
+    {
+        AsyncOperationHandle handle = _spriteReference.LoadAssetAsync<Sprite>();
+        handle.Completed += (AsyncOperationHandle handle) =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+                GetComponent<SpriteRenderer>().sprite = (Sprite)_spriteReference.Asset;
+
+            else
+                Debug.LogError($"{_spriteReference.RuntimeKey}.");
+        };
     }
 
     // Use Late update so everything should have finished moving.

@@ -41,7 +41,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 8480069014387762438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9643d0985d417d24b87ab7e87366d6d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 478c79f54a74b90438b3420bdaec75e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
   _view: {fileID: 0}
+  _file:
+    inkAsset: {fileID: 0}
+    jsonAssetDirectory: {fileID: 0}
+    jsonAsset: {fileID: 0}
+    unhandledCompileErrors: []
+    recursiveIncludeErrorPaths: []
+    errors: []
+    warnings: []
+    todos: []
+    masterInkAssets: []
+    localIncludePaths: []
+    includes: []
