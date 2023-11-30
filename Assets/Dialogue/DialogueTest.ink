@@ -60,6 +60,8 @@ Oya, this is dialogue 4!
 ->END
 
 
+
+
 ===function RollDice(stat)===
 Error
 

@@ -7413,7 +7413,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _view
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1770163151}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7598,7 +7598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572906405}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000034217298, y: 0.9870875, z: -0.16018225, w: 0.000000021085649}
+  m_LocalRotation: {x: -0.0000000024517213, y: 0.9870875, z: -0.16018224, w: -0.000000015108188}
   m_LocalPosition: {x: 28.44, y: 5.85, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10192,9 +10192,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1142038171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56efda0097c42594297cefd3edaac821, type: 3}
+  m_Script: {fileID: 11500000, guid: e1c3ed4f3af3f194eba4a5004bc09804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inkDialogue: {fileID: 4900000, guid: c4db9cbd4d0bd00439ffcc90eb1566dd, type: 3}
 --- !u!1001 &1200934605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11716,12 +11717,12 @@ PrefabInstance:
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000000021085649
+      value: -0.000000015108188
       objectReference: {fileID: 0}
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0000000034217298
+      value: -0.0000000024517213
       objectReference: {fileID: 0}
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
@@ -11731,7 +11732,7 @@ PrefabInstance:
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.16018225
+      value: -0.16018224
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15732,7 +15733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36106edcad8dd8f46ba88bc94319b9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onStart: 0
+  _onStart: 1
 --- !u!114 &1770163152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20046,9 +20047,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2095598963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cdc65e45738794b807cc0a7f8bd90d, type: 3}
+  m_Script: {fileID: 11500000, guid: e1c3ed4f3af3f194eba4a5004bc09804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inkDialogue: {fileID: 4900000, guid: b018e1d86cf5eb44f83222f966de2e0e, type: 3}
 --- !u!1001 &2136142057
 PrefabInstance:
   m_ObjectHideFlags: 0

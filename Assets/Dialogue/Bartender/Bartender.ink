@@ -3,7 +3,7 @@
 EXTERNAL RollDice(stat)
 EXTERNAL StartQuest(id)
 EXTERNAL Fight()
-EXTERNAL Leave()
+EXTERNAL Leave(returnable)
 
 VAR name = "bartender"
 
@@ -17,20 +17,20 @@ VAR name = "bartender"
     + [Sure. Give me a drink, bartender.]
         ->Dialogue3
     + [I’m not thirsty.]
-        ~Leave()
+        ~Leave(true)
         ->DONE
 
 
 =Dialogue2
 “Hmm. Yes. The One Piece, legendary treasure yes? Very well then. You lot would be seeking God Enel. They lie behind the Gate of Justice. Unfortunately you would need to unlock it. Head down the road. There lies a tower right before the gate, perhaps you’d find some way of unlocking the gate at the Celestial Ascent tower.”
     + ['Kay]
-~Leave()
+~Leave(true)
 ->DONE
 
 =Dialogue3
 “One blue horse beer coming right up!”
     + [Blue horse extra cool! Ito ang lamig!]
-~Leave()
+~Leave(true)
 ->DONE
 
 ->END
@@ -45,7 +45,7 @@ Error
 ===function Fight()===
 Error
 
-===function Leave()===
+===function Leave(returnable)===
 Error
 
 

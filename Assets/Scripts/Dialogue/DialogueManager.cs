@@ -52,8 +52,10 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void EnterDialogue(TextAsset inkJSON)
     {
-        AddButtons();
+        
         Debug.Log("Entering Dialogue");
+        AddButtons();
+
         _currentStory = new Story(inkJSON.text);
 
         _name = (string)_currentStory.variablesState["name"];
@@ -71,7 +73,10 @@ public class DialogueManager : Singleton<DialogueManager>
         });
 
         _currentStory.BindExternalFunction("Fight", Fight);
-        _currentStory.BindExternalFunction("Leave", Leave);
+        _currentStory.BindExternalFunction("Leave", (bool returnable) =>
+        {
+            Leave(returnable);
+        });
 
         foreach (KeyValuePair<string, Ink.Runtime.Object> variable in _variables)
         {
@@ -211,8 +216,10 @@ public class DialogueManager : Singleton<DialogueManager>
         StartCoroutine(CombatManager.Instance.StartCombat(CombatManager.Instance.Entities));
     }
 
-    private void Leave()
+    private void Leave(bool returnable)
     {
+        if (!returnable)
+            _currentStory.variablesState[_name + "CanTalkTo"] = false;
         StartCoroutine(ExitDialogue());
     }
 
