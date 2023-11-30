@@ -5765,6 +5765,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onStart: 1
+  _nextSceneReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &293413494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20263,11 +20268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d59bae8e7ab24d87c189819e28957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneConnectionReference:
-    m_AssetGUID: d299ade33d0677b4ab1449533bc9340b
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 1
+  _sceneConnection: {fileID: 11400000, guid: d299ade33d0677b4ab1449533bc9340b, type: 2}
   _targetSceneReference:
     m_AssetGUID: 8978405abeba81644b6687e7446d9b1d
     m_SubObjectName: 

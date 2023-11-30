@@ -32,6 +32,56 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5a6d9ab4c2d9c44ea4a12722f9a3d90
+    m_Address: Assets/Scenes/Syrup/Forest.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e587ca50a98e824fbb720d244ee0fa4
+    m_Address: Assets/Scenes/Syrup/Cabin.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3376345ac6c4c94458c3128df9d2daa4
+    m_Address: Assets/Scenes/Syrup/Mansion.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1d9d50ec97869140a96fb8e135079f1
+    m_Address: Assets/Scenes/Syrup/Mansion 1F.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 857cce609dfb09e44952a20f0231fd99
+    m_Address: Assets/Scenes/Syrup/Mansion BF.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a1f8cd41cac9744fb7ca2bb69724cba
+    m_Address: Assets/Scenes/Enies/Lobby.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a56a1e8e4f3b299428ad5664246027c6
+    m_Address: Assets/Scenes/Enies/Celestial 1F.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6470533f86b3b01468dffafa21dd5149
+    m_Address: Assets/Scenes/Enies/Celestial 2F.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a73c884182dd31a4e84fecd0c9648c88
+    m_Address: Assets/Scenes/Rogue/Rogue.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5c4d030a9ae64d44a9ed94d56b743884
+    m_Address: Assets/Scenes/Rogue/Church.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 7dd82fb65e8ad51469baaed001df73ec, type: 2}
   m_SchemaSet:
