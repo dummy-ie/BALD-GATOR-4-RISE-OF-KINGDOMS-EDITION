@@ -17,9 +17,7 @@ public class Entity : MonoBehaviour
     public int Initiative = 0;
 
     public AffiliationState Affiliation;
-
-    private int _maxActions = 1;
-    public int MaxActions { get { return _maxActions; } }
+    
     private int _actionsLeft;
     public int ActionsLeft { get { return _actionsLeft; } set { _actionsLeft = value; } }
 

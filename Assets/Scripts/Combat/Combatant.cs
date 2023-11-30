@@ -15,7 +15,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
     public Entity Data { get { return _data; } }
 
     [SerializeField]
-    private NavMeshAgent _nav;
+    protected NavMeshAgent _nav;
 
     [SerializeField]
     private Transform _target;
@@ -25,7 +25,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
 
     [SerializeField]
     private LineRenderer _actualLineRenderer;
-    private CinemachineVirtualCamera _cam;
+    protected CinemachineVirtualCamera _cam;
     private NavMeshPath _desiredPath;
     private NavMeshPath _actualPath;
 
@@ -107,7 +107,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
         }
 
         _data.MovementRemaining = _data.Class.MovementSpeed;
-        _data.ActionsLeft = _data.MaxActions;
+        _data.ActionsLeft = _data.Class.MaxActions;
 
         while (!EndTurn)
         {
@@ -130,7 +130,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
         sprite.color = Color.gray;
     }
 
-    private void ResetPaths()
+    protected void ResetPaths()
     {
         _desiredPath = new();
         _actualPath = new();
@@ -138,7 +138,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
         _desiredLineRenderer.positionCount = 0;
     }
 
-    private void MoveToPath()
+    protected void MoveToPath()
     {
         if (_data.MovementRemaining <= 0)
             return;
@@ -229,13 +229,39 @@ public abstract class Combatant : MonoBehaviour, ITappable
 
         // activate our highlight
         gameObject.FindComponentAndSetActive<AnimatedHighlight>(true, out _);
+
+        // extremely shitty code that shouldn't be placed here but we're out of time so i'll do it anyway
+        // handles changing controlled player
+        if (CombatManager.Instance.State == CombatManager.CombatState.None)
+        {
+            if (lastObject.TryGetComponent(out PlayerController lastController))
+                lastController.enabled = false;
+
+            if (lastObject.TryGetComponent(out Entity e))
+            {
+                if (e.Affiliation == Entity.AffiliationState.Ally)
+                {
+                    if (lastObject.TryGetComponent(out NavMeshAgent lastAgent))
+                        lastAgent.enabled = true;
+                    if (lastObject.TryGetComponent(out Rigidbody rb))
+                        rb.isKinematic = true;
+                }
+            }
+
+            if (Data.Affiliation != Entity.AffiliationState.Enemy)
+            {
+                GetComponent<Rigidbody>().isKinematic = false;
+                GetComponent<NavMeshAgent>().enabled = false;
+                GetComponent<PlayerController>().enabled = true;
+            }
+        }
     }
 
     // Start is called before the first frame update
     private void Start()
     {
         ResetPaths();
-        _data.ActionsLeft = _data.MaxActions;
+        _data.ActionsLeft = _data.Class.MaxActions;
         // _attackRange = GetComponentInChildren<Projector>(true);
         // _healRange = GetComponentInChildren<Projector>(true);
 
@@ -304,7 +330,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
     }
 
     // Update is called once per frame
-    private void Update()
+    protected virtual void Update()
     {
         if (ResetMovement)
         {
@@ -313,7 +339,8 @@ public abstract class Combatant : MonoBehaviour, ITappable
             ResetPaths();
         }
 
-        if (DestinationReached(_nav, transform.position))
-            ResetPaths();
+        if (CombatManager.Instance.State != CombatManager.CombatState.None)
+            if (DestinationReached(_nav, transform.position))
+                ResetPaths();
     }
 }

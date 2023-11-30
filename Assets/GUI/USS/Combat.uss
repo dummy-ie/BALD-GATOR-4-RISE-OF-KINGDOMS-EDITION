@@ -107,11 +107,11 @@ Label {
 #HealthBarBox {
     flex-direction: column;
     position: absolute;
-    height: 100%;
-    width: 45%;
+    height: 75%;
+    width: 35%;
     align-items: flex-end;
     align-self: flex-end;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 #CurrentTurnHealthBar {
@@ -146,7 +146,7 @@ Label {
 }
 
 #CurrentTurnHealthBar .unity-progress-bar__title {
-    font-size: 32px;
+    font-size: 24px;
     -unity-text-align: middle-center;
     white-space: nowrap;
 }
