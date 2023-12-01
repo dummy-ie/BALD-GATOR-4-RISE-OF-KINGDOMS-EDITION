@@ -312,7 +312,7 @@ public class CombatManager : Singleton<CombatManager>
         }
     }
 
-    private bool CheckWin()
+    private bool CheckWin() // linq my beloved
     {
         return _combatants.Where(c => c.Data.Affiliation == AffiliationState.Enemy).All(c => c.Data.Health <= 0);
     }
@@ -325,16 +325,21 @@ public class CombatManager : Singleton<CombatManager>
     private void OnTap(object sender, TapEventArgs args)
     {
         //Debug.Log("Object hit by CombatManager OnTap(): " + args.HitObject.name);
-        ViewManager.Instance.GetView<CombatView>().SetTargetData(); // null to hide it
+        if (ViewManager.Instance.GetView<CombatView>() != null)
+            ViewManager.Instance.GetView<CombatView>().SetTargetData(); // null to hide it
+
         if (args.HitObject != null && args.HitObject.CompareTag("Walkable"))
         {
             Ray ray = Camera.main.ScreenPointToRay(args.Position);
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
             {
-                if (CurrentSelected.TryGetComponent(out Combatant entity)
-                && State != CombatState.None
+                // holy mother of if statements i am not sorry for creating you lmao
+                if (State != CombatState.None
+                && CurrentSelected != null
+                && CurrentSelected.TryGetComponent(out Combatant entity)
                 && _currentTurn == entity
-                && _currentTurn.Data.Affiliation == AffiliationState.Ally)
+                && _currentTurn.Data.Affiliation == AffiliationState.Ally
+                )
                 {
                     NavigationTarget.gameObject.SetActive(true);
                     NavigationTarget.position = hit.point + Vector3.up * 0.1f;

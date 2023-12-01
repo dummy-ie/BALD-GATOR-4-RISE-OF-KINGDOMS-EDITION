@@ -22,14 +22,19 @@ public class PlayerCombatant : Combatant
             {
                 CombatManager.Instance.NavigationTarget.position = transform.position;
             }
-            else if (CombatManager.Instance.CurrentSelected.TryGetComponent(out Entity e))
+            else if (CombatManager.Instance.CurrentSelected != null)
             {
-                if (e.Affiliation == Entity.AffiliationState.Ally)
+                if (CombatManager.Instance.CurrentSelected.TryGetComponent(out Entity e))
                 {
-                    _nav.SetDestination(CurrentCameraObject().transform.parent.transform.position);
+                    if (e.Affiliation == Entity.AffiliationState.Ally && _nav != null && _nav.enabled && _nav.isOnNavMesh)
+                    {
+                        _nav.SetDestination(CurrentCameraObject().transform.parent.transform.position);
+                    }
                 }
-                    // MoveToPath();
+                // MoveToPath();
             }
+            else if (CombatManager.Instance.CurrentSelected == null)
+                Debug.LogWarning(name + "Tried to access CombatManager's CurrentSelected, but is null.", this);
         }
 
         if (ResetMovement)
