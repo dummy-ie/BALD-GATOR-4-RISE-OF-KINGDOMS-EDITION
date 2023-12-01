@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/GUI/USS/DiceReroll.uss?fileID=7433441132597879392&amp;guid=c21c748bdded63647867f31d3c54075e&amp;type=3#DiceReroll" />
+    <ui:VisualElement name="RerollContainer" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" text="Reroll?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Reroll" />
+        <ui:Button text="Watch an Ad" parse-escape-sequences="true" display-tooltip-when-elided="true" name="WatchAdButton" />
+        <ui:Button text="Close" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CloseButton" />
+    </ui:VisualElement>
+</ui:UXML>

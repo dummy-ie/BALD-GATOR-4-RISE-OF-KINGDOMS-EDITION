@@ -1,0 +1,42 @@
+#RerollContainer {
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(106, 76, 50);
+    margin-top: 10%;
+    margin-right: 15%;
+    margin-bottom: 10%;
+    margin-left: 15%;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 20px;
+    border-right-width: 20px;
+    border-bottom-width: 20px;
+    border-left-width: 20px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+#Reroll {
+    font-size: 120px;
+    -unity-font: url('project://database/Assets/Graphics/Fonts/SHERWOOD.TTF?fileID=12800000&guid=bcf5374f1954c4c4aa403195ac7da4af&type=3#SHERWOOD');
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/SHERWOOD%20SDF.asset?fileID=11400000&guid=58e8b063ebfc17348ac960bed4e251b2&type=2#SHERWOOD SDF');
+}
+
+Button {
+    font-size: 100px;
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/SHERWOOD%20SDF.asset?fileID=11400000&guid=58e8b063ebfc17348ac960bed4e251b2&type=2#SHERWOOD SDF');
+    width: 45%;
+    background-color: rgb(183, 117, 63);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
