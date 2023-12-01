@@ -160,7 +160,7 @@ public class GameView : View
 
     private void Update()
     {
-        if (QuestManager.Instance.TrackedQuest != null)
+        /*if (QuestManager.Instance.TrackedQuest != null)
         {
             _questName.text = QuestManager.Instance.TrackedQuest.Data.DisplayName;
             _stepName.text = QuestManager.Instance.TrackedQuest.Data.DisplayName;
@@ -169,7 +169,7 @@ public class GameView : View
         {
             _questName.text = "";
             _stepName.text = "";
-        }
+        }*/
 
     }
 }
