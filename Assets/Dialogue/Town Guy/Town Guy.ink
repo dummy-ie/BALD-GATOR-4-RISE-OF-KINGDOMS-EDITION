@@ -9,7 +9,7 @@ EXTERNAL Leave(returnable)
 
 VAR name = "townGuy"
 
-{susNunHelp: ->Character2.Pre | -Character.Pre}
+{susNunHelp: ->Character2.Pre | ->Character.Pre}
 ===Character===
 
 =Pre

@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using static Entity;
 
 public class CombatManager : Singleton<CombatManager>
@@ -89,8 +90,9 @@ public class CombatManager : Singleton<CombatManager>
 
         // wait a little bit before starting 
         // possibly insert animation
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         // ViewManager.Instance.HideRecentView();
+        ViewManager.Instance.GetView<GameView>().Hide();
         ViewManager.Instance.Show<CombatView>();
         ViewManager.Instance.GetView<CombatView>().ToggleHotbar();
 
@@ -332,10 +334,13 @@ public class CombatManager : Singleton<CombatManager>
         if (CheckWin())
         {
             EndCombat();
+            DialogueManager.Instance.EndBattleState(true);
         }
         else if (CheckLoss())
         {
             EndCombat();
+            DialogueManager.Instance.EndBattleState(false);
+            SceneLoader.Instance.LoadScene(SceneManager.GetActiveScene().name);
         }
         else
         {

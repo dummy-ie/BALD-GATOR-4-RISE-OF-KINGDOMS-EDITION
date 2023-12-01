@@ -1,4 +1,5 @@
 ﻿VAR diceRoll = false
+VAR battleWon = false
 
 //TOTOY (test)
 //VAR totoyCheckCHA = 10

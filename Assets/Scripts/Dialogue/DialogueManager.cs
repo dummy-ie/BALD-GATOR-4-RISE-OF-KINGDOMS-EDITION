@@ -16,6 +16,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private Dictionary<string, Ink.Runtime.Object> _variables;
     [SerializeField]InkFile _file;
 
+    private GameObject _characterReference;
     private Story _currentStory;
 
     private string _name;
@@ -47,18 +48,19 @@ public class DialogueManager : Singleton<DialogueManager>
 
             Ink.Runtime.Object value = tempStory.variablesState.GetVariableWithName(name);
             _variables.Add(name, value);
-            Debug.Log("Initialized Variable " + name + " : " + value);
+            //Debug.Log("Initialized Variable " + name + " : " + value);
         }
     }
 
 
-    public void EnterDialogue(TextAsset inkJSON)
+    public void EnterDialogue(GameObject character)
     {
         
         Debug.Log("Entering Dialogue");
         AddButtons();
 
-        _currentStory = new Story(inkJSON.text);
+        _characterReference = character;
+        _currentStory = new Story(character.GetComponentInChildren<DialogueHolder>().InkDialogue.text);
 
         _name = (string)_currentStory.variablesState["name"];
 
@@ -164,7 +166,16 @@ public class DialogueManager : Singleton<DialogueManager>
         _view.AssignButtons();
         ShowView();
         _isDiceRolling = false;
-        _currentStory.variablesState["diceRoll"] = diceRoll;
+
+        if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS || InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
+        {
+            _currentStory.variablesState["diceRoll"] = InternalDice.Instance.Roll(out int i);
+        }
+        else
+        {
+            _currentStory.variablesState["diceRoll"] = diceRoll;
+        }
+
         ContinueDialogue();
     }
     
@@ -190,19 +201,42 @@ public class DialogueManager : Singleton<DialogueManager>
             _variables[name] = value;
         }
     }
-    
+
+    public void EndBattleState(bool battleWon)
+    {
+        AddButtons();
+        ShowView();
+        ViewManager.Instance.GetView<GameView>().Show();
+        _fightOngoing = false;
+
+        _currentStory.variablesState["battleWon"] = battleWon;
+
+        ContinueDialogue();
+    }
+
     private void StartBattleState()
     {
-        RemoveButtons();
-        HideView();
-        ViewManager.Instance.GetView<GameView>().Hide();
+        //RemoveButtons();
+        //HideView();
+ 
+        //ViewManager.Instance.GetView<GameView>().Hide();
         _fightOngoing = true;
 
-        StartCoroutine(CombatManager.Instance.StartCombat(CombatManager.Instance.Entities));
+        List<Entity> combatants = new List<Entity>();
+        foreach (GameObject combatant in PartyManager.Instance.PartyMembers)
+        {
+            combatants.Add(combatant.GetComponent<Entity>());
+        }
+        combatants.Add(_characterReference.GetComponent<Entity>());
+
+        StartCoroutine(CombatManager.Instance.StartCombat(combatants));
     }
+
+    
 
     private IEnumerator RollDice(string stat)
     {
+        HideView();
         SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
 
         RemoveButtons();
@@ -225,6 +259,7 @@ public class DialogueManager : Singleton<DialogueManager>
                 case "WIS": statValue = player.Class.Wisdom; break;
             }
         }
+        Debug.Log("STATSASTARTASTASTAST : " + statValue);
         FindObjectOfType<ExternalDice>().DifficultyClass = statValue;
     }
 
