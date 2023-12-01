@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/GUI/USS/Game.uss?fileID=7433441132597879392&amp;guid=c1cd2f9cd81596a4a9d89a2f65f41d82&amp;type=3#Game" />
-    <ui:VisualElement name="CurrentQuestContainer" style="flex-grow: 1;">
+    <ui:VisualElement name="TrackedQuestContainer" style="flex-grow: 1;">
         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuestName" style="font-size: 50px;" />
         <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StepName" style="font-size: 30px;" />
     </ui:VisualElement>

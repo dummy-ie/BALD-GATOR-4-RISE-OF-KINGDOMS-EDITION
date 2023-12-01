@@ -1,1 +1,42 @@
-VisualElement {}
+VisualElement {
+    width: 100%;
+}
+
+.quest-button {
+    font-size: 50px;
+    -unity-font: url('project://database/Assets/Addons/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    align-self: center;
+    width: 65%;
+    background-color: rgba(75, 75, 75, 0.84);
+    max-width: 100%;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    border-left-color: rgb(43, 43, 43);
+    border-right-color: rgb(43, 43, 43);
+    border-top-color: rgb(43, 43, 43);
+    border-bottom-color: rgb(43, 43, 43);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+}
+
+#QuestList {
+    height: 100%;
+    width: 100%;
+}
+
+#QuestContainer {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+#Description {
+    -unity-font: url('project://database/Assets/Addons/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    font-size: 70px;
+    height: 100%;
+    width: 100%;
+    white-space: normal;
+}

@@ -17,7 +17,14 @@ public class QuestManager : Singleton<QuestManager>
     private Quest _trackedQuest = null;
     public Quest TrackedQuest {
         get { return _trackedQuest; }
+        set { _trackedQuest = value; }
     }
+
+    List<Quest> _currentQuests = new();
+    public List<Quest> CurrentQuests {
+        get { return _currentQuests; }
+    }
+
     private Dictionary<string, Quest> _questMap = new();
     public UnityAction<string> OnStart;
     public UnityAction<string, int, bool> OnAdvance;
@@ -42,6 +49,8 @@ public class QuestManager : Singleton<QuestManager>
             return;
         if (_trackedQuest == null)
             _trackedQuest = quest;
+        if (!_currentQuests.Contains(quest))
+            _currentQuests.Add(quest);
         quest.InstantiateCurrentStep(this.transform);
         ChangeQuestState(id, EQuestState.IN_PROGRESS);
         Debug.Log(id + " Started");
@@ -60,6 +69,7 @@ public class QuestManager : Singleton<QuestManager>
 
     public void FinishQuest(string id) {
         ChangeQuestState(id, EQuestState.FINISHED);
+        _currentQuests.Remove(GetQuest(id));
         if (_trackedQuest == _questMap[id])
             _trackedQuest = null;
     }
@@ -97,6 +107,7 @@ public class QuestManager : Singleton<QuestManager>
             Debug.Log(GetQuest("TestQuest").CurrentStepIndex);
             Debug.Log(GetQuest("TestQuest").CurrentStepExists());
             _trackedQuest = GetQuest("TestQuest");*/
+            StartQuest("MainQuest1");
         }
         else
             Debug.LogError($"Quest Data not loaded.");
