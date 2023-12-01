@@ -17,8 +17,8 @@ public class CombatManager : Singleton<CombatManager>
         Start,
         PlayerTurn,
         EnemyTurn,
-        Won,
-        Lost
+        Won, // unused!
+        Lost // unused!
     }
 
     [SerializeField]
@@ -35,6 +35,10 @@ public class CombatManager : Singleton<CombatManager>
     public GameObject TextPopupPrefab { get { return _textPopupPrefab; } }
 
     private int _currentTurnIndex = 0;
+
+    [SerializeField]
+    private CinemachineVirtualCamera _overHeadCam;
+    // private bool _isOverHeadCameraActive = false;
 
     [SerializeField]
     private List<Combatant> _combatants;
@@ -162,6 +166,24 @@ public class CombatManager : Singleton<CombatManager>
 
         // ViewManager.Instance.HideRecentView();
         ViewManager.Instance.Show<GameView>();
+    }
+
+    public void SwitchCameraToOverhead()
+    {
+        if (_overHeadCam == null)
+        {
+            Debug.LogError("Overhead cam is null!");
+            return;
+        }
+
+
+        // if the camera is active, press the button to recenter to the current turn.
+        if (_overHeadCam.gameObject.activeSelf)
+        {
+            _overHeadCam.transform.position = _currentTurn.transform.position + (Vector3.up * 5f);
+        }
+        else // otherwise just activate it
+            _overHeadCam.gameObject.SetActive(!_overHeadCam.gameObject.activeSelf);
     }
 
     public void AttackSelectedTarget()

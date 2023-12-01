@@ -273,9 +273,11 @@ public abstract class Combatant : MonoBehaviour, ITappable
     {
         if (_target == null)
         {
-            _target = GameObject.Find("Navigation Target").transform;
-            if (_target == null)
-                Debug.LogError("Couldn't find the navigation target!");
+            GameObject obj = CombatManager.Instance.GetComponentInChildren<AnimatedHighlight>(true).gameObject;
+            if (obj != null)
+                _target = obj.transform;
+            else
+                Debug.LogError("Couldn't find the navigation target! obj is null");
         }
         
             // _target = FindObjectsByType<AnimatedHighlight>(FindObjectsSortMode.InstanceID).First(o => o.name == "Navigation Target").transform;

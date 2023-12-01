@@ -19,5 +19,5 @@
         <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TargetName" />
         <ui:ProgressBar value="22" name="TargetHealthBar" />
     </ui:VisualElement>
-    <ui:Button text="oo" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SwitchCameraButton" />
+    <ui:Button text="oo" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SwitchCameraButton" class="animation-hide" />
 </ui:UXML>
