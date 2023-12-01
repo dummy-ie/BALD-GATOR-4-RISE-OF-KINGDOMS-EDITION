@@ -223,7 +223,14 @@ public abstract class Combatant : MonoBehaviour, ITappable
             ViewManager.Instance.GetView<CombatView>().SetTargetData(this);
 
         GameObject currentCam = CurrentCameraObject();
-        GameObject lastObject = currentCam.transform.parent.gameObject;
+        GameObject lastObject = null;
+        if (currentCam != null)
+            lastObject = currentCam.transform.parent.gameObject;
+        else
+        {
+            Debug.LogError("CurrentCam is null!!!!!!!");
+            return;
+        }
 
         // set self as the current selected gameobject in combat
         CombatManager.Instance.CurrentSelected = gameObject;
@@ -315,7 +322,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
 
         // if the current active vcam is this one
         GameObject currentCam = CurrentCameraObject();
-        if (currentCam == _cam.gameObject)
+        if (currentCam != null && currentCam == _cam.gameObject)
         {
             CombatManager.Instance.CurrentSelected = gameObject;
             highlight.gameObject.SetActive(true);
