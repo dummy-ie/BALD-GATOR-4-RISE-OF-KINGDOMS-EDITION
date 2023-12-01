@@ -203,10 +203,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6ecaa671ceb244799956a72b9c9508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textAssetTotoy: {fileID: 4900000, guid: 2be5921ba92ef8340a03347c0b17896e, type: 3}
-  _textAssetSenren: {fileID: 4900000, guid: fd507ea49a1b0ce4d8def371f6dea1d5, type: 3}
+  _textAssetTotoy: {fileID: 4900000, guid: f07bdc7e794187945bbd218e2dd6c697, type: 3}
+  _textAssetSenren: {fileID: 4900000, guid: 6feb77ca984a47e42b0ef9f32d5a1343, type: 3}
   totoy: 1
   senren: 0
+  entity1: {fileID: 0}
+  entity2: {fileID: 0}
+  entity3: {fileID: 0}
+  entity4: {fileID: 0}
 --- !u!4 &224220372
 Transform:
   m_ObjectHideFlags: 0
@@ -450,6 +454,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _onStart: 0
+  _nextSceneReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &543235430
 MonoBehaviour:
   m_ObjectHideFlags: 0

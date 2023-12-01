@@ -15,6 +15,8 @@ public class Billboard : MonoBehaviour
     [SerializeField] private bool lockY;
     [SerializeField] private bool lockZ;
 
+    
+
     private Vector3 originalRotation;
 
     public enum BillboardType { LookAtCamera, CameraForward };
