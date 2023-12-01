@@ -15,7 +15,7 @@ public class PartyManager : Singleton<PartyManager>
     {
         Vector3[] spawnOffsets = {Vector3.forward, Vector3.right, Vector3.left, Vector3.back};
         int i = 0;
-        int offset = 5;
+        int offset = 1;
         foreach (GameObject partyMember in _partyMembers)
         {
             Instantiate(partyMember, _spawn.position + (offset * spawnOffsets[i]), _spawn.rotation);
