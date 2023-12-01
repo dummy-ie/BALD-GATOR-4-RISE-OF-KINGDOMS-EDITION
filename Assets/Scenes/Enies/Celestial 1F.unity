@@ -5042,12 +5042,12 @@ PrefabInstance:
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.00000005736101
+      value: 0.00000009355485
       objectReference: {fileID: 0}
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00000000930841
+      value: 0.000000015181863
       objectReference: {fileID: 0}
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
@@ -5057,7 +5057,7 @@ PrefabInstance:
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.16018225
+      value: -0.16018224
       objectReference: {fileID: 0}
     - target: {fileID: 3430886334741349101, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
@@ -8019,6 +8019,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carpet_Red
       objectReference: {fileID: 0}
+    - target: {fileID: 9218377935294861655, guid: 1e711044cbc639d44aa004669771969e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Walkable
+      objectReference: {fileID: 0}
     - target: {fileID: 9218377935297056663, guid: 1e711044cbc639d44aa004669771969e,
         type: 3}
       propertyPath: m_CastShadows
@@ -8973,7 +8978,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828418877}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000000930841, y: 0.9870875, z: -0.16018225, w: 0.00000005736101}
+  m_LocalRotation: {x: 0.000000015181863, y: 0.9870875, z: -0.16018224, w: 0.00000009355485}
   m_LocalPosition: {x: 4.4799995, y: 3.0900002, z: -17.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9231,7 +9236,7 @@ GameObject:
   - component: {fileID: 2010816904}
   m_Layer: 0
   m_Name: Stairs
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

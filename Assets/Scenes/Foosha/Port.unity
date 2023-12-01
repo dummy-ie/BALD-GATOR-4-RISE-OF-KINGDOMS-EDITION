@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 30606486}
   m_Layer: 2
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3583,6 +3583,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverWallCorner (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1932968684583758, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
+      objectReference: {fileID: 0}
     - target: {fileID: 4660015660617000, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4030,6 +4034,10 @@ PrefabInstance:
     - target: {fileID: 1932968684583758, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
       propertyPath: m_Name
       value: RiverWallCorner (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932968684583758, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
       objectReference: {fileID: 0}
     - target: {fileID: 4660015660617000, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
       propertyPath: m_LocalScale.x
@@ -5662,6 +5670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverWall
       objectReference: {fileID: 0}
+    - target: {fileID: 1308262449071418, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
+      objectReference: {fileID: 0}
     - target: {fileID: 4668014256311012, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.1004276
@@ -5885,7 +5897,7 @@ GameObject:
   - component: {fileID: 313531602}
   m_Layer: 2
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7255,7 +7267,7 @@ GameObject:
   - component: {fileID: 561941131}
   m_Layer: 0
   m_Name: SailingShip2Hull
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 127
@@ -7607,7 +7619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572906405}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000000034217298, y: 0.9870875, z: -0.16018225, w: 0.000000021085649}
+  m_LocalRotation: {x: -0.0000000024517213, y: 0.9870875, z: -0.16018224, w: -0.000000015108188}
   m_LocalPosition: {x: 28.44, y: 5.85, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7659,6 +7671,10 @@ PrefabInstance:
     - target: {fileID: 1932968684583758, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
       propertyPath: m_Name
       value: RiverWallCorner
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932968684583758, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
       objectReference: {fileID: 0}
     - target: {fileID: 4660015660617000, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7838,7 +7854,7 @@ GameObject:
   - component: {fileID: 605137088}
   m_Layer: 2
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8386,7 +8402,7 @@ GameObject:
   - component: {fileID: 695182140}
   m_Layer: 0
   m_Name: Plank
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 123
@@ -9663,6 +9679,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverWall (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1308262449071418, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
+      objectReference: {fileID: 0}
     - target: {fileID: 4668014256311012, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.78999996
@@ -9798,6 +9818,10 @@ PrefabInstance:
     - target: {fileID: 1308262449071418, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
       propertyPath: m_Name
       value: RiverWall (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1308262449071418, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
       objectReference: {fileID: 0}
     - target: {fileID: 4668014256311012, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9956,6 +9980,10 @@ PrefabInstance:
     - target: {fileID: 1331809247229008, guid: f7752189d25c7ce4887212db1164ed51, type: 3}
       propertyPath: m_Name
       value: RiverLand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331809247229008, guid: f7752189d25c7ce4887212db1164ed51, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
       objectReference: {fileID: 0}
     - target: {fileID: 4838848054478644, guid: f7752189d25c7ce4887212db1164ed51, type: 3}
       propertyPath: m_LocalScale.x
@@ -11447,7 +11475,7 @@ GameObject:
   - component: {fileID: 1378929872}
   m_Layer: 0
   m_Name: Plank
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 123
@@ -11849,12 +11877,12 @@ PrefabInstance:
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.000000021085649
+      value: -0.000000015108188
       objectReference: {fileID: 0}
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0000000034217298
+      value: -0.0000000024517213
       objectReference: {fileID: 0}
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
@@ -11864,7 +11892,7 @@ PrefabInstance:
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.16018225
+      value: -0.16018224
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12140,6 +12168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverWallStairs
       objectReference: {fileID: 0}
+    - target: {fileID: 1256809392869866, guid: 4777f8950f6f12940a096d9d73d45fc0, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
+      objectReference: {fileID: 0}
     - target: {fileID: 4856842641037232, guid: 4777f8950f6f12940a096d9d73d45fc0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.7965672
@@ -12202,6 +12234,10 @@ PrefabInstance:
     - target: {fileID: 1308262449071418, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
       propertyPath: m_Name
       value: RiverWall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1308262449071418, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
       objectReference: {fileID: 0}
     - target: {fileID: 4668014256311012, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14886,6 +14922,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverWallCorner (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1932968684583758, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
+      objectReference: {fileID: 0}
     - target: {fileID: 4660015660617000, guid: 78c5bede736cca04ea483d26c7811ed9, type: 3}
       propertyPath: m_LocalScale.x
       value: -1
@@ -15407,6 +15447,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverWall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1308262449071418, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
+      objectReference: {fileID: 0}
     - target: {fileID: 4668014256311012, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
@@ -15768,6 +15812,10 @@ PrefabInstance:
     - target: {fileID: 1298343669249514, guid: dd6f629302f173646a25d46dbd945d78, type: 3}
       propertyPath: m_Name
       value: RiverWallOpen
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298343669249514, guid: dd6f629302f173646a25d46dbd945d78, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
       objectReference: {fileID: 0}
     - target: {fileID: 4164064348375738, guid: dd6f629302f173646a25d46dbd945d78, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16184,7 +16232,7 @@ GameObject:
   - component: {fileID: 1873070452}
   m_Layer: 0
   m_Name: Path
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -19069,6 +19117,10 @@ PrefabInstance:
     - target: {fileID: 1308262449071418, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
       propertyPath: m_Name
       value: RiverWall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1308262449071418, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
+      propertyPath: m_TagString
+      value: Walkable
       objectReference: {fileID: 0}
     - target: {fileID: 4668014256311012, guid: a7eb417a6c9b1d94aa4238bd72633934, type: 3}
       propertyPath: m_LocalPosition.x
