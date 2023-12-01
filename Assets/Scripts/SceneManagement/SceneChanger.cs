@@ -33,6 +33,7 @@ public class SceneChanger : MonoBehaviour
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         if (SceneConnection.ActiveConnection == _sceneConnection)
         {
+            Debug.Log("Spawning Party Members");
             PartyManager.Instance.SpawnPartyMembers(_spawnPoint);
         }
         /*AsyncOperationHandle handle = _sceneConnectionReference.LoadAssetAsync<SceneConnection>();
