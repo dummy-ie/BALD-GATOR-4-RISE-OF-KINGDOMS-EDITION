@@ -64,7 +64,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.gameObject.CompareTag("Interactable"))
+        if (!other.gameObject.CompareTag("Interactable") && this != CombatManager.Instance.CurrentSelected.GetComponent<PlayerInteract>())
             return;
 
         // _buttons = _gameView.Root.Q("InteractButtons").Query<Button>().ToList(); // refresh list
