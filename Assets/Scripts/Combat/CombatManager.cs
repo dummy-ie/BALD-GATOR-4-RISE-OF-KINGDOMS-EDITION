@@ -190,7 +190,23 @@ public class CombatManager : Singleton<CombatManager>
         }
 
         // Scriptable Object Attack
-        combatant.TryHit(_currentTurn.Data.Class.Attack);
+        string text = combatant.TryHit(_currentTurn.Data.Class.Attack);
+        Color color = Color.red;
+        if (text == "Miss!")
+            color = Color.white;
+            
+        if (TextPopupPrefab != null)
+        {
+            GameObject popup = Instantiate(TextPopupPrefab, combatant.transform.position, Quaternion.identity);
+            if (popup.TryGetComponent(out TextPopup component))
+            {
+                component.Initialize(text, color);
+                component.Activate = true;
+            }
+        }
+        else
+            Debug.LogError("Text Popup prefab is null!");
+
 
         RefreshUI();
         _currentTurn.DecrementAction();
@@ -224,7 +240,19 @@ public class CombatManager : Singleton<CombatManager>
         }
 
         // Scriptable Object Heal
-        combatant.HealHealth(_currentTurn.Data.Class.Heal);
+        string text = combatant.HealHealth(_currentTurn.Data.Class.Heal);
+
+        if (TextPopupPrefab != null)
+        {
+            GameObject popup = Instantiate(TextPopupPrefab, combatant.transform.position, Quaternion.identity);
+            if (popup.TryGetComponent(out TextPopup component))
+            {
+                component.Initialize(text, Color.green);
+                component.Activate = true;
+            }
+        }
+        else
+            Debug.LogError("Text Popup prefab is null!");
 
         RefreshUI();
         _currentTurn.DecrementAction();

@@ -172,6 +172,8 @@ MonoBehaviour:
   CurrentSelected: {fileID: 0}
   State: 0
   _currentTurn: {fileID: 0}
+  _textPopupPrefab: {fileID: 6890336578124266132, guid: 00877d9ec9046a04286aa7fb4902c7ec,
+    type: 3}
   _combatants: []
   Entities: []
   StartFight: 0

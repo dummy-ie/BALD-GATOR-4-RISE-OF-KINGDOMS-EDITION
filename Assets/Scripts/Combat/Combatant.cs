@@ -66,12 +66,12 @@ public abstract class Combatant : MonoBehaviour, ITappable
         }
     }
 
-    public void TryHit(AttackData attack)
+    public string TryHit(AttackData attack)
     {
         if (!InternalDice.Instance.Roll(out int hitRoll, 20, attack.HitModifier, _data.Class.ArmorClass))
         {
             Debug.Log("Attack missed " + name);
-            return;
+            return "Miss!";
         }
 
         int damageDealt = InternalDice.Instance.RollMultiple(attack.NumDice, attack.DiceFaces, attack.DamageModifier);
@@ -79,15 +79,19 @@ public abstract class Combatant : MonoBehaviour, ITappable
             _data.Health -= damageDealt;
         else
             Die();
+
+        return damageDealt.ToString();
     }
 
-    public void HealHealth(HealData heal)
+    public string HealHealth(HealData heal)
     {
         int healthHealed = InternalDice.Instance.RollMultiple(heal.NumDice, heal.DiceFaces, heal.HealModifier);
         if (_data.Health + healthHealed <= _data.Class.MaxHealth)
             _data.Health += healthHealed;
         else
             _data.Health = _data.Class.MaxHealth;
+
+        return healthHealed.ToString();
     }
 
     public void DecrementAction()
