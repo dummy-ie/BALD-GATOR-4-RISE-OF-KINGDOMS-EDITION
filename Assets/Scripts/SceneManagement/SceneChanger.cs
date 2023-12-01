@@ -17,6 +17,8 @@ public class SceneChanger : MonoBehaviour
     private Transform _spawnPoint;
     [SerializeField]
     private EBGMIndex _nextSceneBGM;
+    [SerializeField]
+    private ESFXIndex _playSFX;
 
     //private SceneConnection _sceneConnection;
 
@@ -67,6 +69,7 @@ public class SceneChanger : MonoBehaviour
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
             //SceneLoader.Instance.LoadScene(_targetSceneName, true);
             AudioManager.Instance.PlayBGM(_nextSceneBGM, 0);
+            AudioManager.Instance.PlaySFX(_playSFX);
             SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }

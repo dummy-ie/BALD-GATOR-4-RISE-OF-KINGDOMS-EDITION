@@ -7855,7 +7855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456907931}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000013363314, y: 0.9870875, z: -0.16018225, w: 0.00000008234845}
+  m_LocalRotation: {x: 0.000000008547703, y: 0.9870875, z: -0.16018222, w: 0.000000052673325}
   m_LocalPosition: {x: 4.4799995, y: -4.03, z: 5.6099997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13325,12 +13325,12 @@ PrefabInstance:
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.00000008234845
+      value: 0.000000052673325
       objectReference: {fileID: 0}
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000013363314
+      value: 0.000000008547703
       objectReference: {fileID: 0}
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
@@ -13340,7 +13340,7 @@ PrefabInstance:
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.16018225
+      value: -0.16018222
       objectReference: {fileID: 0}
     - target: {fileID: 3430886334741349101, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
@@ -20413,6 +20413,7 @@ MonoBehaviour:
     m_EditorAssetChanged: 1
   _spawnPoint: {fileID: 1512452150}
   _nextSceneBGM: 1
+  _playSFX: 6
 --- !u!1001 &2027007333
 PrefabInstance:
   m_ObjectHideFlags: 0

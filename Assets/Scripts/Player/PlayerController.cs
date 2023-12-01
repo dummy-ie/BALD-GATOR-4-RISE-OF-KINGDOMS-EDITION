@@ -80,8 +80,7 @@ public class PlayerController : MonoBehaviour
             if (_sfxTicks >= _sfxTicksRestart)
             {
                 _sfxTicks = 0.0f;
-                Debug.Log("SFX pls");
-                AudioManager.Instance.PlaySFX((ESFXIndex)Random.Range(0, 5));
+                AudioManager.Instance.PlaySFX((ESFXIndex)Random.Range(1, 6));
             }
         }
     }

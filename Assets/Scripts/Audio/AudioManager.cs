@@ -38,6 +38,8 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlaySFX(ESFXIndex index)
     {
+        if (index == ESFXIndex.NONE)
+            return;
         GameObject sfxObject = Instantiate(_sfxObjectPrefab, transform);
         AudioSource sfxSource = sfxObject.GetComponent<AudioSource>();
         sfxSource.outputAudioMixerGroup = _audioMixerGroup;
