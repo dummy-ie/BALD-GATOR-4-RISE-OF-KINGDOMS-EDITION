@@ -2,13 +2,18 @@
 
 EXTERNAL RollDice(stat)
 EXTERNAL StartQuest(id)
+EXTERNAL FinishQuest(id)
+EXTERNAL IncreaseStat(stat)
 EXTERNAL Fight()
 EXTERNAL Leave(returnable)
 
 VAR name = "townGuy"
 
-{townGuyCanTalkTo: ->Character.Dialogue1 | ->NoTalk}
+{susNunHelp: ->Character2.Pre | -Character.Pre}
 ===Character===
+
+=Pre
+{townGuyCanTalkTo: ->Dialogue1 | ->NoTalk}
 
 =Dialogue1
 “Hello random stranger! What brings you to our town?”
@@ -38,9 +43,26 @@ VAR name = "townGuy"
     ~Leave(false)
     ->DONE
 
+->END
 
 
+===Character2===
 
+=Pre
+{townGuyCanTalkTo: ->Dialogue1 | ->NoTalk}
+
+=Dialogue1
+You see the villagers around. Time for a little ashfall
+    +[Spread the ashes]
+    ~townGuyAshed = true
+    //FinishQuest(id)
+    ->Dialogue2
+
+=Dialogue2
+"UGH WHAT IS THIS!?"
+    +[Make your escape]
+    ~Leave(false)
+    ->DONE
 ->END
 
 ===NoTalk===

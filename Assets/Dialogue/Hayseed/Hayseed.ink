@@ -2,6 +2,8 @@
 
 EXTERNAL RollDice(stat)
 EXTERNAL StartQuest(id)
+EXTERNAL FinishQuest(id)
+EXTERNAL IncreaseStat(stat)
 EXTERNAL Fight()
 EXTERNAL Leave(returnable)
 
@@ -43,7 +45,8 @@ VAR name = "hayseed"
 =Dialogue1
 “Thank you thank you thank you! We, the farmers, owe you plenty. With the pests gone, we can hope to survive a few more winters. Here, take this. This is every farmer’s token of gratitude to you.”
     +[… Is that a diamond hoe?]
-    //~ RecieveItem()
+    ~IncreaseStat("STR")
+    //~FinishQuest()
     ~Leave(false)
     ->DONE
 

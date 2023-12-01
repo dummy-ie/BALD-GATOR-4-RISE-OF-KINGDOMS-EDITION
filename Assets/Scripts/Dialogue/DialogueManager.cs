@@ -72,11 +72,37 @@ public class DialogueManager : Singleton<DialogueManager>
             QuestManager.Instance.OnStart(questId);
         });
 
+        _currentStory.BindExternalFunction("FinishQuest", (string questId) =>
+        {
+            QuestManager.Instance.FinishQuest(questId);
+        });
+
+        _currentStory.BindExternalFunction("IncreaseStat", (string stat) =>
+        {
+            Entity player = CombatManager.Instance.CurrentSelected.GetComponent<Entity>();
+            if (player != null)
+            {
+                switch (stat)
+                {
+                    case "CHA": player.Class.Charisma++; break;
+                    case "STR": player.Class.Strength++; break;
+                    case "INT": player.Class.Intelligence++; break;
+                    case "DEX": player.Class.Dexterity++; break;
+                    case "CON": player.Class.Constitution++; break;
+                    case "WIS": player.Class.Wisdom++; break;
+                }
+            }
+
+            
+        });
+
         _currentStory.BindExternalFunction("Fight", Fight);
         _currentStory.BindExternalFunction("Leave", (bool returnable) =>
         {
             Leave(returnable);
         });
+
+        
 
         foreach (KeyValuePair<string, Ink.Runtime.Object> variable in _variables)
         {
@@ -99,7 +125,21 @@ public class DialogueManager : Singleton<DialogueManager>
         yield return new WaitForSeconds(.5f);
 
         _currentStory.variablesState[_name + "HasRolled" + stat] = false;
-        FindObjectOfType<ExternalDice>().DifficultyClass = (int)_currentStory.variablesState[_name + "Check" + stat];
+        
+        Entity player = CombatManager.Instance.CurrentSelected.GetComponent<Entity>();
+        int statValue = 20;
+        if(player != null) {
+            switch (stat)
+            {
+                case "CHA": statValue = player.Class.Charisma; break;
+                case "STR": statValue = player.Class.Strength; break;
+                case "INT": statValue = player.Class.Intelligence; break;
+                case "DEX": statValue = player.Class.Dexterity; break;
+                case "CON": statValue = player.Class.Constitution; break;
+                case "WIS": statValue = player.Class.Wisdom; break;
+            }
+        }
+        FindObjectOfType<ExternalDice>().DifficultyClass = statValue;
     }
 
     public IEnumerator ExitDialogue(){
@@ -114,6 +154,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _currentStory.UnbindExternalFunction("RollDice");
         _currentStory.UnbindExternalFunction("StartQuest");
+        _currentStory.UnbindExternalFunction("FinishQuest");
+        _currentStory.UnbindExternalFunction("IncreaseStat");
         _currentStory.UnbindExternalFunction("Fight");
         _currentStory.UnbindExternalFunction("Leave");
 
@@ -218,8 +260,12 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void Leave(bool returnable)
     {
+        Debug.Log("Leaving Dialogue");
         if (!returnable)
+        {
             _currentStory.variablesState[_name + "CanTalkTo"] = false;
+        }
+
         StartCoroutine(ExitDialogue());
     }
 
@@ -233,7 +279,6 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _view.BackGround.visible = false;
         _view.BackGround.SetEnabled(false);
-
     }
 
     private void ShowView()

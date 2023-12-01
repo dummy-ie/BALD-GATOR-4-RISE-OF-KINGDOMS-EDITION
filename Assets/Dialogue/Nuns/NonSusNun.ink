@@ -2,6 +2,8 @@
 
 EXTERNAL RollDice(stat)
 EXTERNAL StartQuest(id)
+EXTERNAL FinishQuest(id)
+EXTERNAL IncreaseStat(stat)
 EXTERNAL Fight()
 EXTERNAL Leave(returnable)
 
@@ -13,16 +15,11 @@ VAR name = "nonSusNun"
 =Dialogue1
 “Oh my moons, it’s been a while since we’ve had a newcomer to our chapel. How may I help you, o’ young one?”
     + [Can you tell me about the rumor?]
-    ->Dialogue2
+        ->Dialogue2
 
-    + [I'm not religious] 
-    ~Leave(true)
-    ->DONE
+    + [Spill the beans!]
+        ->Dialogue4
     
-
-
-
-
 =Dialogue2
 “Oh dear me, I happen to have no idea where it came from. I was so distraught to hear that people think it originated from within these sacred grounds. For shame!”
     + [Yeah yeah now where else can I ask?]
@@ -31,20 +28,18 @@ VAR name = "nonSusNun"
 =Dialogue3
 "You can try asking the pastor. He is most aware when it comes to the church grounds."
     +[Alright]
-    ~Leave(false)
-    ->DONE
-
+    ->NoTalk
 
 =Dialogue4
-"What?"
-    +[...] 
+"...What?"
+    +[...]
     ~Leave(true)
     ->DONE
 
 ->END
 
 ===NoTalk===
-May the moon be with you
+May the moon be with you always
     +[...ok]
     ~ Leave(false)
     ->DONE
