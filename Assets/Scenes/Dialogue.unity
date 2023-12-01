@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6ecaa671ceb244799956a72b9c9508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textAssetTotoy: {fileID: 4900000, guid: f07bdc7e794187945bbd218e2dd6c697, type: 3}
+  _textAssetTotoy: {fileID: 4900000, guid: af43ee77541f19648bd00a00cb837f8c, type: 3}
   _textAssetSenren: {fileID: 4900000, guid: 6feb77ca984a47e42b0ef9f32d5a1343, type: 3}
   totoy: 1
   senren: 0
@@ -985,9 +985,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0255279fa212a4f92a68b908a8e78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _files:
-  - {fileID: 8300000, guid: 473a72450a1f0ad42ab1ec80886ef2d9, type: 3}
-  _source: {fileID: 1752551297}
+  _persistent: 1
+  _audioMixerGroup: {fileID: 0}
+  _sfxFiles: []
+  _bgmFiles: []
+  _sfxObjectPrefab: {fileID: 0}
 --- !u!1 &2047855244
 GameObject:
   m_ObjectHideFlags: 0

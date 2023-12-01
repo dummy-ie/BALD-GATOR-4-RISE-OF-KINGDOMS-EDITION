@@ -10,32 +10,32 @@ public class ClassData : ScriptableObject
     [SerializeField]
     [Range(8, 20)]
     private int _strength;
-    public int Strength { get { return _strength; } }
+    public int Strength { get { return _strength; } set { _strength = value; } }
 
     [SerializeField]
     [Range(8, 20)]
     private int _dexterity;
-    public int Dexterity { get { return _dexterity; } }
+    public int Dexterity { get { return _dexterity; } set { _dexterity = value; } }
 
     [SerializeField]
     [Range(8, 20)]
     private int _constitution;
-    public int Constitution { get { return _constitution; } }
+    public int Constitution { get { return _constitution; } set { _constitution = value; } }
 
     [SerializeField]
     [Range(8, 20)]
     private int _intelligence;
-    public int Intelligence { get { return _intelligence; } }
+    public int Intelligence { get { return _intelligence; } set { _intelligence = value; } }
 
     [SerializeField]
     [Range(8, 20)]
     private int _wisdom;
-    public int Wisdom { get { return _wisdom; } }
+    public int Wisdom { get { return _wisdom; } set { _wisdom = value; } }
 
     [SerializeField]
     [Range(8, 20)]
     private int _charisma;
-    public int Charisma { get { return _charisma; } }
+    public int Charisma { get { return _charisma; } set { _charisma = value; } }
 
     [SerializeField]
     private EJobClass _jobClass;

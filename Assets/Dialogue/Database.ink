@@ -29,6 +29,21 @@ VAR swarmNestHasRolledDEX = false
 
 //TOWN GUY
 VAR townGuyCanTalkTo = true
+VAR townGuyAshed = false
 
 //NON SUS NUN
 VAR nonSusNunCanTalkTo = true
+
+//SUS NUN
+VAR susNunCanTalkTo = true
+VAR susNunHelp = false
+
+VAR susNunCHA = 10
+VAR susNunHasRolledCHA = false
+
+VAR susNunINT = 10
+VAR susNunHasRolledINT = false
+
+//PASTOR
+VAR pastorCanTalkTo = true
+VAR pastorTalkedTo = false
