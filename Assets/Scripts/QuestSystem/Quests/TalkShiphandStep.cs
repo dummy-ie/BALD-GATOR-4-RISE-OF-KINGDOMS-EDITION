@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TalkQuestStep : QuestStep
+public class TalkBartenderStep : QuestStep
 {
     bool _talked = false;
 

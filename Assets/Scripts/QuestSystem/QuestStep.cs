@@ -20,8 +20,6 @@ public abstract class QuestStep : MonoBehaviour
         get { return _stepDescription; }
     }
     [SerializeField]
-    private int _nextStepIndex;
-    [SerializeField]
     private bool _canFinish = false;
     public void InitializeQuestStep(string id, int stepIndex, string stepState) {
         _id = id;
@@ -31,10 +29,10 @@ public abstract class QuestStep : MonoBehaviour
             SetStepState(stepState);
         }
     }
-    protected void FinishStep() { 
+    protected void FinishStep(int nextStepIndex) { 
         if (!_finished) {
             _finished = true;
-            QuestManager.Instance.AdvanceQuest(_id, _nextStepIndex, _canFinish);
+            QuestManager.Instance.AdvanceQuest(_id, nextStepIndex, _canFinish);
             Destroy(gameObject);
         }
     }

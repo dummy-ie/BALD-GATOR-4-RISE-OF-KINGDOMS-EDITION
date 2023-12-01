@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7892225abda478240bf75068542e701c, type: 3}
-  m_Name: TestQuest
+  m_Name: MainQuest1
   m_EditorClassIdentifier: 
-  _id: TestQuest
-  _displayName: Test
+  _id: MainQuest1
+  _displayName: The Island of Going Merry
   _prerequisites: []
   _steps:
   - {fileID: 7946739699251264130, guid: 3a83c1b67b9e8f449b599dface083600, type: 3}
+  - {fileID: 7946739699251264130, guid: 3a21977ef2574034d8fa1911b3665ac0, type: 3}
+  - {fileID: 7946739699251264130, guid: 188a8a00754ed3447ac850f59ec27ce2, type: 3}
