@@ -21,7 +21,9 @@ public class PartyManager : Singleton<PartyManager>
         int offset = 1;
         foreach (GameObject partyMemberPrefab in _partyMemberPrefabs)
         {
+            Debug.Log("Spawned " + partyMemberPrefab.name);
             GameObject partyMember = Instantiate(partyMemberPrefab, _spawn.position + (offset * spawnOffsets[i]), _spawn.rotation);
+            partyMember.name = partyMember.name.Replace("(Clone)", "").Trim();
             _partyMembers.Add(partyMember);
             if (i + 1 > spawnOffsets.Length)
                 i = 0;

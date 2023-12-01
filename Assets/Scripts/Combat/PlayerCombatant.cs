@@ -18,7 +18,7 @@ public class PlayerCombatant : Combatant
         if (CombatManager.Instance.State == CombatManager.CombatState.None && Data.Affiliation == Entity.AffiliationState.Ally)
         {
             // if this is the selected player
-            if (CurrentCameraObject() == _cam.gameObject)
+            if (CurrentCameraObject() != null && CurrentCameraObject() == _cam.gameObject)
             {
                 if (CombatManager.Instance.NavigationTarget != null)
                     CombatManager.Instance.NavigationTarget.position = transform.position;

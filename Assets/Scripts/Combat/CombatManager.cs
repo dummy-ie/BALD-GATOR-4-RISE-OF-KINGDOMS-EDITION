@@ -90,9 +90,12 @@ public class CombatManager : Singleton<CombatManager>
 
         // wait a little bit before starting 
         // possibly insert animation
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         // ViewManager.Instance.HideRecentView();
+        AudioManager.Instance.StartBGM(EBGMIndex.BATTLE, 1);
+        AudioManager.Instance.PauseBGM(0);
         ViewManager.Instance.GetView<GameView>().Hide();
+        ViewManager.Instance.GetView<DialogueView>().Hide();
         ViewManager.Instance.Show<CombatView>();
         ViewManager.Instance.GetView<CombatView>().ToggleHotbar();
 
@@ -156,6 +159,8 @@ public class CombatManager : Singleton<CombatManager>
         NavigationTarget.gameObject.SetActive(false);
         _currentTurn = null;
         _combatants.Clear();
+        AudioManager.Instance.PlayBGM(0);
+        AudioManager.Instance.PauseBGM(1);
         ViewManager.Instance.GetView<CombatView>().ToggleHotbar();
         ViewManager.Instance.GetView<CombatView>().SetTargetData();
         State = CombatState.None;
@@ -342,7 +347,7 @@ public class CombatManager : Singleton<CombatManager>
             Debug.Log("Loss");
             EndCombat();
             DialogueManager.Instance.EndBattleState(false);
-            //SceneLoader.Instance.LoadScene(SceneManager.GetActiveScene().name);
+            SceneLoader.Instance.LoadScene(SceneManager.GetActiveScene().name);
         }
         else
         {
