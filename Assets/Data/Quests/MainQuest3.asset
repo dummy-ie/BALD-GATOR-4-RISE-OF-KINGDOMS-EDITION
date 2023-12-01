@@ -14,5 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: MainQuest3
   _displayName: Gate to Fairy Vearth
-  _prerequisites: []
-  _steps: []
+  _prerequisites:
+  - {fileID: 11400000}
+  _steps:
+  - {fileID: 8891660928527641064, guid: 3239c0b74157cbb4091932d839d0c9cc, type: 3}
+  - {fileID: 8891660928527641064, guid: ddc2a523322a3504aa1332b4baf86c12, type: 3}
+  - {fileID: 6277653180159919148, guid: 3fe48af44efa86d429b347e9d1650ae3, type: 3}
+  - {fileID: 3587776208474283138, guid: 58ec49db490292249946e896d7371fe0, type: 3}
+  - {fileID: 3587776208474283138, guid: c55315b70c0c92a46826959a6b4b0819, type: 3}
+  - {fileID: 5653437074899689297, guid: ea9fc5ea57083f14fb45ebb931a93e15, type: 3}
+  - {fileID: 376699271601200092, guid: 005dac1812d59c14ab7db0e5c8e61896, type: 3}
+  - {fileID: 2531319405557701845, guid: d94891b21da61d347b664584545354f6, type: 3}
