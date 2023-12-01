@@ -1,57 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    public static AudioManager Instance;
-
     [SerializeField]
-    private AudioClip[] _files;
+    AudioMixerGroup _audioMixerGroup;
     [SerializeField]
-    private AudioSource _source;
+    private AudioClip[] _sfxFiles;
+    [SerializeField]
+    private AudioClip[] _bgmFiles;
+    [SerializeField]
+    private GameObject _sfxObjectPrefab;
 
-    public AudioClip GetAudio(string name) { 
-        for (int i = 0; i < _files.Length; i++) {
-            Debug.Log(this._files[i].name);
-            if (_files[i].name == name) {
-                return _files[i];
+    private AudioSource[] _sourceChannels;
+
+    public AudioClip GetSFX(string name) { 
+        for (int i = 0; i < _sfxFiles.Length; i++) {
+            Debug.Log(this._sfxFiles[i].name);
+            if (_sfxFiles[i].name == name) {
+                return _sfxFiles[i];
             }
         }
         return null;
     }
 
-    public void Play(string name, bool loop = false) { 
-        for (int i = 0; i < _files.Length; i++) {
-            if (_files[i].name == name) {
-                this._source.clip = _files[i];
-                this._source.Play();
-                this._source.loop = loop;
-                return;
+    public AudioClip GetBGM(string name) { 
+        for (int i = 0; i < _bgmFiles.Length; i++) {
+            Debug.Log(this._bgmFiles[i].name);
+            if (_bgmFiles[i].name == name) {
+                return _bgmFiles[i];
             }
         }
+        return null;
     }
 
-    public void Play(int index, bool loop = false) { 
-        for (int i = 0; i < _files.Length; i++) {
-            this._source.clip = _files[index];
-            this._source.Play();
-            this._source.loop = loop;
-            return;
+    public void PlaySFX(ESFXIndex index)
+    {
+        GameObject sfxObject = Instantiate(_sfxObjectPrefab, transform);
+        AudioSource sfxSource = sfxObject.GetComponent<AudioSource>();
+        sfxSource.outputAudioMixerGroup = _audioMixerGroup;
+        sfxSource.clip = _sfxFiles[(int)index];
+        sfxSource.PlayOneShot(sfxSource.clip, 1);
+    }
+
+    public void PlayBGM(EBGMIndex index, int channel) {
+        this._sourceChannels[channel].clip = _bgmFiles[(int)index];
+        this._sourceChannels[channel].Play();
+        this._sourceChannels[channel].loop = true;
+    }
+
+    public void StopBGM() { 
+        foreach (AudioSource sourceChannel in _sourceChannels)
+        {
+            sourceChannel.Stop();
+            sourceChannel.clip = null;
+            sourceChannel.loop = false;
         }
     }
 
-    public void Stop() { 
-        this._source.Stop();
-        this._source.clip = null;
-        this._source.loop = false;
-    }
-
-
-    void Awake() {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+    protected override void OnAwake()
+    {
+        _sourceChannels = GetComponentsInChildren<AudioSource>();
+        foreach (AudioSource sourceChannel in _sourceChannels)
+        {
+            sourceChannel.outputAudioMixerGroup = _audioMixerGroup;
+        }
     }
 }

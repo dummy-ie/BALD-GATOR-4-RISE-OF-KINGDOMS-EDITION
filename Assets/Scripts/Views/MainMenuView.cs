@@ -19,7 +19,7 @@ public class MainMenuView : View {
         this._settingsButton = this._root.Q<Button>("SettingsButton");
         this._playButton.clicked += PlayButtonClicked;
         this._settingsButton.clicked += SettingsButtonClicked;
-        AudioManager.Instance.Play(1, true);
+        AudioManager.Instance.PlayBGM(EBGMIndex.MAIN_MENU, 0);
     }
 
     public override void SetSortingOrder(int value) {
@@ -29,8 +29,9 @@ public class MainMenuView : View {
 
     public void PlayButtonClicked() {
         Debug.Log("Clicked Play Button");
-        AudioManager.Instance.Play("Majestic_Sound");
+        AudioManager.Instance.PlaySFX(ESFXIndex.MAJESTIC_SOUND);
         SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference);
+        _playButton.clicked -= PlayButtonClicked;
         //ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<GameView>());
     }
 
@@ -40,6 +41,6 @@ public class MainMenuView : View {
     }
 
     private void OnDisable() {
-        AudioManager.Instance.Stop();
+        AudioManager.Instance.StopBGM();
     }
 }

@@ -19,6 +19,6 @@ public class SettingsView : View
     public void CloseButtonClicked() {
         Debug.Log("Clicked");
         ViewManager.Instance.HideRecentView();
-        AudioManager.Instance.Stop();
+        //AudioManager.Instance.Stop();
     }
 }
