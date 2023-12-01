@@ -47,6 +47,9 @@ public class CombatManager : Singleton<CombatManager>
 
     public IEnumerator StartCombat(List<Entity> entities)
     {
+        Entities = entities;
+
+
         State = CombatState.Start;
         foreach (Entity entity in entities)
         {
@@ -90,7 +93,7 @@ public class CombatManager : Singleton<CombatManager>
 
         // wait a little bit before starting 
         // possibly insert animation
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         // ViewManager.Instance.HideRecentView();
         ViewManager.Instance.GetView<GameView>().Hide();
         ViewManager.Instance.Show<CombatView>();

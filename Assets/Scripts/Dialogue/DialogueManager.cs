@@ -216,10 +216,9 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void StartBattleState()
     {
-        //RemoveButtons();
-        //HideView();
- 
-        //ViewManager.Instance.GetView<GameView>().Hide();
+        RemoveButtons();
+        HideView();
+
         _fightOngoing = true;
 
         List<Entity> combatants = new List<Entity>();
