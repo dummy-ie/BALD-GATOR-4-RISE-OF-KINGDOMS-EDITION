@@ -71,6 +71,7 @@ public class SceneChanger : MonoBehaviour
             AudioManager.Instance.PlayBGM(_nextSceneBGM, 0);
             AudioManager.Instance.PlaySFX(_playSFX);
             SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
+            PartyManager.Instance.SpawnPartyMembers(_spawnPoint);
         }
     }
 }
