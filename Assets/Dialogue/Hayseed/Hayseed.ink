@@ -9,11 +9,16 @@ EXTERNAL Leave(returnable)
 
 VAR name = "hayseed"
 
-{swarmNestDefeated: ->Character2.Pre | ->Character.Pre}
-===Character===
+->VarCheck
+===VarCheck===
+{   
+    -!hayseedCanTalkTo: ->NoTalk
+    -swarmNestDefeated: ->AfterSwarm.Dialogue1 
+    -else: ->Base.Dialogue1
+}
 
-=Pre
-{hayseedCanTalkTo: ->Dialogue1 | ->NoTalk}
+
+===Base===
 
 =Dialogue1
 “Traveler! I am in need of dire assistance! Our fields are being ravaged by these godforsaken pests and if this continues, we’ll all die of hunger!”
@@ -30,23 +35,18 @@ VAR name = "hayseed"
 =Dialogue2
 “Excellent, excellent! You go now, I’ll arrange a worthwhile reward for your troubles.”
     + [Okay]
-        //~StartQuest()
         ~ Leave(false)
         ->DONE
 
 
 ->END
 
-===Character2===
-
-=Pre
-{hayseedCanTalkTo: ->Dialogue1 | ->NoTalk}
+===AfterSwarm===
 
 =Dialogue1
 “Thank you thank you thank you! We, the farmers, owe you plenty. With the pests gone, we can hope to survive a few more winters. Here, take this. This is every farmer’s token of gratitude to you.”
     +[… Is that a diamond hoe?]
     ~IncreaseStat("STR")
-    //~FinishQuest()
     ~Leave(false)
     ->DONE
 
@@ -59,11 +59,6 @@ Hmm?
     ->DONE
 ->END
 
-===function RollDice(stat)===
-Error
-
-===function StartQuest(id)===
-Error
 
 
 

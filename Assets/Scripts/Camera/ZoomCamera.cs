@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
-public class ZoomCamera : MonoBehaviour
+public class ZoomCamera : GestureReceiver, ICameraManipulator
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private CinemachineVirtualCamera _cam;
+    public CinemachineVirtualCamera Cam { get { return _cam; } }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private float _zoomSpeed = 30f; // change as needed ig
+
+    public override void OnSpread(object sender, SpreadEventArgs args)
     {
+        float zoom = args.DistanceDelta / Screen.dpi;
+        zoom *= Time.deltaTime * _zoomSpeed;
         
+        _cam.transform.position += Vector3.down * zoom;
+        
+        // _cam.m_Lens.FieldOfView += -zoom;
+
+        // if (_cam.m_Lens.FieldOfView > 95f)
+        //     _cam.m_Lens.FieldOfView = 95f;
+        // else if (_cam.m_Lens.FieldOfView < 80f)
+        //     _cam.m_Lens.FieldOfView = 80f;
+
     }
 }

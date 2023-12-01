@@ -74,9 +74,3 @@ Loading Dice Roll...
     ~ Leave(false)
     ->DONE
 ->END
-
-===function RollDice(stat)===
-Error
-
-===function StartQuest(id)===
-Error
