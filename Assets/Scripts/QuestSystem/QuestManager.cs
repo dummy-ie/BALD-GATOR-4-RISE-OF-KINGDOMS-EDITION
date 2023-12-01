@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Events;
@@ -8,11 +9,16 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class QuestManager : Singleton<QuestManager>
 {
-    private string _label = "Quests";
+    [SerializeField]
+    private List<string> _labels;
     private AsyncOperationHandle<IList<QuestData>> _handle;
     private int _index = 0;
 
-    private Dictionary<string, Quest> _questMap;
+    private Quest _trackedQuest = null;
+    public Quest TrackedQuest {
+        get { return _trackedQuest; }
+    }
+    private Dictionary<string, Quest> _questMap = new();
     public UnityAction<string> OnStart;
     public UnityAction<string, int, bool> OnAdvance;
     public UnityAction<string> OnFinish;
@@ -34,6 +40,8 @@ public class QuestManager : Singleton<QuestManager>
         Quest quest = GetQuest(id);
         if (quest == null)
             return;
+        if (_trackedQuest == null)
+            _trackedQuest = quest;
         quest.InstantiateCurrentStep(this.transform);
         ChangeQuestState(id, EQuestState.IN_PROGRESS);
         Debug.Log(id + " Started");
@@ -52,6 +60,8 @@ public class QuestManager : Singleton<QuestManager>
 
     public void FinishQuest(string id) {
         ChangeQuestState(id, EQuestState.FINISHED);
+        if (_trackedQuest == _questMap[id])
+            _trackedQuest = null;
     }
     private bool CheckRequirementsMet(Quest quest) {
         bool meetsRequirements = true;
@@ -71,16 +81,25 @@ public class QuestManager : Singleton<QuestManager>
     }
 
     private void OnLoadQuests(QuestData asset) {
+        Debug.Log("Loaded Quest Data Asset : " + asset.ID);
         _questMap.Add(asset.ID, new Quest(asset));
         _index++;
+        
     }
 
     private void OnComplete(AsyncOperationHandle<IList<QuestData>> handle)
     {
-        /*if (handle.Status == AsyncOperationStatus.Succeeded)
-            GetComponent<QuestData>() = handle.Result;
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            Debug.Log("Completed");
+            /*Debug.Log(GetQuest("TestQuest").Data.DisplayName);
+            Debug.Log(GetQuest("TestQuest").State);
+            Debug.Log(GetQuest("TestQuest").CurrentStepIndex);
+            Debug.Log(GetQuest("TestQuest").CurrentStepExists());
+            _trackedQuest = GetQuest("TestQuest");*/
+        }
         else
-            Debug.LogError($"{_address}.");*/
+            Debug.LogError($"Quest Data not loaded.");
     }
     protected override void OnAwake() {
         _questMap = new Dictionary<string, Quest>();
@@ -88,13 +107,9 @@ public class QuestManager : Singleton<QuestManager>
 
     private void Start()
     {
-        _handle = Addressables.LoadAssetsAsync<QuestData>(_label, OnLoadQuests);
+        _handle = Addressables.LoadAssetsAsync<QuestData>(_labels, OnLoadQuests, Addressables.MergeMode.Union, false);
         _handle.Completed += OnComplete;
-        Quest quest = GetQuest("TestQuest");
-        Debug.Log(quest.Data.DisplayName);
-        Debug.Log(quest.State);
-        Debug.Log(quest.CurrentStepIndex);
-        Debug.Log(quest.CurrentStepExists());
+        
     }
 
     private void OnEnable() {
