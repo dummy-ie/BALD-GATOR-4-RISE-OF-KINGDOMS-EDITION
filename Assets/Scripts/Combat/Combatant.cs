@@ -339,8 +339,15 @@ public abstract class Combatant : MonoBehaviour, ITappable
             ResetPaths();
         }
 
-        if (CombatManager.Instance.State != CombatManager.CombatState.None)
+        if (CombatManager.Instance.State != CombatManager.CombatState.None
+        && _nav != null
+        && _nav.enabled
+        && _nav.isOnNavMesh)
+        {
             if (DestinationReached(_nav, transform.position))
+            {
                 ResetPaths();
+            }
+        }
     }
 }

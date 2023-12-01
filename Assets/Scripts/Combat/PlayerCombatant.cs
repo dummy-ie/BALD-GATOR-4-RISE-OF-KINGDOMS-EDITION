@@ -26,10 +26,10 @@ public class PlayerCombatant : Combatant
             {
                 if (CombatManager.Instance.CurrentSelected.TryGetComponent(out Entity e))
                 {
-                    if (e.Affiliation == Entity.AffiliationState.Ally 
-                    && _nav != null 
-                    && _nav.enabled 
-                    && _nav.isOnNavMesh 
+                    if (e.Affiliation == Entity.AffiliationState.Ally
+                    && _nav != null
+                    && _nav.enabled
+                    && _nav.isOnNavMesh
                     && CurrentCameraObject() != null)
                     {
                         _nav.SetDestination(CurrentCameraObject().transform.parent.transform.position);
@@ -52,8 +52,15 @@ public class PlayerCombatant : Combatant
             ResetPaths();
         }
 
-        if (CombatManager.Instance.State != CombatManager.CombatState.None)
+        if (CombatManager.Instance.State != CombatManager.CombatState.None
+        && _nav != null
+        && _nav.enabled
+        && _nav.isOnNavMesh)
+        {
             if (DestinationReached(_nav, transform.position))
+            {
                 ResetPaths();
+            }
+        }
     }
 }

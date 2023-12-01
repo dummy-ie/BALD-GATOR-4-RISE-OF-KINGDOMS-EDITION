@@ -28,6 +28,10 @@ public class CombatManager : Singleton<CombatManager>
     [SerializeField]
     private Combatant _currentTurn;
     public Combatant CurrentTurn { get { return _currentTurn; } }
+    
+    [SerializeField]
+    private GameObject _textPopupPrefab;
+    public GameObject TextPopupPrefab { get { return _textPopupPrefab; } }
 
     private int _currentTurnIndex = 0;
 
