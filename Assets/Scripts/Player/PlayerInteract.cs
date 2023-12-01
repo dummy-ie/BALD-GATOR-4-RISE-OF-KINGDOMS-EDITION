@@ -43,7 +43,7 @@ public class PlayerInteract : MonoBehaviour
                 // Debug.Log("Displaying " + button.name);
                 button.style.display = DisplayStyle.Flex;
                 button.text = collided.name;
-                button.clicked += () => DialogueManager.Instance.EnterDialogue(dialogue.InkDialogue); 
+                button.clicked += () => DialogueManager.Instance.EnterDialogue(other.gameObject); 
                 /* QUEST TESTING */
                 QuestPoint questPoint = null;
                 questPoint = collided.GetComponent<QuestPoint>();

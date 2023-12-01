@@ -8,10 +8,10 @@ public class TEstDialogue : MonoBehaviour
 {
 
     [SerializeField]
-    TextAsset _textAssetTotoy;
+    GameObject _textAssetTotoy;
 
     [SerializeField]
-    TextAsset _textAssetSenren;
+    GameObject _textAssetSenren;
 
     [SerializeField]
     bool totoy = false;
