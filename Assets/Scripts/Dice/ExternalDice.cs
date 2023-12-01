@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,9 @@ using UnityEngine.UIElements;
 
 public class ExternalDice : MonoBehaviour
 {
+    [SerializeField]
+    RerollView _rerollView;
+
     [SerializeField]
     private Light _diceLight;
 
@@ -32,6 +36,8 @@ public class ExternalDice : MonoBehaviour
     private bool _rolling = false;
 
     private static int _result = 0;
+    private static bool _hasRerolled = false;
+    public static bool HasRerolled { get { return _hasRerolled; } }
     // public static int Result { get { return _result; } }
 
     private bool _finishedRolling = false;
@@ -103,8 +109,22 @@ public class ExternalDice : MonoBehaviour
         
 
         yield return new WaitForSeconds(1f); // wait a bit
+        bool success = ResultExternal(_difficultyClass);
+        if (!success && !_hasRerolled)
+        {
+            _rerollView.Show();
+            while (_rerollView.gameObject.activeSelf)
+            {
+                yield return null;
+            }
+            Debug.Log("Reroll");
+            _hasRerolled = true;
+            if (_rerollView.ClickedAds)
+                YeetDice(new Vector2(UnityEngine.Random.Range(1, 101), UnityEngine.Random.Range(1, 101)));
+        }
+        yield return new WaitForSeconds(1f); // wait a bit
         Debug.Log("Should Unload by now");
-        DialogueManager.Instance.SetDiceRoll(ResultExternal(_difficultyClass));
+        DialogueManager.Instance.SetDiceRoll(success);
         SceneManager.UnloadSceneAsync("Dice Roller");
 
 
@@ -125,7 +145,7 @@ public class ExternalDice : MonoBehaviour
         return number;
     }
 
-    public static bool ResultExternal(int difficultyClass, int modifier = 0)
+    public bool ResultExternal(int difficultyClass, int modifier = 0)
     {
         Debug.Log("Result External _result: " + _result);
         if (_result + modifier >= difficultyClass) 
@@ -135,7 +155,20 @@ public class ExternalDice : MonoBehaviour
         }
 
         Debug.Log("Fail Roll");
-        return false; 
+        return false;
+        /*if (_hasRerolled)
+        {
+        }
+        Debug.Log("Rerolling");
+        ViewManager.Instance.Show<RerollView>();
+        _hasRerolled = true;
+        _finishedRolling = false;
+        //if (ViewManager.Instance.GetView<RerollView>().)
+        YeetDice(new Vector2(UnityEngine.Random.Range(1, 101), UnityEngine.Random.Range(1, 101)));
+        if (_finishedRolling)
+            return ResultExternal(difficultyClass, modifier);
+        return false;
+        */
     }
 
     // public void OnSwipe(SwipeEventArgs args)
@@ -151,7 +184,7 @@ public class ExternalDice : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.constraints = RigidbodyConstraints.FreezePosition;
-
+        _hasRerolled = false;
         foreach (Transform child in transform)
         {
             _dieFaces.Add(child.gameObject);

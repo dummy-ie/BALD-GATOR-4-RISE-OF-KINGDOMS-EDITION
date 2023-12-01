@@ -274,7 +274,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0dd2ed21f7c83340a62b2fa07f8388a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _document: {fileID: 94856554}
+  _onStart: 0
+  _nextSceneReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!114 &94856554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,9 +438,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0255279fa212a4f92a68b908a8e78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _files:
-  - {fileID: 8300000, guid: 473a72450a1f0ad42ab1ec80886ef2d9, type: 3}
-  _source: {fileID: 213765734}
+  _persistent: 1
+  _audioMixerGroup: {fileID: 0}
+  _sfxFiles: []
+  _bgmFiles: []
+  _sfxObjectPrefab: {fileID: 0}
 --- !u!1 &265544783
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +690,8 @@ Transform:
   - {fileID: 901207051}
   - {fileID: 1112323909}
   - {fileID: 777061012}
+  - {fileID: 2121923409}
+  - {fileID: 1928355522}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &438034855
@@ -998,9 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72005b75f44ce743b62244619984513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _screenFader: {fileID: 0}
-  _startingView: {fileID: 0}
-  _loadingScreen: {fileID: 0}
+  _persistent: 1
   _views:
   - {fileID: 94856553}
   - {fileID: 2103962283}
@@ -1257,7 +1264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1112323908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc41cf7da197b6c4b8e434e473db6ac4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
+  _developerMenu: {fileID: 0}
   _developerMode: 0
 --- !u!4 &1112323909
 Transform:
@@ -1333,6 +1342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e686cfa6318644db887f847d08ab83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
   _tapProperty:
     _time: 0.7
     _maxDistance: 0.1
@@ -1477,6 +1487,53 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1928355521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1928355522}
+  - component: {fileID: 1928355523}
+  m_Layer: 0
+  m_Name: AdsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1928355522
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928355521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 371194711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1928355523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928355521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8802015094ead4eaedc5c5be3fb966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _persistent: 0
+  _adUnitId: 
+  _rerollView: {fileID: 2121923410}
 --- !u!1 &1952620895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,7 +1757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bb94a062380ea43a84ceaff8bbda80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _document: {fileID: 2103962284}
+  _onStart: 0
 --- !u!114 &2103962284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1718,6 +1775,69 @@ MonoBehaviour:
   sourceAsset: {fileID: 9197481963319205126, guid: 555f8cb9cbc1c1c42bece50e1fe923b8,
     type: 3}
   m_SortingOrder: 0
+--- !u!1 &2121923408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2121923409}
+  - component: {fileID: 2121923411}
+  - component: {fileID: 2121923410}
+  m_Layer: 0
+  m_Name: RerollView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2121923409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121923408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 371194711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2121923410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121923408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df95f481f63ccb3408a3436a20635754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onStart: 0
+--- !u!114 &2121923411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121923408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: de2cda360818e614390a71ab62fcf284, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: f5d9940530e073a44aa295ce710807df,
+    type: 3}
+  m_SortingOrder: 0
 --- !u!1001 &3088610374623661148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1731,6 +1851,11 @@ PrefabInstance:
       propertyPath: _diceLight
       value: 
       objectReference: {fileID: 438034856}
+    - target: {fileID: 402416822811297742, guid: bf8a900f9eaef7e4d8954b7d40cd6eea,
+        type: 3}
+      propertyPath: _rerollView
+      value: 
+      objectReference: {fileID: 2121923410}
     - target: {fileID: 4430101289614159849, guid: bf8a900f9eaef7e4d8954b7d40cd6eea,
         type: 3}
       propertyPath: m_Name

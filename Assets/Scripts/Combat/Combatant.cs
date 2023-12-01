@@ -264,7 +264,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
         _data.ActionsLeft = _data.Class.MaxActions;
         // _attackRange = GetComponentInChildren<Projector>(true);
         // _healRange = GetComponentInChildren<Projector>(true);
-
+        _target = CombatManager.Instance.NavigationTarget;
         foreach (Projector projector in GetComponentsInChildren<Projector>(true))
         {
             if (projector.name == "AttackRangeIndicator")

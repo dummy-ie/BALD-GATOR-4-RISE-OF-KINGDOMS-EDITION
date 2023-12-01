@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
+  _audioMixerGroup: {fileID: 24300002, guid: 7acd071ce86ec974d85eaac57c3bb17d, type: 2}
   _sfxFiles:
   - {fileID: 8300000, guid: 473a72450a1f0ad42ab1ec80886ef2d9, type: 3}
   _bgmFiles:
