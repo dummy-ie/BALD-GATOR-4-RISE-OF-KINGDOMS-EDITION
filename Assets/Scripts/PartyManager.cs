@@ -6,6 +6,10 @@ public class PartyManager : Singleton<PartyManager>
 {
     [SerializeField]
     private GameObject[] _partyMembers;
+    public GameObject[] PartyMembers
+    {
+        get { return _partyMembers; }
+    }
 
     public void SpawnPartyMembers(Transform _spawn)
     {

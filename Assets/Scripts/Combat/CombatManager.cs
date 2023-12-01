@@ -332,10 +332,12 @@ public class CombatManager : Singleton<CombatManager>
         if (CheckWin())
         {
             EndCombat();
+            DialogueManager.Instance.EndBattleState(true);
         }
         else if (CheckLoss())
         {
             EndCombat();
+            DialogueManager.Instance.EndBattleState(false);
         }
         else
         {

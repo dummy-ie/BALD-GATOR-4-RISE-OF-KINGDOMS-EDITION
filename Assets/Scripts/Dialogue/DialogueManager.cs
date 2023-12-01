@@ -16,6 +16,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private Dictionary<string, Ink.Runtime.Object> _variables;
     [SerializeField]InkFile _file;
 
+    private GameObject _characterReference;
     private Story _currentStory;
 
     private string _name;
@@ -164,7 +165,16 @@ public class DialogueManager : Singleton<DialogueManager>
         _view.AssignButtons();
         ShowView();
         _isDiceRolling = false;
-        _currentStory.variablesState["diceRoll"] = diceRoll;
+
+        if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS || InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
+        {
+            _currentStory.variablesState["diceRoll"] = InternalDice.Instance.Roll(out int i);
+        }
+        else
+        {
+            _currentStory.variablesState["diceRoll"] = diceRoll;
+        }
+
         ContinueDialogue();
     }
     
@@ -190,7 +200,19 @@ public class DialogueManager : Singleton<DialogueManager>
             _variables[name] = value;
         }
     }
-    
+
+    public void EndBattleState(bool battleWon)
+    {
+        AddButtons();
+        ShowView();
+        ViewManager.Instance.GetView<GameView>().Show();
+        _fightOngoing = false;
+
+        _currentStory.variablesState["battleWon"] = battleWon;
+
+        ContinueDialogue();
+    }
+
     private void StartBattleState()
     {
         RemoveButtons();
@@ -198,8 +220,17 @@ public class DialogueManager : Singleton<DialogueManager>
         ViewManager.Instance.GetView<GameView>().Hide();
         _fightOngoing = true;
 
-        StartCoroutine(CombatManager.Instance.StartCombat(CombatManager.Instance.Entities));
+        List<Entity> combatants = new List<Entity>();
+        foreach (GameObject combatant in PartyManager.Instance.PartyMembers)
+        {
+            combatants.Add(combatant.GetComponent<Entity>());
+        }
+        combatants.Add(_characterReference.GetComponent<Entity>());
+
+        StartCoroutine(CombatManager.Instance.StartCombat(combatants));
     }
+
+    
 
     private IEnumerator RollDice(string stat)
     {
