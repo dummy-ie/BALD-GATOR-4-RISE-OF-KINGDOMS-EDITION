@@ -47,12 +47,20 @@ public class AudioManager : Singleton<AudioManager>
         sfxSource.PlayOneShot(sfxSource.clip, 1);
     }
 
-    public void PlayBGM(EBGMIndex index, int channel) {
+    public void StartBGM(EBGMIndex index, int channel) {
         if (_sourceChannels[channel].clip == null || !(_sourceChannels[channel].clip.name == _bgmFiles[(int)index].name)) {
             this._sourceChannels[channel].clip = _bgmFiles[(int)index];
             this._sourceChannels[channel].Play();
             this._sourceChannels[channel].loop = true;
         }
+    }
+
+    public void PlayBGM(int channel) {
+        this._sourceChannels[channel].Play();
+    }
+
+    public void PauseBGM(int channel) {
+        this._sourceChannels[channel].Pause();
     }
 
     public void StopBGM() { 

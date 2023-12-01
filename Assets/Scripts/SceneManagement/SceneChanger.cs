@@ -25,10 +25,6 @@ public class SceneChanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (_sceneConnection == SceneConnection.ActiveConnection)
-        {
-            FindObjectOfType<PlayerController>().transform.position = _spawnPoint.position; // maybe store a player reference in the scriptableObject?
-        }
 
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         if (SceneConnection.ActiveConnection == _sceneConnection)
@@ -36,6 +32,10 @@ public class SceneChanger : MonoBehaviour
             Debug.Log("Spawning Party Members");
             PartyManager.Instance.SpawnPartyMembers(_spawnPoint);
         }
+        /*if (_sceneConnection == SceneConnection.ActiveConnection)
+        {
+            FindObjectOfType<PlayerController>().transform.position = _spawnPoint.position; // maybe store a player reference in the scriptableObject?
+        }*/
         /*AsyncOperationHandle handle = _sceneConnectionReference.LoadAssetAsync<SceneConnection>();
         handle.Completed += (AsyncOperationHandle handle) => {
             if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -73,9 +73,10 @@ public class SceneChanger : MonoBehaviour
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
             //SceneLoader.Instance.LoadScene(_targetSceneName, true);
-            AudioManager.Instance.PlayBGM(_nextSceneBGM, 0);
+            AudioManager.Instance.StartBGM(_nextSceneBGM, 0);
             AudioManager.Instance.PlaySFX(_playSFX);
-            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
+            if (_targetSceneReference != null)
+                SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }
 }

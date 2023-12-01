@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
-  _partyMembers:
+  _partyMemberPrefabs:
   - {fileID: 2924462628490143206, guid: 294d0c8ff8cecf24083deb7da1c04cad, type: 3}
   - {fileID: 5127473687111586920, guid: df47b87e9b1cb69409b6655f9dd623da, type: 3}
   - {fileID: 2605728468982992454, guid: a4917ba0e957b4447b6ed76e2d0e5595, type: 3}
   - {fileID: 6274004013106992913, guid: 53c8f0db5fd97634e972510cb0e7d78c, type: 3}
+  _partyMembers: []

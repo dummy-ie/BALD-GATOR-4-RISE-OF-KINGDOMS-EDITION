@@ -7,6 +7,7 @@ using UnityEngine.AddressableAssets;
 
 public class MainMenuView : View {
     [SerializeField] private AssetReference _nextSceneReference;
+    [SerializeField] private SceneConnection _sceneConnection;
     private UIDocument _document;
     private VisualElement _root;
     private Button _playButton;
@@ -19,7 +20,7 @@ public class MainMenuView : View {
         this._settingsButton = this._root.Q<Button>("SettingsButton");
         this._playButton.clicked += PlayButtonClicked;
         this._settingsButton.clicked += SettingsButtonClicked;
-        AudioManager.Instance.PlayBGM(EBGMIndex.MAIN_MENU, 0);
+        AudioManager.Instance.StartBGM(EBGMIndex.MAIN_MENU, 0);
     }
 
     public override void SetSortingOrder(int value) {
@@ -32,7 +33,8 @@ public class MainMenuView : View {
         //AudioManager.Instance.PlaySFX(ESFXIndex.MAJESTIC_SOUND);
         SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference);
         _playButton.clicked -= PlayButtonClicked;
-        AudioManager.Instance.PlayBGM(EBGMIndex.TOWN_1, 0);
+        AudioManager.Instance.StartBGM(EBGMIndex.TOWN_1, 0);
+        SceneConnection.ActiveConnection = _sceneConnection;
         //ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<GameView>());
     }
 

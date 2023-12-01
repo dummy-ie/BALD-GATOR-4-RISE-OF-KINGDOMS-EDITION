@@ -72,11 +72,6 @@ What's up?
     ->DONE
 ->END
 
-===function RollDice(stat)===
-Error
-
-===function StartQuest(id)===
-Error
 
 
 
