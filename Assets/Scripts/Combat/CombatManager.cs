@@ -166,6 +166,7 @@ public class CombatManager : Singleton<CombatManager>
         NavigationTarget.gameObject.SetActive(false);
         _currentTurn = null;
         _combatants.Clear();
+        Entities.Clear();
         AudioManager.Instance.PlayBGM(0);
         AudioManager.Instance.PauseBGM(1);
         ViewManager.Instance.GetView<CombatView>().ToggleHotbar();

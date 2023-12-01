@@ -7,13 +7,17 @@ public class PlayerInteract : MonoBehaviour
 {
     private GameView _gameView;
     private List<Button> _buttons = new(3);
+    public List<Button> Buttons
+    {
+        get { return _buttons; }
+    }
     // private List<DialogueClass> _nearbyDialogues = new();
 
     // Start is called before the first frame update
     void Start()
     {
         _gameView = ViewManager.Instance.GetView<GameView>();
-        _buttons = _gameView.GetComponent<UIDocument>().rootVisualElement.Q("InteractButtons").Query<Button>().ToList();
+        AssignButtons();
 
         if (_buttons.Count == 0)
             Debug.LogError("No Buttons Found! " + name);
@@ -93,5 +97,10 @@ public class PlayerInteract : MonoBehaviour
         // _nearbyDialogues.Remove(dialogue);
         // Debug.Log("Removed Dialogue " + collided.name);
         // Debug.Log("Count: " + _nearbyDialogues.Count);
+    }
+
+    public void AssignButtons()
+    {
+        _buttons = _gameView.GetComponent<UIDocument>().rootVisualElement.Q("InteractButtons").Query<Button>().ToList();
     }
 }

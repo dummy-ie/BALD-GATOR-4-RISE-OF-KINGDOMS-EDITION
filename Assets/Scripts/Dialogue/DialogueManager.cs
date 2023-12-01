@@ -6,6 +6,7 @@ using Ink.UnityIntegration;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using System.IO;
+using static UnityEngine.EventSystems.EventTrigger;
 
 //if a "Ink.Parsed" appears here just remove it
 public class DialogueManager : Singleton<DialogueManager>
@@ -192,8 +193,13 @@ public class DialogueManager : Singleton<DialogueManager>
     public void SetDiceRoll(bool diceRoll)
     {
         AddButtons();
-
+        CombatManager.Instance.DisableHighlight(CombatManager.Instance.CurrentSelected.GetComponent<Entity>());
+        CombatManager.Instance.CurrentSelected = null;
         _view.AssignButtons();
+        foreach (GameObject player in PartyManager.Instance.PartyMembers)
+        {
+            player.GetComponentInChildren<PlayerInteract>().AssignButtons();
+        } 
         ShowView();
         _isDiceRolling = false;
 
@@ -213,6 +219,10 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         Debug.Log("Ending Battle");
         yield return new WaitForSeconds(.5f);
+        foreach (GameObject player in PartyManager.Instance.PartyMembers)
+        {
+            player.GetComponentInChildren<PlayerInteract>().AssignButtons();
+        }
         AddButtons();
         ShowView();
         ViewManager.Instance.GetView<GameView>().Show();
@@ -362,6 +372,24 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _view.BackGround.visible = true;
         _view.BackGround.SetEnabled(true);
+    }
+
+
+    private void HidePInteractChoices()
+    {
+        foreach (Button button in CombatManager.Instance.CurrentSelected.GetComponentInChildren<PlayerInteract>().Buttons)
+        {
+            button.visible = false;
+            button.SetEnabled(false);
+        }
+    }
+    private void ShowPInteractChoices()
+    {
+        foreach (Button button in CombatManager.Instance.CurrentSelected.GetComponentInChildren<PlayerInteract>().Buttons)
+        {
+            button.visible = true;
+            button.SetEnabled(true);
+        }
     }
 
     // Start is called before the first frame update

@@ -55,7 +55,7 @@ public class DialogueView : View
         _choices.Clear();
         for (int i = 0; i < 4; i++)
         {
-            Debug.Log("Assigning Buttons : " + i);
+            //Debug.Log("Assigning Buttons : " + i);
             Button button = (Button)this._root.Q("Option" + (i + 1));
 
             _choices.Add(button);
