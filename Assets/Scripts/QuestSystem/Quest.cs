@@ -47,7 +47,7 @@ public class Quest {
         }
     }
 
-    private GameObject GetCurrentStepPrefab() {
+    public GameObject GetCurrentStepPrefab() {
         GameObject stepPrefab = null;
         if (CurrentStepExists()) {
             stepPrefab = _data.Steps[_currentStepIndex];

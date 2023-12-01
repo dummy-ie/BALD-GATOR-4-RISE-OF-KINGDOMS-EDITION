@@ -72,6 +72,12 @@ public class DialogueManager : Singleton<DialogueManager>
             QuestManager.Instance.OnStart(questId);
         });
 
+        _currentStory.BindExternalFunction("AdvanceQuest", (string questId) =>
+        {
+            QuestManager.Instance.GetQuest(questId);
+        });
+
+
         _currentStory.BindExternalFunction("FinishQuest", (string questId) =>
         {
             QuestManager.Instance.FinishQuest(questId);
@@ -154,6 +160,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _currentStory.UnbindExternalFunction("RollDice");
         _currentStory.UnbindExternalFunction("StartQuest");
+        _currentStory.UnbindExternalFunction("AdvanceQuest");
         _currentStory.UnbindExternalFunction("FinishQuest");
         _currentStory.UnbindExternalFunction("IncreaseStat");
         _currentStory.UnbindExternalFunction("Fight");
