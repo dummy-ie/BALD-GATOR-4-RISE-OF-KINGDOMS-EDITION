@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 856542316999075428}
   - component: {fileID: 6867644212868311521}
   - component: {fileID: 7268103046948406543}
-  - component: {fileID: 4151439204404903493}
   - component: {fileID: 149962510244354155}
   m_Layer: 0
   m_Name: TextPopup
@@ -173,27 +172,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 6867644212868311521}
   m_maskType: 0
---- !u!114 &4151439204404903493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6890336578124266132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04170d6506961c14381be20fcac64055, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteReference:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  billboardType: 0
-  lockX: 1
-  lockY: 0
-  lockZ: 0
 --- !u!114 &149962510244354155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,5 +185,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 7268103046948406543}
-  lifespan: 1.5
-  start: 0
+  _movement:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.008161823
+      outSlope: -0.008161823
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.26498425
+    - serializedVersion: 3
+      time: 1
+      value: 0.0063171387
+      inSlope: -3.0762298
+      outSlope: -3.0762298
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06367892
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Speed: 2
+  Lifespan: 2
+  Activate: 0

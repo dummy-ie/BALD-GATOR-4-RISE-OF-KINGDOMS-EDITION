@@ -32,37 +32,37 @@ public abstract class GestureReceiver : MonoBehaviour
     {
         if (GestureManager.Instance == null)
         {
-            Debug.LogError("Couldn't subscribe to any gestures. GestureManager is null!");
+            Debug.LogError("Couldn't subscribe to any gestures. GestureManager is null!", this);
             return;
         }
         if (_gestures.HasFlag(ReceiveGestures.Tap))
         {
-            Debug.Log("GestureManager subscribed to Tap.");
+            Debug.Log("GestureManager subscribed to Tap.", this);
             GestureManager.Instance.OnTap += OnTap;
         }
         if (_gestures.HasFlag(ReceiveGestures.Drag))
         {
-            Debug.Log("GestureManager subscribed to Drag.");
+            Debug.Log("GestureManager subscribed to Drag.", this);
             GestureManager.Instance.OnDrag += OnDrag;
         }
         if (_gestures.HasFlag(ReceiveGestures.Swipe))
         {
-            Debug.Log("GestureManager subscribed to Swipe.");
+            Debug.Log("GestureManager subscribed to Swipe.", this);
             GestureManager.Instance.OnSwipe += OnSwipe;
         }
         if (_gestures.HasFlag(ReceiveGestures.Pan))
         {
-            Debug.Log("GestureManager subscribed to Pan.");
+            Debug.Log("GestureManager subscribed to Pan.", this);
             GestureManager.Instance.OnPan += OnPan;
         }
         if (_gestures.HasFlag(ReceiveGestures.Spread))
         {
-            Debug.Log("GestureManager subscribed to Spread.");
+            Debug.Log("GestureManager subscribed to Spread.", this);
             GestureManager.Instance.OnSpread += OnSpread;
         }
         if (_gestures.HasFlag(ReceiveGestures.Rotate))
         {
-            Debug.Log("GestureManager subscribed to Rotate.");
+            Debug.Log("GestureManager subscribed to Rotate.", this);
             GestureManager.Instance.OnRotate += OnRotate;
         }
     }
@@ -71,7 +71,7 @@ public abstract class GestureReceiver : MonoBehaviour
     {
         if (GestureManager.Instance == null)
         {
-            Debug.LogError("Couldn't unsubscribe from any gestures. GestureManager is null!");
+            Debug.LogError("Couldn't unsubscribe from any gestures. GestureManager is null!", this);
             return;
         }
 

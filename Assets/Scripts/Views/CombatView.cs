@@ -118,6 +118,7 @@ public class CombatView : View
 
     private void AttackButtonClicked()
     {
+        Debug.Log("attack");
         CombatManager.Instance.AttackSelectedTarget();
     }
 
