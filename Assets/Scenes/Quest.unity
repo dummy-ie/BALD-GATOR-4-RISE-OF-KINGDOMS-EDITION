@@ -473,7 +473,7 @@ PrefabInstance:
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0000000037252907
+      value: 0.0000000037252907
       objectReference: {fileID: 0}
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
@@ -483,7 +483,7 @@ PrefabInstance:
     - target: {fileID: 2243371300022999596, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.16018224
+      value: 0.16018225
       objectReference: {fileID: 0}
     - target: {fileID: 3430886334741349101, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
@@ -1739,7 +1739,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950490703}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14798906, y: -0.37774235, z: 0.06129914, w: 0.91194975}
+  m_LocalRotation: {x: 0.14798908, y: -0.37774235, z: 0.06129914, w: 0.91194975}
   m_LocalPosition: {x: 7.8313217, y: 3.99, z: -3.5413184}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1855,16 +1855,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Quest Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3132212494097230343, guid: 23b25061dc9f13f4a8cdf3c6f0e6b6ff,
-        type: 3}
-      propertyPath: _labels.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3132212494097230343, guid: 23b25061dc9f13f4a8cdf3c6f0e6b6ff,
-        type: 3}
-      propertyPath: _labels.Array.data[0]
-      value: Quests
       objectReference: {fileID: 0}
     - target: {fileID: 7494310413976496621, guid: 23b25061dc9f13f4a8cdf3c6f0e6b6ff,
         type: 3}
