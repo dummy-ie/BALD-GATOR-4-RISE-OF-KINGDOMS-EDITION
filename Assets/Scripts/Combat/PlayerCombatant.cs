@@ -26,9 +26,17 @@ public class PlayerCombatant : Combatant
             {
                 if (CombatManager.Instance.CurrentSelected.TryGetComponent(out Entity e))
                 {
-                    if (e.Affiliation == Entity.AffiliationState.Ally && _nav != null && _nav.enabled && _nav.isOnNavMesh)
+                    if (e.Affiliation == Entity.AffiliationState.Ally 
+                    && _nav != null 
+                    && _nav.enabled 
+                    && _nav.isOnNavMesh 
+                    && CurrentCameraObject() != null)
                     {
                         _nav.SetDestination(CurrentCameraObject().transform.parent.transform.position);
+                    }
+                    else if (CurrentCameraObject() == null)
+                    {
+                        Debug.LogError("CurrentCameraObject returns null!");
                     }
                 }
                 // MoveToPath();

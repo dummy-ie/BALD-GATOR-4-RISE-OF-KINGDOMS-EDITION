@@ -215,7 +215,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
     public void OnTap(TapEventArgs args)
     {
         // Debug.Log("Tapped on " + args.HitObject.name + ".");
-        if (CombatManager.Instance.CurrentTurn != this)
+        if (CombatManager.Instance.CurrentTurn != this && ViewManager.Instance.GetView<CombatView>() != null)
             ViewManager.Instance.GetView<CombatView>().SetTargetData(this);
 
         GameObject currentCam = CurrentCameraObject();
