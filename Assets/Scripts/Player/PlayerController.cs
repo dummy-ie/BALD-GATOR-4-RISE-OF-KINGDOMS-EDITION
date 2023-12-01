@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _rigidbody;
     private GameView _gameView;
 
+    private float _sfxTicks = 0.0f;
+    private float _sfxTicksRestart = 0.5f;
     // Start is called before the first frame update
     private void Start()
     {
@@ -71,5 +73,16 @@ public class PlayerController : MonoBehaviour
         }
         else
             _isMoving = false;
+
+        if (_isMoving)
+        {
+            _sfxTicks += Time.deltaTime;
+            if (_sfxTicks >= _sfxTicksRestart)
+            {
+                _sfxTicks = 0.0f;
+                Debug.Log("SFX pls");
+                AudioManager.Instance.PlaySFX((ESFXIndex)Random.Range(0, 5));
+            }
+        }
     }
 }

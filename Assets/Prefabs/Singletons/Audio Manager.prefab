@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -179,6 +179,11 @@ MonoBehaviour:
   _persistent: 1
   _audioMixerGroup: {fileID: 24300002, guid: 7acd071ce86ec974d85eaac57c3bb17d, type: 2}
   _sfxFiles:
+  - {fileID: 8300000, guid: a17dda64df373b545a374406e459ec68, type: 3}
+  - {fileID: 8300000, guid: ad2cac8fd2742754abf2ef9e13f6d779, type: 3}
+  - {fileID: 8300000, guid: 6b15bbcd6009f254fb34d3e9c30bdbef, type: 3}
+  - {fileID: 8300000, guid: 0a78cc74ecd2c9e45ac320eee42f5602, type: 3}
+  - {fileID: 8300000, guid: 097124b6486a72a46a602aee7b64486e, type: 3}
   - {fileID: 8300000, guid: 473a72450a1f0ad42ab1ec80886ef2d9, type: 3}
   _bgmFiles:
   - {fileID: 8300000, guid: 606ff00678a633c4aaec0d2a5019a585, type: 3}
@@ -231,7 +236,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -359,7 +364,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -487,7 +492,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
