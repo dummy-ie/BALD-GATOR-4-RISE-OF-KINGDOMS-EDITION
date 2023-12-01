@@ -29,7 +29,7 @@ public abstract class QuestStep : MonoBehaviour
             SetStepState(stepState);
         }
     }
-    protected void FinishStep(int nextStepIndex) { 
+    public void FinishStep(int nextStepIndex) { 
         if (!_finished) {
             _finished = true;
             QuestManager.Instance.AdvanceQuest(_id, nextStepIndex, _canFinish);

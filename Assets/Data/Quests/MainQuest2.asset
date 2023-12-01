@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: MainQuest2
   _displayName: Venture through the Celestial Ascent
-  _prerequisites: []
-  _steps: []
+  _prerequisites:
+  - {fileID: 11400000, guid: ef510e13c2b4d74489948a7be89ed217, type: 2}
+  _steps:
+  - {fileID: 1547740038614121555, guid: 4b42a659423798742a28339ab60362b2, type: 3}
+  - {fileID: 1547740038614121555, guid: 9b772d7db53ed0d45af2e36060f1a577, type: 3}
+  - {fileID: 1547740038614121555, guid: 95c8a490add1d8040be9e33a8cc4ec76, type: 3}
