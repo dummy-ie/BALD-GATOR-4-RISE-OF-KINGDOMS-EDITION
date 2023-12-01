@@ -5781,6 +5781,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  _sceneConnection: {fileID: 0}
 --- !u!114 &293413494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7198,6 +7199,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Davitt Blair
       objectReference: {fileID: 0}
+    - target: {fileID: 6274004013106992913, guid: 53c8f0db5fd97634e972510cb0e7d78c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8096081217893209411, guid: 53c8f0db5fd97634e972510cb0e7d78c,
         type: 3}
       propertyPath: m_Enabled
@@ -7624,7 +7630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572906405}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16018222, y: -0.000000025470568, z: 0.0000000041333035, w: 0.9870875}
+  m_LocalRotation: {x: 0.16018222, y: 0.000000025470568, z: -0.0000000041333035, w: 0.9870875}
   m_LocalPosition: {x: 28.44, y: 5.85, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11079,6 +11085,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aru Nephylia
       objectReference: {fileID: 0}
+    - target: {fileID: 5127473687111586920, guid: df47b87e9b1cb69409b6655f9dd623da,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6331103932216008417, guid: df47b87e9b1cb69409b6655f9dd623da,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -11787,6 +11798,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghaim'r Colguy
       objectReference: {fileID: 0}
+    - target: {fileID: 2924462628490143206, guid: 294d0c8ff8cecf24083deb7da1c04cad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3585827839981339841, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_StoppingDistance
@@ -11830,12 +11846,12 @@ PrefabInstance:
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000025470568
+      value: 0.000000025470568
       objectReference: {fileID: 0}
     - target: {fileID: 8157834703366313800, guid: 294d0c8ff8cecf24083deb7da1c04cad,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000041333035
+      value: -0.0000000041333035
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14571,6 +14587,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Kazte
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605728468982992454, guid: a4917ba0e957b4447b6ed76e2d0e5595,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3651406208448978198, guid: a4917ba0e957b4447b6ed76e2d0e5595,
         type: 3}
