@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExploreFooshaStep : QuestStep
+public class DestroyNestStep : QuestStep
 {
-    bool _enteredTavern = false;
-
-    // Update is called once per frame
     void Update()
     {
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
 
-public abstract class QuestStep : MonoBehaviour
+public class QuestStep : MonoBehaviour
 {
     private bool _finished = false;
     private string _id;
@@ -26,7 +26,7 @@ public abstract class QuestStep : MonoBehaviour
         _stepIndex = stepIndex;
         if (stepState != null && stepState != "")
         {
-            SetStepState(stepState);
+            //SetStepState(stepState);
         }
     }
     public void FinishStep(int nextStepIndex) { 
@@ -41,5 +41,5 @@ public abstract class QuestStep : MonoBehaviour
         QuestManager.Instance.OnQuestStepStateChange(_id, _stepIndex, new QuestStepState(newState));
     }
 
-    protected abstract void SetStepState(string state = "");
+    //protected abstract void SetStepState(string state = "");
 }

@@ -15,4 +15,8 @@ MonoBehaviour:
   _id: RogueSubquest
   _displayName: Lies Foretold
   _prerequisites: []
-  _steps: []
+  _steps:
+  - {fileID: 6720917512076942785, guid: 9d433ebc1677b6846a64a756d4950f1e, type: 3}
+  - {fileID: 6720917512076942785, guid: bc5140ae8f4820349aafdfe97bc19411, type: 3}
+  - {fileID: 6720917512076942785, guid: 3c49dae252b8ae54c96ad559a81c4951, type: 3}
+  - {fileID: 6720917512076942785, guid: 8ccef896f305bc74b87a04f2b6f5cc35, type: 3}

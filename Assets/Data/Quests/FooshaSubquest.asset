@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7892225abda478240bf75068542e701c, type: 3}
   m_Name: FooshaSubquest
   m_EditorClassIdentifier: 
-  _id: FooshaSubquest 1
+  _id: FooshaSubquest
   _displayName: Pest Control
   _prerequisites: []
-  _steps: []
+  _steps:
+  - {fileID: 6720917512076942785, guid: 9120196200cfb914db864641d70437ab, type: 3}
+  - {fileID: 6720917512076942785, guid: a971d9559197250458aa44923179cd0f, type: 3}
+  - {fileID: 6720917512076942785, guid: c446206a6e99698498713d739dd96b9b, type: 3}
+  - {fileID: 6720917512076942785, guid: 6302687d473b77541ac8689b306aec23, type: 3}
+  - {fileID: 6720917512076942785, guid: 28096ba7d0db3db49aa50fa40cf6cbd9, type: 3}

@@ -15,4 +15,9 @@ MonoBehaviour:
   _id: SyrupSubquest
   _displayName: Save the Maid
   _prerequisites: []
-  _steps: []
+  _steps:
+  - {fileID: 6720917512076942785, guid: 2c2147ea991a3ff41af250e7b362c1df, type: 3}
+  - {fileID: 6720917512076942785, guid: f126074860008fb4f8235f60fcbb62ec, type: 3}
+  - {fileID: 6720917512076942785, guid: 482503e7b3a7a3c42bc76b9d54dc0843, type: 3}
+  - {fileID: 6720917512076942785, guid: 00d053f047b45e54ab834a410d0a6c2c, type: 3}
+  - {fileID: 6720917512076942785, guid: 49c7192e1e42ee54d8f37bb7ffccbf09, type: 3}
