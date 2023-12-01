@@ -20,7 +20,10 @@ public class PlayerCombatant : Combatant
             // if this is the selected player
             if (CurrentCameraObject() == _cam.gameObject)
             {
-                CombatManager.Instance.NavigationTarget.position = transform.position;
+                if (CombatManager.Instance.NavigationTarget != null)
+                    CombatManager.Instance.NavigationTarget.position = transform.position;
+                else
+                    Debug.LogError("Navigation Target is null!");
             }
             else if (CombatManager.Instance.CurrentSelected != null)
             {

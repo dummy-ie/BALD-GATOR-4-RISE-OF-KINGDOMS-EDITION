@@ -12,7 +12,7 @@ public class TalkShiphandStep : QuestStep
 
     }
 
-    protected override void SetStepState(string state = "") { 
+    //protected override void SetStepState(string state = "") { 
 
-    }
+    //}
 }

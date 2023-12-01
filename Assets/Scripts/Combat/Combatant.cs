@@ -264,6 +264,15 @@ public abstract class Combatant : MonoBehaviour, ITappable
     // Start is called before the first frame update
     private void Start()
     {
+        if (_target == null)
+        {
+            _target = GameObject.Find("Navigation Target").transform;
+            if (_target == null)
+                Debug.LogError("Couldn't find the navigation target!");
+        }
+        
+            // _target = FindObjectsByType<AnimatedHighlight>(FindObjectsSortMode.InstanceID).First(o => o.name == "Navigation Target").transform;
+
         ResetPaths();
         _data.ActionsLeft = _data.Class.MaxActions;
         // _attackRange = GetComponentInChildren<Projector>(true);
