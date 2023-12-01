@@ -37,12 +37,12 @@ public class SceneLoader : Singleton<SceneLoader>
 
     private IEnumerator FadeAndLoadAsyncScene()
     {
-        Debug.Log("yea");
+        // Debug.Log("yea");
         yield return ScreenFader.Instance.FadeOut();
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(_sceneName);
         while (!asyncLoad.isDone)
         {
-            Debug.Log("grr");
+            // Debug.Log("grr");
             yield return null;
         }
         yield return ScreenFader.Instance.FadeIn();
