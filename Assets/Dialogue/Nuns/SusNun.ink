@@ -17,6 +17,9 @@ VAR name = "susNun"
 
 =Dialogue1
 Who goes there!? Ah, it's just a wanderer… What do you need?
+    +[Um, Nothing]
+        ~Leave(true)
+        ->DONE
     * {pastorTalkedTo} [Inspect nun (INTELLIGENCE)]
         ~RollDice("INT")
         ->INTCheck

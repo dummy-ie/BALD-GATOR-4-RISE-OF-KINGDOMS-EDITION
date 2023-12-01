@@ -48,18 +48,19 @@ public class DialogueManager : Singleton<DialogueManager>
 
             Ink.Runtime.Object value = tempStory.variablesState.GetVariableWithName(name);
             _variables.Add(name, value);
-            Debug.Log("Initialized Variable " + name + " : " + value);
+            //Debug.Log("Initialized Variable " + name + " : " + value);
         }
     }
 
 
-    public void EnterDialogue(TextAsset inkJSON)
+    public void EnterDialogue(GameObject character)
     {
         
         Debug.Log("Entering Dialogue");
         AddButtons();
 
-        _currentStory = new Story(inkJSON.text);
+        _characterReference = character;
+        _currentStory = new Story(character.GetComponentInChildren<DialogueHolder>().InkDialogue.text);
 
         _name = (string)_currentStory.variablesState["name"];
 
@@ -215,9 +216,10 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void StartBattleState()
     {
-        RemoveButtons();
-        HideView();
-        ViewManager.Instance.GetView<GameView>().Hide();
+        //RemoveButtons();
+        //HideView();
+ 
+        //ViewManager.Instance.GetView<GameView>().Hide();
         _fightOngoing = true;
 
         List<Entity> combatants = new List<Entity>();
@@ -234,6 +236,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private IEnumerator RollDice(string stat)
     {
+        HideView();
         SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
 
         RemoveButtons();
@@ -256,6 +259,7 @@ public class DialogueManager : Singleton<DialogueManager>
                 case "WIS": statValue = player.Class.Wisdom; break;
             }
         }
+        Debug.Log("STATSASTARTASTASTAST : " + statValue);
         FindObjectOfType<ExternalDice>().DifficultyClass = statValue;
     }
 

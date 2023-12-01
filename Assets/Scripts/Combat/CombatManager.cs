@@ -89,7 +89,7 @@ public class CombatManager : Singleton<CombatManager>
 
         // wait a little bit before starting 
         // possibly insert animation
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         // ViewManager.Instance.HideRecentView();
         ViewManager.Instance.Show<CombatView>();
         ViewManager.Instance.GetView<CombatView>().ToggleHotbar();

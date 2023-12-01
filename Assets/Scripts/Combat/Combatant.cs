@@ -315,7 +315,7 @@ public abstract class Combatant : MonoBehaviour, ITappable
 
         // if the current active vcam is this one
         GameObject currentCam = CurrentCameraObject();
-        if (currentCam == _cam.gameObject)
+        if (currentCam != null && currentCam == _cam.gameObject)
         {
             CombatManager.Instance.CurrentSelected = gameObject;
             highlight.gameObject.SetActive(true);
