@@ -6,10 +6,19 @@ EXTERNAL FinishQuest(id)
 EXTERNAL IncreaseStat(stat)
 EXTERNAL Fight()
 EXTERNAL Leave(returnable)
+
 VAR name = "usopp"
 
-{usoppCanTalkTo: ->Character.Dialogue1 | ->NoTalk}
-===Character===
+
+->VarCheck
+
+===VarCheck===
+{
+    -!usoppCanTalkTo: ->NoTalk
+    -else: ->Base.Dialogue1
+}
+
+===Base===
 
 =Dialogue1
 “Welcome to Merry Island, traveler.”
@@ -29,6 +38,7 @@ VAR name = "usopp"
         ->Dialogue3
     + [Thanks. I’ll kill you.]
         ~Fight()
+        ->Fighting
         ->DONE
 
 
@@ -53,16 +63,17 @@ Loading Dice Roll...
 
 =CHAResult
 {
-    -diceRoll: [Success] “You wink seductively at the ship hand. You grab his hand and pull him closer and then you whisper sweet endings into his ear. His face blushes a wonderful shade of red. You give him a quick peck on their neck, emotionally stunning them frozen. Now they’re distracted. You make your way down the dock. The ship hand’s stuttering was music to your ears as you made your escape from the ship.”
-    -else: [Fail] “You wink seductively at the ship hand. You see yourself as a beautiful and delicate flower dancing in the sunlight while giggling with joy. The ship hand’s heart beats as they walk closer. You reach out a hand to them and they graciously accept. With a graceful turn you land on their arms, your eyes locked with theirs. The ship hand pulls you closer, hearts fluttering. A kiss, and another one for good measure. Claps ring around the crowd, your public display of affection has touched many hearts. That is what would have happened if you were more charismatic than a pile of poo. No, they just simply responded with ‘I’m married.’”
-}
-        +[Proceed]
-{
     -diceRoll: 
+        [Success] “You wink seductively at the ship hand. You grab his hand and pull him closer and then you whisper sweet endings into his ear. His face blushes a wonderful shade of red. You give him a quick peck on their neck, emotionally stunning them frozen. Now they’re distracted. You make your way down the dock. The ship hand’s stuttering was music to your ears as you made your escape from the ship.”
         ~Leave(false)
         ->DONE
-    - else: ->Dialogue3
+    -else: 
+        [Fail] “You wink seductively at the ship hand. You see yourself as a beautiful and delicate flower dancing in the sunlight while giggling with joy. The ship hand’s heart beats as they walk closer. You reach out a hand to them and they graciously accept. With a graceful turn you land on their arms, your eyes locked with theirs. The ship hand pulls you closer, hearts fluttering. A kiss, and another one for good measure. Claps ring around the crowd, your public display of affection has touched many hearts. That is what would have happened if you were more charismatic than a pile of poo. No, they just simply responded with ‘I’m married.’”
+        ->Dialogue3
 }
+        +[Proceed]
+        ->DONE
+
 
 =DEXCheck
 Loading Dice Roll...
@@ -70,22 +81,36 @@ Loading Dice Roll...
 
 =DEXResult
 {
-    -diceRoll: [Success] “You break into an all-out sprint. Pushing through angry and surprised crowds, you weave your escape route from the ship through the docks. Performing impressive and timely dodges over and under the cargos on the ports. The angry yells of the ship hand slowly died down as you gain significant distance from the ship you ran away from. You have successfully got off the ship without paying.”
-    -else: [Fail] “You stared blankly at the ship hand before you shifted into a mighty sprint. The victorious feeling of getting away without paying surges through you. You are ecstatic, energized even! That is what you would have felt like if you didn’t slip on the humorously placed banana peel the moment you tried to run.”
-}
-    +[Proceed]
-{
     -diceRoll: 
+        [Success] “You break into an all-out sprint. Pushing through angry and surprised crowds, you weave your escape route from the ship through the docks. Performing impressive and timely dodges over and under the cargos on the ports. The angry yells of the ship hand slowly died down as you gain significant distance from the ship you ran away from. You have successfully got off the ship without paying.”
         ~Leave(false)
         ->DONE
-    - else: ->Dialogue3
+    -else: 
+        [Fail] “You stared blankly at the ship hand before you shifted into a mighty sprint. The victorious feeling of getting away without paying surges through you. You are ecstatic, energized even! That is what you would have felt like if you didn’t slip on the humorously placed banana peel the moment you tried to run.”
+        ->Dialogue3
 }
+    +[Proceed]
+    ->DONE
+
 
 =Dialogue4
 “Heh, right you are. Run along now… hey wait a minute~...”
     + [*Sucker*]
         ~Leave(false)
         ->DONE
+
+
+=Fighting
+"Fighting in progress..."
+->FightResult
+
+=FightResult
+{
+    -battleWon: You win!
+    -else: ded
+}
+    +[Proceed]
+
 
 ->END
 
@@ -95,17 +120,4 @@ What?
         ~Leave(false)
         ->DONE
 ->END
-
-===function RollDice(stat)===
-Error
-
-===function StartQuest(id)===
-Error
-
-===function Fight()===
-Error
-
-===function Leave(returnable)===
-Error
-
 

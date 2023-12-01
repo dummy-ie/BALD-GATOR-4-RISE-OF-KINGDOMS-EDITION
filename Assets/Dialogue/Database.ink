@@ -6,6 +6,15 @@ VAR battleWon = false
 //VAR totoyHasRolled = false
 
 
+//QUESTSTUFF
+//MAINQUEST1
+
+VAR inquireBartender = false
+
+//FOOSHAVILLAGEQUEST
+
+VAR acceptHayseedQuest = false
+
 //USOPP
 VAR usoppCanTalkTo = true
 VAR usoppCheckCHA = 10
@@ -48,3 +57,8 @@ VAR susNunHasRolledINT = false
 //PASTOR
 VAR pastorCanTalkTo = true
 VAR pastorTalkedTo = false
+
+//SUNNY
+
+VAR sunnyCanTalkTo = true
+VAR sunnyTalkedTo = false
