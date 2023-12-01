@@ -105,7 +105,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 1
   billboardType: 1
-  lockX: 1
+  lockX: 0
   lockY: 0
   lockZ: 1
 --- !u!114 &3090938522700680288
@@ -564,11 +564,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 7
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

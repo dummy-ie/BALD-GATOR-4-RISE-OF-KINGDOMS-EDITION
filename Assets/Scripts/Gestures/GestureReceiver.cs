@@ -15,21 +15,21 @@ public abstract class GestureReceiver : MonoBehaviour
         Pan = 1 << 3,
         Spread = 1 << 4,
         Rotate = 1 << 5
-    }
+    } 
 
     [Header("Gesture Manager Subscriptions")]
     [SerializeField]
     protected ReceiveGestures _gestures;
 
-    public virtual void OnTap(object sender, TapEventArgs e) { }
-    public virtual void OnDrag(object sender, DragEventArgs e) { }
-    public virtual void OnSwipe(object sender, SwipeEventArgs e) { }
-    public virtual void OnPan(object sender, PanEventArgs e) { }
-    public virtual void OnSpread(object sender, SpreadEventArgs e) { }
-    public virtual void OnRotate(object sender, RotateEventArgs e) { }
+    public virtual void OnTap(object sender, TapEventArgs args) { }
+    public virtual void OnDrag(object sender, DragEventArgs args) { }
+    public virtual void OnSwipe(object sender, SwipeEventArgs args) { }
+    public virtual void OnPan(object sender, PanEventArgs args) { }
+    public virtual void OnSpread(object sender, SpreadEventArgs args) { }
+    public virtual void OnRotate(object sender, RotateEventArgs args) { }
 
     protected void SubscribeToGestures()
-    {
+    {        
         if (GestureManager.Instance == null)
         {
             Debug.LogError("Couldn't subscribe to any gestures. GestureManager is null!", this);

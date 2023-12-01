@@ -79,6 +79,7 @@ public class CombatView : View
     public void ToggleHotbar()
     {
         _hotbar.ToggleInClassList(_animationClass);
+        _switchCameraButton.ToggleInClassList(_animationClass);
     }
 
     public void SetCurrentTurnData(Combatant combatant)
@@ -125,7 +126,7 @@ public class CombatView : View
 
     private void SwitchCameraButtonClicked()
     {
-        // CombatManager.Instance
+        CombatManager.Instance.SwitchCameraToOverhead();
     }
 
     private void AttackButtonClicked()

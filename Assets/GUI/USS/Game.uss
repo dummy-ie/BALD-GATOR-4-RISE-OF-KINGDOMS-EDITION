@@ -2,17 +2,6 @@
     --unity-image: scale-to-fit;
 }
 
-#CurrentQuestContainer {
-    position: absolute;
-    margin-left: 5%;
-}
-
-#ButtonContainer {
-    align-items: flex-start;
-    flex-direction: row-reverse;
-    margin-right: 6%;
-}
-
 .main-button {
     align-items: flex-start;
     background-color: rgba(0, 0, 0, 0);
@@ -39,6 +28,48 @@
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
+}
+
+.interact-button {
+    width: 80%;
+    height: 15%;
+    font-size: 35px;
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -unity-font-style: normal;
+    -unity-font: url('project://database/Assets/Graphics/Fonts/SHERWOOD.TTF?fileID=12800000&guid=bcf5374f1954c4c4aa403195ac7da4af&type=3#SHERWOOD');
+    -unity-font-definition: initial;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.64);
+    color: rgb(255, 255, 255);
+}
+
+.interact-button:hover {
+    background-color: rgba(94, 94, 94, 0.64);
+    border-left-color: rgb(94, 94, 94);
+    border-right-color: rgb(94, 94, 94);
+    border-top-color: rgb(94, 94, 94);
+    border-bottom-color: rgb(94, 94, 94);
+}
+
+#TrackedQuestContainer {
+    position: absolute;
+    margin-left: 5%;
+}
+
+#ButtonContainer {
+    align-items: flex-start;
+    flex-direction: row-reverse;
+    margin-right: 6%;
 }
 
 #MenuIcon {
@@ -96,37 +127,6 @@
     align-self: flex-end;
     justify-content: flex-start;
     position: absolute;
-}
-
-.interact-button {
-    width: 80%;
-    height: 15%;
-    font-size: 35px;
-    -unity-text-align: middle-center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    -unity-font-style: normal;
-    -unity-font: url('project://database/Assets/Graphics/Fonts/SHERWOOD.TTF?fileID=12800000&guid=bcf5374f1954c4c4aa403195ac7da4af&type=3#SHERWOOD');
-    -unity-font-definition: initial;
-    border-top-left-radius: 22px;
-    border-bottom-left-radius: 22px;
-    border-top-width: 10px;
-    border-bottom-width: 10px;
-    border-left-width: 10px;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.64);
-    color: rgb(255, 255, 255);
-}
-
-.interact-button:hover {
-    background-color: rgba(94, 94, 94, 0.64);
-    border-left-color: rgb(94, 94, 94);
-    border-right-color: rgb(94, 94, 94);
-    border-top-color: rgb(94, 94, 94);
-    border-bottom-color: rgb(94, 94, 94);
 }
 
 #Interact1 {

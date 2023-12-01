@@ -26,6 +26,8 @@ public class GameView : View
     private Button _quitButton;
     private Label _questName;
     private Label _stepName;
+
+    private ListView _questList;
     public override void Initialize()
     {
         _document = GetComponent<UIDocument>();
@@ -72,6 +74,8 @@ public class GameView : View
         _resumeButton.clicked += OnResumeButtonClicked;
         _quitButton.clicked += OnQuitButtonClicked;
         CombatManager.Instance.CurrentSelected = GameObject.FindGameObjectWithTag("Player");
+
+        _questList = _root.Q<ListView>("QuestList");
     }
 
     private void ShowJoystick(PointerDownEvent _ev)
@@ -139,13 +143,17 @@ public class GameView : View
         // Debug.Log("Input: " + input);
     }
 
+    
+
     void OnMenuButtonClicked() {
         _menuContainer.style.display = StyleKeyword.Initial;
         BaldGatorManager.Instance.PauseGame();
     
     }
-    void OnQuestButtonClicked() { 
-        //BaldGatorManager.Instance.PauseGame();
+    void OnQuestButtonClicked() {
+        Debug.Log("Quest Button Clicked");
+        ViewManager.Instance.GetView<QuestView>().Show();
+        Hide();
     }
 
     void OnResumeButtonClicked() {
@@ -160,16 +168,15 @@ public class GameView : View
 
     private void Update()
     {
-        /*if (QuestManager.Instance.TrackedQuest != null)
+        if (QuestManager.Instance.TrackedQuest != null)
         {
             _questName.text = QuestManager.Instance.TrackedQuest.Data.DisplayName;
-            _stepName.text = QuestManager.Instance.TrackedQuest.Data.DisplayName;
+            _stepName.text = QuestManager.Instance.TrackedQuest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepName;
         }
         else
         {
             _questName.text = "";
             _stepName.text = "";
-        }*/
-
+        }
     }
 }
