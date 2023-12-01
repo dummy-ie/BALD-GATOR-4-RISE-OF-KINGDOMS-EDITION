@@ -101,6 +101,10 @@ public class DialogueManager : Singleton<DialogueManager>
         });
 
         _currentStory.BindExternalFunction("Fight", Fight);
+        _currentStory.BindExternalFunction("Kill", () =>
+        {
+            Destroy(_characterReference);
+        });
         _currentStory.BindExternalFunction("Leave", (bool returnable) =>
         {
             Leave(returnable);
@@ -137,6 +141,7 @@ public class DialogueManager : Singleton<DialogueManager>
         _currentStory.UnbindExternalFunction("FinishQuest");
         _currentStory.UnbindExternalFunction("IncreaseStat");
         _currentStory.UnbindExternalFunction("Fight");
+        _currentStory.UnbindExternalFunction("Kill");
         _currentStory.UnbindExternalFunction("Leave");
 
         _view.Text.text = "";
@@ -159,25 +164,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     
 
-    public void SetDiceRoll(bool diceRoll)
-    {
-        AddButtons();
-
-        _view.AssignButtons();
-        ShowView();
-        _isDiceRolling = false;
-
-        if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS || InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
-        {
-            _currentStory.variablesState["diceRoll"] = InternalDice.Instance.Roll(out int i);
-        }
-        else
-        {
-            _currentStory.variablesState["diceRoll"] = diceRoll;
-        }
-
-        ContinueDialogue();
-    }
+    
     
     public void SetOutcome(int index)
     {
@@ -202,8 +189,30 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    public void EndBattleState(bool battleWon)
+    public void SetDiceRoll(bool diceRoll)
     {
+        AddButtons();
+
+        _view.AssignButtons();
+        ShowView();
+        _isDiceRolling = false;
+
+        if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS || InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
+        {
+            _currentStory.variablesState["diceRoll"] = InternalDice.Instance.Roll(out int i);
+        }
+        else
+        {
+            _currentStory.variablesState["diceRoll"] = diceRoll;
+        }
+
+        ContinueDialogue();
+    }
+
+    public IEnumerator EndBattleState(bool battleWon)
+    {
+        Debug.Log("Ending Battle");
+        yield return new WaitForSeconds(.5f);
         AddButtons();
         ShowView();
         ViewManager.Instance.GetView<GameView>().Show();
@@ -214,8 +223,10 @@ public class DialogueManager : Singleton<DialogueManager>
         ContinueDialogue();
     }
 
-    private void StartBattleState()
+    private IEnumerator StartBattleState()
     {
+        Debug.Log("Starting battle");
+        yield return new WaitForSeconds(.5f);
         RemoveButtons();
         HideView();
 
@@ -258,7 +269,6 @@ public class DialogueManager : Singleton<DialogueManager>
                 case "WIS": statValue = player.Class.Wisdom; break;
             }
         }
-        Debug.Log("STATSASTARTASTASTAST : " + statValue);
         FindObjectOfType<ExternalDice>().DifficultyClass = statValue;
     }
 
@@ -316,7 +326,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private void Fight()
     {
         //StartCoroutine(ExitDialogue());
-        StartBattleState();
+        StartCoroutine(StartBattleState());
     }
 
     private void Leave(bool returnable)

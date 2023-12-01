@@ -98,7 +98,7 @@ public class CombatManager : Singleton<CombatManager>
         AudioManager.Instance.StartBGM(EBGMIndex.BATTLE, 1);
         AudioManager.Instance.PauseBGM(0);
         ViewManager.Instance.GetView<GameView>().Hide();
-        ViewManager.Instance.GetView<DialogueView>().Hide();
+        //ViewManager.Instance.GetView<DialogueView>().Hide();
         ViewManager.Instance.Show<CombatView>();
         ViewManager.Instance.GetView<CombatView>().ToggleHotbar();
 
@@ -342,14 +342,16 @@ public class CombatManager : Singleton<CombatManager>
         if (CheckWin())
         {
             Debug.Log("Win");
+            StartCoroutine(DialogueManager.Instance.EndBattleState(true));
             EndCombat();
-            DialogueManager.Instance.EndBattleState(true);
+            
         }
         else if (CheckLoss())
         {
             Debug.Log("Loss");
+            StartCoroutine(DialogueManager.Instance.EndBattleState(false));
             EndCombat();
-            DialogueManager.Instance.EndBattleState(false);
+            
             SceneLoader.Instance.LoadScene(SceneManager.GetActiveScene().name);
         }
         else

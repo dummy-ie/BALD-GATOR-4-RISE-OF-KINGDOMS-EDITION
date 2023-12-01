@@ -1,17 +1,23 @@
 ﻿INCLUDE ../Database.ink
 
 EXTERNAL RollDice(stat)
-EXTERNAL StartQuest(id)
 EXTERNAL Fight()
+EXTERNAL Kill()
 EXTERNAL Leave(returnable)
 
 VAR name = "swarmNest"
 
-{swarmNestCanTalkTo: ->Character.Dialogue1 | ->NoTalk}
-===Character===
+->VarCheck
+===VarCheck===
+{   
+    -acceptHayseedQuest: ->Base.Dialogue1 
+    -else: ->NoTalk
+}
+
+===Base===
 
 =Dialogue1
-“Few feet away from you, you spot an odd structure that appears to be made of mud and some other unidentifiable material. You hear sounds of shuffling and squeaking coming from the holes on the structure. You quickly realize that this is the nest of the swarm, the source of the pest problem you’re tasked to deal with.”
+Few feet away from you, you spot an odd structure that appears to be made of mud and some other unidentifiable material. You hear sounds of shuffling and squeaking coming from the holes on the structure. You quickly realize that this is the nest of the swarm, the source of the pest problem you’re tasked to deal with.
 
     + [Destroy it stealthily. (DEXTERITY)]
         ~ RollDice("DEX")
@@ -24,7 +30,7 @@ VAR name = "swarmNest"
 You approach the nest, intending to smash it into pieces. However, your not-so subtle approach roused the swarm within the nest into action. You have woken the swarm.
     + [Damn]
         ~Fight()
-        ->DONE
+        ->Fighting
 
 =DEXCheck
 Loading Dice Roll...
@@ -39,10 +45,35 @@ Loading Dice Roll...
 {
     -diceRoll: 
         ~hayseedCanTalkTo = true 
-        ~swarmNestDefeated = true 
+        ~Kill()
         ~Leave(false)
+        ->DONE
         
-    -else: Fight()
+    -else: 
+        ~Fight()
+        ->Fighting
+}
+
+
+=Fighting
+"Fighting in progress..."
+->FightResult
+
+=FightResult
+{
+    -battleWon: You win!
+    -else: ded
+}
+    +[Proceed]
+{
+    -battleWon: 
+        ~swarmNestDefeated = true
+        ~Leave(false)
+        ~Kill()
+        ->DONE
+    -else: 
+        ~Leave(false)
+        ->DONE
 }
 
 ->END

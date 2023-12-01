@@ -1,8 +1,6 @@
 ﻿INCLUDE ../Database.ink
 
 EXTERNAL RollDice(stat)
-EXTERNAL StartQuest(id)
-EXTERNAL FinishQuest(id)
 EXTERNAL IncreaseStat(stat)
 EXTERNAL Fight()
 EXTERNAL Leave(returnable)
@@ -24,8 +22,10 @@ VAR name = "hayseed"
 “Traveler! I am in need of dire assistance! Our fields are being ravaged by these godforsaken pests and if this continues, we’ll all die of hunger!”
 
     + [I’ll help you with these pests.]
+        ~acceptHayseedQuest = true
         ->Dialogue2
     + [Ok, what’s in it for me?]
+        ~acceptHayseedQuest = true
         ->Dialogue2
     + [Not my problem.]
         ~Leave(true)

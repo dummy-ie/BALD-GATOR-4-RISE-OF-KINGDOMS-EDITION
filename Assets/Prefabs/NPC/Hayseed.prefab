@@ -818,7 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c3ed4f3af3f194eba4a5004bc09804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inkDialogue: {fileID: 0}
+  _inkDialogue: {fileID: 4900000, guid: f3db804be37dfcd49a3cb60bc02d5067, type: 3}
 --- !u!1 &6931983956521841211
 GameObject:
   m_ObjectHideFlags: 0
