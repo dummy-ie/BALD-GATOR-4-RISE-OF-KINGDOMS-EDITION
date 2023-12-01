@@ -157,4 +157,19 @@ public class GameView : View
         BaldGatorManager.Instance.ResumeGame();
         SceneLoader.Instance.LoadMainMenu();
     }
+
+    private void Update()
+    {
+        if (QuestManager.Instance.TrackedQuest != null)
+        {
+            _questName.text = QuestManager.Instance.TrackedQuest.Data.DisplayName;
+            _stepName.text = QuestManager.Instance.TrackedQuest.Data.DisplayName;
+        }
+        else
+        {
+            _questName.text = "";
+            _stepName.text = "";
+        }
+
+    }
 }
