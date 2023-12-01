@@ -10,6 +10,9 @@ public class TextPopup : MonoBehaviour
     public TextMeshPro Text { get { return _text; } }
 
     [SerializeField]
+    private ParticleSystem _particleSystem;
+
+    [SerializeField]
     private AnimationCurve _movement;
     private bool _fadingOut = false;
     public float Speed = 1f;
@@ -20,6 +23,9 @@ public class TextPopup : MonoBehaviour
     {
         _text.text = text;
         _text.color = color;
+        ParticleSystem.MainModule main = _particleSystem.main;
+        main.startColor = color;
+        //_particleSystem.main.startColor = color;
     }
 
     private IEnumerator FadeOut()
