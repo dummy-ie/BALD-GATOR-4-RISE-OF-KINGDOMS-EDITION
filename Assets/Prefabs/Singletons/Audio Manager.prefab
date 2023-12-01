@@ -182,6 +182,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 473a72450a1f0ad42ab1ec80886ef2d9, type: 3}
   _bgmFiles:
   - {fileID: 8300000, guid: 606ff00678a633c4aaec0d2a5019a585, type: 3}
+  - {fileID: 8300000, guid: 910dc2a39f3c5b44b8f06597a6ce9707, type: 3}
+  - {fileID: 8300000, guid: b87658404ddb29e48a85307c922cde40, type: 3}
+  - {fileID: 8300000, guid: 3f992bcdd312aac4697fd1c2a981994a, type: 3}
   _sfxObjectPrefab: {fileID: 5433767996564200545, guid: 15c64a3dd951d7c4f9ab79d99c5b6fc4,
     type: 3}
 --- !u!1 &7192897403045972620

@@ -20368,6 +20368,7 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   _spawnPoint: {fileID: 4451811657139996894}
+  _nextSceneBGM: 1
 --- !u!65 &8734017339329322483
 BoxCollider:
   m_ObjectHideFlags: 0

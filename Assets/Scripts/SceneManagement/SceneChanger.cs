@@ -15,6 +15,8 @@ public class SceneChanger : MonoBehaviour
     private string _targetSceneName;
     [SerializeField]
     private Transform _spawnPoint;
+    [SerializeField]
+    private EBGMIndex _nextSceneBGM;
 
     //private SceneConnection _sceneConnection;
 
@@ -50,6 +52,7 @@ public class SceneChanger : MonoBehaviour
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
             //SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            //AudioManager.Instance.PlayBGM(_nextSceneBGM, 0);
             SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }
@@ -63,6 +66,7 @@ public class SceneChanger : MonoBehaviour
             //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
             //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
             //SceneLoader.Instance.LoadScene(_targetSceneName, true);
+            AudioManager.Instance.PlayBGM(_nextSceneBGM, 0);
             SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }

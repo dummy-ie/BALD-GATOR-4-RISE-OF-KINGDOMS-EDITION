@@ -46,9 +46,11 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     public void PlayBGM(EBGMIndex index, int channel) {
-        this._sourceChannels[channel].clip = _bgmFiles[(int)index];
-        this._sourceChannels[channel].Play();
-        this._sourceChannels[channel].loop = true;
+        if (_sourceChannels[channel].clip == null || !(_sourceChannels[channel].clip.name == _bgmFiles[(int)index].name)) {
+            this._sourceChannels[channel].clip = _bgmFiles[(int)index];
+            this._sourceChannels[channel].Play();
+            this._sourceChannels[channel].loop = true;
+        }
     }
 
     public void StopBGM() { 

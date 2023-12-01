@@ -29,9 +29,10 @@ public class MainMenuView : View {
 
     public void PlayButtonClicked() {
         Debug.Log("Clicked Play Button");
-        AudioManager.Instance.PlaySFX(ESFXIndex.MAJESTIC_SOUND);
+        //AudioManager.Instance.PlaySFX(ESFXIndex.MAJESTIC_SOUND);
         SceneLoader.Instance.LoadSceneWithFade(_nextSceneReference);
         _playButton.clicked -= PlayButtonClicked;
+        AudioManager.Instance.PlayBGM(EBGMIndex.TOWN_1, 0);
         //ViewManager.Instance.Show(ViewManager.Instance.GetComponentInChildren<GameView>());
     }
 
@@ -41,6 +42,6 @@ public class MainMenuView : View {
     }
 
     private void OnDisable() {
-        AudioManager.Instance.StopBGM();
+        //AudioManager.Instance.StopBGM();
     }
 }
