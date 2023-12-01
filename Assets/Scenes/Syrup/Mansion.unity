@@ -11221,7 +11221,7 @@ GameObject:
   - component: {fileID: 1285906111}
   - component: {fileID: 1285906110}
   m_Layer: 0
-  m_Name: Mansion - Lobby
+  m_Name: Rogue - Mansion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11276,9 +11276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157d59bae8e7ab24d87c189819e28957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneConnection: {fileID: 11400000, guid: 07fd744ca90a12a4ba25a69fb8656d73, type: 2}
+  _sceneConnection: {fileID: 11400000, guid: 5f08761cddd1d864aa04c3584a3fb2a3, type: 2}
   _targetSceneReference:
-    m_AssetGUID: 5d5d12eebc7be754a8331bc8bc603ac3
+    m_AssetGUID: 82f706ba00827714c9856e33e875c971
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
