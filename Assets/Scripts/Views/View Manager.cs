@@ -9,7 +9,7 @@ public class ViewManager : Singleton<ViewManager> {
     //private View _startingView;
 
     [SerializeField]
-    private View[] _views = Array.Empty<View>();
+    private View[] _views;
 
     [SerializeField]
     public Stack<View> _currentViews = new();

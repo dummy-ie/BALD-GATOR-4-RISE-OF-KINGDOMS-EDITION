@@ -25,12 +25,14 @@ public class DialogueManager : Singleton<DialogueManager>
     }
 
     private bool _isDialoguePlaying;
-    private bool _isDiceRolling;
     public bool IsDialoguePlaying
     {
-        get { return _isDialoguePlaying;}
-        set { _isDialoguePlaying = value;}
+        get { return _isDialoguePlaying; }
+        set { _isDialoguePlaying = value; }
     }
+
+    private bool _isDiceRolling;
+    private bool _fightOngoing;
 
     void InitializeVariables()
     {
@@ -71,12 +73,6 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             QuestManager.Instance.OnStart(questId);
         });
-
-        _currentStory.BindExternalFunction("AdvanceQuest", (string questId) =>
-        {
-            QuestManager.Instance.GetQuest(questId);
-        });
-
 
         _currentStory.BindExternalFunction("FinishQuest", (string questId) =>
         {
@@ -122,31 +118,7 @@ public class DialogueManager : Singleton<DialogueManager>
         
     }
 
-    IEnumerator RollDice(string stat)
-    {
-        SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
-
-        RemoveButtons();
-        _isDiceRolling = true;
-        yield return new WaitForSeconds(.5f);
-
-        _currentStory.variablesState[_name + "HasRolled" + stat] = false;
-        
-        Entity player = CombatManager.Instance.CurrentSelected.GetComponent<Entity>();
-        int statValue = 20;
-        if(player != null) {
-            switch (stat)
-            {
-                case "CHA": statValue = player.Class.Charisma; break;
-                case "STR": statValue = player.Class.Strength; break;
-                case "INT": statValue = player.Class.Intelligence; break;
-                case "DEX": statValue = player.Class.Dexterity; break;
-                case "CON": statValue = player.Class.Constitution; break;
-                case "WIS": statValue = player.Class.Wisdom; break;
-            }
-        }
-        FindObjectOfType<ExternalDice>().DifficultyClass = statValue;
-    }
+   
 
     public IEnumerator ExitDialogue(){
 
@@ -160,7 +132,6 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _currentStory.UnbindExternalFunction("RollDice");
         _currentStory.UnbindExternalFunction("StartQuest");
-        _currentStory.UnbindExternalFunction("AdvanceQuest");
         _currentStory.UnbindExternalFunction("FinishQuest");
         _currentStory.UnbindExternalFunction("IncreaseStat");
         _currentStory.UnbindExternalFunction("Fight");
@@ -172,7 +143,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void ContinueDialogue()
     {
-        if (_currentStory.canContinue && !_isDiceRolling)
+        if (_currentStory.canContinue && !_isDiceRolling && !_fightOngoing)
         {
             _view.Text.text = _currentStory.Continue();
 
@@ -184,13 +155,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    void VariableChanged(string name, Ink.Runtime.Object value)
-    {
-        if (_variables.ContainsKey(name))
-        {
-            _variables[name] = value;
-        }
-    }
+    
 
     public void SetDiceRoll(bool diceRoll)
     {
@@ -201,6 +166,66 @@ public class DialogueManager : Singleton<DialogueManager>
         _isDiceRolling = false;
         _currentStory.variablesState["diceRoll"] = diceRoll;
         ContinueDialogue();
+    }
+    
+    public void SetOutcome(int index)
+    {
+        _currentStory.ChooseChoiceIndex(index);
+    }
+
+    public bool GetBoolInkVar(string varName)
+    {
+        return (bool)_currentStory.variablesState[varName];
+    }
+
+    public int GetIntInkVar(string varName)
+    {
+        return (int)_currentStory.variablesState[varName];
+    }
+
+    private void VariableChanged(string name, Ink.Runtime.Object value)
+    {
+        if (_variables.ContainsKey(name))
+        {
+            _variables[name] = value;
+        }
+    }
+    
+    private void StartBattleState()
+    {
+        RemoveButtons();
+        HideView();
+        ViewManager.Instance.GetView<GameView>().Hide();
+        _fightOngoing = true;
+
+        StartCoroutine(CombatManager.Instance.StartCombat(CombatManager.Instance.Entities));
+    }
+
+    private IEnumerator RollDice(string stat)
+    {
+        SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
+
+        RemoveButtons();
+        _isDiceRolling = true;
+        yield return new WaitForSeconds(.5f);
+
+        _currentStory.variablesState[_name + "HasRolled" + stat] = false;
+
+        Entity player = CombatManager.Instance.CurrentSelected.GetComponent<Entity>();
+        int statValue = 20;
+        if (player != null)
+        {
+            switch (stat)
+            {
+                case "CHA": statValue = player.Class.Charisma; break;
+                case "STR": statValue = player.Class.Strength; break;
+                case "INT": statValue = player.Class.Intelligence; break;
+                case "DEX": statValue = player.Class.Dexterity; break;
+                case "CON": statValue = player.Class.Constitution; break;
+                case "WIS": statValue = player.Class.Wisdom; break;
+            }
+        }
+        FindObjectOfType<ExternalDice>().DifficultyClass = statValue;
     }
 
     private void SetButtons()
@@ -216,19 +241,14 @@ public class DialogueManager : Singleton<DialogueManager>
         int index = 0;
         foreach (Choice choice in currentChoices)
         {
-            
+
             _view.Choices[index].SetEnabled(true);
             _view.Choices[index].visible = true;
             _view.Choices[index].text = choice.text;
             index++;
         }
 
-        
-    }
-    
-    public void SetOutcome(int index)
-    {
-        _currentStory.ChooseChoiceIndex(index);
+
     }
 
     private void Choice1()
@@ -261,8 +281,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private void Fight()
     {
-        StartCoroutine(ExitDialogue());
-        StartCoroutine(CombatManager.Instance.StartCombat(CombatManager.Instance.Entities));
+        //StartCoroutine(ExitDialogue());
+        StartBattleState();
     }
 
     private void Leave(bool returnable)

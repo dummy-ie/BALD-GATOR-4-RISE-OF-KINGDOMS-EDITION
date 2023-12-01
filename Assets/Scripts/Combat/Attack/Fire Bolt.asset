@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41ab9d004c357540b7196dd9b39e892, type: 3}
   m_Name: Fire Bolt
   m_EditorClassIdentifier: 
-  _hitModifier: 8
-  _damageModifier: 0
+  _hitModifier: 1000000
+  _damageModifier: 1000000
   _range: 30
   _numDice: 2
   _diceFaces: 10

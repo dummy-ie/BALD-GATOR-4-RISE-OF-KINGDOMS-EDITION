@@ -19,5 +19,4 @@
         <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TargetName" />
         <ui:ProgressBar value="22" name="TargetHealthBar" />
     </ui:VisualElement>
-    <ui:VisualElement name="EntitySelector" picking-mode="Ignore" style="flex-grow: 1;" />
 </ui:UXML>
