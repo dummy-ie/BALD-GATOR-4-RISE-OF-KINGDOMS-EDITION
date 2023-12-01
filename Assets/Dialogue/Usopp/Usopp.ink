@@ -57,7 +57,12 @@ Loading Dice Roll...
     -else: [Fail] “You wink seductively at the ship hand. You see yourself as a beautiful and delicate flower dancing in the sunlight while giggling with joy. The ship hand’s heart beats as they walk closer. You reach out a hand to them and they graciously accept. With a graceful turn you land on their arms, your eyes locked with theirs. The ship hand pulls you closer, hearts fluttering. A kiss, and another one for good measure. Claps ring around the crowd, your public display of affection has touched many hearts. That is what would have happened if you were more charismatic than a pile of poo. No, they just simply responded with ‘I’m married.’”
 }
         +[Proceed]
-{diceRoll: Leave(false)|->Dialogue3}
+{
+    -diceRoll: 
+        ~Leave(false)
+        ->DONE
+    - else: ->Dialogue3
+}
 
 =DEXCheck
 Loading Dice Roll...
@@ -69,7 +74,12 @@ Loading Dice Roll...
     -else: [Fail] “You stared blankly at the ship hand before you shifted into a mighty sprint. The victorious feeling of getting away without paying surges through you. You are ecstatic, energized even! That is what you would have felt like if you didn’t slip on the humorously placed banana peel the moment you tried to run.”
 }
     +[Proceed]
-{diceRoll: Leave(false)|->Dialogue3}
+{
+    -diceRoll: 
+        ~Leave(false)
+        ->DONE
+    - else: ->Dialogue3
+}
 
 =Dialogue4
 “Heh, right you are. Run along now… hey wait a minute~...”
