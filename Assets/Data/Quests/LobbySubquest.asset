@@ -15,4 +15,8 @@ MonoBehaviour:
   _id: LobbySubquest
   _displayName: Appease Holy Knight Gabriel
   _prerequisites: []
-  _steps: []
+  _steps:
+  - {fileID: 5708007346207085570, guid: d9931dabd94f8704fbbabc964acb4cd0, type: 3}
+  - {fileID: 5708007346207085570, guid: bcf6112ed2198a646a2f40e5252f10f7, type: 3}
+  - {fileID: 5708007346207085570, guid: 87ae5cbd801a5fe4c83be3379af34a4f, type: 3}
+  - {fileID: 5708007346207085570, guid: 5e1615d7e072afa4bb2a0e4ed76c0e3a, type: 3}

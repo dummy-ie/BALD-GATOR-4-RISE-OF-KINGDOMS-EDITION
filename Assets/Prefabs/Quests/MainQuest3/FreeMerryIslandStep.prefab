@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8288521932101512977}
+  - component: {fileID: -17634065357913543}
   m_Layer: 0
   m_Name: FreeMerryIslandStep
   m_TagString: Untagged
@@ -31,3 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-17634065357913543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653437074899689297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138d2d34c907b69479c0f9088c79fcbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stepName: Free the people of Merry Island
+  _stepDescription: "The citizens rejoice in your heroic act, and history will remember
+    your party as the ones to end the terror of Enel\u2019s judgment."
+  _canFinish: 1
