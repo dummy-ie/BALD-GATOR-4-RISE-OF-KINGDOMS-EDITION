@@ -71,6 +71,7 @@ public class GameView : View
         _questButton.clicked += OnQuestButtonClicked;
         _resumeButton.clicked += OnResumeButtonClicked;
         _quitButton.clicked += OnQuitButtonClicked;
+        CombatManager.Instance.CurrentSelected = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void ShowJoystick(PointerDownEvent _ev)
