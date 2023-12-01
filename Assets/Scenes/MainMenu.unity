@@ -414,6 +414,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  _sceneConnection: {fileID: 11400000, guid: cc02ae87c5f166649981ac6f6262e4fb, type: 2}
 --- !u!114 &583008338
 MonoBehaviour:
   m_ObjectHideFlags: 0

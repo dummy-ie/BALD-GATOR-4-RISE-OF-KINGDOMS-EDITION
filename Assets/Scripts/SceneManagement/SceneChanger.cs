@@ -33,6 +33,7 @@ public class SceneChanger : MonoBehaviour
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         if (SceneConnection.ActiveConnection == _sceneConnection)
         {
+            Debug.Log("Spawning Party Members");
             PartyManager.Instance.SpawnPartyMembers(_spawnPoint);
         }
         /*AsyncOperationHandle handle = _sceneConnectionReference.LoadAssetAsync<SceneConnection>();
@@ -74,7 +75,8 @@ public class SceneChanger : MonoBehaviour
             //SceneLoader.Instance.LoadScene(_targetSceneName, true);
             AudioManager.Instance.PlayBGM(_nextSceneBGM, 0);
             AudioManager.Instance.PlaySFX(_playSFX);
-            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
+            if (_targetSceneReference != null)
+                SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
         }
     }
 }

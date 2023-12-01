@@ -32,9 +32,9 @@ public class DialogueView : View
     public override void Initialize()
     {
             this._document = GetComponent<UIDocument>();
-            this._root = _document.rootVisualElement;
-            this.BG = _root.Q("BG");
-            this.text = (Label)_root.Q("Text");
+            this._root = this._document.rootVisualElement;
+            this.BG = this._root.Q<VisualElement>("BG");
+            this.text = (Label)this._root.Q("Text");
             AssignButtons();
 
             _choices[0].visible = false;

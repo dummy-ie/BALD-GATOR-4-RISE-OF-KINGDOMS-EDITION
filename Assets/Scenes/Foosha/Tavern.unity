@@ -13355,6 +13355,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3430886334741349101, guid: eebebc9976392354783805b8f045ccc8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8090975337278366732, guid: eebebc9976392354783805b8f045ccc8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21374,7 +21379,7 @@ PrefabInstance:
     - target: {fileID: 3806730356660209926, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.43
+      value: -6.192
       objectReference: {fileID: 0}
     - target: {fileID: 3806730356660209926, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
         type: 3}
@@ -21416,11 +21421,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3809306348044949456, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809306348044949456, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3809306348044949456, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5665357712632315555, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
         type: 3}
       propertyPath: _inkDialogue
       value: 
       objectReference: {fileID: 4900000, guid: b018e1d86cf5eb44f83222f966de2e0e, type: 3}
+    - target: {fileID: 8089063945335458691, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
+        type: 3}
+      propertyPath: _spriteReference.m_AssetGUID
+      value: d3666d0a36e4e154db0389aae31c5397
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089063945335458691, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
+        type: 3}
+      propertyPath: _spriteReference.m_SubObjectName
+      value: sprBartender
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089063945335458691, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
+        type: 3}
+      propertyPath: _spriteReference.m_SubObjectType
+      value: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089063945335458691, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
+        type: 3}
+      propertyPath: _spriteReference.m_EditorAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618242949865461812, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618242949865461812, guid: c96f2cc97c23e4442bbf3c11c47d23cd,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

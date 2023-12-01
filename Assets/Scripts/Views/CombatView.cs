@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class CombatView : View
     private VisualElement _hotbar;
     private ProgressBar _currentTurnHealthBar;
     private Label _combatantName;
+
+    private Button _switchCameraButton;
 
     private const string _animationClass = "animation-hide";
 
@@ -45,6 +48,10 @@ public class CombatView : View
         _hotbar = _root.Q<VisualElement>("Hotbar");
         _currentTurnHealthBar = _root.Q<ProgressBar>("CurrentTurnHealthBar");
         _combatantName = _root.Q<Label>("CombatantName");
+
+        // switch cam button
+        _switchCameraButton = _root.Q<Button>("SwitchCameraButton");
+        _switchCameraButton.clicked += SwitchCameraButtonClicked;
     }
 
     public void SetTargetData(Combatant combatant = null)
@@ -116,9 +123,14 @@ public class CombatView : View
         }
     }
 
+    private void SwitchCameraButtonClicked()
+    {
+        // CombatManager.Instance
+    }
+
     private void AttackButtonClicked()
     {
-        Debug.Log("attack");
+        // Debug.Log("attack");
         CombatManager.Instance.AttackSelectedTarget();
     }
 

@@ -69,6 +69,31 @@ Label {
     opacity: 0;
 }
 
+#SwitchCameraButton {
+    background-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/camera.png?fileID=2800000&guid=d0a23c88ec766db478b7c77e0e57f570&type=3#camera');
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-font-definition: initial;
+    -unity-font: url('project://database/Assets/Addons/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=e650c541e52266241b98203f0ae770d1&type=3#NotInter-Regular');
+    -unity-text-align: middle-center;
+    color: rgba(27, 27, 27, 0);
+    align-self: flex-start;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -unity-font-style: normal;
+    -unity-text-outline-width: 0;
+}
+
 #Hotbar {
     flex-direction: row;
     position: absolute;

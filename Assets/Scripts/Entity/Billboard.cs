@@ -28,6 +28,11 @@ public class Billboard : MonoBehaviour
 
     private void Start()
     {
+        if (_spriteReference == null)
+        {
+            Debug.LogError("Sprite Reference is null");
+            return;
+        }
         AsyncOperationHandle handle = _spriteReference.LoadAssetAsync<Sprite>();
         handle.Completed += (AsyncOperationHandle handle) =>
         {
@@ -35,7 +40,9 @@ public class Billboard : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = (Sprite)_spriteReference.Asset;
 
             else
+            {
                 Debug.LogError($"{_spriteReference.RuntimeKey}.");
+            }
         };
     }
 
