@@ -32,7 +32,7 @@ public class QuestPoint : MonoBehaviour
     private void StateChange(Quest quest) {
         if (quest.Data.ID.Equals(_id))
         {
-            //Debug.Log("yea");
+            // Debug.Log("yea");
             _currentState = quest.State;
             //questIcon.SetState(currentQuestState, startPoint, finishPoint);
         }

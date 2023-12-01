@@ -66,7 +66,7 @@ public class QuestManager : Singleton<QuestManager>
     private bool CheckRequirementsMet(Quest quest) {
         bool meetsRequirements = true;
         foreach (QuestData prerequisiteQuest in quest.Data.Prerequisites) {
-                //Debug.Log("yea");
+                // Debug.Log("yea");
             if (GetQuest(prerequisiteQuest.ID).State != EQuestState.FINISHED) {
                 meetsRequirements = false;
             }
