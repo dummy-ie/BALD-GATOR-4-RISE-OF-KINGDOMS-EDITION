@@ -333,14 +333,16 @@ public class CombatManager : Singleton<CombatManager>
         // check if won or lost 
         if (CheckWin())
         {
+            Debug.Log("Win");
             EndCombat();
             DialogueManager.Instance.EndBattleState(true);
         }
         else if (CheckLoss())
         {
+            Debug.Log("Loss");
             EndCombat();
             DialogueManager.Instance.EndBattleState(false);
-            SceneLoader.Instance.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneLoader.Instance.LoadScene(SceneManager.GetActiveScene().name);
         }
         else
         {

@@ -33,7 +33,7 @@ public class DialogueView : View
     {
             this._document = GetComponent<UIDocument>();
             this._root = this._document.rootVisualElement;
-            this.BG = (VisualElement)this._root.Q("BG");
+            this.BG = this._root.Q<VisualElement>("BG");
             this.text = (Label)this._root.Q("Text");
             AssignButtons();
 
