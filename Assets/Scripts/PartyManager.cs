@@ -11,7 +11,7 @@ public class PartyManager : Singleton<PartyManager>
     {
         foreach (GameObject partyMember in _partyMembers)
         {
-            Instantiate(partyMember, _spawn);
+            Instantiate(partyMember, _spawn.position, _spawn.rotation);
         }
     }
 }
