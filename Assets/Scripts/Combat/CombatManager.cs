@@ -188,6 +188,8 @@ public class CombatManager : Singleton<CombatManager>
         // press the button to recenter to the current turn.
         if (_currentTurn != null)
             _overHeadCam.transform.position = _currentTurn.transform.position + (Vector3.up * 5f);
+        else if (CurrentSelected != null)
+            _overHeadCam.transform.position = CurrentSelected.transform.position + (Vector3.up * 5f);
 
         if (!_overHeadCam.gameObject.activeSelf)
         {
