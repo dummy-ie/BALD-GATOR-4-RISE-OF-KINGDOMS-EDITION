@@ -66,7 +66,7 @@ public class ViewManager : Singleton<ViewManager> {
     }
     public void InitializeViews()
     {
-        _views = FindObjectsOfType<View>();
+        _views = FindObjectsOfType<View>(true);
         for (int i = 0; i < this._views.Length; i++)
         {
             _views[i].Initialize();
