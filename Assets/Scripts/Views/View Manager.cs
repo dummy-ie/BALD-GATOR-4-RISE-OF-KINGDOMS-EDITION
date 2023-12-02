@@ -79,6 +79,7 @@ public class ViewManager : Singleton<ViewManager> {
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
     void OnDisable() {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -93,6 +94,16 @@ public class ViewManager : Singleton<ViewManager> {
                 _views[i].Show();
             }
         }
+    }
+
+    //debug
+    private void Update()
+    {
+        ViewCount();
+    }
+    public void ViewCount()
+    {
+        Debug.Log("VIEWS : " + _views.Length);
     }
 }
 
