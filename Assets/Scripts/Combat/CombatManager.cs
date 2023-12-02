@@ -185,14 +185,14 @@ public class CombatManager : Singleton<CombatManager>
             return;
         }
 
-
-        // if the camera is active, press the button to recenter to the current turn.
-        if (_overHeadCam.gameObject.activeSelf)
-        {
+        // press the button to recenter to the current turn.
+        if (_currentTurn != null)
             _overHeadCam.transform.position = _currentTurn.transform.position + (Vector3.up * 5f);
-        }
-        else // otherwise just activate it
+
+        if (!_overHeadCam.gameObject.activeSelf)
+        {
             _overHeadCam.gameObject.SetActive(!_overHeadCam.gameObject.activeSelf);
+        }
     }
 
     public void AttackSelectedTarget()
