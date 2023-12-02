@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UIElements;
 
 public class QuestView : View {
@@ -9,6 +10,7 @@ public class QuestView : View {
     VisualElement _root;
     ScrollView _questList;
     Button _closeButton;
+    Label _stepName;
     Label _description;
 
     private void StartQuest(string id) {
@@ -26,11 +28,14 @@ public class QuestView : View {
         _document = GetComponent<UIDocument>();
         _root = _document.rootVisualElement;
         _questList = _root.Q<ScrollView>("QuestList");
+        _stepName = _root.Q<Label>("StepName");
         _description = _root.Q<Label>("Description");
         _closeButton = _root.Q<Button>("CloseButton");
         _closeButton.clicked += () =>
         {
             ViewManager.Instance.GetView<GameView>().Show();
+            Camera.main.gameObject.GetComponent<PostProcessVolume>().enabled = false;
+            BaldGatorManager.Instance.ResumeGame();
             Hide();
         };
     }
@@ -40,12 +45,14 @@ public class QuestView : View {
         foreach (Quest quest in QuestManager.Instance.CurrentQuests)
         {
             Debug.Log(quest.Data.ID);
+            _stepName.text = QuestManager.Instance.TrackedQuest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepName;
             _description.text = QuestManager.Instance.TrackedQuest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepDescription;
             Button newButton = new Button();
             newButton.text = quest.Data.DisplayName;
             newButton.AddToClassList("quest-button");
             newButton.clicked += () =>
             {
+                _stepName.text = quest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepName;
                 _description.text = quest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepDescription;
                 QuestManager.Instance.TrackedQuest = quest;
             };
