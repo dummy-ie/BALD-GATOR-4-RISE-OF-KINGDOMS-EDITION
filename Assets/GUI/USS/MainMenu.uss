@@ -33,6 +33,11 @@
     -unity-font-definition: url('project://database/Assets/Graphics/Fonts/SHERWOOD%20SDF.asset?fileID=11400000&guid=58e8b063ebfc17348ac960bed4e251b2&type=2#SHERWOOD SDF');
 }
 
+#PlayButton:hover {
+    font-size: 130%;
+    color: rgb(111, 87, 52);
+}
+
 #SettingsButton {
     justify-content: flex-start;
     align-items: auto;
@@ -55,6 +60,10 @@
     border-bottom-width: 10px;
     border-left-width: 10px;
     background-color: rgb(197, 142, 59);
+}
+
+#SettingsButton:hover {
+    background-color: rgb(111, 87, 52);
 }
 
 #SettingsIcon {

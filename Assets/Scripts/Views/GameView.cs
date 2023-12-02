@@ -27,8 +27,7 @@ public class GameView : View
     private Button _quitButton;
     private Label _questName;
     private Label _stepName;
-
-    private ListView _questList;
+    private Image _trackedQuestIcon;
     public override void Initialize()
     {
         _document = GetComponent<UIDocument>();
@@ -70,13 +69,12 @@ public class GameView : View
         _menuContainer = _root.Q<VisualElement>("MenuContainer");
         _resumeButton = _root.Q<Button>("ResumeButton");
         _quitButton = _root.Q<Button>("QuitButton");
+        _trackedQuestIcon = _root.Q<Image>("TrackedQuestIcon");
         _menuButton.clicked += OnMenuButtonClicked;
         _questButton.clicked += OnQuestButtonClicked;
         _resumeButton.clicked += OnResumeButtonClicked;
         _quitButton.clicked += OnQuitButtonClicked;
         CombatManager.Instance.CurrentSelected = GameObject.FindGameObjectWithTag("Player");
-
-        _questList = _root.Q<ListView>("QuestList");
     }
 
     private void ShowJoystick(PointerDownEvent _ev)
@@ -176,11 +174,13 @@ public class GameView : View
     {
         if (QuestManager.Instance.TrackedQuest != null)
         {
+            _trackedQuestIcon.style.visibility = Visibility.Visible;
             _questName.text = QuestManager.Instance.TrackedQuest.Data.DisplayName;
             _stepName.text = QuestManager.Instance.TrackedQuest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepName;
         }
         else
         {
+            _trackedQuestIcon.style.visibility = Visibility.Hidden;
             _questName.text = "";
             _stepName.text = "";
         }
