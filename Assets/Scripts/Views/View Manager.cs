@@ -86,10 +86,10 @@ public class ViewManager : Singleton<ViewManager> {
     }
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void OnDisable() {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        //SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
 }
