@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Heading:
     m_Definition: 2
     m_VelocityFilterStrength: 0
-    m_Bias: 0
+    m_Bias: -180
   m_RecenterToTargetHeading:
     m_enabled: 1
     m_WaitTime: 0
