@@ -1,8 +1,5 @@
 ﻿INCLUDE ../Database.ink
 
-EXTERNAL RollDice(stat)
-EXTERNAL StartQuest(id)
-EXTERNAL Fight()
 EXTERNAL Leave(returnable)
 
 VAR name = "bartender"

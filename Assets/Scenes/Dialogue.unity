@@ -538,6 +538,7 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+  _sceneConnection: {fileID: 0}
 --- !u!114 &543235430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c3ed4f3af3f194eba4a5004bc09804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inkDialogue: {fileID: 4900000, guid: d0d7dc39eb86abd47af5bddc425d872a, type: 3}
+  _inkDialogue: {fileID: 4900000, guid: f3db804be37dfcd49a3cb60bc02d5067, type: 3}
 --- !u!4 &724354712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2788861145003977841, guid: c457f76a0776d87468fd31e3907fb7a9,

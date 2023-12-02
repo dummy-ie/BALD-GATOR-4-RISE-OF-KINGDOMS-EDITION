@@ -14,6 +14,7 @@ VAR inquireBartender = false
 //FOOSHAVILLAGEQUEST
 
 VAR acceptHayseedQuest = false
+VAR swarmNestDefeated = false
 
 //USOPP
 VAR usoppCanTalkTo = true
@@ -32,7 +33,6 @@ VAR hayseedCanTalkTo = true
 
 //SWARM NEST
 VAR swarmNestCanTalkTo = true
-VAR swarmNestDefeated = false
 
 VAR swarmNestDEX = 10
 VAR swarmNestHasRolledDEX = false

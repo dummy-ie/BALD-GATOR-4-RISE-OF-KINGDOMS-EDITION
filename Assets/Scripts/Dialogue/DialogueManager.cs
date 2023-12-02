@@ -6,6 +6,7 @@ using Ink.UnityIntegration;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using System.IO;
+using static UnityEngine.EventSystems.EventTrigger;
 
 //if a "Ink.Parsed" appears here just remove it
 public class DialogueManager : Singleton<DialogueManager>
@@ -17,6 +18,7 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField]InkFile _file;
 
     private GameObject _characterReference;
+    private GameObject _characterReference2;
     private Story _currentStory;
 
     private string _name;
@@ -101,6 +103,10 @@ public class DialogueManager : Singleton<DialogueManager>
         });
 
         _currentStory.BindExternalFunction("Fight", Fight);
+        _currentStory.BindExternalFunction("Kill", () =>
+        {
+            Destroy(_characterReference);
+        });
         _currentStory.BindExternalFunction("Leave", (bool returnable) =>
         {
             Leave(returnable);
@@ -137,6 +143,7 @@ public class DialogueManager : Singleton<DialogueManager>
         _currentStory.UnbindExternalFunction("FinishQuest");
         _currentStory.UnbindExternalFunction("IncreaseStat");
         _currentStory.UnbindExternalFunction("Fight");
+        _currentStory.UnbindExternalFunction("Kill");
         _currentStory.UnbindExternalFunction("Leave");
 
         _view.Text.text = "";
@@ -159,25 +166,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     
 
-    public void SetDiceRoll(bool diceRoll)
-    {
-        AddButtons();
-
-        _view.AssignButtons();
-        ShowView();
-        _isDiceRolling = false;
-
-        if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS || InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
-        {
-            _currentStory.variablesState["diceRoll"] = InternalDice.Instance.Roll(out int i);
-        }
-        else
-        {
-            _currentStory.variablesState["diceRoll"] = diceRoll;
-        }
-
-        ContinueDialogue();
-    }
+    
     
     public void SetOutcome(int index)
     {
@@ -202,8 +191,38 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    public void EndBattleState(bool battleWon)
+    public void SetDiceRoll(bool diceRoll)
     {
+        AddButtons();
+        CombatManager.Instance.CurrentSelected = _characterReference2;
+        _view.AssignButtons();
+        foreach (GameObject player in PartyManager.Instance.PartyMembers)
+        {
+            player.GetComponentInChildren<PlayerInteract>().AssignButtons();
+        } 
+        ShowView();
+        _isDiceRolling = false;
+
+        if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS || InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
+        {
+            _currentStory.variablesState["diceRoll"] = InternalDice.Instance.Roll(out int i);
+        }
+        else
+        {
+            _currentStory.variablesState["diceRoll"] = diceRoll;
+        }
+
+        ContinueDialogue();
+    }
+
+    public IEnumerator EndBattleState(bool battleWon)
+    {
+        Debug.Log("Ending Battle");
+        yield return new WaitForSeconds(.5f);
+        foreach (GameObject player in PartyManager.Instance.PartyMembers)
+        {
+            player.GetComponentInChildren<PlayerInteract>().AssignButtons();
+        }
         AddButtons();
         ShowView();
         ViewManager.Instance.GetView<GameView>().Show();
@@ -214,8 +233,10 @@ public class DialogueManager : Singleton<DialogueManager>
         ContinueDialogue();
     }
 
-    private void StartBattleState()
+    private IEnumerator StartBattleState()
     {
+        Debug.Log("Starting battle");
+        yield return new WaitForSeconds(.5f);
         RemoveButtons();
         HideView();
 
@@ -236,6 +257,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private IEnumerator RollDice(string stat)
     {
         HideView();
+        _characterReference2 = CombatManager.Instance.CurrentSelected;
         SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
 
         RemoveButtons();
@@ -258,7 +280,6 @@ public class DialogueManager : Singleton<DialogueManager>
                 case "WIS": statValue = player.Class.Wisdom; break;
             }
         }
-        Debug.Log("STATSASTARTASTASTAST : " + statValue);
         FindObjectOfType<ExternalDice>().DifficultyClass = statValue;
     }
 
@@ -316,7 +337,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private void Fight()
     {
         //StartCoroutine(ExitDialogue());
-        StartBattleState();
+        StartCoroutine(StartBattleState());
     }
 
     private void Leave(bool returnable)
@@ -352,6 +373,24 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _view.BackGround.visible = true;
         _view.BackGround.SetEnabled(true);
+    }
+
+
+    private void HidePInteractChoices()
+    {
+        foreach (Button button in CombatManager.Instance.CurrentSelected.GetComponentInChildren<PlayerInteract>().Buttons)
+        {
+            button.visible = false;
+            button.SetEnabled(false);
+        }
+    }
+    private void ShowPInteractChoices()
+    {
+        foreach (Button button in CombatManager.Instance.CurrentSelected.GetComponentInChildren<PlayerInteract>().Buttons)
+        {
+            button.visible = true;
+            button.SetEnabled(true);
+        }
     }
 
     // Start is called before the first frame update

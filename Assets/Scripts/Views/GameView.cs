@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UIElements;
 
 public class GameView : View
@@ -26,6 +27,8 @@ public class GameView : View
     private Button _quitButton;
     private Label _questName;
     private Label _stepName;
+
+    private ListView _questList;
     public override void Initialize()
     {
         _document = GetComponent<UIDocument>();
@@ -72,6 +75,8 @@ public class GameView : View
         _resumeButton.clicked += OnResumeButtonClicked;
         _quitButton.clicked += OnQuitButtonClicked;
         CombatManager.Instance.CurrentSelected = GameObject.FindGameObjectWithTag("Player");
+
+        _questList = _root.Q<ListView>("QuestList");
     }
 
     private void ShowJoystick(PointerDownEvent _ev)
@@ -139,37 +144,45 @@ public class GameView : View
         // Debug.Log("Input: " + input);
     }
 
+    
+
     void OnMenuButtonClicked() {
         _menuContainer.style.display = StyleKeyword.Initial;
+        Camera.main.gameObject.GetComponent<PostProcessVolume>().enabled = true;
         BaldGatorManager.Instance.PauseGame();
     
     }
-    void OnQuestButtonClicked() { 
-        //BaldGatorManager.Instance.PauseGame();
+    void OnQuestButtonClicked() {
+        Debug.Log("Quest Button Clicked");
+        Camera.main.gameObject.GetComponent<PostProcessVolume>().enabled = true;
+        BaldGatorManager.Instance.PauseGame();
+        ViewManager.Instance.GetView<QuestView>().Show();
+        Hide();
     }
 
     void OnResumeButtonClicked() {
         _menuContainer.style.display = StyleKeyword.None;
+        Camera.main.gameObject.GetComponent<PostProcessVolume>().enabled = false;
         BaldGatorManager.Instance.ResumeGame();
     }
 
     void OnQuitButtonClicked() {
+        Camera.main.gameObject.GetComponent<PostProcessVolume>().enabled = false;
         BaldGatorManager.Instance.ResumeGame();
         SceneLoader.Instance.LoadMainMenu();
     }
 
     private void Update()
     {
-        /*if (QuestManager.Instance.TrackedQuest != null)
+        if (QuestManager.Instance.TrackedQuest != null)
         {
             _questName.text = QuestManager.Instance.TrackedQuest.Data.DisplayName;
-            _stepName.text = QuestManager.Instance.TrackedQuest.Data.DisplayName;
+            _stepName.text = QuestManager.Instance.TrackedQuest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepName;
         }
         else
         {
             _questName.text = "";
             _stepName.text = "";
-        }*/
-
+        }
     }
 }

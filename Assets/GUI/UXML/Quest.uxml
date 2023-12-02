@@ -1,6 +1,21 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/GUI/USS/Quest.uss?fileID=7433441132597879392&amp;guid=c4ff6689e1a8ceb40892a83a0d6bfa2e&amp;type=3#Quest" />
-    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuestName" style="font-size: 70px;" />
-    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StepName" style="font-size: 50px;" />
-    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StepDescription" style="font-size: 40px;" />
+    <ui:VisualElement name="Background">
+        <ui:Image name="QuestIcon" style="margin-right: 1%;" />
+        <ui:Label tabindex="-1" text="In Progress" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuestLabel" />
+        <ui:Button text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CloseButton">
+            <ui:Image name="CloseIcon" />
+        </ui:Button>
+    </ui:VisualElement>
+    <ui:VisualElement name="QuestContainer">
+        <ui:VisualElement name="ListContainer">
+            <ui:ScrollView name="QuestList" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible">
+                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="quest-button" style="display: none;" />
+            </ui:ScrollView>
+        </ui:VisualElement>
+        <ui:VisualElement name="DescriptionContainer">
+            <ui:Label name="StepName" style="overflow: visible;" />
+            <ui:Label name="Description" style="overflow: visible;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
