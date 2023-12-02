@@ -11,6 +11,9 @@
         <ui:VisualElement name="ListContainer">
             <ui:ScrollView name="QuestList" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible">
                 <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="quest-button" style="display: none;" />
+                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="quest-button" style="display: none;" />
+                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="quest-button" style="display: none;" />
+                <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="quest-button" style="display: none;" />
             </ui:ScrollView>
         </ui:VisualElement>
         <ui:VisualElement name="DescriptionContainer">

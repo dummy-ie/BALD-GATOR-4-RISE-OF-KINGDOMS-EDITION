@@ -11,6 +11,10 @@
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
+.main-button:hover {
+    background-color: rgba(150, 150, 150, 0.5);
+}
+
 .menu-button {
     width: 30%;
     align-self: center;
@@ -28,6 +32,12 @@
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+}
+
+.menu-button:hover {
+    background-color: rgb(87, 59, 36);
+    color: rgb(255, 255, 255);
 }
 
 .interact-button {
@@ -61,9 +71,33 @@
     border-bottom-color: rgb(94, 94, 94);
 }
 
+#QuestName {
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    text-shadow: 5px 0 10px rgb(0, 0, 0);
+}
+
+#StepName {
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+    margin-left: 80px;
+    text-shadow: 5px 0 10px rgb(0, 0, 0);
+}
+
 #TrackedQuestContainer {
     position: absolute;
     margin-left: 5%;
+    margin-top: 5%;
+}
+
+#TrackedQuestIcon {
+    --unity-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/MainQuestIcon.png?fileID=21300000&guid=2d831f3c1bf233f4c9e0fc1c996e3434&type=3#MainQuestIcon');
+}
+
+#QuestNameContainer {
+    position: relative;
+    flex-direction: row;
 }
 
 #ButtonContainer {

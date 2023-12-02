@@ -126,8 +126,6 @@ public class ExternalDice : MonoBehaviour
         Debug.Log("Should Unload by now");
         DialogueManager.Instance.SetDiceRoll(success);
         SceneManager.UnloadSceneAsync("Dice Roller");
-
-
     }
 
     private int GetDieValue()

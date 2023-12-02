@@ -11,7 +11,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 //if a "Ink.Parsed" appears here just remove it
 public class DialogueManager : Singleton<DialogueManager>
 {
-    [SerializeField] DialogueView _view;
+    DialogueView _view;
     public DialogueView View { get { return _view; } }
 
     private Dictionary<string, Ink.Runtime.Object> _variables;
@@ -193,15 +193,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void SetDiceRoll(bool diceRoll)
     {
-        AddButtons();
+        
         CombatManager.Instance.CurrentSelected = _characterReference2;
-        _view.AssignButtons();
-        foreach (GameObject player in PartyManager.Instance.PartyMembers)
-        {
-            player.GetComponentInChildren<PlayerInteract>().AssignButtons();
-        } 
-        ShowView();
-        _isDiceRolling = false;
 
         if (InternalDice.Instance.RollType == ERollType.CRITICAL_SUCCESS || InternalDice.Instance.RollType == ERollType.CRITICAL_FAIL)
         {
@@ -212,24 +205,33 @@ public class DialogueManager : Singleton<DialogueManager>
             _currentStory.variablesState["diceRoll"] = diceRoll;
         }
 
+        _isDiceRolling = false;
+        _view.AssignButtons();
+        foreach (GameObject player in PartyManager.Instance.PartyMembers)
+        {
+            player.GetComponentInChildren<PlayerInteract>().AssignButtons();
+        }
+        ShowView();
+        AddButtons();
         ContinueDialogue();
     }
 
     public IEnumerator EndBattleState(bool battleWon)
     {
         Debug.Log("Ending Battle");
+        
         yield return new WaitForSeconds(.5f);
+
+        _currentStory.variablesState["battleWon"] = battleWon;
+
+        _fightOngoing = false;
+        ViewManager.Instance.GetView<GameView>().Show();
         foreach (GameObject player in PartyManager.Instance.PartyMembers)
         {
             player.GetComponentInChildren<PlayerInteract>().AssignButtons();
         }
-        AddButtons();
         ShowView();
-        ViewManager.Instance.GetView<GameView>().Show();
-        _fightOngoing = false;
-
-        _currentStory.variablesState["battleWon"] = battleWon;
-
+        AddButtons();
         ContinueDialogue();
     }
 
@@ -239,7 +241,6 @@ public class DialogueManager : Singleton<DialogueManager>
         yield return new WaitForSeconds(.5f);
         RemoveButtons();
         HideView();
-
         _fightOngoing = true;
 
         List<Entity> combatants = new List<Entity>();
@@ -256,12 +257,14 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private IEnumerator RollDice(string stat)
     {
-        HideView();
-        _characterReference2 = CombatManager.Instance.CurrentSelected;
-        SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
-
         RemoveButtons();
+        HideView();
         _isDiceRolling = true;
+
+        _characterReference2 = CombatManager.Instance.CurrentSelected;
+
+        SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
+        
         yield return new WaitForSeconds(.5f);
 
         _currentStory.variablesState[_name + "HasRolled" + stat] = false;
@@ -375,29 +378,11 @@ public class DialogueManager : Singleton<DialogueManager>
         _view.BackGround.SetEnabled(true);
     }
 
-
-    private void HidePInteractChoices()
-    {
-        foreach (Button button in CombatManager.Instance.CurrentSelected.GetComponentInChildren<PlayerInteract>().Buttons)
-        {
-            button.visible = false;
-            button.SetEnabled(false);
-        }
-    }
-    private void ShowPInteractChoices()
-    {
-        foreach (Button button in CombatManager.Instance.CurrentSelected.GetComponentInChildren<PlayerInteract>().Buttons)
-        {
-            button.visible = true;
-            button.SetEnabled(true);
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         InitializeVariables();
-
+        _view = ViewManager.Instance.GetView<DialogueView>();
         //HideView();
         _isDialoguePlaying = false;
     }

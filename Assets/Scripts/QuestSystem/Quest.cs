@@ -58,6 +58,11 @@ public class Quest {
         return stepPrefab;
     }
 
+    public void FinishStep(int nextStepIndex)
+    {
+        GetCurrentStepPrefab().GetComponent<QuestStep>().FinishStep(nextStepIndex);
+    }
+
     public void StoreStepState(QuestStepState stepState, int stepIndex) {
         if (stepIndex < _stepStates.Length)
         {
