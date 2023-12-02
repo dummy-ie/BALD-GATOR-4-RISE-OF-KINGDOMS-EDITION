@@ -31,6 +31,7 @@ public class SceneChanger : MonoBehaviour
         {
             Debug.Log("Spawning Party Members");
             PartyManager.Instance.SpawnPartyMembers(_spawnPoint);
+            ViewManager.Instance.InitializeViews();
         }
         /*if (_sceneConnection == SceneConnection.ActiveConnection)
         {

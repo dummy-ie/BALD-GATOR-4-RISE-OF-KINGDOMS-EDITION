@@ -2,6 +2,53 @@ VisualElement {
     width: 100%;
 }
 
+#Background {
+    position: relative;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.39);
+}
+
+#ListContainer {
+    margin-top: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+#DescriptionContainer {
+    margin-top: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+}
+
+#CloseButton {
+    align-self: flex-end;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    margin-left: auto;
+}
+
+#QuestIcon {
+    --unity-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/UI_Quest.png?fileID=21300000&guid=72260fe9070e59548a08050d53b30c2a&type=3#UI_Quest');
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+#QuestLabel {
+    -unity-font: url('project://database/Assets/Graphics/Fonts/SHERWOOD.TTF?fileID=12800000&guid=bcf5374f1954c4c4aa403195ac7da4af&type=3#SHERWOOD');
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/SHERWOOD%20SDF.asset?fileID=11400000&guid=58e8b063ebfc17348ac960bed4e251b2&type=2#SHERWOOD SDF');
+    font-size: 120px;
+    color: rgb(255, 255, 255);
+}
+
+#CloseIcon {
+    --unity-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/CloseIcon.png?fileID=21300000&guid=ce642ed24410d854aa7b2194ab0cb902&type=3#CloseIcon');
+}
+
 .quest-button {
     font-size: 50px;
     -unity-font: url('project://database/Assets/Addons/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
@@ -26,17 +73,48 @@ VisualElement {
     width: 100%;
 }
 
+#QuestList .unity-scroller__low-button {
+    visibility: hidden;
+}
+
+#QuestList .unity-scroller__high-button {
+    visibility: hidden;
+}
+
+#QuestList .unity-scroller__slider {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    background-color: rgba(137, 0, 0, 0);
+}
+
 #QuestContainer {
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
     height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-left-color: rgba(0, 0, 0, 0.78);
+    border-right-color: rgba(0, 0, 0, 0.78);
+    border-top-color: rgba(0, 0, 0, 0.78);
+    border-bottom-color: rgba(0, 0, 0, 0.78);
+    border-top-width: 20px;
+}
+
+#StepName {
+    -unity-font: url('project://database/Assets/Addons/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
+    font-size: 60px;
+    white-space: normal;
+    background-color: rgba(0, 0, 0, 0.45);
+    color: rgb(255, 255, 255);
 }
 
 #Description {
     -unity-font: url('project://database/Assets/Addons/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans');
-    font-size: 70px;
+    font-size: 50px;
     height: 100%;
     width: 100%;
     white-space: normal;
+    color: rgb(255, 255, 255);
 }

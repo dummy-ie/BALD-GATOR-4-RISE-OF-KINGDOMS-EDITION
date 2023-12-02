@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UIElements;
 
 public class GameView : View
@@ -147,21 +148,26 @@ public class GameView : View
 
     void OnMenuButtonClicked() {
         _menuContainer.style.display = StyleKeyword.Initial;
+        Camera.main.gameObject.GetComponent<PostProcessVolume>().enabled = true;
         BaldGatorManager.Instance.PauseGame();
     
     }
     void OnQuestButtonClicked() {
         Debug.Log("Quest Button Clicked");
+        Camera.main.gameObject.GetComponent<PostProcessVolume>().enabled = true;
+        BaldGatorManager.Instance.PauseGame();
         ViewManager.Instance.GetView<QuestView>().Show();
         Hide();
     }
 
     void OnResumeButtonClicked() {
         _menuContainer.style.display = StyleKeyword.None;
+        Camera.main.gameObject.GetComponent<PostProcessVolume>().enabled = false;
         BaldGatorManager.Instance.ResumeGame();
     }
 
     void OnQuitButtonClicked() {
+        Camera.main.gameObject.GetComponent<PostProcessVolume>().enabled = false;
         BaldGatorManager.Instance.ResumeGame();
         SceneLoader.Instance.LoadMainMenu();
     }

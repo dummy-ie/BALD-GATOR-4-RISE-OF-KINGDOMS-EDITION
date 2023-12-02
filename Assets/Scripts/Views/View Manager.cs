@@ -26,10 +26,10 @@ public class ViewManager : Singleton<ViewManager> {
     public void Show<T>() where T : View {
         for (int i = 0; i < this._views.Length; i++) {
             if (this._views[i] is T view) {
-                if (this._currentViews.Count != 0) {
-                    this._currentViews.Peek();//.Hide();
-                    this._currentViews.Pop();
-                }
+                //if (this._currentViews.Count != 0) {
+                //    this._currentViews.Peek();//.Hide();
+                //    this._currentViews.Pop();
+                //}
                 view.Show();
                 this._currentViews.Push(view);
             }
@@ -37,10 +37,10 @@ public class ViewManager : Singleton<ViewManager> {
     }
 
     public void Show(View view) {
-        if (this._currentViews.Count != 0) {
-            this._currentViews.Peek();//.Hide();
-            this._currentViews.Pop();
-        }
+        //if (this._currentViews.Count != 0) {
+        //    this._currentViews.Peek();//.Hide();
+        //    this._currentViews.Pop().Hide();
+        //}
         view.Show();
         this._currentViews.Push(view);
     }
@@ -62,48 +62,35 @@ public class ViewManager : Singleton<ViewManager> {
     }
 
     public void HideRecentView() {
-        this._currentViews.Peek();//.Hide();
-        this._currentViews.Pop();
+        this._currentViews.Pop().Hide();
+    }
+    public void InitializeViews()
+    {
+        _views = FindObjectsOfType<View>();
+        for (int i = 0; i < this._views.Length; i++)
+        {
+            _views[i].Initialize();
+            _views[i].Hide();
+            if (_views[i].OnStart)
+            {
+                _views[i].Show();
+            }
+        }
     }
 
     protected override void OnAwake() {
-        _views = FindObjectsOfType<View>();
-        for (int i = 0; i < this._views.Length;i++) {
-            _views[i].Initialize();
-            _views[i].Hide();
-            if (_views[i].OnStart) {
-                _views[i].Show();
-            }
-        }
+        InitializeViews();
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        InitializeViews();
     }
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void OnDisable() {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        //SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        _views = FindObjectsOfType<View>();
-        for (int i = 0; i < this._views.Length;i++) {
-            _views[i].Initialize();
-            _views[i].Hide();
-            if (_views[i].OnStart) {
-                _views[i].Show();
-            }
-        }
-    }
-
-    //debug
-    private void Update()
-    {
-        ViewCount();
-    }
-    public void ViewCount()
-    {
-        Debug.Log("VIEWS : " + _views.Length);
-    }
 }
 
