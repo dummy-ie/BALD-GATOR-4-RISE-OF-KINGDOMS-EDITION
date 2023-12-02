@@ -18,6 +18,7 @@ public class DialogueManager : Singleton<DialogueManager>
     [SerializeField]InkFile _file;
 
     private GameObject _characterReference;
+    private GameObject _characterReference2;
     private Story _currentStory;
 
     private string _name;
@@ -193,8 +194,7 @@ public class DialogueManager : Singleton<DialogueManager>
     public void SetDiceRoll(bool diceRoll)
     {
         AddButtons();
-        CombatManager.Instance.DisableHighlight(CombatManager.Instance.CurrentSelected.GetComponent<Entity>());
-        CombatManager.Instance.CurrentSelected = null;
+        CombatManager.Instance.CurrentSelected = _characterReference2;
         _view.AssignButtons();
         foreach (GameObject player in PartyManager.Instance.PartyMembers)
         {
@@ -257,6 +257,7 @@ public class DialogueManager : Singleton<DialogueManager>
     private IEnumerator RollDice(string stat)
     {
         HideView();
+        _characterReference2 = CombatManager.Instance.CurrentSelected;
         SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
 
         RemoveButtons();
