@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:ProgressBar name="CurrentTurnHealthBar" value="91.4" high-value="100" low-value="0" title="if u see this it&apos;s bugged" />
+</ui:UXML>

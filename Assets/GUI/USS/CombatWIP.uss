@@ -1,0 +1,297 @@
+VisualElement {
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/SHERWOOD%20SDF.asset?fileID=11400000&guid=58e8b063ebfc17348ac960bed4e251b2&type=2#SHERWOOD SDF');
+}
+
+Label {
+    font-size: 64px;
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    -unity-font-style: normal;
+}
+
+.unity-text-element {
+    font-size: 64px;
+    white-space: nowrap;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+    color: rgb(229, 229, 229);
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}
+
+.unity-button {
+    align-self: center;
+    font-size: 64px;
+    white-space: nowrap;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    margin-right: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    background-color: rgba(56, 56, 56, 0.59);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+    color: rgb(229, 229, 229);
+}
+
+.unity-progress-bar__background {
+    background-color: rgba(90, 90, 90, 0.47);
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+.unity-progress-bar__progress {
+    background-color: rgba(255, 54, 54, 0.78);
+}
+
+.animation-hide {
+    opacity: 1;
+}
+
+#SwitchCameraButton {
+    background-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/camera.png?fileID=2800000&guid=d0a23c88ec766db478b7c77e0e57f570&type=3#camera');
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-font-definition: initial;
+    -unity-font: url('project://database/Assets/Addons/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=e650c541e52266241b98203f0ae770d1&type=3#NotInter-Regular');
+    -unity-text-align: middle-center;
+    color: rgba(27, 27, 27, 0);
+    align-self: flex-start;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -unity-font-style: normal;
+    -unity-text-outline-width: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    margin-top: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    margin-left: 3%;
+}
+
+#Hotbar {
+    flex-direction: row;
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    bottom: 0;
+    left: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+}
+
+#HotbarRight {
+    flex-direction: column-reverse;
+}
+
+#CombatantName {
+    -unity-text-align: middle-left;
+    white-space: nowrap;
+}
+
+#TurnButtons {
+    flex-direction: row;
+    align-self: flex-start;
+}
+
+#EndTurnButton {
+}
+
+#HotbarLeft {
+    flex-direction: row-reverse;
+    height: 100%;
+    width: 10%;
+    align-items: center;
+}
+
+#HealthBarBox {
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 80%;
+    padding-right: 5%;
+    padding-left: 5%;
+    position: absolute;
+}
+
+#CurrentTurnHealthBar {
+    rotate: -90deg;
+    scale: 1 1;
+    height: 100%;
+    transform-origin: center;
+    display: flex;
+    flex-direction: row;
+    max-width: initial;
+    max-height: initial;
+    position: absolute;
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__container {
+    align-self: center;
+    max-height: initial;
+    height: 100%;
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__background {
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    border-bottom-right-radius: 100%;
+    border-bottom-left-radius: 100%;
+    overflow: hidden;
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    background-color: rgba(69, 0, 0, 0.86);
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__progress {
+    scale: 1.1 2;
+    background-image: url('project://database/Assets/Addons/FarlandSkies/Skyboxes/CloudyCrown_05_Daybreak/Textures/CloudyCrown_Daybreak_Front.png?fileID=2800000&guid=32dd115bed46a474ab32a88684606180&type=3#CloudyCrown_Daybreak_Front');
+    -unity-background-image-tint-color: rgb(255, 179, 179);
+    -unity-background-scale-mode: scale-and-crop;
+    transform-origin: center;
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__title {
+    font-size: 24px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__title-container {
+    rotate: 90deg;
+    right: 25%;
+    transform-origin: center;
+}
+
+#MovementBarBox {
+    flex-direction: row-reverse;
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+#CurrentTurnMovementBar {
+    rotate: -45deg;
+    align-self: center;
+    scale: 1.1 1.2;
+}
+
+#CurrentTurnMovementBar .unity-progress-bar__container {
+    max-height: initial;
+    width: 100%;
+    height: 90%;
+}
+
+#CurrentTurnMovementBar .unity-progress-bar__background {
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+    border-bottom-right-radius: 100%;
+    border-bottom-left-radius: 100%;
+    overflow: hidden;
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    background-color: rgba(53, 81, 87, 0.86);
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+#CurrentTurnMovementBar .unity-progress-bar__progress {
+    scale: 1.1 1.5;
+    background-color: rgb(107, 165, 255);
+    background-image: url('project://database/Assets/Addons/FarlandSkies/Skyboxes/CloudyCrown_01_Midday/Textures/CloudyCrown_Midday_Left.png?fileID=2800000&guid=fd5f7c807ca1ea643b0ae501ff889a70&type=3#CloudyCrown_Midday_Left');
+    -unity-background-scale-mode: scale-and-crop;
+    transform-origin: right;
+    rotate: -30deg;
+}
+
+#CurrentTurnMovementBar .unity-progress-bar__title {
+    font-size: 24px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    color: rgba(27, 27, 27, 0);
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+}
+
+#CurrentTurnMovementBar .unity-progress-bar__title-container {
+    rotate: 90deg;
+    right: 25%;
+}
+
+#SelectedTarget {
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
+#TargetHealthBar {
+    width: 30%;
+    height: 10%;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+#TargetHealthBar .unity-progress-bar__container {
+    height: 100%;
+    max-height: 100%;
+    justify-content: flex-end;
+}
+
+#TargetHealthBar .unity-progress-bar__background {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    overflow: hidden;
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+}
+
+#TargetHealthBar .unity-progress-bar__progress {
+    scale: 1.1 1;
+    transform-origin: right;
+}
