@@ -1,9 +1,14 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/GUI/USS/Combat.uss?fileID=7433441132597879392&amp;guid=b902c215792948c408deade8583792b1&amp;type=3#Combat" />
+    <Style src="project://database/Assets/GUI/USS/CombatWIP.uss?fileID=7433441132597879392&amp;guid=3b0cec276315ae440a0790c85ef51a97&amp;type=3#CombatWIP" />
     <ui:VisualElement name="Hotbar" class="animation-hide" style="flex-grow: 1;">
         <ui:VisualElement name="HotbarLeft" style="flex-grow: 1;">
+            <ui:VisualElement name="MovementBarBox" style="flex-grow: 1;">
+                <ui:VisualElement name="CurrentTurnMovementBar">
+                    <ui:ProgressBar name="CurrentTurnMovementBar" value="43.3" high-value="100" low-value="0" title="100 / 100" />
+                </ui:VisualElement>
+            </ui:VisualElement>
             <ui:VisualElement name="HealthBarBox" style="flex-grow: 1;">
-                <ui:ProgressBar name="CurrentTurnHealthBar" value="69" high-value="100" low-value="0" title="if u see this it&apos;s bugged" />
+                <ui:ProgressBar name="CurrentTurnHealthBar" value="64.7" high-value="100" low-value="0" title="100 / 100" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="HotbarRight" style="flex-grow: 1;">
@@ -17,7 +22,7 @@
     </ui:VisualElement>
     <ui:VisualElement name="SelectedTarget" picking-mode="Ignore" class="animation-hide" style="flex-grow: 1;">
         <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TargetName" />
-        <ui:ProgressBar value="22" name="TargetHealthBar" />
+        <ui:ProgressBar value="23.7" name="TargetHealthBar" />
     </ui:VisualElement>
     <ui:Button text="oo" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SwitchCameraButton" class="animation-hide" />
 </ui:UXML>
