@@ -17,6 +17,31 @@ public class InternalDice : Singleton<InternalDice>
     //         Destroy(gameObject);
     // }
 
+    /// <summary>
+    /// Returns the percentage chance of a roll succeeding a specific difficulty class including modifiers. 
+    /// Having dieFaces to 0 or less returns a negative value.
+    /// </summary>
+    /// <param name="dieFaces"> The face count of the die. Usually 20. </param>
+    /// <param name="modifier"> The hit modifiers you would add to the roll. </param>
+    /// <param name="difficultyClass"></param>
+    /// <returns></returns>
+    public float GetPercentageOfRoll(int dieFaces = 0, int modifier = 0, int difficultyClass = 0)
+    {
+        if (dieFaces <= 0)
+            return -1;
+
+        float percentage = (dieFaces + 1 - (difficultyClass - modifier)) / (float)dieFaces;
+
+        if (percentage < 0 || _rollType == ERollType.CRITICAL_FAIL)
+            percentage = 0;
+        else if (percentage > 100 || _rollType == ERollType.CRITICAL_SUCCESS)
+            percentage = 100;
+
+        // Debug.Log("Percentage chance to hit: " + percentage);
+
+        return percentage * 100;
+    }
+
     public void ToggleSuccess(bool success)
     {
         if (success)
@@ -39,11 +64,11 @@ public class InternalDice : Singleton<InternalDice>
         int total = 0;
         for (int i = 0; i < numDice; i++)
         {
-            Roll(out int result, diceFaces, modifier);
+            Roll(out int result, diceFaces);
             total += result;
         }
 
-        return total;
+        return total + modifier;
     }
 
     public bool Roll(out int result, int dieFaces = 20, int modifier = 0, int difficultyClass = 0)

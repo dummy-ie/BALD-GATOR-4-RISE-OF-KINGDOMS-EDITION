@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class DevMenu : MonoBehaviour {
+public class DevMenu : MonoBehaviour
+{
     private UIDocument _document;
     private VisualElement _root;
     private Toggle _succeed;
@@ -13,21 +14,26 @@ public class DevMenu : MonoBehaviour {
     private bool _succeedToggled = false;
     private bool _failToggled = false;
 
-    void FixToggles() {
-        if (this._succeed.value && !this._succeedToggled) {
+    void FixToggles()
+    {
+        if (this._succeed.value && !this._succeedToggled)
+        {
             this._succeedToggled = true;
             this._failToggled = false;
             this._fail.value = false;
         }
-        if (this._fail.value && !this._failToggled) {
+        if (this._fail.value && !this._failToggled)
+        {
             this._failToggled = true;
             this._succeedToggled = false;
             this._succeed.value = false;
         }
     }
 
-    void ToggleDice() {
-        if (InternalDice.Instance != null) { 
+    void ToggleDice()
+    {
+        if (InternalDice.Instance != null)
+        {
             if (!this._succeed.value)
                 InternalDice.Instance.ToggleFail(this._fail.value);
             if (!this._fail.value)
@@ -35,7 +41,8 @@ public class DevMenu : MonoBehaviour {
         }
     }
 
-    void Start() {
+    void Start()
+    {
         this._document = GetComponent<UIDocument>();
         this._root = _document.rootVisualElement;
         this._succeed = this._root.Q<Toggle>("SucceedToggle");
@@ -44,9 +51,10 @@ public class DevMenu : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         this._endingMeter.label = "Ending Meter [" + this._endingMeter.value + "]";
         FixToggles();
-        ToggleDice();   
+        ToggleDice();
     }
 }

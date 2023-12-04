@@ -64,9 +64,19 @@ public class ClassData : ScriptableObject
 
     public int ArmorClass { get { return 10 + GetModifier(_dexterity); } }
 
-    public static int GetHealthPercentage(int currentHealth, int maxHealth)
+    public static int GetPercentage(int current, int max)
     {
-        return (int)(100f / maxHealth * currentHealth);
+        return (int)(100f / max * current);
+    }
+
+    public static float GetPercentage(float current, float max)
+    {
+        return 100f / max * current;
+    }
+
+    public static double GetPercentage(double current, double max)
+    {
+        return 100f / max * current;
     }
 
     public int GetModifier(int statValue)

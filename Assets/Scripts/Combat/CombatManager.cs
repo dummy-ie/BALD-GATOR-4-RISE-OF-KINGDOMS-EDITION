@@ -264,6 +264,7 @@ public class CombatManager : Singleton<CombatManager>
 
         RefreshUI();
         _currentTurn.DecrementAction();
+        ViewManager.Instance.GetView<CombatView>().SetCurrentTurnActionPoints(_currentTurn);
     }
 
     public void HealSelectedTarget()
@@ -360,6 +361,8 @@ public class CombatManager : Singleton<CombatManager>
 
         // Change UI to show current combatant's turn
         ViewManager.Instance.GetView<CombatView>().SetCurrentTurnData(_currentTurn);
+        ViewManager.Instance.GetView<CombatView>().SetAttackHitPercentage(); // set to no text
+
 
         // enable current turn's ranges
         _currentTurn.gameObject.FindComponentsAndSetActive<Projector>(true, out _);
@@ -419,7 +422,9 @@ public class CombatManager : Singleton<CombatManager>
     {
         //Debug.Log("Object hit by CombatManager OnTap(): " + args.HitObject.name);
         if (ViewManager.Instance.GetView<CombatView>() != null)
+        {
             ViewManager.Instance.GetView<CombatView>().SetTargetData(); // null to hide it
+        }
 
         if (args.HitObject != null && args.HitObject.CompareTag("Walkable"))
         {
@@ -437,6 +442,9 @@ public class CombatManager : Singleton<CombatManager>
                     NavigationTarget.gameObject.SetActive(true);
                     NavigationTarget.position = hit.point + Vector3.up * 0.1f;
                     entity.StartMove();
+
+                    if (ViewManager.Instance.GetView<CombatView>() != null)
+                        ViewManager.Instance.GetView<CombatView>().SetCurrentTurnMovementBar(entity);
                 }
             }
         }
