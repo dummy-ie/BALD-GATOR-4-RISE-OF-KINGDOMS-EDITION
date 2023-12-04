@@ -1,0 +1,229 @@
+VisualElement {
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/SHERWOOD%20SDF.asset?fileID=11400000&guid=58e8b063ebfc17348ac960bed4e251b2&type=2#SHERWOOD SDF');
+}
+
+Label {
+    font-size: 64px;
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    -unity-font-style: normal;
+}
+
+.unity-text-element {
+    font-size: 64px;
+    white-space: nowrap;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+    color: rgb(229, 229, 229);
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+}
+
+.unity-button {
+    align-self: center;
+    font-size: 64px;
+    white-space: nowrap;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    margin-right: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    background-color: rgba(56, 56, 56, 0.59);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+    color: rgb(229, 229, 229);
+}
+
+.unity-progress-bar__background {
+    background-color: rgba(90, 90, 90, 0.47);
+    border-top-width: 7px;
+    border-right-width: 7px;
+    border-bottom-width: 7px;
+    border-left-width: 7px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+.unity-progress-bar__progress {
+    background-color: rgba(255, 54, 54, 0.78);
+}
+
+.animation-hide {
+    opacity: 0;
+}
+
+#SwitchCameraButton {
+    background-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/camera.png?fileID=2800000&guid=d0a23c88ec766db478b7c77e0e57f570&type=3#camera');
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-font-definition: initial;
+    -unity-font: url('project://database/Assets/Addons/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=e650c541e52266241b98203f0ae770d1&type=3#NotInter-Regular');
+    -unity-text-align: middle-center;
+    color: rgba(27, 27, 27, 0);
+    align-self: flex-start;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -unity-font-style: normal;
+    -unity-text-outline-width: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    margin-top: 3%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    margin-left: 3%;
+}
+
+#Hotbar {
+    flex-direction: row;
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    bottom: 0;
+    left: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+}
+
+#HotbarLeft {
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    width: 10%;
+}
+
+#HotbarRight {
+    flex-direction: column-reverse;
+}
+
+#CombatantName {
+    -unity-text-align: middle-left;
+    white-space: nowrap;
+}
+
+#TurnButtons {
+    flex-direction: row;
+    align-self: flex-start;
+}
+
+#EndTurnButton {
+}
+
+#HealthBarBox {
+    flex-direction: column;
+    position: absolute;
+    height: 75%;
+    width: 35%;
+    align-items: flex-end;
+    align-self: flex-end;
+    justify-content: flex-end;
+}
+
+#CurrentTurnHealthBar {
+    width: 70%;
+    height: 80%;
+    flex-direction: column-reverse;
+    rotate: -90deg;
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__container {
+    height: 100%;
+    max-height: initial;
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__background {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__progress {
+    position: absolute;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__title {
+    font-size: 24px;
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+}
+
+#CurrentTurnHealthBar .unity-progress-bar__title-container {
+    rotate: 90deg;
+    align-items: flex-end;
+}
+
+#SelectedTarget {
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
+#TargetHealthBar {
+    width: 30%;
+    height: 10%;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+#TargetHealthBar .unity-progress-bar__container {
+    height: 100%;
+    max-height: 100%;
+    justify-content: flex-end;
+}
+
+#TargetHealthBar .unity-progress-bar__background {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#TargetHealthBar .unity-progress-bar__progress {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+}

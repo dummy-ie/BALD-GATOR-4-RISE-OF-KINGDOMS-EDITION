@@ -196,7 +196,7 @@ public class EnemyCombatant : Combatant
             {
                 _isDoingAction = true;
                 // low health action
-                if (ClassData.GetHealthPercentage(Data.Health, Data.Class.MaxHealth) <= 50)
+                if (ClassData.GetPercentage(Data.Health, Data.Class.MaxHealth) <= 50)
                 {
                     bool hasDoneValidMove = true;
                     // LOOP THROUGH RANDOM MOVES IF THEY CAN'T DO THE SELECTED ACTION

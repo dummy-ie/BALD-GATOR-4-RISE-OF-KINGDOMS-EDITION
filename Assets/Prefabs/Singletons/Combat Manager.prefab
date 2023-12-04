@@ -318,7 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gestures: 16
   _cam: {fileID: 6045625384557010213}
-  _zoomSpeed: 30
+  _zoomSpeed: 60
 --- !u!114 &4667274317803021195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9468aa469557a43a0092c59a42103a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gestures: 8
-  _panSpeed: 50
+  _gestures: 10
+  _panSpeed: 100
+  _dragSpeed: 20
   _cam: {fileID: 6045625384557010213}

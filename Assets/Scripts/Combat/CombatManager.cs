@@ -29,7 +29,7 @@ public class CombatManager : Singleton<CombatManager>
     [SerializeField]
     private Combatant _currentTurn;
     public Combatant CurrentTurn { get { return _currentTurn; } }
-    
+
     [SerializeField]
     private GameObject _textPopupPrefab;
     public GameObject TextPopupPrefab { get { return _textPopupPrefab; } }
@@ -97,7 +97,7 @@ public class CombatManager : Singleton<CombatManager>
 
         // wait a little bit before starting 
         // possibly insert animation
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForEndOfFrame();
         // ViewManager.Instance.HideRecentView();
         AudioManager.Instance.StartBGM(EBGMIndex.BATTLE, 1);
         AudioManager.Instance.PauseBGM(0);
@@ -139,8 +139,16 @@ public class CombatManager : Singleton<CombatManager>
             //     controller.
             // }
 
+            // CinemachineVirtualCamera cam = entity.GetComponentInChildren<CinemachineVirtualCamera>(true);
+            // cam.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_Heading.m_Bias = -180;
+
             CinemachineVirtualCamera cam = entity.GetComponentInChildren<CinemachineVirtualCamera>(true);
-            cam.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_Heading.m_Bias = -180;
+            if (cam != null)
+            {
+                CinemachineOrbitalTransposer orbit = cam.GetCinemachineComponent<CinemachineOrbitalTransposer>();
+                if (orbit != null)
+                    orbit.m_Heading.m_Bias = -180;
+            }
 
             if (entity.Health > 0)
                 ICameraManipulator.SwitchCamera(cam);
@@ -185,14 +193,27 @@ public class CombatManager : Singleton<CombatManager>
             return;
         }
 
-
-        // if the camera is active, press the button to recenter to the current turn.
-        if (_overHeadCam.gameObject.activeSelf)
+        // press the button to recenter to the current turn.
+        if (_currentTurn != null)
         {
             _overHeadCam.transform.position = _currentTurn.transform.position + (Vector3.up * 5f);
+            Debug.Log("setting overhead cam pos to currentturn pos" + _currentTurn.transform.position);
+            Debug.Log("setting overhead cam pos to currentturn pos" + (_currentTurn.transform.position + (Vector3.up * 5f)));
+            // Debug.Log("setting overhead cam pos to currentturn pos" + _overHeadCam.ForceCameraPosition());
+
         }
-        else // otherwise just activate it
+        else if (CurrentSelected != null)
+        {
+            _overHeadCam.transform.position = CurrentSelected.transform.position + (Vector3.up * 5f);
+            Debug.Log("setting overhead cam pos to currentselected pos");
+
+        }
+
+
+        if (!_overHeadCam.gameObject.activeSelf)
+        {
             _overHeadCam.gameObject.SetActive(!_overHeadCam.gameObject.activeSelf);
+        }
     }
 
     public void AttackSelectedTarget()
@@ -227,7 +248,7 @@ public class CombatManager : Singleton<CombatManager>
         Color color = Color.red;
         if (text == "Miss!")
             color = Color.white;
-            
+
         if (TextPopupPrefab != null)
         {
             GameObject popup = Instantiate(TextPopupPrefab, combatant.transform.position, Quaternion.identity);
@@ -243,6 +264,7 @@ public class CombatManager : Singleton<CombatManager>
 
         RefreshUI();
         _currentTurn.DecrementAction();
+        ViewManager.Instance.GetView<CombatView>().SetCurrentTurnActionPoints(_currentTurn);
     }
 
     public void HealSelectedTarget()
@@ -339,6 +361,8 @@ public class CombatManager : Singleton<CombatManager>
 
         // Change UI to show current combatant's turn
         ViewManager.Instance.GetView<CombatView>().SetCurrentTurnData(_currentTurn);
+        ViewManager.Instance.GetView<CombatView>().SetAttackHitPercentage(); // set to no text
+
 
         // enable current turn's ranges
         _currentTurn.gameObject.FindComponentsAndSetActive<Projector>(true, out _);
@@ -367,14 +391,14 @@ public class CombatManager : Singleton<CombatManager>
             Debug.Log("Win");
             StartCoroutine(DialogueManager.Instance.EndBattleState(true));
             EndCombat();
-            
+
         }
         else if (CheckLoss())
         {
             Debug.Log("Loss");
             StartCoroutine(DialogueManager.Instance.EndBattleState(false));
             EndCombat();
-            
+
             SceneLoader.Instance.LoadScene(SceneManager.GetActiveScene().name);
         }
         else
@@ -398,7 +422,9 @@ public class CombatManager : Singleton<CombatManager>
     {
         //Debug.Log("Object hit by CombatManager OnTap(): " + args.HitObject.name);
         if (ViewManager.Instance.GetView<CombatView>() != null)
+        {
             ViewManager.Instance.GetView<CombatView>().SetTargetData(); // null to hide it
+        }
 
         if (args.HitObject != null && args.HitObject.CompareTag("Walkable"))
         {
@@ -416,6 +442,9 @@ public class CombatManager : Singleton<CombatManager>
                     NavigationTarget.gameObject.SetActive(true);
                     NavigationTarget.position = hit.point + Vector3.up * 0.1f;
                     entity.StartMove();
+
+                    if (ViewManager.Instance.GetView<CombatView>() != null)
+                        ViewManager.Instance.GetView<CombatView>().SetCurrentTurnMovementBar(entity);
                 }
             }
         }

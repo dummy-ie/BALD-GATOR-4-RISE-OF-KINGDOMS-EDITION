@@ -48,7 +48,9 @@ public class ViewManager : Singleton<ViewManager> {
     public void PopUp<T>() where T : View {
         for (int i = 0; i < this._views.Length; i++) {
             if (this._views[i] is T view) {
-                view.SortingOrder = _currentViews.Peek().SortingOrder + 1;
+                View peekView;
+                if (_currentViews.TryPeek(out peekView))
+                    view.SortingOrder = peekView.SortingOrder + 1;
                 view.Show();
                 this._currentViews.Push(view);
             }
@@ -86,10 +88,10 @@ public class ViewManager : Singleton<ViewManager> {
     }
     private void OnEnable()
     {
-        //SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     void OnDisable() {
-        //SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
 }

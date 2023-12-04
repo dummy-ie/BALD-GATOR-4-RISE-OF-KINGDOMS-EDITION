@@ -219,8 +219,19 @@ public abstract class Combatant : MonoBehaviour, ITappable
     public void OnTap(TapEventArgs args)
     {
         // Debug.Log("Tapped on " + args.HitObject.name + ".");
-        if (CombatManager.Instance.CurrentTurn != this && ViewManager.Instance.GetView<CombatView>() != null)
-            ViewManager.Instance.GetView<CombatView>().SetTargetData(this);
+        if (CombatManager.Instance.CurrentTurn != null && ViewManager.Instance.GetView<CombatView>() != null)
+        {
+            if (CombatManager.Instance.CurrentTurn != this)
+                ViewManager.Instance.GetView<CombatView>().SetTargetData(this);
+            else
+                ViewManager.Instance.GetView<CombatView>().SetTargetData();
+
+            if (CombatManager.Instance.CurrentTurn.Data.Affiliation != Data.Affiliation)
+                ViewManager.Instance.GetView<CombatView>().SetAttackHitPercentage(20, CombatManager.Instance.CurrentTurn.Data.Class.Attack.HitModifier, Data.Class.ArmorClass);
+            else
+                ViewManager.Instance.GetView<CombatView>().SetAttackHitPercentage(); // set to no text
+        }
+
 
         GameObject currentCam = CurrentCameraObject();
         GameObject lastObject = null;
@@ -279,8 +290,8 @@ public abstract class Combatant : MonoBehaviour, ITappable
             else
                 Debug.LogError("Couldn't find the navigation target! obj is null");
         }
-        
-            // _target = FindObjectsByType<AnimatedHighlight>(FindObjectsSortMode.InstanceID).First(o => o.name == "Navigation Target").transform;
+
+        // _target = FindObjectsByType<AnimatedHighlight>(FindObjectsSortMode.InstanceID).First(o => o.name == "Navigation Target").transform;
 
         ResetPaths();
         _data.ActionsLeft = _data.Class.MaxActions;

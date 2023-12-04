@@ -7,6 +7,10 @@ public class QuestStep : MonoBehaviour
 {
     private bool _finished = false;
     private string _id;
+    public string ID
+    {
+        get { return _id; }
+    }
     private int _stepIndex;
 
     [SerializeField]
@@ -24,14 +28,18 @@ public class QuestStep : MonoBehaviour
     public void InitializeQuestStep(string id, int stepIndex, string stepState) {
         _id = id;
         _stepIndex = stepIndex;
+        _finished = false;
+        Debug.Log($"Initializing Step {stepIndex} of {id}");
         if (stepState != null && stepState != "")
         {
             //SetStepState(stepState);
         }
     }
-    public void FinishStep(int nextStepIndex) { 
+    public void FinishStep(int nextStepIndex) {
+        Debug.Log(_stepName + " : " + _finished);
         if (!_finished) {
             _finished = true;
+            Debug.Log("Finishing Step : " +  _stepName);
             QuestManager.Instance.AdvanceQuest(_id, nextStepIndex, _canFinish);
             Destroy(gameObject);
         }

@@ -40,10 +40,10 @@ Label {
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
-    border-top-width: 7px;
-    border-right-width: 7px;
-    border-bottom-width: 7px;
-    border-left-width: 7px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
     -unity-text-align: middle-center;
     -unity-font-style: normal;
     color: rgb(229, 229, 229);
@@ -101,7 +101,6 @@ Label {
 }
 
 #Hotbar {
-    flex-direction: row;
     position: absolute;
     width: 100%;
     height: 25%;
@@ -109,10 +108,32 @@ Label {
     left: 0;
     transition-property: opacity;
     transition-duration: 0.5s;
+    flex-direction: row;
 }
 
 #HotbarRight {
+    flex-grow: 1;
     flex-direction: column-reverse;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    width: 12%;
+    margin-left: 2%;
+    margin-bottom: 1%;
+}
+
+#ActionPoint {
+    align-self: flex-start;
+    background-color: rgb(90, 90, 90);
+}
+
+#ActionPoint.enabled {
+    background-color: rgb(0, 202, 252);
+}
+
+#HotbarMiddle {
+    flex-direction: column-reverse;
+    width: 12%;
 }
 
 #CombatantName {
@@ -123,43 +144,57 @@ Label {
 #TurnButtons {
     flex-direction: row;
     align-self: flex-start;
+    width: 85%;
+}
+
+#AttackButton {
+    background-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/attackIcon1.png?fileID=2800000&guid=1fd6eeb886365cc4fac5260186ed5606&type=3#attackIcon1');
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgba(255, 54, 54, 0.78);
+    width: 30%;
+    height: 65%;
+    font-size: 50px;
+}
+
+#HealButton {
+    background-image: url('project://database/Assets/Graphics/Sprites/Menu%20Icons/healIcon1.png?fileID=2800000&guid=37c4f48d72ca7744f9474ae7655dcd23&type=3#healIcon1');
+    -unity-background-scale-mode: scale-to-fit;
+    width: 30%;
+    height: 65%;
+    -unity-background-image-tint-color: rgba(54, 255, 54, 0.78);
 }
 
 #EndTurnButton {
+    height: 65%;
 }
 
 #HotbarLeft {
     flex-direction: row-reverse;
     height: 100%;
-    width: 10%;
+    width: 12%;
     align-items: center;
 }
 
-#HealthBarBox {
-    flex-direction: row-reverse;
-    width: 100%;
-    height: 80%;
-    padding-right: 5%;
-    padding-left: 5%;
-    position: absolute;
-}
-
 #CurrentTurnHealthBar {
-    rotate: -90deg;
-    scale: 1 1;
-    height: 100%;
-    transform-origin: center;
-    display: flex;
-    flex-direction: row;
-    max-width: initial;
-    max-height: initial;
+    height: 85%;
     position: absolute;
+    width: 25%;
+    padding-bottom: 9px;
+    margin-right: 6.5%;
+    rotate: -90deg;
+    padding-left: 9px;
+    padding-top: 9px;
+    padding-right: 9px;
 }
 
 #CurrentTurnHealthBar .unity-progress-bar__container {
     align-self: center;
     max-height: initial;
     height: 100%;
+    width: 100%;
+    max-width: initial;
+    min-width: 200px;
+    min-height: 200px;
 }
 
 #CurrentTurnHealthBar .unity-progress-bar__background {
@@ -168,19 +203,22 @@ Label {
     border-bottom-right-radius: 100%;
     border-bottom-left-radius: 100%;
     overflow: hidden;
-    border-top-width: 7px;
-    border-right-width: 7px;
-    border-bottom-width: 7px;
-    border-left-width: 7px;
-    background-color: rgba(69, 0, 0, 0.86);
+    background-color: rgba(142, 41, 35, 0.98);
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(250, 115, 67);
+    background-image: url('project://database/Assets/Addons/FarlandSkies/Skyboxes/CloudyCrown_04_Sunset/Textures/CloudyCrown_Sunset_Right.png?fileID=2800000&guid=7f934c5ce832dfb4991233d48e1cd7e1&type=3#CloudyCrown_Sunset_Right');
 }
 
 #CurrentTurnHealthBar .unity-progress-bar__progress {
-    scale: 1.1 2;
+    scale: 1.1 1.2;
     background-image: url('project://database/Assets/Addons/FarlandSkies/Skyboxes/CloudyCrown_05_Daybreak/Textures/CloudyCrown_Daybreak_Front.png?fileID=2800000&guid=32dd115bed46a474ab32a88684606180&type=3#CloudyCrown_Daybreak_Front');
-    -unity-background-image-tint-color: rgb(255, 179, 179);
-    -unity-background-scale-mode: scale-and-crop;
+    -unity-background-image-tint-color: rgb(255, 162, 162);
     transform-origin: center;
+    transition-property: rotate;
+    transition-duration: 2s;
+    transition-timing-function: ease-in-out-back;
+    rotate: 0;
+    -unity-background-scale-mode: scale-and-crop;
 }
 
 #CurrentTurnHealthBar .unity-progress-bar__title {
@@ -195,19 +233,18 @@ Label {
     transform-origin: center;
 }
 
-#MovementBarBox {
-    flex-direction: row-reverse;
-    position: absolute;
-    width: 100%;
-    height: 80%;
-    padding-right: 5%;
-    padding-left: 5%;
-}
-
 #CurrentTurnMovementBar {
-    rotate: -45deg;
-    align-self: center;
-    scale: 1.1 1.2;
+    rotate: -90deg;
+    scale: 1 1;
+    position: absolute;
+    width: 30%;
+    max-width: initial;
+    max-height: initial;
+    height: 112%;
+    padding-bottom: 2%;
+    margin-right: 5%;
+    justify-content: flex-end;
+    padding-left: 2%;
 }
 
 #CurrentTurnMovementBar .unity-progress-bar__container {
@@ -222,12 +259,10 @@ Label {
     border-bottom-right-radius: 100%;
     border-bottom-left-radius: 100%;
     overflow: hidden;
-    border-top-width: 7px;
-    border-right-width: 7px;
-    border-bottom-width: 7px;
-    border-left-width: 7px;
     background-color: rgba(53, 81, 87, 0.86);
     -unity-background-scale-mode: scale-and-crop;
+    background-image: url('project://database/Assets/Addons/FarlandSkies/Skyboxes/CloudyCrown_02_Evening/Textures/CloudyCrown_Evening_Right.png?fileID=2800000&guid=f33d9e3a86071394c83b568257570dd5&type=3#CloudyCrown_Evening_Right');
+    -unity-background-image-tint-color: rgb(138, 148, 233);
 }
 
 #CurrentTurnMovementBar .unity-progress-bar__progress {
@@ -235,21 +270,16 @@ Label {
     background-color: rgb(107, 165, 255);
     background-image: url('project://database/Assets/Addons/FarlandSkies/Skyboxes/CloudyCrown_01_Midday/Textures/CloudyCrown_Midday_Left.png?fileID=2800000&guid=fd5f7c807ca1ea643b0ae501ff889a70&type=3#CloudyCrown_Midday_Left');
     -unity-background-scale-mode: scale-and-crop;
-    transform-origin: right;
-    rotate: -30deg;
+    transform-origin: center;
+    rotate: 0;
 }
 
 #CurrentTurnMovementBar .unity-progress-bar__title {
-    font-size: 24px;
-    -unity-text-align: middle-center;
-    white-space: normal;
-    color: rgba(27, 27, 27, 0);
-    -unity-text-outline-color: rgba(0, 0, 0, 0);
 }
 
 #CurrentTurnMovementBar .unity-progress-bar__title-container {
     rotate: 90deg;
-    right: 25%;
+    right: 40%;
 }
 
 #SelectedTarget {

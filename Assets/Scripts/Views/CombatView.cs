@@ -19,9 +19,13 @@ public class CombatView : View
 
     private VisualElement _hotbar;
     private ProgressBar _currentTurnHealthBar;
+    private ProgressBar _currentTurnMovementBar;
     private Label _combatantName;
+    private List<Button> _actionPoints;
 
     private Button _switchCameraButton;
+
+
 
     private const string _animationClass = "animation-hide";
 
@@ -47,11 +51,31 @@ public class CombatView : View
         // hotbar at the bottom
         _hotbar = _root.Q<VisualElement>("Hotbar");
         _currentTurnHealthBar = _root.Q<ProgressBar>("CurrentTurnHealthBar");
+        _currentTurnMovementBar = _root.Q<ProgressBar>("CurrentTurnMovementBar");
         _combatantName = _root.Q<Label>("CombatantName");
+        _actionPoints = _root.Query<Button>("ActionPoint").ToList();
 
         // switch cam button
         _switchCameraButton = _root.Q<Button>("SwitchCameraButton");
         _switchCameraButton.clicked += SwitchCameraButtonClicked;
+    }
+
+    public void SetAttackHitPercentage(int dieFaces = 0, int modifier = 0, int difficultyClass = 0)
+    {
+        float percentage = InternalDice.Instance.GetPercentageOfRoll(dieFaces, modifier, difficultyClass);
+
+        if (percentage < 0)
+        {
+            _attackButton.text = string.Empty;
+            return;
+        }
+        // else if (percentage == 0)
+        // {
+        //     _attackButton.text = "0%";
+        //     return;
+        // }
+
+        _attackButton.text = Math.Floor(percentage).ToString() + "%";
     }
 
     public void SetTargetData(Combatant combatant = null)
@@ -67,7 +91,7 @@ public class CombatView : View
         // _selectedTarget.style.display = DisplayStyle.Flex;
         _selectedTarget.RemoveFromClassList(_animationClass);
         // _targetHealthBar.value = ClassData.GetHealthPercentage(combatant.Data.Health, combatant.Data.Class.MaxHealth);
-        StartCoroutine(InterpolateProgressBar(_targetHealthBar, ClassData.GetHealthPercentage(combatant.Data.Health, combatant.Data.Class.MaxHealth), 0.5f));
+        StartCoroutine(InterpolateProgressBar(_targetHealthBar, ClassData.GetPercentage(combatant.Data.Health, combatant.Data.Class.MaxHealth), 0.5f));
         _targetName.text = combatant.name;
 
         if (combatant.Data.Affiliation == Entity.AffiliationState.Ally)
@@ -91,24 +115,66 @@ public class CombatView : View
 
         _currentTurnHealthBar.title = combatant.Data.Health + " / " + combatant.Data.Class.MaxHealth;
         // _currentTurnHealthBar.value = ClassData.GetHealthPercentage(combatant.Data.Health, combatant.Data.Class.MaxHealth);
-        StartCoroutine(InterpolateProgressBar(_currentTurnHealthBar, ClassData.GetHealthPercentage(combatant.Data.Health, combatant.Data.Class.MaxHealth), 0.5f));
+        StartCoroutine(InterpolateProgressBar(_currentTurnHealthBar, ClassData.GetPercentage(combatant.Data.Health, combatant.Data.Class.MaxHealth), 1f));
+        SetCurrentTurnMovementBar(combatant);
+        SetCurrentTurnActionPoints(combatant);
+
         _combatantName.text = combatant.name;
 
         _attackButton.style.display = DisplayStyle.Flex;
         _healButton.style.display = DisplayStyle.Flex;
-        _endTurnButton.style.display = DisplayStyle.Flex;            
+        _endTurnButton.style.display = DisplayStyle.Flex;
 
         if (combatant.Data.Class.Attack == null)
             _attackButton.style.display = DisplayStyle.None;
 
         if (combatant.Data.Class.Heal == null)
             _healButton.style.display = DisplayStyle.None;
-        
+
         if (combatant.Data.Affiliation == Entity.AffiliationState.Enemy)
         {
             _attackButton.style.display = DisplayStyle.None;
-            _healButton.style.display = DisplayStyle.None;            
-            _endTurnButton.style.display = DisplayStyle.None;            
+            _healButton.style.display = DisplayStyle.None;
+            _endTurnButton.style.display = DisplayStyle.None;
+        }
+    }
+
+    public void SetCurrentTurnMovementBar(Combatant combatant)
+    {
+        StartCoroutine(InterpolateProgressBar(_currentTurnMovementBar, ClassData.GetPercentage(combatant.Data.MovementRemaining, combatant.Data.Class.MovementSpeed), 0.5f));
+    }
+
+    public void SetCurrentTurnActionPoints(Combatant combatant)
+    {
+        foreach (Button point in _actionPoints)
+        {
+            point.style.display = DisplayStyle.None;
+            point.RemoveFromClassList("enabled");
+        }
+
+        for (int i = 0; i < combatant.Data.Class.MaxActions; i++)
+        {
+            if (i >= _actionPoints.Count)
+            {
+                Debug.LogWarning("Entity " + combatant.name + " has too many maximum action points to display.");
+                Debug.LogWarning("Action points list count: " + _actionPoints.Count);
+                Debug.LogWarning("Max action points: " + combatant.Data.Class.MaxActions);
+                break;
+            }
+
+            _actionPoints[i].style.display = DisplayStyle.Flex;
+        }
+
+        for (int i = 0; i < combatant.Data.ActionsLeft; i++)
+        {
+            if (i >= _actionPoints.Count)
+            {
+                Debug.LogWarning("Entity " + combatant.name + " has too many remaining action points to display.");
+                Debug.LogWarning("Actions left: " + combatant.Data.ActionsLeft);
+                break;
+            }
+
+            _actionPoints[i].AddToClassList("enabled");
         }
     }
 
@@ -116,6 +182,18 @@ public class CombatView : View
     {
         float time = 0;
         int oldValue = (int)bar.value;
+        while (time <= duration)
+        {
+            time += Time.deltaTime;
+            bar.value = Mathf.Lerp(oldValue, newValue, time / duration);
+            yield return null;
+        }
+    }
+
+    private IEnumerator InterpolateProgressBar(ProgressBar bar, float newValue, float duration)
+    {
+        float time = 0;
+        float oldValue = bar.value;
         while (time <= duration)
         {
             time += Time.deltaTime;

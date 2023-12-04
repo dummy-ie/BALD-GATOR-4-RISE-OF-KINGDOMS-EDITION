@@ -2,22 +2,24 @@
     <Style src="project://database/Assets/GUI/USS/CombatWIP.uss?fileID=7433441132597879392&amp;guid=3b0cec276315ae440a0790c85ef51a97&amp;type=3#CombatWIP" />
     <ui:VisualElement name="Hotbar" class="animation-hide" style="flex-grow: 1;">
         <ui:VisualElement name="HotbarLeft" style="flex-grow: 1;">
-            <ui:VisualElement name="MovementBarBox" style="flex-grow: 1;">
-                <ui:VisualElement name="CurrentTurnMovementBar">
-                    <ui:ProgressBar name="CurrentTurnMovementBar" value="43.3" high-value="100" low-value="0" title="100 / 100" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="HealthBarBox" style="flex-grow: 1;">
-                <ui:ProgressBar name="CurrentTurnHealthBar" value="64.7" high-value="100" low-value="0" title="100 / 100" />
-            </ui:VisualElement>
+            <ui:ProgressBar name="CurrentTurnMovementBar" value="31.3" high-value="100" low-value="0" style="transition-property: translate; transition-duration: 1s;" />
+            <ui:ProgressBar name="CurrentTurnHealthBar" value="68.2" high-value="100" low-value="0" title="100 / 100" />
         </ui:VisualElement>
-        <ui:VisualElement name="HotbarRight" style="flex-grow: 1;">
+        <ui:VisualElement name="HotbarMiddle" style="flex-grow: 1;">
             <ui:VisualElement name="TurnButtons" style="flex-grow: 1;">
-                <ui:Button text="Attack" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AttackButton" />
-                <ui:Button text="Heal" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealButton" />
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="AttackButton" />
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="HealButton" />
                 <ui:Button text="End Turn" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndTurnButton" />
             </ui:VisualElement>
             <ui:Label tabindex="-1" text="If you see this, it broke" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CombatantName" />
+        </ui:VisualElement>
+        <ui:VisualElement name="HotbarRight">
+            <ui:Button parse-escape-sequences="false" display-tooltip-when-elided="false" name="ActionPoint" picking-mode="Ignore" focusable="false" enable-rich-text="false" class="enabled" />
+            <ui:Button parse-escape-sequences="false" display-tooltip-when-elided="false" name="ActionPoint" picking-mode="Ignore" focusable="false" enable-rich-text="false" />
+            <ui:Button parse-escape-sequences="false" display-tooltip-when-elided="false" name="ActionPoint" picking-mode="Ignore" focusable="false" enable-rich-text="false" />
+            <ui:Button parse-escape-sequences="false" display-tooltip-when-elided="false" name="ActionPoint" picking-mode="Ignore" focusable="false" enable-rich-text="false" />
+            <ui:Button parse-escape-sequences="false" display-tooltip-when-elided="false" name="ActionPoint" picking-mode="Ignore" focusable="false" enable-rich-text="false" />
+            <ui:Button parse-escape-sequences="false" display-tooltip-when-elided="false" name="ActionPoint" picking-mode="Ignore" focusable="false" enable-rich-text="false" />
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="SelectedTarget" picking-mode="Ignore" class="animation-hide" style="flex-grow: 1;">

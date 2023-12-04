@@ -17,19 +17,19 @@ public class Quest {
     public int CurrentStepIndex { 
         get { return _currentStepIndex; }
     }
-    private QuestStepState[] _stepStates;
-    public QuestStepState[] StepStates  { 
-        get { return _stepStates; }
-    }
+    //private QuestStepState[] _stepStates;
+    //public QuestStepState[] StepStates  { 
+    //    get { return _stepStates; }
+    //}
     public Quest(QuestData questData) {
         this._data = questData;
         this._state = EQuestState.REQUIREMENTS_NOT_MET;
         this._currentStepIndex = 0;
-        this._stepStates = new QuestStepState[_data.Steps.Length];
-        for (int i = 0; i < _stepStates.Length; i++)
-        {
-            _stepStates[i] = new QuestStepState();
-        }
+        //this._stepStates = new QuestStepState[_data.Steps.Length];
+        //for (int i = 0; i < _stepStates.Length; i++)
+        //{
+        //    _stepStates[i] = new QuestStepState();
+        //}
     }
 
     public void SetStep(int index) { 
@@ -43,7 +43,9 @@ public class Quest {
     public void InstantiateCurrentStep(Transform transform) {
         GameObject stepPrefab = GetCurrentStepPrefab();
         if (stepPrefab != null) {
-            Object.Instantiate<GameObject>(stepPrefab, transform);
+            GameObject newStep = Object.Instantiate<GameObject>(stepPrefab, transform);
+            newStep.GetComponent<QuestStep>().InitializeQuestStep(_data.ID, _currentStepIndex, "");
+            Debug.Log($"Instantiated Step : {newStep.GetComponent<QuestStep>().StepName}");
         }
     }
 
@@ -58,6 +60,11 @@ public class Quest {
         return stepPrefab;
     }
 
+    /*public void FinishStep(int nextStepIndex)
+    {
+        GetCurrentStepPrefab().GetComponent<QuestStep>().FinishStep(nextStepIndex);
+    }
+
     public void StoreStepState(QuestStepState stepState, int stepIndex) {
         if (stepIndex < _stepStates.Length)
         {
@@ -68,5 +75,5 @@ public class Quest {
             Debug.LogWarning("Tried to access quest step data, but stepIndex was out of range: "
                 + "Quest Id = " + Data.ID + ", Step Index = " + stepIndex);
         }
-    }
+    }*/
 }
