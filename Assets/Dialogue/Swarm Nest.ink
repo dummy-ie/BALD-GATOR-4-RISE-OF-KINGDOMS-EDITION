@@ -1,4 +1,4 @@
-﻿INCLUDE ../Database.ink
+﻿INCLUDE Database.ink
 
 EXTERNAL RollDice(stat)
 EXTERNAL Fight()
@@ -9,12 +9,10 @@ VAR name = "swarmNest"
 
 ->VarCheck
 ===VarCheck===
-{   
-    -acceptHayseedQuest: ->Base.Dialogue1 
-    -else: ->NoTalk
-}
+->Base
 
 ===Base===
+{acceptHayseedQuest: ->Dialogue1 | ->NoTalk}
 
 =Dialogue1
 Few feet away from you, you spot an odd structure that appears to be made of mud and some other unidentifiable material. You hear sounds of shuffling and squeaking coming from the holes on the structure. You quickly realize that this is the nest of the swarm, the source of the pest problem you’re tasked to deal with.
@@ -68,6 +66,7 @@ Loading Dice Roll...
 {
     -battleWon: 
         ~swarmNestDefeated = true
+        ~hayseedCanTalkTo = true
         ~Leave(false)
         ~Kill()
         ->DONE
@@ -76,21 +75,13 @@ Loading Dice Roll...
         ->DONE
 }
 
-->END
-
-===NoTalk===
-Bzzz
-    +[Bzzz]
+=NoTalk
+\*Bzzz*
+    +[Bzzz?]
     ~Leave(false)
     ->DONE
 
+
 ->END
-
-
-===function RollDice(stat)===
-Error
-
-===function StartQuest(id)===
-Error
 
 

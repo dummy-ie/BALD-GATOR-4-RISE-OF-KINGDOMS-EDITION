@@ -83,6 +83,11 @@ public class DialogueManager : Singleton<DialogueManager>
             QuestManager.Instance.FinishQuest(questId);
         });
 
+        _currentStory.BindExternalFunction("AdvanceQuest", (string questId) =>
+        {
+            QuestManager.Instance.FinishQuest(questId);
+        });
+
         _currentStory.BindExternalFunction("IncreaseStat", (string stat) =>
         {
             Entity player = CombatManager.Instance.CurrentSelected.GetComponent<Entity>();
@@ -140,6 +145,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _currentStory.UnbindExternalFunction("RollDice");
         _currentStory.UnbindExternalFunction("StartQuest");
+        _currentStory.UnbindExternalFunction("AdvanceQuest");
         _currentStory.UnbindExternalFunction("FinishQuest");
         _currentStory.UnbindExternalFunction("IncreaseStat");
         _currentStory.UnbindExternalFunction("Fight");
@@ -207,6 +213,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _isDiceRolling = false;
         _view.AssignButtons();
+        ViewManager.Instance.GetView<GameView>().Show();
         foreach (GameObject player in PartyManager.Instance.PartyMembers)
         {
             player.GetComponentInChildren<PlayerInteract>().AssignButtons();
@@ -259,6 +266,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         RemoveButtons();
         HideView();
+        ViewManager.Instance.GetView<GameView>().Hide();
         _isDiceRolling = true;
 
         _characterReference2 = CombatManager.Instance.CurrentSelected;
@@ -283,7 +291,8 @@ public class DialogueManager : Singleton<DialogueManager>
                 case "WIS": statValue = player.Class.Wisdom; break;
             }
         }
-        FindObjectOfType<ExternalDice>().DifficultyClass = statValue;
+        FindObjectOfType<ExternalDice>().DifficultyClass = (int)_currentStory.variablesState[_name + stat];
+        
     }
 
     private void SetButtons()

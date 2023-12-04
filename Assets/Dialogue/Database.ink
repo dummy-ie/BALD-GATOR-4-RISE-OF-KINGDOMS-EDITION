@@ -7,14 +7,27 @@ VAR battleWon = false
 
 
 //QUESTSTUFF
-//MAINQUEST1
-
+//MAIN QUEST 1
+ 
 VAR inquireBartender = false
+VAR zrellIsDead = false
+VAR gabrielIsDead = false
 
-//FOOSHAVILLAGEQUEST
+//FOOSHA VILLAGE QUEST
 
 VAR acceptHayseedQuest = false
 VAR swarmNestDefeated = false
+
+//CHAPEL QUEST
+
+VAR acceptChapelQuest = false
+VAR inquiredPastor = false
+VAR ashesHasBeenSpread = false
+VAR helpTheSusNun = false
+
+//MAID QUEST
+
+VAR acceptMaidQuest = false
 
 //USOPP
 VAR usoppCanTalkTo = true
@@ -39,14 +52,12 @@ VAR swarmNestHasRolledDEX = false
 
 //TOWN GUY
 VAR townGuyCanTalkTo = true
-VAR townGuyAshed = false
 
 //NON SUS NUN
 VAR nonSusNunCanTalkTo = true
 
 //SUS NUN
-VAR susNunCanTalkTo = true
-VAR susNunHelp = false
+VAR susNunCanTalkTo = false
 
 VAR susNunCHA = 10
 VAR susNunHasRolledCHA = false
@@ -56,9 +67,18 @@ VAR susNunHasRolledINT = false
 
 //PASTOR
 VAR pastorCanTalkTo = true
-VAR pastorTalkedTo = false
 
 //SUNNY
-
 VAR sunnyCanTalkTo = true
-VAR sunnyTalkedTo = false
+
+//MERRY
+VAR merryCanTalkTo = true
+
+//ZRELL
+VAR zrellCanTalkTo = true
+
+VAR zrellSTR = 10
+VAR zrellHasRolledSTR = false
+
+VAR zrellWIS = 10
+VAR zrellHasRolledWIS = false

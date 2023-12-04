@@ -1,4 +1,4 @@
-﻿INCLUDE ../Database.ink
+﻿INCLUDE Database.ink
 
 EXTERNAL RollDice(stat)
 EXTERNAL StartQuest(id)
@@ -9,8 +9,13 @@ EXTERNAL Leave(returnable)
 
 VAR name = "pastor"
 
-{pastorCanTalkTo: ->Character.Dialogue1 | ->NoTalk}
-===Character===
+->VarCheck
+===VarCheck===
+->Base
+
+
+===Base===
+{acceptChapelQuest: ->Dialogue1 | ->NoTalk }
 
 =Dialogue1
 "Oh? A wayward soul. How can I help you?"
@@ -24,8 +29,9 @@ VAR name = "pastor"
 =Dialogue2
 “Hmm… I sometimes see one of our nuns acting very strange lately. Can you do me a favor and check on her."
     + [Sure]
-    ~ pastorTalkedTo = true
-    ->NoTalk
+        ~ inquiredPastor = true
+        ->NoTalk
+        ->DONE
 
 =Dialogue3
 "I'll go see if I have a spare, son"
@@ -33,17 +39,12 @@ VAR name = "pastor"
     ~Leave(true)
     ->DONE
 
-->END
-
-===NoTalk===
+=NoTalk
 May the moon be with you
     +[...mhm]
-    ~ Leave(false)
+    ~ Leave(true)
     ->DONE
 ->END
 
-===function RollDice(stat)===
-Error
 
-===function StartQuest(id)===
-Error
+

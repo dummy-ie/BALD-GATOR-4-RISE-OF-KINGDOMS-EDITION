@@ -1,4 +1,4 @@
-﻿INCLUDE ../Database.ink
+﻿INCLUDE Database.ink
 
 EXTERNAL RollDice(stat)
 EXTERNAL IncreaseStat(stat)
@@ -10,13 +10,14 @@ VAR name = "hayseed"
 ->VarCheck
 ===VarCheck===
 {   
-    -!hayseedCanTalkTo: ->NoTalk
-    -swarmNestDefeated: ->AfterSwarm.Dialogue1 
-    -else: ->Base.Dialogue1
+    -swarmNestDefeated: ->AfterSwarm
+    -else: ->Base
 }
 
 
 ===Base===
+{hayseedCanTalkTo: ->Dialogue1 | ->NoTalk}
+
 
 =Dialogue1
 “Traveler! I am in need of dire assistance! Our fields are being ravaged by these godforsaken pests and if this continues, we’ll all die of hunger!”
@@ -39,24 +40,34 @@ VAR name = "hayseed"
         ->DONE
 
 
+=NoTalk
+"These pests are so annoying!"
+    +[Bzzz]
+    ~ Leave(false)
+    ->DONE
+
 ->END
 
 ===AfterSwarm===
+{hayseedCanTalkTo: ->Dialogue1 | ->NoTalk}
 
 =Dialogue1
-“Thank you thank you thank you! We, the farmers, owe you plenty. With the pests gone, we can hope to survive a few more winters. Here, take this. This is every farmer’s token of gratitude to you.”
+“Thank you thank you thank you! We, the farmers, owe you plenty. With the pests gone, we can hope to survive a few more winters. Here, take this. This is every farmer’s token of gratitude to you.” [STRENGTH INCREASED]
     +[… Is that a diamond hoe?]
     ~IncreaseStat("STR")
     ~Leave(false)
     ->DONE
 
-->END
-
-===NoTalk===
-Hmm?
-    +[Swram]
+=NoTalk
+"Thanks for dealing with those pests!"
+    +[Bzzz!]
     ~ Leave(false)
     ->DONE
+
+
+->END
+
+
 ->END
 
 

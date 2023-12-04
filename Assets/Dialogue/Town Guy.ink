@@ -1,19 +1,19 @@
-﻿INCLUDE ../Database.ink
+﻿INCLUDE Database.ink
 
-EXTERNAL RollDice(stat)
-EXTERNAL StartQuest(id)
-EXTERNAL FinishQuest(id)
-EXTERNAL IncreaseStat(stat)
-EXTERNAL Fight()
 EXTERNAL Leave(returnable)
 
 VAR name = "townGuy"
 
-{susNunHelp: ->Character2.Pre | ->Character.Pre}
-===Character===
+->VarCheck
 
-=Pre
-{townGuyCanTalkTo: ->Dialogue1 | ->NoTalk}
+===VarCheck===
+{
+    -helpTheSusNun: ->HelpingTheNun
+    -else: ->Base 
+}
+
+===Base===
+{townGuyCanTalkTo: ->Dialogue1 | ->NoTalk }
 
 =Dialogue1
 “Hello random stranger! What brings you to our town?”
@@ -37,24 +37,27 @@ VAR name = "townGuy"
 =Dialogue3
 "You can try the chapel up north."
     +[Ayt Bet]
+    ~acceptChapelQuest = true
+    ~susNunCanTalkTo = true
     ~Leave(false)
     ->DONE
-    +[Seeya]
-    ~Leave(false)
+
+=NoTalk
+"The prophecy is scary!""
+    +[Coward]
+    ~ Leave(false)
     ->DONE
 
 ->END
 
 
-===Character2===
-
-=Pre
-{townGuyCanTalkTo: ->Dialogue1 | ->NoTalk}
+===HelpingTheNun===
+{townGuyCanTalkTo: ->Dialogue1 | ->NoTalk }
 
 =Dialogue1
 You see the villagers around. Time for a little ashfall
     +[Spread the ashes]
-    ~townGuyAshed = true
+    ~ashesHasBeenSpread = true
     //FinishQuest(id)
     ->Dialogue2
 
@@ -63,14 +66,15 @@ You see the villagers around. Time for a little ashfall
     +[Make your escape]
     ~Leave(false)
     ->DONE
-->END
 
-===NoTalk===
-What's up?
-    +[Hey]
-    ~ Leave(false)
+=NoTalk
+"DUDE WTH??"
+    +[Heh]
+    ~Leave(false)
     ->DONE
 ->END
+
+
 
 
 

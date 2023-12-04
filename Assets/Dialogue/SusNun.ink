@@ -1,29 +1,30 @@
-﻿INCLUDE ../Database.ink
+﻿INCLUDE Database.ink
 
 EXTERNAL RollDice(stat)
-EXTERNAL StartQuest(id)
-EXTERNAL FinishQuest(id)
 EXTERNAL IncreaseStat(stat)
 EXTERNAL Fight()
+EXTERNAL Kill()
 EXTERNAL Leave(returnable)
 
 VAR name = "susNun"
 
-{susNunCanTalkTo: ->Character.Dialogue1 | ->NoTalk}
+->VarCheck
+===VarCheck===
+->Base
 
-===Character===
 
-
+===Base===
+{susNunCanTalkTo: ->Dialogue1 | ->NoTalk}
 
 =Dialogue1
 Who goes there!? Ah, it's just a wanderer… What do you need?
     +[Um, Nothing]
         ~Leave(true)
         ->DONE
-    * {pastorTalkedTo} [Inspect nun (INTELLIGENCE)]
+    * {inquiredPastor} [Inspect nun (INTELLIGENCE)]
         ~RollDice("INT")
         ->INTCheck
-    * {!pastorTalkedTo} [No. What do YOU need? (CHARISMA)]
+    * {!inquiredPastor} [No. What do YOU need? (CHARISMA)]
         ~RollDice("CHA")
         ->CHACheck
         
@@ -40,6 +41,7 @@ Loading Dice Roll...
 {
     -diceRoll: 
         ~Fight()
+        ->Fighting
     - else: 
         ~Leave(false)
         ->DONE
@@ -57,7 +59,8 @@ Loading Dice Roll...
         +[Proceed]
 {
     -diceRoll: 
-        ~susNunHelp = true
+        ~helpTheSusNun = true
+        ~townGuyCanTalkTo = true
         ~Leave(false)
         ->DONE
     - else: 
@@ -65,12 +68,37 @@ Loading Dice Roll...
         ->DONE
 }
 
+=Fighting
+"Fighting in progress..."
+->FightResult
 
-->END
+=FightResult
+{
+    -battleWon: "Ugh... I'm not... finished with the mission..." 
+    -else: ded
+}
+    +[Proceed]
+{
+    -battleWon: ->FightResult2
+    -else: 
+        ~Leave(false)
+        ->DONE
+}
 
-===NoTalk===
+
+=FightResult2
+You notice the nun was holding some sort of relic. You pick it up. [WISDOM INCREASED]
+    +[Proceed]
+        ~Leave(false)
+        ~IncreaseStat("WIS")
+        ~Kill()
+        ->DONE
+
+
+=NoTalk
 ...
     +[...]
     ~ Leave(false)
     ->DONE
 ->END
+

@@ -1,4 +1,4 @@
-﻿INCLUDE ../Database.ink
+﻿INCLUDE Database.ink
 
 EXTERNAL RollDice(stat)
 EXTERNAL StartQuest(id)
@@ -9,8 +9,11 @@ EXTERNAL Leave(returnable)
 
 VAR name = "nonSusNun"
 
-{nonSusNunCanTalkTo: ->Character.Dialogue1 | ->NoTalk}
-===Character===
+->VarCheck
+===VarCheck===
+->Base
+===Base===
+{acceptChapelQuest: ->Dialogue1 | ->NoTalk}
 
 =Dialogue1
 “Oh my moons, it’s been a while since we’ve had a newcomer to our chapel. How may I help you, o’ young one?”
@@ -36,20 +39,13 @@ VAR name = "nonSusNun"
     ~Leave(true)
     ->DONE
 
-->END
-
-===NoTalk===
+=NoTalk
 May the moon be with you always
     +[...ok]
-    ~ Leave(false)
+    ~ Leave(true)
     ->DONE
 ->END
 
-===function RollDice(stat)===
-Error
-
-===function StartQuest(id)===
-Error
 
 
 

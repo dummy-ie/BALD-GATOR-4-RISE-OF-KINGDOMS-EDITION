@@ -1,4 +1,4 @@
-﻿INCLUDE ../Database.ink
+﻿INCLUDE Database.ink
 
 EXTERNAL RollDice(stat)
 EXTERNAL Fight()
@@ -11,22 +11,20 @@ VAR name = "usopp"
 ->VarCheck
 
 ===VarCheck===
-{
-    -!usoppCanTalkTo: ->NoTalk
-    -else: ->Base.Dialogue1
-}
+->Base
 
 ===Base===
+{usoppCanTalkTo: ->Dialogue1 | ->NoTalk }
 
 =Dialogue1
 “Welcome to Merry Island, traveler.”
     + [What’s going on around here?]
         ->Dialogue2
-    + [Thanks! I’m going now.]
-        ->Dialogue3
-    + [I'll kill you!]
-        ~Fight()
-        ->Fighting
+//    + [Thanks! I’m going now.]
+//        ->Dialogue3
+//    + [I'll kill you!]
+//        ~Fight()
+//       ->Fighting
 
 
 =Dialogue2
@@ -115,13 +113,12 @@ Loading Dice Roll...
         ->DONE
 }
     
-
-->END
-
-===NoTalk===
-What?
+=NoTalk
+"You still haven't paid"
     +[Bye]
         ~Leave(false)
         ->DONE
+
 ->END
+
 

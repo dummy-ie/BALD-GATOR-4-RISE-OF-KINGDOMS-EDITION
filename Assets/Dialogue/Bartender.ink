@@ -1,4 +1,4 @@
-﻿INCLUDE ../Database.ink
+﻿INCLUDE Database.ink
 
 EXTERNAL Leave(returnable)
 
@@ -7,12 +7,11 @@ VAR name = "bartender"
 ->VarCheck
 
 ===VarCheck===
-{
-    -!bartenderCanTalkTo: ->NoTalk
-    -else: ->Base.Dialogue1
-}
+->Base
 
 ===Base===
+
+{bartenderCanTalkTo: ->Dialogue1 | ->NoTalk}
 
 =Dialogue1
 “Well-met traveler. You look weary, perhaps you would like some of our blue horse beer?”
@@ -38,13 +37,12 @@ VAR name = "bartender"
 ~Leave(true)
 ->DONE
 
-->END
-
-===NoTalk===
-Want a drink?
+=NoTalk
+"Want a drink?"
     +[sure]
     ~ Leave(false)
     ->DONE
+
 ->END
 
 
