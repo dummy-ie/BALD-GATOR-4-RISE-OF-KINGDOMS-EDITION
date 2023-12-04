@@ -3,6 +3,7 @@
 EXTERNAL RollDice(stat)
 EXTERNAL IncreaseStat(stat)
 EXTERNAL Fight()
+EXTERNAL Kill()
 EXTERNAL Leave(returnable)
 
 VAR name = "zrell"
@@ -17,34 +18,82 @@ VAR name = "zrell"
 =Dialogue1
 “Halt! Identify yourself, traveler. God Enel has informed me of your presence. You don’t seem to be one of the townspeople.”
     +[I’m here to fucking destroy Enel. (STRENGTH)]
-
-
-
+        ~ RollDice("STR")
+        ->STRCheck
     +[We’ve come in search of arcane knowledge from God Enel. (WISDOM)]
+        ~ RollDice("WIS")
+        ->WISCheck
     +[I’m here to kill you.]
-
+        ~Fight()
+        ->Fighting
     +[Leave]
         ~Leave(true)
         ->DONE
 
-=CHACheck
+=STRCheck
 Loading Dice Roll...
-->CHAResult
+->STRResult
 
-=CHAResult
+=STRResult
 {
-    -diceRoll: [Success] “You wink seductively at the ship hand. You grab his hand and pull him closer and then you whisper sweet endings into his ear. His face blushes a wonderful shade of red. You give him a quick peck on their neck, emotionally stunning them frozen. Now they’re distracted. You make your way down the dock. The ship hand’s stuttering was music to your ears as you made your escape from the ship.”
-    -else: [Fail] “You wink seductively at the ship hand. You see yourself as a beautiful and delicate flower dancing in the sunlight while giggling with joy. The ship hand’s heart beats as they walk closer. You reach out a hand to them and they graciously accept. With a graceful turn you land on their arms, your eyes locked with theirs. The ship hand pulls you closer, hearts fluttering. A kiss, and another one for good measure. Claps ring around the crowd, your public display of affection has touched many hearts. That is what would have happened if you were more charismatic than a pile of poo. No, they just simply responded with ‘I’m married.’”
+    -diceRoll: [Success] “Hah. What you lack in caution you look to compensate with power. God Enel will happily display his immense might over a mere mortal.” Receive “Mark of Justice”, allowing passage to the gate.
+    -else: [Fail] “Hah. Your blasphemous insult won’t get you far. You are not worthy to be God Enel’s opponent. I will strike you down myself.”
 }
     +[Proceed]
 {
     -diceRoll: 
+        ~markOfJustice = true
         ~Leave(false)
         ->DONE
-    - else: ->Dialogue3
+    - else: 
+        ~Fight()
+        ->Fighting
+}
+
+=WISCheck
+Loading Dice Roll...
+->STRResult
+
+=WISResult
+{
+    -diceRoll: [Success] “Very well. God Enel has expressed intrigue for your party. Be on your way to the gate.” Receive “Mark of Justice”, allowing passage to the gate.
+
+    -else: [Fail] “Your lot don’t look like the scholarly type. God Enel doesn’t grant knowledge to filthy liars. Die!”
+
+}
+    +[Proceed]
+{
+    -diceRoll: 
+        ~markOfJustice = true
+        ~Leave(false)
+        ->DONE
+    - else: 
+        ~Fight()
+        ->Fighting
 }
 
 
+=Fighting
+"Fighting in progress..."
+->FightResult
+
+=FightResult
+{
+    -battleWon: "I-Impossible..."
+    -else: ded
+}
+    +[Proceed]
+{
+    -battleWon: 
+        ~Leave(false)
+        ~zrellIsDead = true
+        ~Kill()
+        ->DONE
+    -else: 
+        ~Leave(false)
+        ->DONE
+}
+    
 =NoTalk
 Need something?
     +[Nope]

@@ -107,10 +107,28 @@ public class DialogueManager : Singleton<DialogueManager>
             
         });
 
-        _currentStory.BindExternalFunction("Fight", Fight);
+        _currentStory.BindExternalFunction("Fight", () =>
+        {
+            StartCoroutine(StartBattleState());
+        });
+        _currentStory.BindExternalFunction("SwitchFight", (string target) =>
+        {
+            StartCoroutine(StartBattleState(target));
+        });
         _currentStory.BindExternalFunction("Kill", () =>
         {
             Destroy(_characterReference);
+        });
+        _currentStory.BindExternalFunction("SwitchKill", (string target) =>
+        {
+            if (target != null)
+            {
+                GameObject obj = GameObject.Find(target);
+                if (obj != null)
+                    Destroy(obj);
+                else Debug.LogError("There is no target named:" + target + ". Check INK file!");
+            }
+                
         });
         _currentStory.BindExternalFunction("Leave", (bool returnable) =>
         {
@@ -149,7 +167,9 @@ public class DialogueManager : Singleton<DialogueManager>
         _currentStory.UnbindExternalFunction("FinishQuest");
         _currentStory.UnbindExternalFunction("IncreaseStat");
         _currentStory.UnbindExternalFunction("Fight");
+        _currentStory.UnbindExternalFunction("SwitchFight");
         _currentStory.UnbindExternalFunction("Kill");
+        _currentStory.UnbindExternalFunction("SwitchKill");
         _currentStory.UnbindExternalFunction("Leave");
 
         _view.Text.text = "";
@@ -242,7 +262,7 @@ public class DialogueManager : Singleton<DialogueManager>
         ContinueDialogue();
     }
 
-    private IEnumerator StartBattleState()
+    private IEnumerator StartBattleState(string target = null)
     {
         Debug.Log("Starting battle");
         yield return new WaitForSeconds(.5f);
@@ -255,7 +275,14 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             combatants.Add(combatant.GetComponent<Entity>());
         }
-        combatants.Add(_characterReference.GetComponent<Entity>());
+        if (target != null) {
+            GameObject obj = GameObject.Find(target);
+            if (obj != null)
+                combatants.Add(obj.GetComponent<Entity>());
+            else Debug.LogError("There is no target named:" + target + ". Check INK file!");
+        }
+        else
+            combatants.Add(_characterReference.GetComponent<Entity>());
 
         StartCoroutine(CombatManager.Instance.StartCombat(combatants));
     }
@@ -344,12 +371,6 @@ public class DialogueManager : Singleton<DialogueManager>
         Debug.Log("Clicked Choice 4");
         SetOutcome(3);
         ContinueDialogue();
-    }
-
-    private void Fight()
-    {
-        //StartCoroutine(ExitDialogue());
-        StartCoroutine(StartBattleState());
     }
 
     private void Leave(bool returnable)

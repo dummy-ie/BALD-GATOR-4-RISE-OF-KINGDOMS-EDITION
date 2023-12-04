@@ -12,6 +12,7 @@ VAR battleWon = false
 VAR inquireBartender = false
 VAR zrellIsDead = false
 VAR gabrielIsDead = false
+VAR markOfJustice = false
 
 //FOOSHA VILLAGE QUEST
 
@@ -28,6 +29,11 @@ VAR helpTheSusNun = false
 //MAID QUEST
 
 VAR acceptMaidQuest = false
+
+//MACHINE QUEST
+VAR turnOnV1 = false
+VAR v1IsDead = false
+VAR v1IsOn = false
 
 //USOPP
 VAR usoppCanTalkTo = true
@@ -82,3 +88,15 @@ VAR zrellHasRolledSTR = false
 
 VAR zrellWIS = 10
 VAR zrellHasRolledWIS = false
+
+//GABRIEL
+VAR gabrielCanTalkTo = true
+
+VAR gabrielINT = 10
+VAR gabrielHasRolledINT = true
+
+VAR gabrieCON = 10
+VAR gabrielHasRolledCON = true
+
+//V1
+VAR v1CanTalkTo = true
