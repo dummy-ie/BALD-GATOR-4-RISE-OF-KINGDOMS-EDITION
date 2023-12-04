@@ -7467,7 +7467,7 @@ PrefabInstance:
     - target: {fileID: 7797131042255886867, guid: a85ec0eac1922b247a907bdfff1215dd,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19367,6 +19367,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PartyManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566052077487582593, guid: 2b382a6db2fca954c8b0ce44ed9488f6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7602647683663950752, guid: 2b382a6db2fca954c8b0ce44ed9488f6,
         type: 3}
