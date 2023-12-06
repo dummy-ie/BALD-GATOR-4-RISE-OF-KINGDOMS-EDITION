@@ -163,6 +163,34 @@
     position: absolute;
 }
 
+#SceneContainer {
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    bottom: 0;
+    left: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    flex-direction: row;
+}
+
+#NextScene {
+    font-size: 64px;
+    -unity-font-definition: url('project://database/Assets/Graphics/Fonts/SHERWOOD%20SDF.asset?fileID=11400000&guid=58e8b063ebfc17348ac960bed4e251b2&type=2#SHERWOOD SDF');
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+    color: rgb(255, 255, 255);
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
 #Interact1 {
     display: none;
 }
