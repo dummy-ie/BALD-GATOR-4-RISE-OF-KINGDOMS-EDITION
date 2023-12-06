@@ -2,6 +2,7 @@
 
 EXTERNAL RollDice(stat)
 EXTERNAL IncreaseStat(stat)
+EXTERNAL AdvanceQuest(id, index)
 EXTERNAL Fight()
 EXTERNAL Kill()
 EXTERNAL Leave(returnable)
@@ -21,6 +22,7 @@ You look at the machine. Fortunately, there's a big power button at it's back.
         ->Dialogue2
 
 =Dialogue2
+~AdvanceQuest("LobbySubquest", 3)
 The machine turns on and starts spewing out 1s and 0s. You don't know what they mean
     +[Proceed]
         ~turnOnV1 = false
@@ -28,6 +30,8 @@ The machine turns on and starts spewing out 1s and 0s. You don't know what they 
         ~gabrielCanTalkTo = true
         ~Leave(false)
         ->DONE
+
+
 ===NoTalk===
 ...
     +[...]

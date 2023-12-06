@@ -129,8 +129,8 @@ public class QuestManager : Singleton<QuestManager>
             Debug.Log(GetQuest("TestQuest").CurrentStepExists());
             _trackedQuest = GetQuest("TestQuest");*/
             StartQuest("MainQuest1");
-            FinishCurrentStep("MainQuest1");
-            FinishCurrentStep("MainQuest1");
+            //FinishCurrentStep("MainQuest1");
+            //FinishCurrentStep("MainQuest1");
             //FinishCurrentStep("MainQuest1");
         }
         else

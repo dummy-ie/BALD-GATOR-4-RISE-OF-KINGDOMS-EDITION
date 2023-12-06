@@ -1,6 +1,7 @@
 ﻿INCLUDE Database.ink
 
 EXTERNAL RollDice(stat)
+EXTERNAL AdvanceQuest(id, index)
 EXTERNAL Fight()
 EXTERNAL Kill()
 EXTERNAL Leave(returnable)
@@ -16,7 +17,7 @@ VAR name = "swarmNest"
 
 =Dialogue1
 Few feet away from you, you spot an odd structure that appears to be made of mud and some other unidentifiable material. You hear sounds of shuffling and squeaking coming from the holes on the structure. You quickly realize that this is the nest of the swarm, the source of the pest problem you’re tasked to deal with.
-
+~AdvanceQuest("FooshaSubquest", -1)
     + [Destroy it stealthily. (DEXTERITY)]
         ~ RollDice("DEX")
         ->DEXCheck
@@ -27,6 +28,7 @@ Few feet away from you, you spot an odd structure that appears to be made of mud
 =Dialogue2
 You approach the nest, intending to smash it into pieces. However, your not-so subtle approach roused the swarm within the nest into action. You have woken the swarm.
     + [Damn]
+        ~AdvanceQuest("FooshaSubquest", -1)
         ~Fight()
         ->Fighting
 
@@ -43,11 +45,13 @@ Loading Dice Roll...
 {
     -diceRoll: 
         ~hayseedCanTalkTo = true 
+        ~AdvanceQuest("FooshaSubquest", 4)
         ~Kill()
         ~Leave(false)
         ->DONE
         
     -else: 
+        ~AdvanceQuest("FooshaSubquest", -1)
         ~Fight()
         ->Fighting
 }
@@ -66,6 +70,7 @@ Loading Dice Roll...
 {
     -battleWon: 
         ~swarmNestDefeated = true
+        ~AdvanceQuest("FooshaSubquest", 4)
         ~hayseedCanTalkTo = true
         ~Leave(false)
         ~Kill()

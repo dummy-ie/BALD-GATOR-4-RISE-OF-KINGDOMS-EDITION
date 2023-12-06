@@ -7,12 +7,17 @@ VAR battleWon = false
 
 
 //QUESTSTUFF
-//MAIN QUEST 1
+//MAIN QUEST 
  
 VAR inquireBartender = false
 VAR zrellIsDead = false
 VAR gabrielIsDead = false
 VAR markOfJustice = false
+
+VAR enelIsDead = false
+VAR heroicEnding = false
+VAR normalEnding = false
+VAR evilEnding = false
 
 //FOOSHA VILLAGE QUEST
 

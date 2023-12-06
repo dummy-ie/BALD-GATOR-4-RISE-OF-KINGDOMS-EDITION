@@ -19,6 +19,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private GameObject _characterReference;
     private GameObject _characterReference2;
+
     private Story _currentStory;
 
     private string _name;
@@ -37,6 +38,9 @@ public class DialogueManager : Singleton<DialogueManager>
     private bool _isDiceRolling;
     private bool _fightOngoing;
 
+    Dictionary<string, SceneChanger> _sceneChangers = new();
+    [SerializeField] List<SceneChanger> debug;
+
     void InitializeVariables()
     {
         
@@ -51,6 +55,20 @@ public class DialogueManager : Singleton<DialogueManager>
             Ink.Runtime.Object value = tempStory.variablesState.GetVariableWithName(name);
             _variables.Add(name, value);
             //Debug.Log("Initialized Variable " + name + " : " + value);
+        }
+
+        
+    }
+
+    void LoadSceneChangers()
+    {
+        _sceneChangers.Clear();
+        SceneChanger[] changers = FindObjectsOfType<SceneChanger>();
+        debug.AddRange(changers);
+        foreach (SceneChanger changer in changers)
+        {
+            Debug.Log("Logging \'" + changer.name + "\' as SceneChanger");
+            _sceneChangers.Add(changer.name, changer);
         }
     }
 
@@ -83,9 +101,12 @@ public class DialogueManager : Singleton<DialogueManager>
             QuestManager.Instance.FinishQuest(questId);
         });
 
-        _currentStory.BindExternalFunction("AdvanceQuest", (string questId) =>
+        _currentStory.BindExternalFunction("AdvanceQuest", (string questId, int index) =>
         {
-            QuestManager.Instance.FinishQuest(questId);
+            if (index != -1)
+                QuestManager.Instance.FinishCurrentStep(questId, index);
+            else
+                QuestManager.Instance.FinishCurrentStep(questId);
         });
 
         _currentStory.BindExternalFunction("IncreaseStat", (string stat) =>
@@ -118,6 +139,11 @@ public class DialogueManager : Singleton<DialogueManager>
         _currentStory.BindExternalFunction("Kill", () =>
         {
             Destroy(_characterReference);
+            if ((bool)_currentStory.variablesState["zrellIsDead"] && (bool)_currentStory.variablesState["gabrielIsDead"])
+            {
+                _currentStory.variablesState["markOfJustice"] = true;
+                QuestManager.Instance.FinishCurrentStep("MainQuest2");
+            }
         });
         _currentStory.BindExternalFunction("SwitchKill", (string target) =>
         {
@@ -130,6 +156,21 @@ public class DialogueManager : Singleton<DialogueManager>
             }
                 
         });
+        _currentStory.BindExternalFunction("Betrayal", () => {
+            Debug.Log("Betrayal in progress");
+            foreach(GameObject obj in PartyManager.Instance.PartyMembers)
+            {
+                if (obj != CombatManager.Instance.CurrentSelected)
+                {
+                    obj.GetComponent<Entity>().Affiliation = Entity.AffiliationState.Enemy;
+                }
+            }
+        });
+        _currentStory.BindExternalFunction("MoveScene", (string targetScene) =>
+        {
+            _sceneChangers[targetScene].ChangeScene();
+        });
+
         _currentStory.BindExternalFunction("Leave", (bool returnable) =>
         {
             Leave(returnable);
@@ -170,6 +211,8 @@ public class DialogueManager : Singleton<DialogueManager>
         _currentStory.UnbindExternalFunction("SwitchFight");
         _currentStory.UnbindExternalFunction("Kill");
         _currentStory.UnbindExternalFunction("SwitchKill");
+        _currentStory.UnbindExternalFunction("Betrayal");
+        _currentStory.UnbindExternalFunction("MoveScene");
         _currentStory.UnbindExternalFunction("Leave");
 
         _view.Text.text = "";
@@ -408,6 +451,12 @@ public class DialogueManager : Singleton<DialogueManager>
         _view.BackGround.SetEnabled(true);
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Loading Scene Changers");
+        LoadSceneChangers();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -415,6 +464,18 @@ public class DialogueManager : Singleton<DialogueManager>
         _view = ViewManager.Instance.GetView<DialogueView>();
         //HideView();
         _isDialoguePlaying = false;
+
+        
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void AddButtons()

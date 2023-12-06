@@ -5,6 +5,9 @@ EXTERNAL IncreaseStat(stat)
 EXTERNAL Fight()
 EXTERNAL SwitchFight(target)
 EXTERNAL Kill()
+EXTERNAL StartQuest(id)
+EXTERNAL AdvanceQuest(id, index)
+EXTERNAL FinishQuest(id)
 EXTERNAL SwitchKill(target)
 EXTERNAL Leave(returnable)
 
@@ -17,12 +20,14 @@ VAR name = "gabriel"
 {v1IsOn: ->PowerOnV1 | ->Base}
 
 ===Base===
+~StartQuest("LobbySubquest")
 {gabrielCanTalkTo: ->Dialogue1 | ->NoTalk}
 
 =Dialogue1
 “Machine... I will cut. You. Down. Break you apart. Splay the gore of your profane form across the stars! I will grind you down until the very sparks cry for mercy!”
 
     +[What’s wrong with the machine?]
+        ~AdvanceQuest("LobbySubquest", -1)
         ->Dialogue2
     +[Stupid bastard.]
         ~Fight()
@@ -64,6 +69,7 @@ Loading Dice Roll...
         ~Leave(false)
         ->DONE
     - else: 
+        ~AdvanceQuest("LobbySubquest", 2)
         ~SwitchFight("V1")
         ->FightingV1
 }
@@ -83,6 +89,7 @@ Loading Dice Roll...
         ~v1IsOn = true
         ->PowerOnV1
     - else: 
+        ~AdvanceQuest("LobbySubquest", 2)
         ~SwitchFight("V1")
         ->FightingV1
 }
@@ -131,6 +138,7 @@ Loading Dice Roll...
 ->END
 
 ===DeadV1===
+~AdvanceQuest("LobbySubquest", 3)
 {gabrielCanTalkTo: ->Dialogue1 | ->NoTalk}
 
 =Dialogue1
@@ -138,6 +146,7 @@ Loading Dice Roll...
     +[Arigathanks gozaimuch. (CONSTITUTION INCREASED)]
         ~IncreaseStat("CON")
         ~Leave(false)
+        ~FinishQuest("LobbySubquest")
         ->DONE
 
 
@@ -150,6 +159,7 @@ Loading Dice Roll...
     +[Selamat pagi! (CONSTITUTION INCREASED)]
         ~IncreaseStat("CON")
         ~Leave(false)
+        ~FinishQuest("LobbySubquest")
         ->DONE
 
 ===NoTalk===
@@ -166,6 +176,7 @@ Machine...
 ->FightResult
 
 =FightResult
+~FinishQuest("LobbySubquest")
 {
     -battleWon: "Ugh... May your woes be many... And days few..."
     -else: ded
@@ -175,6 +186,7 @@ Machine...
     -battleWon: 
         ~Leave(false)
         ~gabrielIsDead = true
+        ~AdvanceQuest("MainQuest2", -1)
         ~Kill()
         ->DONE
     -else: 

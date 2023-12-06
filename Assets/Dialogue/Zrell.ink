@@ -2,6 +2,7 @@
 
 EXTERNAL RollDice(stat)
 EXTERNAL IncreaseStat(stat)
+EXTERNAL AdvanceQuest(id, index)
 EXTERNAL Fight()
 EXTERNAL Kill()
 EXTERNAL Leave(returnable)
@@ -43,6 +44,7 @@ Loading Dice Roll...
 {
     -diceRoll: 
         ~markOfJustice = true
+        ~AdvanceQuest("MainQuest2", 2)
         ~Leave(false)
         ->DONE
     - else: 
@@ -65,6 +67,7 @@ Loading Dice Roll...
 {
     -diceRoll: 
         ~markOfJustice = true
+        ~AdvanceQuest("MainQuest2", 2)
         ~Leave(false)
         ->DONE
     - else: 
@@ -86,6 +89,7 @@ Loading Dice Roll...
 {
     -battleWon: 
         ~Leave(false)
+        ~AdvanceQuest("MainQuest2", -1)
         ~zrellIsDead = true
         ~Kill()
         ->DONE

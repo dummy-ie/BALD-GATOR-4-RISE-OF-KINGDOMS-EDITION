@@ -2,6 +2,9 @@
 
 EXTERNAL RollDice(stat)
 EXTERNAL IncreaseStat(stat)
+EXTERNAL StartQuest(id)
+EXTERNAL AdvanceQuest(id, index)
+EXTERNAL FinishQuest(id)
 EXTERNAL Fight()
 EXTERNAL Leave(returnable)
 
@@ -21,11 +24,13 @@ VAR name = "hayseed"
 
 =Dialogue1
 “Traveler! I am in need of dire assistance! Our fields are being ravaged by these godforsaken pests and if this continues, we’ll all die of hunger!”
-
+~StartQuest("FooshaSubquest")
     + [I’ll help you with these pests.]
+        ~AdvanceQuest("FooshaSubquest", -1)
         ~acceptHayseedQuest = true
         ->Dialogue2
     + [Ok, what’s in it for me?]
+        ~AdvanceQuest("FooshaSubquest", -1)
         ~acceptHayseedQuest = true
         ->Dialogue2
     + [Not my problem.]
@@ -54,6 +59,7 @@ VAR name = "hayseed"
 =Dialogue1
 “Thank you thank you thank you! We, the farmers, owe you plenty. With the pests gone, we can hope to survive a few more winters. Here, take this. This is every farmer’s token of gratitude to you.” [STRENGTH INCREASED]
     +[… Is that a diamond hoe?]
+    ~FinishQuest("FooshaSubquest")
     ~IncreaseStat("STR")
     ~Leave(false)
     ->DONE

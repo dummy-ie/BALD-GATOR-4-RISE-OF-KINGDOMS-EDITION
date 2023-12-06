@@ -14,8 +14,15 @@
     border-right-width: 2px;
     border-bottom-width: 2px;
     border-left-width: 2px;
-    font-size: 264%;
-    height: 16%;
+    font-size: 254%;
+    height: 23.5%;
+    flex-wrap: wrap;
+    align-self: auto;
+    justify-content: flex-start;
+    align-items: auto;
+    flex-direction: row;
+    -unity-text-align: middle-left;
+    white-space: normal;
 }
 
 #BG {

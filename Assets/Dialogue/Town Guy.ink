@@ -1,6 +1,9 @@
 ﻿INCLUDE Database.ink
 
 EXTERNAL Leave(returnable)
+EXTERNAL StartQuest(id)
+EXTERNAL AdvanceQuest(id, index)
+EXTERNAL FinishQuest(id)
 
 VAR name = "townGuy"
 
@@ -16,6 +19,7 @@ VAR name = "townGuy"
 {townGuyCanTalkTo: ->Dialogue1 | ->NoTalk }
 
 =Dialogue1
+~StartQuest("RogueSubquest")
 “Hello random stranger! What brings you to our town?”
 
     + [What's with all the chatter?]
@@ -37,6 +41,7 @@ VAR name = "townGuy"
 =Dialogue3
 "You can try the chapel up north."
     +[Ayt Bet]
+    ~AdvanceQuest("RogueSubquest", -1)
     ~acceptChapelQuest = true
     ~susNunCanTalkTo = true
     ~Leave(false)
@@ -58,7 +63,7 @@ VAR name = "townGuy"
 You see the villagers around. Time for a little ashfall
     +[Spread the ashes]
     ~ashesHasBeenSpread = true
-    //FinishQuest(id)
+    FinishQuest("RogueSubquest")
     ->Dialogue2
 
 =Dialogue2

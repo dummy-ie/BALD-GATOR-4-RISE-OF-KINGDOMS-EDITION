@@ -4,6 +4,8 @@ EXTERNAL RollDice(stat)
 EXTERNAL IncreaseStat(stat)
 EXTERNAL Fight()
 EXTERNAL Kill()
+EXTERNAL AdvanceQuest(id, index)
+EXTERNAL FinishQuest(id)
 EXTERNAL Leave(returnable)
 
 VAR name = "susNun"
@@ -40,6 +42,7 @@ Loading Dice Roll...
         +[Proceed]
 {
     -diceRoll: 
+        ~AdvanceQuest("RogueSubquest", 2)
         ~Fight()
         ->Fighting
     - else: 
@@ -59,6 +62,7 @@ Loading Dice Roll...
         +[Proceed]
 {
     -diceRoll: 
+        ~AdvanceQuest("RogueSubquest", 3)
         ~helpTheSusNun = true
         ~townGuyCanTalkTo = true
         ~Leave(false)
@@ -89,6 +93,7 @@ Loading Dice Roll...
 =FightResult2
 You notice the nun was holding some sort of relic. You pick it up. [WISDOM INCREASED]
     +[Proceed]
+        ~FinishQuest("RogueSubquest")
         ~Leave(false)
         ~IncreaseStat("WIS")
         ~Kill()

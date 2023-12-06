@@ -1,6 +1,8 @@
 ﻿INCLUDE Database.ink
 
 EXTERNAL RollDice(stat)
+EXTERNAL StartQuest(id)
+EXTERNAL AdvanceQuest(id, index)
 EXTERNAL Fight()
 EXTERNAL Kill()
 EXTERNAL Leave(returnable)
@@ -19,6 +21,7 @@ VAR name = "usopp"
 =Dialogue1
 “Welcome to Merry Island, traveler.”
     + [What’s going on around here?]
+        ~AdvanceQuest("MainQuest1", -1)
         ->Dialogue2
 //    + [Thanks! I’m going now.]
 //        ->Dialogue3
@@ -35,7 +38,6 @@ VAR name = "usopp"
     + [Thanks. I’ll kill you.]
         ~Fight()
         ->Fighting
-
 
 
 =Dialogue3

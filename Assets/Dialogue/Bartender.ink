@@ -1,6 +1,8 @@
 ﻿INCLUDE Database.ink
 
 EXTERNAL Leave(returnable)
+EXTERNAL StartQuest(id)
+EXTERNAL FinishQuest(id)
 
 VAR name = "bartender"
 
@@ -27,6 +29,8 @@ VAR name = "bartender"
 =Dialogue2
 “Hmm. Yes. The One Piece, legendary treasure yes? Very well then. You lot would be seeking God Enel. They lie behind the Gate of Justice. Unfortunately you would need to unlock it. Head down the road. There lies a tower right before the gate, perhaps you’d find some way of unlocking the gate at the Celestial Ascent tower.”
     + ['Kay]
+~FinishQuest("MainQuest1")
+~StartQuest("MainQuest2")
 ~inquireBartender = true
 ~Leave(true)
 ->DONE
