@@ -20685,20 +20685,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enel
       objectReference: {fileID: 0}
+    - target: {fileID: 6512554852790519898, guid: 3c3e94ce1acb4c84ab94fda852c17798,
+        type: 3}
+      propertyPath: _inkDialogue
+      value: 
+      objectReference: {fileID: 4900000, guid: 726cecdc338f31344b0fdb19e2abe127, type: 3}
     - target: {fileID: 9212398450614602860, guid: 3c3e94ce1acb4c84ab94fda852c17798,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.141937
+      value: 63.55
       objectReference: {fileID: 0}
     - target: {fileID: 9212398450614602860, guid: 3c3e94ce1acb4c84ab94fda852c17798,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.882135
+      value: 16.6
       objectReference: {fileID: 0}
     - target: {fileID: 9212398450614602860, guid: 3c3e94ce1acb4c84ab94fda852c17798,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -33.477367
+      value: -31.25
       objectReference: {fileID: 0}
     - target: {fileID: 9212398450614602860, guid: 3c3e94ce1acb4c84ab94fda852c17798,
         type: 3}

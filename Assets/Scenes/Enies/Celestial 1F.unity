@@ -461,6 +461,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 420436699549283132, guid: c3b51ed2235d11c43a4d73f3e5625b91,
+        type: 3}
+      propertyPath: _inkDialogue
+      value: 
+      objectReference: {fileID: 4900000, guid: 82400803730bbdb4dbbc40b4857e6279, type: 3}
     - target: {fileID: 2117966810143261672, guid: c3b51ed2235d11c43a4d73f3e5625b91,
         type: 3}
       propertyPath: m_Name

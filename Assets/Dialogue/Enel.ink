@@ -14,7 +14,7 @@ VAR name = "enel"
 
 ->VarCheck
 ===VarCheck===
-->Base
+{markOfJustice: ->Base | ->NoTalk}
 
 ===Base===
 ->Dialogue1A
@@ -140,3 +140,9 @@ Hesitating between fighting Enel or murdering your companions, Enel grows tired 
         ~Leave(false)
         ->DONE
 }
+
+===NoTalk===
+The figure does not move or recognize your prescence. Might you need a mark perhaps?
+    +[Slowly back away]
+    ~Leave(true)
+    ->DONE
