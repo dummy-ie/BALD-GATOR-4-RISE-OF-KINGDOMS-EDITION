@@ -109,17 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
-  _file:
-    inkAsset: {fileID: 102900000, guid: 5a94c112e21100b40a5956f1092ea458, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 0}
-    unhandledCompileErrors: []
-    recursiveIncludeErrorPaths: []
-    errors: []
-    warnings: []
-    todos: []
-    masterInkAssets: []
-    localIncludePaths: []
-    includes: []
   debug: []
-  _database: {fileID: 4900000, guid: 832cfe77084233e4181e06dfedcedd81, type: 3}
+  _database: {fileID: 4900000, guid: 31314a7ef27864446bd4a75c230e1b9f, type: 3}

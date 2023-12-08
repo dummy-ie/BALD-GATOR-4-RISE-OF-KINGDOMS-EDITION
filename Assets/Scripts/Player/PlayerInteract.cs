@@ -103,9 +103,39 @@ public class PlayerInteract : MonoBehaviour
 
     public void AssignButtons()
     {
+        if (_gameView == null)
+        {
+            Debug.LogError("GameView is null!");
+            return;
+        }
+
+        if (!_gameView.TryGetComponent(out UIDocument doc))
+        {
+            Debug.LogError("GameView UIDocument is null!");
+            return;
+        }
+
         VisualElement root = _gameView.GetComponent<UIDocument>().rootVisualElement;
+        if (root == null)
+        {
+            Debug.LogError("GameView root is null!");
+            return;
+        }
+
         var a = root.Q("InteractButtons");
+        if (a == null)
+        {
+            Debug.LogError("GameView InteractButtons VisualElement is null!");
+            return;
+        }
+        
         var b = a.Query<Button>().ToList();
+        if (b == null)
+        {
+            Debug.LogError("GameView Buttons list is null!");
+            return;
+        }
+
         _buttons = b;
     }
 }
