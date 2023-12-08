@@ -78,6 +78,11 @@ public class ViewManager : Singleton<ViewManager> {
         }
     }
 
+    private void Update()
+    {
+        _views = FindObjectsOfType<View>(true);
+    }
+
     protected override void OnAwake() {
         InitializeViews();
     }

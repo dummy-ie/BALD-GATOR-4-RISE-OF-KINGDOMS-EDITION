@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BaldGatorManager : Singleton<BaldGatorManager> {
 
@@ -16,6 +17,11 @@ public class BaldGatorManager : Singleton<BaldGatorManager> {
     }
     void Start() {
         _developerMenu.SetActive(_developerMode);
+    }
+
+    private void Update()
+    {
+        _developerMenu.GetComponent<UIDocument>().sortingOrder = 999;
     }
 
 }

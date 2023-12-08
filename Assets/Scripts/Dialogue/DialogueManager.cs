@@ -495,11 +495,16 @@ public class DialogueManager : Singleton<DialogueManager>
     void Start()
     {
         InitializeVariables();
-        _view = ViewManager.Instance.GetView<DialogueView>();
         //HideView();
         _isDialoguePlaying = false;
 
         
+    }
+
+    private void Update()
+    {
+        if (_view == null)
+            _view = ViewManager.Instance.GetView<DialogueView>();
     }
 
     private void OnEnable()
