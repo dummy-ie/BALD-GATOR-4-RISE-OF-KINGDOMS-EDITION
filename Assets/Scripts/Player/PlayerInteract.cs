@@ -28,6 +28,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        AssignButtons();
         if (!other.gameObject.CompareTag("Interactable") || this != CombatManager.Instance.CurrentSelected.GetComponentInChildren<PlayerInteract>())
             return;
 
@@ -68,6 +69,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        AssignButtons();
         if (!other.gameObject.CompareTag("Interactable") && this != CombatManager.Instance.CurrentSelected.GetComponent<PlayerInteract>())
             return;
 
