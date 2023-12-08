@@ -2,6 +2,7 @@
 
 EXTERNAL IncreaseStat(stat)
 EXTERNAL StartQuest(id)
+EXTERNAL AdvanceQuest(id, index)
 EXTERNAL FinishQuest(id)
 EXTERNAL Leave(returnable)
 
@@ -20,6 +21,7 @@ VAR name = "sunny"
 
     +[I'd love to!] "Thank you! I will have a reward prepared for you."
         ++[Proceed]
+            ~AdvanceQuest("SyrupSubquest", -1)
             ~ acceptMaidQuest = true
             ~Leave(false)
             ->DONE

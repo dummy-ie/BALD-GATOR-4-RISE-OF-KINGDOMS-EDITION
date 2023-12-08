@@ -3,6 +3,7 @@
 EXTERNAL RollDice(stat)
 EXTERNAL IncreaseStat(stat)
 EXTERNAL StartQuest(id)
+EXTERNAL AdvanceQuest(id, index)
 EXTERNAL AddCombatant(name)
 EXTERNAL FinishQuest(id)
 EXTERNAL Fight()
@@ -18,9 +19,11 @@ VAR name = "trapdoor"
 ->Base
 
 ===Base===
+~AdvanceQuest("SyrupSubquest", -1)
 {trapdoorCanTalkTo: ->Dialogue1 | ->NoTalk }
 
 =Dialogue1
+
 This trapdoor seems to lead somewhere deeper
     +{!trapdoorIsOpen}[Break the trapdoor (STRENGTH)] 
         ~RollDice("STR")
@@ -29,6 +32,7 @@ This trapdoor seems to lead somewhere deeper
     +{keyObtained}[UseKey]
         ->Dialogue2
     +{trapdoorIsOpen}[Enter trapdoor]
+        ~AdvanceQuest("SyrupSubquest", -1)
         ~MoveScene("connection")
         ->DONE
     +[Leave]
@@ -44,6 +48,7 @@ You unlock the trapdoor with the key
 
 =STRCheck
 Loading Dice Roll...
++[Please Wait...]
 ->STRResult
 
 =STRResult

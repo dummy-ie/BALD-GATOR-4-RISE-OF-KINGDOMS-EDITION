@@ -38,6 +38,7 @@ VAR name = "susmerry"
 
 =DEXCheck
 Loading Dice Roll...
++[Please Wait...]
 ->DEXResult
 
 =DEXResult
@@ -58,6 +59,7 @@ Loading Dice Roll...
 
 =Fighting
 "Fighting in progress..."
++[Please Wait...]
 ->FightResult
 
 =FightResult

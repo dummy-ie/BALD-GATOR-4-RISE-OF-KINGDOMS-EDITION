@@ -32,6 +32,7 @@ Who goes there!? Ah, it's just a wanderer… What do you need?
         
 =INTCheck
 Loading Dice Roll...
++[Please Wait...]
 ->INTResult
 
 =INTResult
@@ -52,6 +53,7 @@ Loading Dice Roll...
 
 =CHACheck
 Loading Dice Roll...
++[Please Wait...]
 ->CHAResult
 
 =CHAResult
@@ -74,6 +76,7 @@ Loading Dice Roll...
 
 =Fighting
 "Fighting in progress..."
++[Please Wait...]
 ->FightResult
 
 =FightResult
