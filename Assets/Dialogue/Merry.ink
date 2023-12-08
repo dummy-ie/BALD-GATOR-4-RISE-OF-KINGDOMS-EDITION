@@ -1,5 +1,13 @@
 ﻿INCLUDE Database.ink
 
+EXTERNAL RollDice(stat)
+EXTERNAL IncreaseStat(stat)
+EXTERNAL StartQuest(id)
+EXTERNAL AddCombatant(name)
+EXTERNAL FinishQuest(id)
+EXTERNAL Fight()
+EXTERNAL Kill()
+EXTERNAL SwitchKill(target)
 EXTERNAL Leave(returnable)
 
 VAR name = "merry"
@@ -12,19 +20,20 @@ VAR name = "merry"
 {merryCanTalkTo: ->Dialogue1 | ->NoTalk }
 
 =Dialogue1
-“Oho! Welcome stranger, you seem weary from your travels. Would you like to come in and stay for the night?”
-    +[A nice bed to stay the night, I am in!] 
-        ~Leave(false)
-        ->DONE
-    +[That seems like a suspicious request.]
-        
-    +[I’m just passing through.]
-        ~Leave(true)
-        ->DONE
+“Who are you? Are you another one of his goons, here to beat me up again?”
+    *[You look like the guy upstairs.] "He's a fake! He kept me locked down here for ages!"
+        ++[Oh damn]
+            ->Dialogue1
+    +["Do you know where the maid is?"] "She's at the cell, please help her escape this damned mansion!"
+        ++[Noted]
+            ~Leave(false)
+            ->DONE
+
+
 =NoTalk
-What to do...
-+[Bye]
-        ~Leave(false)
-        ->DONE
+"Pain..."
+    +[Sucks to suck]
+    ~Leave(true)
+    ->DONE
 
 ->END

@@ -9,7 +9,6 @@ EXTERNAL Leave(returnable)
 
 VAR name = "usopp"
 
-
 ->VarCheck
 
 ===VarCheck===
@@ -31,6 +30,7 @@ VAR name = "usopp"
 
 
 =Dialogue2
+~inquireShipHand = true
 “Some ‘God’ decided to… well, play god with the inhabitants of the island. Not in a good way at that. The people are suffering under their rule.”
 
     + [Thanks! I'll going now.]

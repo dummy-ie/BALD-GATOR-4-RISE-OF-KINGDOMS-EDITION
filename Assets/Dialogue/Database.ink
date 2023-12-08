@@ -9,6 +9,7 @@ VAR battleWon = false
 //QUESTSTUFF
 //MAIN QUEST 
  
+VAR inquireShipHand = false
 VAR inquireBartender = false
 VAR zrellIsDead = false
 VAR gabrielIsDead = false
@@ -34,6 +35,10 @@ VAR helpTheSusNun = false
 //MAID QUEST
 
 VAR acceptMaidQuest = false
+VAR maidRescued = false
+VAR canEnterMansion = false
+VAR keyObtained = false
+VAR trapdoorIsOpen = false
 
 //MACHINE QUEST
 VAR turnOnV1 = false
@@ -82,8 +87,33 @@ VAR pastorCanTalkTo = true
 //SUNNY
 VAR sunnyCanTalkTo = true
 
+//BUCHI N SHAM
+VAR buchishamCanTalkTo = true
+
+VAR buchishamCheckCHA = 14
+VAR buchishamHasRolledCHA = false
+
+VAR buchishamCheckDEX = 14
+VAR buchishamHasRolledDEX = false
+
+//SUS MERRY
+VAR susmerryCanTalkTo = true
+
+VAR susmerryCheckDEX = 15
+VAR susmerryHasRolledDEX = false
+
 //MERRY
 VAR merryCanTalkTo = true
+
+//MAID
+
+VAR maidCanTalkTo = true
+
+//TRAPDOOR
+VAR trapdoorCanTalkTo = true
+
+VAR trapdoorCheckSTR = 18
+VAR trapdoorHasRolledSTR = false
 
 //ZRELL
 VAR zrellCanTalkTo = true

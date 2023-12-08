@@ -21,6 +21,10 @@ public class DialogueManager : Singleton<DialogueManager>
     private GameObject _characterReference2;
 
     private Story _currentStory;
+    public Story CurrentStory
+    {
+        get { return _currentStory; }
+    }
 
     private string _name;
     public string Name
@@ -37,6 +41,8 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private bool _isDiceRolling;
     private bool _fightOngoing;
+
+    private List<string> _combatantNames = new();
 
     Dictionary<string, SceneChanger> _sceneChangers = new();
     [SerializeField] List<SceneChanger> debug;
@@ -75,7 +81,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void EnterDialogue(GameObject character)
     {
-        
+        _combatantNames.Clear();
         Debug.Log("Entering Dialogue");
         AddButtons();
 
@@ -124,13 +130,15 @@ public class DialogueManager : Singleton<DialogueManager>
                     case "WIS": player.Class.Wisdom++; break;
                 }
             }
-
-            
         });
 
         _currentStory.BindExternalFunction("Fight", () =>
         {
             StartCoroutine(StartBattleState());
+        });
+        _currentStory.BindExternalFunction("AddCombatant", (string name) =>
+        {
+            _combatantNames.Add(name);
         });
         _currentStory.BindExternalFunction("SwitchFight", (string target) =>
         {
@@ -208,6 +216,7 @@ public class DialogueManager : Singleton<DialogueManager>
         _currentStory.UnbindExternalFunction("FinishQuest");
         _currentStory.UnbindExternalFunction("IncreaseStat");
         _currentStory.UnbindExternalFunction("Fight");
+        _currentStory.UnbindExternalFunction("AddCombatant");
         _currentStory.UnbindExternalFunction("SwitchFight");
         _currentStory.UnbindExternalFunction("Kill");
         _currentStory.UnbindExternalFunction("SwitchKill");
@@ -326,6 +335,14 @@ public class DialogueManager : Singleton<DialogueManager>
         }
         else
             combatants.Add(_characterReference.GetComponent<Entity>());
+
+        if (_combatantNames != null)
+        {
+            foreach (string name in _combatantNames)
+            {
+               combatants.Add(GameObject.Find(name).GetComponent<Entity>());
+            }
+        }
 
         StartCoroutine(CombatManager.Instance.StartCombat(combatants));
     }
