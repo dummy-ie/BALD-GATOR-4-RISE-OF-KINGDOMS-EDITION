@@ -50,14 +50,14 @@ public class PlayerInteract : MonoBehaviour
                 button.text = collided.name;
                 button.clicked += () => DialogueManager.Instance.EnterDialogue(other.gameObject); 
                 /* QUEST TESTING */
-                QuestPoint questPoint = null;
+                /*QuestPoint questPoint = null;
                 questPoint = collided.GetComponent<QuestPoint>();
                 Debug.Log(questPoint);
                 if (questPoint != null)
                 {
 
                     button.clicked += questPoint.SubmitPressed;
-                }
+                }*/
                 break;
             }
         }
