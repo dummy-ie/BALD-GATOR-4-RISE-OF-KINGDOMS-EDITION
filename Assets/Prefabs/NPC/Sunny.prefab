@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 3120938564161549118}
   m_Layer: 0
   m_Name: Sunny
-  m_TagString: CameraTappable
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
