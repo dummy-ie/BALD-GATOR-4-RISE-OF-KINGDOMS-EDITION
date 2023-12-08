@@ -8267,6 +8267,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat
       objectReference: {fileID: 0}
+    - target: {fileID: 5619090713014184455, guid: 6f34c83cd5d72344da4856c74dba810e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6815188041875508758, guid: 6f34c83cd5d72344da4856c74dba810e,
         type: 3}
       propertyPath: m_LocalPosition.x
