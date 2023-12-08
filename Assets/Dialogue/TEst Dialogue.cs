@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ink.Runtime;
-using Ink.UnityIntegration;
 
 public class TEstDialogue : MonoBehaviour
 {
