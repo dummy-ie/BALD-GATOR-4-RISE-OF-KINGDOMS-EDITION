@@ -17,16 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 410365a397d5ed34d8c4fd8a076a07a8
   m_SerializeEntries:
-  - m_GUID: f10bdeb68ba46554ab3c59dfd99577cc
-    m_Address: Assets/Scenes/Foosha/Port.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: fcd550e596ffde249a1fd7f2a31d1532
-    m_Address: Assets/Scenes/Foosha/Fields.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9709e9207aa8eb1469bd77cf058cfdc1
     m_Address: Assets/Scenes/Foosha/Tavern.unity
     m_ReadOnly: 0
