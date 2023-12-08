@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Initializer.unity
     guid: c5095ee1966c92b49adcdaebe51e0f4e
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 6fba51dd42e43e84688bf07d5754b0c6
   - enabled: 1
     path: Assets/Scenes/Dice Roller.unity
     guid: dfb847abc36de824b855dc7138579a80

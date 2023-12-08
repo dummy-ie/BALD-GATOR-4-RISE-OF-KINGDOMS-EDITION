@@ -324,6 +324,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4423535715167427980, guid: b1f8bf5d39cd12443aa3bb4a3ef9e056,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4844166739576774020, guid: b1f8bf5d39cd12443aa3bb4a3ef9e056,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -421,7 +426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &795722573
 Transform:
   m_ObjectHideFlags: 0
@@ -449,6 +454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scene Loader
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166275121543315389, guid: 3c0099045e13e3f4e97cdb482c6c31b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8976600746928291786, guid: 3c0099045e13e3f4e97cdb482c6c31b9,
         type: 3}
@@ -517,6 +527,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BaldGatorManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3376000065917308655, guid: 58c91705d35705542b27628212b72837,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4384237511006520910, guid: 58c91705d35705542b27628212b72837,
         type: 3}
@@ -635,6 +650,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Combat Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009092826888769550, guid: 9bf83a49cbf079943b1e05a9b160d103,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -775,7 +795,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282360168}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91bb94a062380ea43a84ceaff8bbda80, type: 3}
   m_Name: 
@@ -788,7 +808,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282360168}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
@@ -861,6 +881,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8480069014387762438, guid: 17e00a42520146a4bb4609ceeb907b74,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -911,6 +936,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scene Loader
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166275121543315389, guid: 3c0099045e13e3f4e97cdb482c6c31b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8976600746928291786, guid: 3c0099045e13e3f4e97cdb482c6c31b9,
         type: 3}
@@ -979,6 +1009,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Orientation Lock
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005801710541914418, guid: c0fe522b384793c40a1a1bad0f1e1e21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7876287374331144527, guid: c0fe522b384793c40a1a1bad0f1e1e21,
         type: 3}
@@ -1123,6 +1158,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: View Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7797131042255886867, guid: a85ec0eac1922b247a907bdfff1215dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1190,6 +1230,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DiceInternal
+      objectReference: {fileID: 0}
+    - target: {fileID: 8741547076365862732, guid: f6c87edb27b92a446b35d63de56c5845,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1259,6 +1304,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gesture Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4514217665261227972, guid: c457f76a0776d87468fd31e3907fb7a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1326,6 +1376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927395348212497175, guid: f4c8e57c47018f148b89f2e14635445b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2654309794094660191, guid: f4c8e57c47018f148b89f2e14635445b,
         type: 3}

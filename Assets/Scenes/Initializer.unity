@@ -171,7 +171,7 @@ MonoBehaviour:
     m_AssetGUID: 2e2a9d6f2a090124abe8c955fd3b715a
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 0
+    m_EditorAssetChanged: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

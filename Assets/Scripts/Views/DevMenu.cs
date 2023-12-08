@@ -46,6 +46,7 @@ public class DevMenu : MonoBehaviour
         this._succeed = this._root.Q<Toggle>("SucceedToggle");
         this._fail = this._root.Q<Toggle>("FailToggle");
         this._endingMeter = this._root.Q<Slider>("EndingMeterValue");
+        _document.sortingOrder = 999;
     }
 
     // Update is called once per frame

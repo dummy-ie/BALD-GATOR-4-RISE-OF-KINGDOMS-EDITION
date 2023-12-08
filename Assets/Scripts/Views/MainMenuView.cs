@@ -18,11 +18,7 @@ public class MainMenuView : View {
         this._playButton.clicked += PlayButtonClicked;
         this._settingsButton.clicked += SettingsButtonClicked;
         AudioManager.Instance.StartBGM(EBGMIndex.MAIN_MENU, 0);
-    }
-
-    public override void SetSortingOrder(int value) {
-        base.SetSortingOrder(value);
-        _document.sortingOrder = _sortingOrder;
+        _document.sortingOrder = 0;
     }
 
     public void PlayButtonClicked() {
