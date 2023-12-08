@@ -53,7 +53,6 @@ public class CombatManager : Singleton<CombatManager>
     {
         Entities = entities;
 
-
         State = CombatState.Start;
         foreach (Entity entity in entities)
         {

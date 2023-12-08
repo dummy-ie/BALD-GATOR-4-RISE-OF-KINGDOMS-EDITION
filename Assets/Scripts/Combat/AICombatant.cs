@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyCombatant : Combatant
+public class AICombatant : Combatant
 {
     [Tooltip("How long will this combatant stay idle (in SECONDS) if they can't do any actions or their actions have failed because I am cramming?")]
     [SerializeField]
