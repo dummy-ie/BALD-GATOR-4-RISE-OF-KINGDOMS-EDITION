@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
-using static StaticUtils;
 using static ICameraManipulator;
 
 public abstract class Combatant : MonoBehaviour, ITappable

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
-using static StaticUtils;
 using static ICameraManipulator;
 public class AICombatant : Combatant
 {

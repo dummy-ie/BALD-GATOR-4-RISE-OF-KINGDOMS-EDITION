@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static StaticUtils;
 using static ICameraManipulator;
-using UnityEngine.PlayerLoop;
 
 public class PlayerCombatant : Combatant
 {
