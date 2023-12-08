@@ -127,7 +127,6 @@ Hesitating between fighting Enel or murdering your companions, Enel grows tired 
 =FightEnelEvilResult
 {
     -battleWon: They thought they would be finally free of Enel’s influence. Turns out, the people of Merry Island are simply under new management. Mete out your justice as you see fit, and rule with an iron fist that smites down unbelievers from the heavens.
-
     -else: ded
 }
 ~AdvanceQuest("MainQuest3", -1)
@@ -135,7 +134,7 @@ Hesitating between fighting Enel or murdering your companions, Enel grows tired 
 {
     -battleWon: 
         ~Leave(false)
-        evilEnding = true
+        ~evilEnding = true
         ~Kill()
         ->DONE
     -else: 
