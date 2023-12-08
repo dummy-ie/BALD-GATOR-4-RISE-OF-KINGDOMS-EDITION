@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,13 +16,14 @@ public class PlayerInteract : MonoBehaviour
     void Start()
     {
         _gameView = ViewManager.Instance.GetView<GameView>();
+
+        if (_gameView == null)
+            Debug.LogError("No GameView in ViewManager! " + name);
+        
         AssignButtons();
 
         if (_buttons.Count == 0)
             Debug.LogError("No Buttons Found! " + name);
-
-        if (_gameView == null)
-            Debug.LogError("No GameView in ViewManager! " + name);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -103,6 +103,9 @@ public class PlayerInteract : MonoBehaviour
 
     public void AssignButtons()
     {
-        _buttons = _gameView.GetComponent<UIDocument>().rootVisualElement.Q("InteractButtons").Query<Button>().ToList();
+        VisualElement root = _gameView.GetComponent<UIDocument>().rootVisualElement;
+        var a = root.Q("InteractButtons");
+        var b = a.Query<Button>().ToList();
+        _buttons = b;
     }
 }

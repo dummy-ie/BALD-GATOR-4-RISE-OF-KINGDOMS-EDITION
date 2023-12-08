@@ -6,7 +6,6 @@ using Ink.Runtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using System.IO;
-using static UnityEngine.EventSystems.EventTrigger;
 
 //if a "Ink.Parsed" appears here just remove it
 public class DialogueManager : Singleton<DialogueManager>

@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UIElements;
-using GoogleMobileAds;
-using GoogleMobileAds.Api;
 
 public class RerollView : View
 {

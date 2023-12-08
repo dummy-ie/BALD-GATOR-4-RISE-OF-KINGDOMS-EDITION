@@ -2,11 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Build;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class ExternalDice : MonoBehaviour
 {
@@ -59,25 +56,29 @@ public class ExternalDice : MonoBehaviour
 
     public void CheckAccelerometer()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(0)) && !_rolling)
+        if (!_rerollView.isActiveAndEnabled)
         {
-            Debug.Log("Rolling dice with spacebar");
-            YeetDice(new Vector2(UnityEngine.Random.Range(1, 101), UnityEngine.Random.Range(1, 101)));
-        }
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(0)) && !_rolling)
+            {
+                Debug.Log("Rolling dice with spacebar");
+                YeetDice(new Vector2(UnityEngine.Random.Range(1, 101), UnityEngine.Random.Range(1, 101)));
+            }
 
-        if (Math.Abs(Input.acceleration.x) >= _accelerometerProperty.MinChangeX
-        && !_rolling)
-        {
-            FireAccelerometerEvent();
+            if (Math.Abs(Input.acceleration.x) >= _accelerometerProperty.MinChangeX
+            && !_rolling)
+            {
+                FireAccelerometerEvent();
+            }
         }
     }
 
     private void FireAccelerometerEvent()
     {
         
-        Vector3 deltaTransform = Vector3.zero;
-        deltaTransform.x = Input.acceleration.x * (_accelerometerProperty.SpeedX * Time.deltaTime);
-        YeetDice(Input.acceleration * (_accelerometerProperty.SpeedX * Time.deltaTime));
+            Vector3 deltaTransform = Vector3.zero;
+            deltaTransform.x = Input.acceleration.x * (_accelerometerProperty.SpeedX * Time.deltaTime);
+            YeetDice(Input.acceleration * (_accelerometerProperty.SpeedX * Time.deltaTime));
+        
     }
 
     private void YeetDice(Vector2 direction)

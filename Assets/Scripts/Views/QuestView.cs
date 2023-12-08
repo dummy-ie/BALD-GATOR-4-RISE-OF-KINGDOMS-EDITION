@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UIElements;
@@ -45,8 +43,11 @@ public class QuestView : View {
         foreach (Quest quest in QuestManager.Instance.CurrentQuests)
         {
             Debug.Log(quest.Data.ID);
-            _stepName.text = QuestManager.Instance.TrackedQuest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepName;
-            _description.text = QuestManager.Instance.TrackedQuest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepDescription;
+            if (QuestManager.Instance.TrackedQuest != null)
+            {
+                _stepName.text = QuestManager.Instance.TrackedQuest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepName;
+               _description.text = QuestManager.Instance.TrackedQuest.GetCurrentStepPrefab().GetComponent<QuestStep>().StepDescription;
+            }
             Button newButton = new Button();
             newButton.text = quest.Data.DisplayName;
             newButton.AddToClassList("quest-button");
