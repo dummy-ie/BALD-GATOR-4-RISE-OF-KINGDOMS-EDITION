@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 7430593859871003922}
   - component: {fileID: 2206545201161023348}
   - component: {fileID: 7001320571185856773}
-  - component: {fileID: 7177109200848770498}
+  - component: {fileID: 503599850178133305}
   - component: {fileID: 7114858356908628865}
   - component: {fileID: 926693643429968873}
   m_Layer: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2605728468982992454}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab97f88514274d94bb8476859e182149, type: 3}
   m_Name: 
@@ -264,7 +264,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _rotationSpeed: 5
   _camera: {fileID: 8700894779761848291}
---- !u!114 &7177109200848770498
+--- !u!114 &503599850178133305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2605728468982992454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1894cca505cda34c84668299d94b492, type: 3}
+  m_Script: {fileID: 11500000, guid: 12ed36900b7a40b46846bf0904ee8bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 7114858356908628865}
@@ -283,6 +283,8 @@ MonoBehaviour:
   _actualLineRenderer: {fileID: 3127923151350410515}
   EndTurn: 0
   ResetMovement: 0
+  _actionTimeOutSeconds: 5
+  _turnTimeOutSeconds: 1
 --- !u!114 &7114858356908628865
 MonoBehaviour:
   m_ObjectHideFlags: 0
