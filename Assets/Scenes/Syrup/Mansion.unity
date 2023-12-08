@@ -23127,6 +23127,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Buchi
       objectReference: {fileID: 0}
+    - target: {fileID: 8881240890616950694, guid: f9bdc1c95eaef2b439e5832f30e31cba,
+        type: 3}
+      propertyPath: _inkDialogue
+      value: 
+      objectReference: {fileID: 4900000, guid: e585949b419804b498e0e3c3d5815342, type: 3}
     - target: {fileID: 8987516422734375447, guid: f9bdc1c95eaef2b439e5832f30e31cba,
         type: 3}
       propertyPath: m_LocalPosition.x

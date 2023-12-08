@@ -4577,6 +4577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sunny
       objectReference: {fileID: 0}
+    - target: {fileID: 8243395139850492809, guid: e0891ae309f50274b9047c6e266b4502,
+        type: 3}
+      propertyPath: _inkDialogue
+      value: 
+      objectReference: {fileID: 4900000, guid: 437ddf35ce913aa4696518f9a9ac774a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

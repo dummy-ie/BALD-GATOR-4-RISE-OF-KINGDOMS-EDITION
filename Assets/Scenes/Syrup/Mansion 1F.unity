@@ -8803,6 +8803,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 484493136573798908, guid: 10834f0cbe3d0da4185631b959a3f89c,
+        type: 3}
+      propertyPath: _inkDialogue
+      value: 
+      objectReference: {fileID: 4900000, guid: da966fd225115ae42a6de1d6fb1946c8, type: 3}
     - target: {fileID: 2160013293116502788, guid: 10834f0cbe3d0da4185631b959a3f89c,
         type: 3}
       propertyPath: m_LocalPosition.x
