@@ -58,6 +58,8 @@ public class CombatView : View
         // switch cam button
         _switchCameraButton = _root.Q<Button>("SwitchCameraButton");
         _switchCameraButton.clicked += SwitchCameraButtonClicked;
+
+        Hide();
     }
 
     public void SetAttackHitPercentage(int dieFaces = 0, int modifier = 0, int difficultyClass = 0)
@@ -80,8 +82,14 @@ public class CombatView : View
 
     public void SetTargetData(Combatant combatant = null)
     {
+        if (_selectedTarget == null)
+            return;
+
         // If you pass null, just hide the target indicator.
-        if (combatant == null)
+        if (combatant != null)
+        {
+        }
+        else
         {
             // _selectedTarget.style.display = DisplayStyle.None;
             _selectedTarget.AddToClassList(_animationClass);

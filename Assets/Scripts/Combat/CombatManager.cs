@@ -100,9 +100,12 @@ public class CombatManager : Singleton<CombatManager>
         // ViewManager.Instance.HideRecentView();
         AudioManager.Instance.StartBGM(EBGMIndex.BATTLE, 1);
         AudioManager.Instance.PauseBGM(0);
+
+        Debug.Log("Hiding gameview and showing combatview");
         ViewManager.Instance.GetView<GameView>().Hide();
+        ViewManager.Instance.GetView<CombatView>().Show();
+
         //ViewManager.Instance.GetView<DialogueView>().Hide();
-        ViewManager.Instance.Show<CombatView>();
         ViewManager.Instance.GetView<CombatView>().ToggleHotbar();
 
         // Sort combatants by descending initiative
@@ -181,7 +184,10 @@ public class CombatManager : Singleton<CombatManager>
         State = CombatState.None;
 
         // ViewManager.Instance.HideRecentView();
-        ViewManager.Instance.Show<GameView>();
+
+        ViewManager.Instance.GetView<CombatView>().Hide();
+        ViewManager.Instance.GetView<GameView>().Show();
+        // ViewManager.Instance.Show<GameView>();
     }
 
     public void SwitchCameraToOverhead()
