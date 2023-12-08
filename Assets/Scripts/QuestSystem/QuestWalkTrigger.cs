@@ -6,6 +6,7 @@ public class QuestWalkTrigger : MonoBehaviour
 {
     [SerializeField] private string _questId;
     [SerializeField] private int _index = -1;
+    private bool _active = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,12 @@ public class QuestWalkTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        QuestManager.Instance.FinishCurrentStep(_questId, _index);
+        if (_active)
+        {
+            Debug.Log("Advancing Quest");
+            QuestManager.Instance.FinishCurrentStep(_questId, _index);
+            _active = false;
+        }
+        //Destroy(gameObject);
     }
 }

@@ -100,11 +100,13 @@ public class DialogueManager : Singleton<DialogueManager>
         _currentStory.BindExternalFunction("StartQuest", (string questId) =>
         {
             QuestManager.Instance.OnStart(questId);
+            //ContinueDialogue();
         });
 
         _currentStory.BindExternalFunction("FinishQuest", (string questId) =>
         {
             QuestManager.Instance.FinishQuest(questId);
+            //ContinueDialogue();
         });
 
         _currentStory.BindExternalFunction("AdvanceQuest", (string questId, int index) =>
@@ -113,6 +115,7 @@ public class DialogueManager : Singleton<DialogueManager>
                 QuestManager.Instance.FinishCurrentStep(questId, index);
             else
                 QuestManager.Instance.FinishCurrentStep(questId);
+            //ContinueDialogue();
         });
 
         _currentStory.BindExternalFunction("IncreaseStat", (string stat) =>
@@ -230,9 +233,10 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void ContinueDialogue()
     {
-        if (_currentStory.canContinue && !_isDiceRolling && !_fightOngoing)
+        if (_currentStory.canContinue)
         {
-            _view.Text.text = _currentStory.Continue();
+            
+            _view.Text.text = _currentStory.ContinueMaximally();
 
             SetButtons();
         }
@@ -283,16 +287,20 @@ public class DialogueManager : Singleton<DialogueManager>
             _currentStory.variablesState["diceRoll"] = diceRoll;
         }
 
-        _isDiceRolling = false;
+        
         _view.AssignButtons();
         ViewManager.Instance.GetView<GameView>().Show();
         foreach (GameObject player in PartyManager.Instance.PartyMembers)
         {
             player.GetComponentInChildren<PlayerInteract>().AssignButtons();
         }
+
+        _isDiceRolling = false;
         ShowView();
         AddButtons();
+        SetOutcome(0);
         ContinueDialogue();
+        
     }
 
     public IEnumerator EndBattleState(bool battleWon)
@@ -311,14 +319,16 @@ public class DialogueManager : Singleton<DialogueManager>
         }
         ShowView();
         AddButtons();
+        SetOutcome(0);
         ContinueDialogue();
     }
 
     private IEnumerator StartBattleState(string target = null)
     {
         Debug.Log("Starting battle");
-        yield return new WaitForSeconds(.5f);
         RemoveButtons();
+        yield return new WaitForSeconds(.5f);
+        
         HideView();
         _fightOngoing = true;
 
@@ -351,17 +361,19 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private IEnumerator RollDice(string stat)
     {
-        RemoveButtons();
-        HideView();
-        ViewManager.Instance.GetView<GameView>().Hide();
+        
         _isDiceRolling = true;
 
         _characterReference2 = CombatManager.Instance.CurrentSelected;
+        RemoveButtons();
+        
+
+        ViewManager.Instance.GetView<GameView>().Hide();
 
         SceneManager.LoadScene("Dice Roller", LoadSceneMode.Additive);
         
         yield return new WaitForSeconds(.5f);
-
+        HideView();
         _currentStory.variablesState[_name + "HasRolled" + stat] = false;
 
         Entity player = CombatManager.Instance.CurrentSelected.GetComponent<Entity>();
@@ -379,6 +391,7 @@ public class DialogueManager : Singleton<DialogueManager>
             }
         }
         FindObjectOfType<ExternalDice>().DifficultyClass = (int)_currentStory.variablesState[_name + stat];
+        
         
     }
 

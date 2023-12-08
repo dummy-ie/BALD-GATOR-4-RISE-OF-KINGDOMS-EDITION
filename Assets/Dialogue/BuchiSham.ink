@@ -22,11 +22,11 @@ VAR name = "buchisham"
 =Dialogue1
 "Oi! You are not allowed to be in here."
     +[Do you know if a maid works here?] "And who are you to be asking that? Of course not, we have not seen any maid working here!"
-        ++{!buchishamCheckCHA}[I am with the IRS, she has some taxes to be paid and my information says she's here. (CHARISMA)]
+        ++{!buchishamCHA}[I am with the IRS, she has some taxes to be paid and my information says she's here. (CHARISMA)]
             ~buchishamHasRolledCHA = true
             ~RollDice("CHA")
             ->CHACheck
-        ++{!buchishamCheckDEX}[Make a distraction (DEXTERITY)]
+        ++{!buchishamDEX}[Make a distraction (DEXTERITY)]
             ~buchishamHasRolledDEX = true
             ~RollDice("DEX")
             ->DEXCheck
@@ -45,6 +45,7 @@ VAR name = "buchisham"
 
 =CHACheck
 Loading Dice Roll...
++[Please Wait...]
 ->CHAResult
 
 =CHAResult
@@ -66,6 +67,7 @@ Loading Dice Roll...
 
 =DEXCheck
 Loading Dice Roll...
++[Please Wait...]
 ->DEXResult
 
 =DEXResult
@@ -88,6 +90,7 @@ Loading Dice Roll...
 
 =Fighting
 "Fighting in progress..."
++[Please Wait...]
 ->FightResult
 
 =FightResult

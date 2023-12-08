@@ -33,6 +33,7 @@ VAR name = "zrell"
 
 =STRCheck
 Loading Dice Roll...
++[Please Wait...]
 ->STRResult
 
 =STRResult
@@ -54,6 +55,7 @@ Loading Dice Roll...
 
 =WISCheck
 Loading Dice Roll...
++[Please Wait...]
 ->STRResult
 
 =WISResult
@@ -78,6 +80,7 @@ Loading Dice Roll...
 
 =Fighting
 "Fighting in progress..."
++[Please Wait...]
 ->FightResult
 
 =FightResult

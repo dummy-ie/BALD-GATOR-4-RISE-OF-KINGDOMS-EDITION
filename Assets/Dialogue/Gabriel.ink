@@ -20,8 +20,12 @@ VAR name = "gabriel"
 {v1IsOn: ->PowerOnV1 | ->Base}
 
 ===Base===
+
+{gabrielCanTalkTo: ->UpdateQuest | ->NoTalk}
+
+=UpdateQuest
 ~StartQuest("LobbySubquest")
-{gabrielCanTalkTo: ->Dialogue1 | ->NoTalk}
+->Dialogue1
 
 =Dialogue1
 “Machine... I will cut. You. Down. Break you apart. Splay the gore of your profane form across the stars! I will grind you down until the very sparks cry for mercy!”
@@ -55,6 +59,7 @@ VAR name = "gabriel"
 
 =INTCheck
 Loading Dice Roll...
++[Please Wait...]
 ->INTResult
 
 =INTResult
@@ -76,6 +81,7 @@ Loading Dice Roll...
 
 =CONCheck
 Loading Dice Roll...
++[Please Wait...]
 ->CONResult
 
 =CONResult
@@ -97,6 +103,7 @@ Loading Dice Roll...
 
 =Fighting
 "Fighting in progress..."
++[Please Wait...]
 ->FightResult
 
 =FightResult
@@ -118,6 +125,7 @@ Loading Dice Roll...
     
 =FightingV1
 "Fighting in progress..."
++[Please Wait...]
 ->FightResultV1
 
 =FightResultV1

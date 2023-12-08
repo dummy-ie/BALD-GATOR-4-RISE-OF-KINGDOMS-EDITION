@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/GUI/USS/Dialogue.uss?fileID=7433441132597879392&amp;guid=9a569d2ecc757c94db27220cb794581a&amp;type=3#Dialogue" />
-    <ui:VisualElement name="BG" style="top: 52%; height: 50%;">
+    <ui:VisualElement name="BG" style="top: 52%; height: 50%; background-color: rgba(0, 0, 0, 0.91);">
         <ui:Label tabindex="-1" text="HELLO MF" parse-escape-sequences="false" display-tooltip-when-elided="true" name="Text" />
         <ui:VisualElement name="Buttons" style="width: 25%;">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Option1" />

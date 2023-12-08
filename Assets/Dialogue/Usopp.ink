@@ -62,7 +62,8 @@ VAR name = "usopp"
 
 =CHACheck
 Loading Dice Roll...
-->CHAResult
++[Please Wait...]
+    ->CHAResult
 
 =CHAResult
 {
@@ -79,6 +80,7 @@ Loading Dice Roll...
 
 =DEXCheck
 Loading Dice Roll...
++[Please Wait...]
 ->DEXResult
 
 =DEXResult
@@ -97,6 +99,7 @@ Loading Dice Roll...
 
 =Fighting
 "Fighting in progress..."
++[Please Wait...]
 ->FightResult
 
 =FightResult

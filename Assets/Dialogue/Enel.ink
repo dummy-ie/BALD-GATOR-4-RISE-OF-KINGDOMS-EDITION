@@ -17,18 +17,24 @@ VAR name = "enel"
 {markOfJustice: ->Base | ->NoTalk}
 
 ===Base===
-->Dialogue1A
+->Dialogue1
 
-=Dialogue1A
+=Dialogue1
 “Weakling mortals, state your purpose.”
-    +[We want to know where the One Piece is.]  
-        ->Dialogue1B
+    +[We want to know where the One Piece is.]  “I will give you the power to obtain the One Piece, but you must give to me your companions’ souls in exchange. After all, true power lies in the self. Your “friends” only serve to hinder your growth. Now, choose.”
+        ++[I’ll do it. I will sacrifice them.]
+            ->Dialogue2A
+        ++[Never! They are my precious nakama. I’ll never abandon them for the likes of you!]
+            ->Dialogue2B
+        ++[I changed my mind. I don’t need the One Piece after all.]
+            ->Dialogue2C
+
     +[Who are you?] “You arrive here and do not know of me? I am God Enel of Skypiea. I am known to be impatient. Get to the point.”
         ++[Okay Then]
-            ->Dialogue1A
+            ->Dialogue1
     +[Where is this?] “This paradise is Fairy Vearth. I have claimed this land of bountiful power for myself, eons ago after I fought with a powerful pirate.”
         ++[I see...]
-            ->Dialogue1A
+            ->Dialogue1
     +[We’re here to kill you, and end your tyranny.] “Another challenger, I see. I will show you just how foolish you are.”
         ++[So be it]
             ->Dialogue2B
@@ -38,15 +44,8 @@ VAR name = "enel"
 
 
 
-=Dialogue1B
-“I will give you the power to obtain the One Piece, but you must give to me your companions’ souls in exchange. After all, true power lies in the self. Your “friends” only serve to hinder your growth. Now, choose.”
-    +[I’ll do it. I will sacrifice them.]
-        ->Dialogue2A
-    +[Never! They are my precious nakama. I’ll never abandon them for the likes of you!]
-        ->Dialogue2B
-    +[I changed my mind. I don’t need the One Piece after all.]
-        ->Dialogue2C
 
+    
 
 =Dialogue2A
 With promises of endless power, who needs friends? In exchange for power, you killed your friends, and eventually Enel as well. You are now all powerful, as the new God of Merry Island.
@@ -74,6 +73,7 @@ Hesitating between fighting Enel or murdering your companions, Enel grows tired 
 
 =FightEnelHeroic
 "Fighting in progress..."
++[Please Wait...]
 ->FightEnelHeroicResult
 
 =FightEnelHeroicResult
@@ -97,6 +97,7 @@ Hesitating between fighting Enel or murdering your companions, Enel grows tired 
 
 =FightEnelNormal
 "Fighting in progress..."
++[Please Wait...]
 ->FightEnelNormalResult
 
 =FightEnelNormalResult
@@ -120,6 +121,7 @@ Hesitating between fighting Enel or murdering your companions, Enel grows tired 
 =FightEnelEvil
 "Fighting in progress..."
 ~Betrayal()
++[Please Wait...]
 ->FightEnelEvilResult
 
 =FightEnelEvilResult

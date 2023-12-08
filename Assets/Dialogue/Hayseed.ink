@@ -19,12 +19,12 @@ VAR name = "hayseed"
 
 
 ===Base===
-{hayseedCanTalkTo: ->Dialogue1 | ->NoTalk}
-
+{hayseedCanTalkTo: ->Dialogue1| ->NoTalk}
 
 =Dialogue1
-“Traveler! I am in need of dire assistance! Our fields are being ravaged by these godforsaken pests and if this continues, we’ll all die of hunger!”
-~StartQuest("FooshaSubquest")
+“Traveler! I am in need of dire assistance! Our fields are being ravaged by these godforsaken pests and if this continues, we’ll all die of hunger!” 
+~StartQuest("FooshaSubquest") 
+
     + [I’ll help you with these pests.]
         ~AdvanceQuest("FooshaSubquest", -1)
         ~acceptHayseedQuest = true
@@ -69,9 +69,6 @@ VAR name = "hayseed"
     +[Bzzz!]
     ~ Leave(false)
     ->DONE
-
-
-->END
 
 
 ->END

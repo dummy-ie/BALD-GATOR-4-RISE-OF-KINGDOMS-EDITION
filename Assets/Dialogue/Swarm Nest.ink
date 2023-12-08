@@ -34,6 +34,7 @@ You approach the nest, intending to smash it into pieces. However, your not-so s
 
 =DEXCheck
 Loading Dice Roll...
++[Please Wait...]
 ->DEXResult
 
 =DEXResult
@@ -44,6 +45,7 @@ Loading Dice Roll...
     +[Proceed]
 {
     -diceRoll: 
+        ~swarmNestDefeated = true
         ~hayseedCanTalkTo = true 
         ~AdvanceQuest("FooshaSubquest", 4)
         ~Kill()
@@ -59,11 +61,12 @@ Loading Dice Roll...
 
 =Fighting
 "Fighting in progress..."
++[Please Wait...]
 ->FightResult
 
 =FightResult
 {
-    -battleWon: You win!
+    -battleWon: Swarm Defeated
     -else: ded
 }
     +[Proceed]

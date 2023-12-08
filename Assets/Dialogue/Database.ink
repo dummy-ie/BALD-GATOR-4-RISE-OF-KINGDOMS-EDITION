@@ -13,7 +13,7 @@ VAR inquireShipHand = false
 VAR inquireBartender = false
 VAR zrellIsDead = false
 VAR gabrielIsDead = false
-VAR markOfJustice = false
+VAR markOfJustice = true
 
 VAR enelIsDead = false
 VAR heroicEnding = false
@@ -47,10 +47,10 @@ VAR v1IsOn = false
 
 //USOPP
 VAR usoppCanTalkTo = true
-VAR usoppCheckCHA = 10
+VAR usoppCHA = 10
 VAR usoppHasRolledCHA = false
 
-VAR usoppCheckDEX = 10
+VAR usoppDEX = 10
 VAR usoppHasRolledDEX = false
 
 
@@ -90,16 +90,16 @@ VAR sunnyCanTalkTo = true
 //BUCHI N SHAM
 VAR buchishamCanTalkTo = true
 
-VAR buchishamCheckCHA = 14
+VAR buchishamCHA = 14
 VAR buchishamHasRolledCHA = false
 
-VAR buchishamCheckDEX = 14
+VAR buchishamDEX = 14
 VAR buchishamHasRolledDEX = false
 
 //SUS MERRY
 VAR susmerryCanTalkTo = true
 
-VAR susmerryCheckDEX = 15
+VAR susmerryDEX = 15
 VAR susmerryHasRolledDEX = false
 
 //MERRY
@@ -112,7 +112,7 @@ VAR maidCanTalkTo = true
 //TRAPDOOR
 VAR trapdoorCanTalkTo = true
 
-VAR trapdoorCheckSTR = 18
+VAR trapdoorSTR = 18
 VAR trapdoorHasRolledSTR = false
 
 //ZRELL
