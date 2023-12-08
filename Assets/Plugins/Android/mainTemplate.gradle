@@ -6,6 +6,14 @@ dependencies {
 // Android Resolver Dependencies Start
     implementation 'com.google.android.gms:play-services-ads:22.5.0' // Assets/Addons/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml:7
     implementation 'com.google.android.ump:user-messaging-platform:2.1.0' // Assets/Addons/GoogleMobileAds/Editor/GoogleUmpDependencies.xml:7
+    constraints {
+        implementation('androidx.work:work-runtime:2.7.0') {
+            because '''androidx.work:work-runtime:2.1.0 pulled from
+            play-services-ads has a bug using PendingIntent without
+            FLAG_IMMUTABLE or FLAG_MUTABLE and will fail in Apps
+            targeting S+.'''
+        }
+    }
 // Android Resolver Dependencies End
 **DEPS**}
 
