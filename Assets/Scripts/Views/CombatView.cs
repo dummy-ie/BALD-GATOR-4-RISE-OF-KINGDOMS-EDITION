@@ -58,8 +58,6 @@ public class CombatView : View
         // switch cam button
         _switchCameraButton = _root.Q<Button>("SwitchCameraButton");
         _switchCameraButton.clicked += SwitchCameraButtonClicked;
-
-        Hide();
     }
 
     public void SetAttackHitPercentage(int dieFaces = 0, int modifier = 0, int difficultyClass = 0)
@@ -113,6 +111,7 @@ public class CombatView : View
         _hotbar.ToggleInClassList(_animationClass);
         _switchCameraButton.ToggleInClassList(_animationClass);
     }
+
 
     public void SetCurrentTurnData(Combatant combatant)
     {
@@ -230,4 +229,10 @@ public class CombatView : View
     {
         CombatManager.Instance.EndCurrentTurn();
     }
+
+    // private void OnDisable()
+    // {
+    //     Debug.Log("CombatView is getting disabled.");
+    //     Debug.Log(UnityEngine.StackTraceUtility.ExtractStackTrace());
+    // }
 }

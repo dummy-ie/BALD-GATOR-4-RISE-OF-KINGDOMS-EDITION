@@ -184,7 +184,7 @@ public class CombatManager : Singleton<CombatManager>
         State = CombatState.None;
 
         // ViewManager.Instance.HideRecentView();
-
+        // Debug.Log("EndCombat was called.");
         ViewManager.Instance.GetView<CombatView>().Hide();
         ViewManager.Instance.GetView<GameView>().Show();
         // ViewManager.Instance.Show<GameView>();
@@ -316,6 +316,7 @@ public class CombatManager : Singleton<CombatManager>
 
         RefreshUI();
         _currentTurn.DecrementAction();
+        ViewManager.Instance.GetView<CombatView>().SetCurrentTurnActionPoints(_currentTurn);
     }
 
     private void RefreshUI()
