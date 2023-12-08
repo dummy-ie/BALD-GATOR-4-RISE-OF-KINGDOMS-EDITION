@@ -17,13 +17,14 @@ public class PlayerInteract : MonoBehaviour
     void Start()
     {
         _gameView = ViewManager.Instance.GetView<GameView>();
-        AssignButtons();
 
         if (_buttons.Count == 0)
             Debug.LogError("No Buttons Found! " + name);
 
         if (_gameView == null)
             Debug.LogError("No GameView in ViewManager! " + name);
+        
+        AssignButtons();
     }
 
     private void OnTriggerEnter(Collider other)
