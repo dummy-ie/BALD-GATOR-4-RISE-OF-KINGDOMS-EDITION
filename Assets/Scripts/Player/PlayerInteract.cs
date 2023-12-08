@@ -28,6 +28,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        AssignButtons();
         if (!other.gameObject.CompareTag("Interactable") || this != CombatManager.Instance.CurrentSelected.GetComponentInChildren<PlayerInteract>())
             return;
 
@@ -49,14 +50,14 @@ public class PlayerInteract : MonoBehaviour
                 button.text = collided.name;
                 button.clicked += () => DialogueManager.Instance.EnterDialogue(other.gameObject); 
                 /* QUEST TESTING */
-                QuestPoint questPoint = null;
+                /*QuestPoint questPoint = null;
                 questPoint = collided.GetComponent<QuestPoint>();
                 Debug.Log(questPoint);
                 if (questPoint != null)
                 {
 
                     button.clicked += questPoint.SubmitPressed;
-                }
+                }*/
                 break;
             }
         }
@@ -68,6 +69,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        AssignButtons();
         if (!other.gameObject.CompareTag("Interactable") && this != CombatManager.Instance.CurrentSelected.GetComponent<PlayerInteract>())
             return;
 
