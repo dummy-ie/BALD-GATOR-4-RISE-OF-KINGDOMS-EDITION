@@ -19,7 +19,12 @@ public class DialogueManager : Singleton<DialogueManager>
 
     private GameObject _characterReference;
     private GameObject _characterReference2;
+
     private Story _currentStory;
+    public Story CurrentStory
+    {
+        get { return _currentStory; }
+    }
 
     private string _name;
     public string Name
@@ -37,6 +42,11 @@ public class DialogueManager : Singleton<DialogueManager>
     private bool _isDiceRolling;
     private bool _fightOngoing;
 
+    private List<string> _combatantNames = new();
+
+    Dictionary<string, SceneChanger> _sceneChangers = new();
+    [SerializeField] List<SceneChanger> debug;
+
     void InitializeVariables()
     {
         
@@ -52,12 +62,26 @@ public class DialogueManager : Singleton<DialogueManager>
             _variables.Add(name, value);
             //Debug.Log("Initialized Variable " + name + " : " + value);
         }
+
+        
+    }
+
+    void LoadSceneChangers()
+    {
+        _sceneChangers.Clear();
+        SceneChanger[] changers = FindObjectsOfType<SceneChanger>();
+        debug.AddRange(changers);
+        foreach (SceneChanger changer in changers)
+        {
+            Debug.Log("Logging \'" + changer.name + "\' as SceneChanger");
+            _sceneChangers.Add(changer.name, changer);
+        }
     }
 
 
     public void EnterDialogue(GameObject character)
     {
-        
+        _combatantNames.Clear();
         Debug.Log("Entering Dialogue");
         AddButtons();
 
@@ -83,6 +107,14 @@ public class DialogueManager : Singleton<DialogueManager>
             QuestManager.Instance.FinishQuest(questId);
         });
 
+        _currentStory.BindExternalFunction("AdvanceQuest", (string questId, int index) =>
+        {
+            if (index != -1)
+                QuestManager.Instance.FinishCurrentStep(questId, index);
+            else
+                QuestManager.Instance.FinishCurrentStep(questId);
+        });
+
         _currentStory.BindExternalFunction("IncreaseStat", (string stat) =>
         {
             Entity player = CombatManager.Instance.CurrentSelected.GetComponent<Entity>();
@@ -98,15 +130,55 @@ public class DialogueManager : Singleton<DialogueManager>
                     case "WIS": player.Class.Wisdom++; break;
                 }
             }
-
-            
         });
 
-        _currentStory.BindExternalFunction("Fight", Fight);
+        _currentStory.BindExternalFunction("Fight", () =>
+        {
+            StartCoroutine(StartBattleState());
+        });
+        _currentStory.BindExternalFunction("AddCombatant", (string name) =>
+        {
+            _combatantNames.Add(name);
+        });
+        _currentStory.BindExternalFunction("SwitchFight", (string target) =>
+        {
+            StartCoroutine(StartBattleState(target));
+        });
         _currentStory.BindExternalFunction("Kill", () =>
         {
             Destroy(_characterReference);
+            if ((bool)_currentStory.variablesState["zrellIsDead"] && (bool)_currentStory.variablesState["gabrielIsDead"])
+            {
+                _currentStory.variablesState["markOfJustice"] = true;
+                QuestManager.Instance.FinishCurrentStep("MainQuest2");
+            }
         });
+        _currentStory.BindExternalFunction("SwitchKill", (string target) =>
+        {
+            if (target != null)
+            {
+                GameObject obj = GameObject.Find(target);
+                if (obj != null)
+                    Destroy(obj);
+                else Debug.LogError("There is no target named:" + target + ". Check INK file!");
+            }
+                
+        });
+        _currentStory.BindExternalFunction("Betrayal", () => {
+            Debug.Log("Betrayal in progress");
+            foreach(GameObject obj in PartyManager.Instance.PartyMembers)
+            {
+                if (obj != CombatManager.Instance.CurrentSelected)
+                {
+                    obj.GetComponent<Entity>().Affiliation = Entity.AffiliationState.Enemy;
+                }
+            }
+        });
+        _currentStory.BindExternalFunction("MoveScene", (string targetScene) =>
+        {
+            _sceneChangers[targetScene].ChangeScene();
+        });
+
         _currentStory.BindExternalFunction("Leave", (bool returnable) =>
         {
             Leave(returnable);
@@ -140,10 +212,16 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _currentStory.UnbindExternalFunction("RollDice");
         _currentStory.UnbindExternalFunction("StartQuest");
+        _currentStory.UnbindExternalFunction("AdvanceQuest");
         _currentStory.UnbindExternalFunction("FinishQuest");
         _currentStory.UnbindExternalFunction("IncreaseStat");
         _currentStory.UnbindExternalFunction("Fight");
+        _currentStory.UnbindExternalFunction("AddCombatant");
+        _currentStory.UnbindExternalFunction("SwitchFight");
         _currentStory.UnbindExternalFunction("Kill");
+        _currentStory.UnbindExternalFunction("SwitchKill");
+        _currentStory.UnbindExternalFunction("Betrayal");
+        _currentStory.UnbindExternalFunction("MoveScene");
         _currentStory.UnbindExternalFunction("Leave");
 
         _view.Text.text = "";
@@ -207,6 +285,7 @@ public class DialogueManager : Singleton<DialogueManager>
 
         _isDiceRolling = false;
         _view.AssignButtons();
+        ViewManager.Instance.GetView<GameView>().Show();
         foreach (GameObject player in PartyManager.Instance.PartyMembers)
         {
             player.GetComponentInChildren<PlayerInteract>().AssignButtons();
@@ -235,7 +314,7 @@ public class DialogueManager : Singleton<DialogueManager>
         ContinueDialogue();
     }
 
-    private IEnumerator StartBattleState()
+    private IEnumerator StartBattleState(string target = null)
     {
         Debug.Log("Starting battle");
         yield return new WaitForSeconds(.5f);
@@ -248,7 +327,22 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             combatants.Add(combatant.GetComponent<Entity>());
         }
-        combatants.Add(_characterReference.GetComponent<Entity>());
+        if (target != null) {
+            GameObject obj = GameObject.Find(target);
+            if (obj != null)
+                combatants.Add(obj.GetComponent<Entity>());
+            else Debug.LogError("There is no target named:" + target + ". Check INK file!");
+        }
+        else
+            combatants.Add(_characterReference.GetComponent<Entity>());
+
+        if (_combatantNames != null)
+        {
+            foreach (string name in _combatantNames)
+            {
+               combatants.Add(GameObject.Find(name).GetComponent<Entity>());
+            }
+        }
 
         StartCoroutine(CombatManager.Instance.StartCombat(combatants));
     }
@@ -259,6 +353,7 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         RemoveButtons();
         HideView();
+        ViewManager.Instance.GetView<GameView>().Hide();
         _isDiceRolling = true;
 
         _characterReference2 = CombatManager.Instance.CurrentSelected;
@@ -283,7 +378,8 @@ public class DialogueManager : Singleton<DialogueManager>
                 case "WIS": statValue = player.Class.Wisdom; break;
             }
         }
-        FindObjectOfType<ExternalDice>().DifficultyClass = statValue;
+        FindObjectOfType<ExternalDice>().DifficultyClass = (int)_currentStory.variablesState[_name + stat];
+        
     }
 
     private void SetButtons()
@@ -337,12 +433,6 @@ public class DialogueManager : Singleton<DialogueManager>
         ContinueDialogue();
     }
 
-    private void Fight()
-    {
-        //StartCoroutine(ExitDialogue());
-        StartCoroutine(StartBattleState());
-    }
-
     private void Leave(bool returnable)
     {
         Debug.Log("Leaving Dialogue");
@@ -378,6 +468,12 @@ public class DialogueManager : Singleton<DialogueManager>
         _view.BackGround.SetEnabled(true);
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Loading Scene Changers");
+        LoadSceneChangers();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -385,6 +481,18 @@ public class DialogueManager : Singleton<DialogueManager>
         _view = ViewManager.Instance.GetView<DialogueView>();
         //HideView();
         _isDialoguePlaying = false;
+
+        
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void AddButtons()

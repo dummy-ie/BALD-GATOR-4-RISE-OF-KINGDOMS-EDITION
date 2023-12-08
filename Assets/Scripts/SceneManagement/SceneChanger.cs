@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -70,15 +71,20 @@ public class SceneChanger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"Switching Scene to : {_targetSceneName}");
-            SceneConnection.ActiveConnection = _sceneConnection;
-            //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
-            //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
-            //SceneLoader.Instance.LoadScene(_targetSceneName, true);
-            AudioManager.Instance.StartBGM(_nextSceneBGM, 0);
-            AudioManager.Instance.PlaySFX(_playSFX);
-            if (_targetSceneReference != null)
-                SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
+            ChangeScene();
         }
+    }
+
+    public void ChangeScene()
+    {
+        Debug.Log($"Switching Scene to : {_targetSceneName}");
+        SceneConnection.ActiveConnection = _sceneConnection;
+        //StartCoroutine(SceneLoader.Instance.FadeAndLoadScene(_targetSceneName));
+        //SceneLoader.Instance.LoadSceneWithoutFade(_targetSceneName);
+        //SceneLoader.Instance.LoadScene(_targetSceneName, true);
+        AudioManager.Instance.StartBGM(_nextSceneBGM, 0);
+        AudioManager.Instance.PlaySFX(_playSFX);
+        if (_targetSceneReference != null)
+            SceneLoader.Instance.LoadSceneWithFade(_targetSceneReference);
     }
 }

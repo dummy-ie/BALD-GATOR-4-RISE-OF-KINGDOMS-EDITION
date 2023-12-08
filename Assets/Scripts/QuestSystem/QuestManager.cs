@@ -64,15 +64,35 @@ public class QuestManager : Singleton<QuestManager>
         if (quest.CurrentStepExists())
             quest.InstantiateCurrentStep(transform);
         if (canFinish)
-            ChangeQuestState(id, EQuestState.CAN_FINISH);
+            FinishQuest(id);
+            //ChangeQuestState(id, EQuestState.CAN_FINISH);
     }
 
     public void FinishQuest(string id) {
+        Debug.Log("Finishing Quest :" + id);
         ChangeQuestState(id, EQuestState.FINISHED);
         _currentQuests.Remove(GetQuest(id));
         if (_trackedQuest == _questMap[id])
             _trackedQuest = null;
     }
+
+    public void FinishCurrentStep(string id, int nextIndex = -1)
+    {
+        QuestStep[] steps = GetComponentsInChildren<QuestStep>();
+        if (nextIndex == -1)
+            nextIndex = GetQuest(id).CurrentStepIndex + 1;
+        foreach (QuestStep step in steps)
+        {
+            Debug.Log("Current Step : " + step.StepName + step.gameObject.name);
+            if (step.ID == id)
+            {
+                Debug.Log("Quest Manager : Finishing Step of " + id + ", next Index = " + nextIndex);
+                step.FinishStep(nextIndex);
+            }
+        }
+
+    }
+
     private bool CheckRequirementsMet(Quest quest) {
         bool meetsRequirements = true;
         foreach (QuestData prerequisiteQuest in quest.Data.Prerequisites) {
@@ -86,7 +106,7 @@ public class QuestManager : Singleton<QuestManager>
     }
     private void StepStateChange(string id, int stepIndex, QuestStepState questStepState) {
         Quest quest = GetQuest(id);
-        quest.StoreStepState(questStepState, stepIndex);
+        //quest.StoreStepState(questStepState, stepIndex);
         ChangeQuestState(id, quest.State);
     }
 
@@ -94,6 +114,7 @@ public class QuestManager : Singleton<QuestManager>
         Debug.Log("Loaded Quest Data Asset : " + asset.ID);
         _questMap.Add(asset.ID, new Quest(asset));
         _index++;
+        
         
     }
 
@@ -108,6 +129,9 @@ public class QuestManager : Singleton<QuestManager>
             Debug.Log(GetQuest("TestQuest").CurrentStepExists());
             _trackedQuest = GetQuest("TestQuest");*/
             StartQuest("MainQuest1");
+            //FinishCurrentStep("MainQuest1");
+            //FinishCurrentStep("MainQuest1");
+            //FinishCurrentStep("MainQuest1");
         }
         else
             Debug.LogError($"Quest Data not loaded.");

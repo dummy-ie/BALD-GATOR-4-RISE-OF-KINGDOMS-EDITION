@@ -72,6 +72,7 @@ public class AdsManager : Singleton<AdsManager>
             {
                 // TODO: Reward the user.
                 //uiScript.OnUserEarnedReward();
+                Debug.Log("Showed Ad");
                 _rerollView.ClickedAds = true;
             });
         }

@@ -19,6 +19,7 @@ public class GameView : View
     private VisualElement _joystickKnob; // inner circle of joystick, dynamic moving part
     private float _size = 250; // size(width and height) of joystick element, modify it if you want
     private float _sensitivity = 50; // the higher, the more sensitive. 0 means sudden switches between directions(no sensitivity)
+    private float _distance = 3f; // distance from a SceneChanger wherein we tell the player to which next scene they are walking into
 
     private Button _menuButton;
     private Button _questButton;
@@ -28,6 +29,7 @@ public class GameView : View
     private Label _questName;
     private Label _stepName;
     private Image _trackedQuestIcon;
+    private Label _nextScene;
     public override void Initialize()
     {
         _document = GetComponent<UIDocument>();
@@ -70,6 +72,7 @@ public class GameView : View
         _resumeButton = _root.Q<Button>("ResumeButton");
         _quitButton = _root.Q<Button>("QuitButton");
         _trackedQuestIcon = _root.Q<Image>("TrackedQuestIcon");
+        _nextScene = _root.Q<Label>("NextScene");
         _menuButton.clicked += OnMenuButtonClicked;
         _questButton.clicked += OnQuestButtonClicked;
         _resumeButton.clicked += OnResumeButtonClicked;
@@ -170,6 +173,22 @@ public class GameView : View
         SceneLoader.Instance.LoadMainMenu();
     }
 
+    void OnNearSceneChanger(SceneChanger changer){
+        Debug.LogWarning("ayo");
+        if(_nextScene == null){
+            return;
+        }
+        _nextScene.style.display = StyleKeyword.Initial;
+        _nextScene.text = changer.gameObject.name;
+    }
+
+    void OnAwaySceneChanger(){
+        if(_nextScene == null){
+            return;
+        }
+        _nextScene.style.display = StyleKeyword.None;
+    }
+
     private void Update()
     {
         if (QuestManager.Instance.TrackedQuest != null)
@@ -183,6 +202,25 @@ public class GameView : View
             _trackedQuestIcon.style.visibility = Visibility.Hidden;
             _questName.text = "";
             _stepName.text = "";
+        }
+
+        if(PartyManager.Instance.PartyMembers != null){
+            PlayerController controller;
+            foreach (GameObject member in PartyManager.Instance.PartyMembers)
+            {
+                controller = member.GetComponent<PlayerController>();
+                if(controller.isActiveAndEnabled){
+                    Collider[] colliderArray = Physics.OverlapSphere(member.transform.position, _distance);
+                    foreach(Collider collider in colliderArray){
+                        if(collider.TryGetComponent(out SceneChanger changer)){
+                            this.OnNearSceneChanger(changer);
+                            break;
+                        }
+                        this.OnAwaySceneChanger();
+                    }
+                    break;
+                }
+            }
         }
     }
 }

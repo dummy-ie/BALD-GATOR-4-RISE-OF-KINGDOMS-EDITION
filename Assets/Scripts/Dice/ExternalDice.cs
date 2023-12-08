@@ -74,6 +74,7 @@ public class ExternalDice : MonoBehaviour
 
     private void FireAccelerometerEvent()
     {
+        
         Vector3 deltaTransform = Vector3.zero;
         deltaTransform.x = Input.acceleration.x * (_accelerometerProperty.SpeedX * Time.deltaTime);
         YeetDice(Input.acceleration * (_accelerometerProperty.SpeedX * Time.deltaTime));
@@ -81,6 +82,7 @@ public class ExternalDice : MonoBehaviour
 
     private void YeetDice(Vector2 direction)
     {
+        Debug.Log("Rolling with a Difficulty Class of : " + _difficultyClass);
         StopAllCoroutines();
 
         _diceLight.enabled = false;
