@@ -19,8 +19,8 @@ VAR name = "townGuy"
 {townGuyCanTalkTo: ->Dialogue1 | ->NoTalk }
 
 =Dialogue1
-~StartQuest("RogueSubquest")
 “Hello random stranger! What brings you to our town?”
+~StartQuest("RogueSubquest")
 
     + [What's with all the chatter?]
         ->Dialogue2
@@ -63,7 +63,7 @@ VAR name = "townGuy"
 You see the villagers around. Time for a little ashfall
     +[Spread the ashes]
     ~ashesHasBeenSpread = true
-    FinishQuest("RogueSubquest")
+    ~FinishQuest("RogueSubquest")
     ->Dialogue2
 
 =Dialogue2

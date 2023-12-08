@@ -21,7 +21,8 @@ public class DialogueBlocker : MonoBehaviour
     {
         if (DialogueManager.Instance.CurrentStory != null)
         {
-            if ((bool)DialogueManager.Instance.CurrentStory.variablesState[_targetVariable] == _targetState)
+            if (DialogueManager.Instance.CurrentStory.variablesState[_targetVariable] != null &&
+               (bool)DialogueManager.Instance.CurrentStory.variablesState[_targetVariable] == _targetState)
             {
                 this.gameObject.GetComponent<Collider>().enabled = false;
             }

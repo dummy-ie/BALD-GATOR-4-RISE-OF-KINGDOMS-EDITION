@@ -121,3 +121,5 @@ MonoBehaviour:
     masterInkAssets: []
     localIncludePaths: []
     includes: []
+  debug: []
+  _database: {fileID: 4900000, guid: 832cfe77084233e4181e06dfedcedd81, type: 3}

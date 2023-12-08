@@ -29,10 +29,9 @@ VAR name = "hayseed"
         ~AdvanceQuest("FooshaSubquest", -1)
         ~acceptHayseedQuest = true
         ->Dialogue2
-    + [Ok, what’s in it for me?]
-        ~AdvanceQuest("FooshaSubquest", -1)
-        ~acceptHayseedQuest = true
-        ->Dialogue2
+    + [Ok, what’s in it for me?] "I shall reward you with a special tool"
+        ++[I see]
+            ->Dialogue1
     + [Not my problem.]
         ~Leave(true)
         ->DONE

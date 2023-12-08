@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
-using Ink.UnityIntegration;
+//using Ink.UnityIntegration;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using System.IO;
@@ -15,7 +15,8 @@ public class DialogueManager : Singleton<DialogueManager>
     public DialogueView View { get { return _view; } }
 
     private Dictionary<string, Ink.Runtime.Object> _variables;
-    [SerializeField]InkFile _file;
+
+    //[SerializeField] InkFile _file;
 
     private GameObject _characterReference;
     private GameObject _characterReference2;
@@ -47,20 +48,20 @@ public class DialogueManager : Singleton<DialogueManager>
     Dictionary<string, SceneChanger> _sceneChangers = new();
     [SerializeField] List<SceneChanger> debug;
 
+    [SerializeField] TextAsset _database;
+
     void InitializeVariables()
     {
-        
-        string inkFileContents = File.ReadAllText(_file.filePath);
-        Ink.Compiler compiler = new(inkFileContents);
-        Story tempStory = compiler.Compile();
+        Debug.Log("INITIALIZING DIALOGUE VARIABLES");
+        _currentStory = new Story(_database.text); ;
 
         _variables = new Dictionary<string, Ink.Runtime.Object>();
-        foreach (string name in tempStory.variablesState)
+        foreach (string name in _currentStory.variablesState)
         {
 
-            Ink.Runtime.Object value = tempStory.variablesState.GetVariableWithName(name);
+            Ink.Runtime.Object value = _currentStory.variablesState.GetVariableWithName(name);
             _variables.Add(name, value);
-            //Debug.Log("Initialized Variable " + name + " : " + value);
+            Debug.Log("Initialized Variable " + name + " : " + value);
         }
 
         
@@ -84,6 +85,8 @@ public class DialogueManager : Singleton<DialogueManager>
         _combatantNames.Clear();
         Debug.Log("Entering Dialogue");
         AddButtons();
+
+        ViewManager.Instance.GetView<GameView>().Hide();
 
         _characterReference = character;
         _currentStory = new Story(character.GetComponentInChildren<DialogueHolder>().InkDialogue.text);
@@ -206,6 +209,8 @@ public class DialogueManager : Singleton<DialogueManager>
     public IEnumerator ExitDialogue(){
 
         RemoveButtons();
+
+        ViewManager.Instance.GetView<GameView>().Show();
 
         yield return new WaitForSeconds(0.2f);
 
