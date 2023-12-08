@@ -34,6 +34,12 @@ public class CombatView : View
         this._document = GetComponent<UIDocument>();
         this._root = this._document.rootVisualElement;
 
+        if (_root == null)
+        {
+            Debug.LogError("CombatView root is null!");
+            return;
+        }
+
         // turn buttons
         _attackButton = _root.Q<Button>("AttackButton");
         _healButton = _root.Q<Button>("HealButton");
