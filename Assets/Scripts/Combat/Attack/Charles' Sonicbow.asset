@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Charles' Sonicbow
   m_EditorClassIdentifier: 
   _hitModifier: 7
-  _damageModifier: 1000000099
+  _damageModifier: 5
   _range: 40
   _numDice: 1
   _diceFaces: 6
