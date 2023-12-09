@@ -20,7 +20,7 @@ MonoBehaviour:
   _charisma: 10
   _jobClass: 0
   _movementSpeed: 30
-  _maxHealth: 50
+  _maxHealth: 70
   _attack: {fileID: 11400000, guid: 24ca9cf1b40aeae4384568ed7a05eb87, type: 2}
   _heal: {fileID: 11400000, guid: 785e61a7108cdca4dbf451b1c3da3a6e, type: 2}
   _maxActions: 1
