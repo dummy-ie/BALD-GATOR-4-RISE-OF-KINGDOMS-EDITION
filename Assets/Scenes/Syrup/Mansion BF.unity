@@ -303,6 +303,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 65323742}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &74634914 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6860517997469315008, guid: 9bf83a49cbf079943b1e05a9b160d103,
+    type: 3}
+  m_PrefabInstance: {fileID: 273815585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &116339729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -913,71 +919,76 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1023836841110761772, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 150409179182246776, guid: e6ae8a6b1ae46c749abc9387629f9823,
+        type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 74634914}
+    - target: {fileID: 484493136573798908, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: _inkDialogue
       value: 
       objectReference: {fileID: 4900000, guid: da966fd225115ae42a6de1d6fb1946c8, type: 3}
-    - target: {fileID: 1340913493563769356, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
-        type: 3}
-      propertyPath: m_Name
-      value: Merry
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.684
       objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.903
       objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 3.573
       objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7014587861073830129, guid: 9d2edc75169af1545adfc1ccd11e2a2f,
+    - target: {fileID: 2160013293116502788, guid: e6ae8a6b1ae46c749abc9387629f9823,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3582023599176923597, guid: e6ae8a6b1ae46c749abc9387629f9823,
+        type: 3}
+      propertyPath: m_Name
+      value: Real Merry
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9d2edc75169af1545adfc1ccd11e2a2f, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: e6ae8a6b1ae46c749abc9387629f9823, type: 3}
 --- !u!1001 &273815585
 PrefabInstance:
   m_ObjectHideFlags: 0
