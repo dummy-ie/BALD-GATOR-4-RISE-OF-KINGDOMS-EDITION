@@ -1,4 +1,4 @@
-# Bald Gator 4: Rise of Kindgoms Edition (GDAPDEV)
+# Bald Gator 4: Rise of Kingdoms Edition (GDAPDEV)
 
 ## Overview
 
