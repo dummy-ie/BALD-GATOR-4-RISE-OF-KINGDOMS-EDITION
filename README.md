@@ -77,3 +77,8 @@ This project is a simplified mobile RPG game developed in Unity, inspired by the
   - Two additional gesture inputs such as swipe, drag, or pinch
 
 ## Tech Stack
+- Engine: Unity (2022 or newer recommended)
+- Language: C#
+- Platform: Android/iOS
+- Input: Touch, Accelerometer, Optional Gesture APIs
+- Rendering: 3D assets and Unity UI system
