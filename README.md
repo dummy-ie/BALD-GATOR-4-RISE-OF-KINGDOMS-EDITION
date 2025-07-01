@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a simplified mobile RPG game developed in Unity, inspired by the mechanics of Baldur's Gate 3. It features dice-based stat checks, turn-based grid combat, stat-driven dialogue outcomes, and branching quest progression — all adapted for mobile gameplay with sensor integration.
+This project is a simplified mobile RPG game developed in Unity, inspired by the mechanics of Baldur's Gate 3. It features dice-based stat checks, turn-based grid combat, stat-driven dialogue outcomes, and branching quest progression created for mobile gameplay with device sensor integration.
 
 ## Key Features
 
